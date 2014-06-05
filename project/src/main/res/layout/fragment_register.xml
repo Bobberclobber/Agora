@@ -1,0 +1,123 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="se.liu.ida.josfa969.tddd80.fragments.RegisterFragment">
+
+    <TextView
+        android:id="@+id/register_title"
+        android:text="@string/register_screen_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/title_text_size"/>
+
+
+    <!-- First name input field -->
+    <EditText
+        android:id="@+id/first_name_input_field"
+        android:layout_width="@dimen/input_field_width"
+        android:layout_height="@dimen/input_field_height"
+        android:layout_marginTop="@dimen/input_field_margin"
+        android:layout_below="@id/register_title"
+        android:layout_alignParentEnd="true"
+        android:inputType="textAutoComplete" />
+
+    <TextView
+        android:id="@+id/register_screen_text_align"
+        android:text="@string/first_name_input_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/first_name_input_field"
+        android:textSize="@dimen/input_text_size"/>
+
+
+    <!-- Last name input field -->
+    <EditText
+        android:id="@+id/last_name_input_field"
+        android:layout_width="@dimen/input_field_width"
+        android:layout_height="@dimen/input_field_height"
+        android:layout_marginTop="@dimen/input_field_margin"
+        android:layout_below="@id/first_name_input_field"
+        android:layout_alignParentEnd="true"
+        android:inputType="textAutoComplete" />
+
+    <TextView
+        android:text="@string/last_name_input_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/register_screen_text_align"
+        android:layout_alignBottom="@id/last_name_input_field"
+        android:textSize="@dimen/input_text_size"/>
+
+
+    <!-- E-mail input field -->
+    <EditText
+        android:id="@+id/email_input_field"
+        android:layout_width="@dimen/input_field_width"
+        android:layout_height="@dimen/input_field_height"
+        android:layout_marginTop="@dimen/input_field_margin"
+        android:layout_below="@id/last_name_input_field"
+        android:layout_alignParentEnd="true"
+        android:inputType="textEmailAddress" />
+
+    <TextView
+        android:text="@string/email_input_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/register_screen_text_align"
+        android:layout_alignBottom="@id/email_input_field"
+        android:textSize="@dimen/input_text_size"/>
+
+
+    <!-- Country input field -->
+    <EditText
+        android:id="@+id/country_input_field"
+        android:layout_width="@dimen/input_field_width"
+        android:layout_height="@dimen/input_field_height"
+        android:layout_marginTop="@dimen/input_field_margin"
+        android:layout_below="@id/email_input_field"
+        android:layout_alignParentEnd="true"
+        android:inputType="textAutoComplete" />
+
+    <TextView
+        android:text="@string/country_input_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/register_screen_text_align"
+        android:layout_alignBottom="@id/country_input_field"
+        android:textSize="@dimen/input_text_size"/>
+
+
+    <!-- City input field -->
+    <EditText
+        android:id="@+id/city_input_field"
+        android:layout_width="@dimen/input_field_width"
+        android:layout_height="@dimen/input_field_height"
+        android:layout_marginTop="@dimen/input_field_margin"
+        android:layout_below="@id/country_input_field"
+        android:layout_alignParentEnd="true"
+        android:inputType="textAutoComplete" />
+
+    <TextView
+        android:text="@string/city_input_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/register_screen_text_align"
+        android:layout_alignBottom="@id/city_input_field"
+        android:textSize="@dimen/input_text_size"/>
+    
+
+    <!-- Completion button -->
+    <Button
+        android:text="@string/complete_button_text"
+        android:layout_width="@dimen/complete_button_width"
+        android:layout_height="@dimen/complete_button_height"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
