@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/other_profile_image"
-        android:layout_width="@dimen/image_button_side"
-        android:layout_height="@dimen/image_button_side"
+        android:layout_width="@dimen/avatar_image_side"
+        android:layout_height="@dimen/avatar_image_side"
         android:contentDescription="@string/other_profile_avatar_image_description" />
 
     <TextView
@@ -40,12 +40,18 @@
         android:layout_toRightOf="@id/other_user_followers"
         android:layout_below="@id/other_profile_name"/>
 
+    <Space
+        android:id="@+id/other_profile_upper_margin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/small_internal_margin"
+        android:layout_below="@id/other_profile_image"/>
+
     <Button
         android:id="@+id/follow_button"
         android:text="@string/follow_button_text"
         android:layout_width="@dimen/small_button_width"
         android:layout_height="@dimen/small_button_height"
-        android:layout_below="@id/other_profile_image"/>
+        android:layout_below="@id/other_profile_upper_margin"/>
 
     <Button
         android:id="@+id/ideas_button"
@@ -53,7 +59,7 @@
         android:layout_width="@dimen/small_button_width"
         android:layout_height="@dimen/small_button_height"
         android:layout_toRightOf="@id/follow_button"
-        android:layout_below="@id/other_profile_image"/>
+        android:layout_below="@id/other_profile_upper_margin"/>
 
     <Button
         android:id="@+id/profile_send_message_button"
@@ -61,20 +67,22 @@
         android:layout_width="@dimen/small_button_width"
         android:layout_height="@dimen/small_button_height"
         android:layout_toRightOf="@id/ideas_button"
-        android:layout_below="@id/other_profile_image"/>
+        android:layout_below="@id/other_profile_upper_margin"/>
 
     <TextView
         android:id="@+id/other_profile_interests"
         android:text="@string/interests_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/large_text_size"
-        android:layout_below="@id/follow_button"/>
+        android:layout_marginTop="@dimen/small_internal_margin"
+        android:layout_below="@id/follow_button"
+        android:textSize="@dimen/large_text_size"/>
 
     <GridView
         android:id="@+id/other_profile_interest_grid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_internal_margin"
         android:layout_below="@id/other_profile_interests"
         android:numColumns="5"/>
 

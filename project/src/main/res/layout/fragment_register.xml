@@ -18,109 +18,116 @@
 
 
     <!-- First name input field -->
-    <EditText
-        android:id="@+id/first_name_input_field"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/input_field_height"
-        android:layout_marginLeft="@dimen/small_internal_margin"
-        android:layout_marginTop="@dimen/input_field_margin"
-        android:layout_below="@id/register_title"
-        android:layout_alignStart="@id/register_title"
-        android:inputType="textAutoComplete" />
-
     <TextView
         android:id="@+id/first_name_input_text"
         android:text="@string/first_name_input_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/first_name_input_field"
-        android:layout_alignBottom="@id/first_name_input_field"
+        android:layout_marginTop="@dimen/large_internal_margin"
+        android:layout_below="@id/register_title"
         android:textSize="@dimen/input_text_size"/>
+
+    <EditText
+        android:id="@+id/first_name_input_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/small_internal_margin"
+        android:layout_toRightOf="@id/first_name_input_text"
+        android:layout_alignBottom="@id/first_name_input_text"
+        android:inputType="textAutoComplete" />
+
+
+    <!-- Alignment Space -->
+    <Space
+        android:id="@+id/register_fragment_alignment_space"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_toRightOf="@id/first_name_input_text"/>
 
 
     <!-- Last name input field -->
-    <EditText
-        android:id="@+id/last_name_input_field"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/input_field_height"
-        android:layout_marginLeft="@dimen/small_internal_margin"
-        android:layout_marginTop="@dimen/input_field_margin"
-        android:layout_below="@id/first_name_input_field"
-        android:layout_alignStart="@id/register_title"
-        android:inputType="textAutoComplete" />
-
     <TextView
         android:id="@+id/last_name_input_text"
         android:text="@string/last_name_input_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/first_name_input_text"
-        android:layout_alignBottom="@id/last_name_input_field"
+        android:layout_marginTop="@dimen/input_field_margin"
+        android:layout_below="@id/first_name_input_text"
+        android:layout_toLeftOf="@id/register_fragment_alignment_space"
         android:textSize="@dimen/input_text_size"/>
+
+    <EditText
+        android:id="@+id/last_name_input_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/small_internal_margin"
+        android:layout_toRightOf="@id/register_fragment_alignment_space"
+        android:layout_alignBottom="@+id/last_name_input_text"
+        android:inputType="textAutoComplete" />
 
 
     <!-- E-mail input field -->
-    <EditText
-        android:id="@+id/email_input_field"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/input_field_height"
-        android:layout_marginLeft="@dimen/small_internal_margin"
-        android:layout_marginTop="@dimen/input_field_margin"
-        android:layout_below="@id/last_name_input_field"
-        android:layout_alignStart="@id/register_title"
-        android:inputType="textEmailAddress" />
-
     <TextView
         android:id="@+id/email_input_text"
         android:text="@string/email_input_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/first_name_input_text"
-        android:layout_alignBottom="@id/email_input_field"
+        android:layout_marginTop="@dimen/input_field_margin"
+        android:layout_below="@id/last_name_input_text"
+        android:layout_toLeftOf="@id/register_fragment_alignment_space"
         android:textSize="@dimen/input_text_size"/>
+
+    <EditText
+        android:id="@+id/email_input_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/small_internal_margin"
+        android:layout_toRightOf="@id/register_fragment_alignment_space"
+        android:layout_alignBottom="@+id/email_input_text"
+        android:inputType="textEmailAddress" />
 
 
     <!-- Country input field -->
-    <EditText
-        android:id="@+id/country_input_field"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/input_field_height"
-        android:layout_marginLeft="@dimen/small_internal_margin"
-        android:layout_marginTop="@dimen/input_field_margin"
-        android:layout_below="@id/email_input_field"
-        android:layout_alignStart="@id/register_title"
-        android:inputType="textAutoComplete" />
-
     <TextView
         android:id="@+id/country_input_text"
         android:text="@string/country_input_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/first_name_input_text"
-        android:layout_alignBottom="@id/country_input_field"
+        android:layout_marginTop="@dimen/input_field_margin"
+        android:layout_below="@id/email_input_text"
+        android:layout_toLeftOf="@id/register_fragment_alignment_space"
         android:textSize="@dimen/input_text_size"/>
+
+    <EditText
+        android:id="@+id/country_input_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/small_internal_margin"
+        android:layout_toRightOf="@id/register_fragment_alignment_space"
+        android:layout_alignBottom="@+id/country_input_text"
+        android:inputType="textAutoComplete" />
 
 
     <!-- City input field -->
-    <EditText
-        android:id="@+id/city_input_field"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/input_field_height"
-        android:layout_marginLeft="@dimen/small_internal_margin"
-        android:layout_marginTop="@dimen/input_field_margin"
-        android:layout_below="@id/country_input_field"
-        android:layout_alignStart="@id/register_title"
-        android:inputType="textAutoComplete" />
-
     <TextView
         android:id="@+id/city_input_text"
         android:text="@string/city_input_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/first_name_input_text"
-        android:layout_alignBottom="@id/city_input_field"
+        android:layout_marginTop="@dimen/input_field_margin"
+        android:layout_below="@id/country_input_text"
+        android:layout_toLeftOf="@id/register_fragment_alignment_space"
         android:textSize="@dimen/input_text_size"/>
-    
+
+    <EditText
+        android:id="@+id/city_input_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/small_internal_margin"
+        android:layout_toRightOf="@id/register_fragment_alignment_space"
+        android:layout_alignBottom="@+id/city_input_text"
+        android:inputType="textAutoComplete" />
+
 
     <!-- Completion button -->
     <Button
@@ -129,6 +136,7 @@
         android:layout_height="@dimen/large_button_height"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/large_internal_margin"
-        android:layout_below="@id/city_input_field"/>
+        android:layout_below="@id/city_input_field"
+        android:onClick="onCompleteClick"/>
 
 </RelativeLayout>

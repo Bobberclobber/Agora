@@ -1,6 +1,6 @@
 package se.liu.ida.josfa969.tddd80.fragments;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

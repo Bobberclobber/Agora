@@ -16,19 +16,25 @@
         android:textSize="@dimen/small_title_text_size"
         android:layout_centerHorizontal="true"/>
 
+    <Space
+        android:id="@+id/conversation_fragment_upper_margin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/small_internal_margin"
+        android:layout_below="@id/conversation_title"/>
+
     <ImageButton
         android:id="@+id/avatar_picture"
-        android:layout_width="@dimen/image_button_side"
-        android:layout_height="@dimen/image_button_side"
-        android:layout_below="@id/conversation_title"
-        android:contentDescription="@string/user_avatar_image_description" />
+        android:layout_width="@dimen/avatar_image_side"
+        android:layout_height="@dimen/avatar_image_side"
+        android:layout_below="@id/conversation_fragment_upper_margin"
+        android:contentDescription="@string/other_user_avatar_image_description" />
 
     <TextView
         android:id="@+id/conversation_partner_name"
         android:text="User Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/conversation_title"
+        android:layout_below="@id/conversation_fragment_upper_margin"
         android:layout_toRightOf="@id/avatar_picture"
         android:textSize="@dimen/large_text_size"/>
 
@@ -43,6 +49,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/conversation_fragment_middle_space"
-        android:layout_below="@id/conversation_title"/>
+        android:layout_below="@id/conversation_fragment_upper_margin"/>
 
 </RelativeLayout>

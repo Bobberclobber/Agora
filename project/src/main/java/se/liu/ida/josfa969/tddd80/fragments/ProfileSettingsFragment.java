@@ -1,19 +1,15 @@
 package se.liu.ida.josfa969.tddd80.fragments;
 
-
-
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import se.liu.ida.josfa969.tddd80.R;
 
 /**
- * A simple {@link android.support.v4.app.Fragment} subclass.
- *
+ * A fragment used to display the user's profile settings
  */
 public class ProfileSettingsFragment extends Fragment {
 

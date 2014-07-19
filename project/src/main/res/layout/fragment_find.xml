@@ -27,7 +27,8 @@
         android:layout_width="@dimen/large_button_width"
         android:layout_height="@dimen/large_button_height"
         android:layout_centerHorizontal="true"
-        android:layout_above="@id/find_fragment_middle_space"/>
+        android:layout_above="@id/find_fragment_middle_space"
+        android:onClick="onSearchPeopleClick"/>
     
     <Button
         android:id="@+id/find_ideas_button"
@@ -35,6 +36,7 @@
         android:layout_width="@dimen/large_button_width"
         android:layout_height="@dimen/large_button_height"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/find_fragment_middle_space"/>
+        android:layout_below="@id/find_fragment_middle_space"
+        android:onClick="onSearchIdeasClick"/>
 
 </RelativeLayout>

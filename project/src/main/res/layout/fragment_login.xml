@@ -57,6 +57,15 @@
         android:layout_height="@dimen/large_button_height"
         android:layout_marginTop="@dimen/input_field_margin"
         android:layout_below="@id/login_password_input"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:onClick="onLoginClick"/>
+
+    <TextView
+        android:id="@+id/temp_tv"
+        android:text="Temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"/>
     
 </RelativeLayout>
