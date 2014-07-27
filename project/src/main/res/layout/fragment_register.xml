@@ -17,10 +17,10 @@
         android:textSize="@dimen/large_title_text_size"/>
 
 
-    <!-- First name input field -->
+    <!-- User name input field -->
     <TextView
-        android:id="@+id/first_name_input_text"
-        android:text="@string/first_name_input_text"
+        android:id="@+id/user_name_input_text"
+        android:text="@string/user_name_input_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_internal_margin"
@@ -28,13 +28,13 @@
         android:textSize="@dimen/input_text_size"/>
 
     <EditText
-        android:id="@+id/first_name_input_field"
+        android:id="@+id/user_name_input_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/small_internal_margin"
-        android:layout_toRightOf="@id/first_name_input_text"
-        android:layout_alignBottom="@id/first_name_input_text"
-        android:inputType="textAutoComplete" />
+        android:layout_toRightOf="@id/user_name_input_text"
+        android:layout_alignBottom="@id/user_name_input_text"
+        android:inputType="text" />
 
 
     <!-- Alignment Space -->
@@ -42,28 +42,49 @@
         android:id="@+id/register_fragment_alignment_space"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_toRightOf="@id/first_name_input_text"/>
+        android:layout_toRightOf="@id/user_name_input_text"/>
 
 
-    <!-- Last name input field -->
+    <!-- Password input field -->
     <TextView
-        android:id="@+id/last_name_input_text"
-        android:text="@string/last_name_input_text"
+        android:id="@+id/password_input_text"
+        android:text="@string/password_input_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/input_field_margin"
-        android:layout_below="@id/first_name_input_text"
+        android:layout_below="@id/user_name_input_text"
         android:layout_toLeftOf="@id/register_fragment_alignment_space"
         android:textSize="@dimen/input_text_size"/>
 
     <EditText
-        android:id="@+id/last_name_input_field"
+        android:id="@+id/password_input_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/small_internal_margin"
         android:layout_toRightOf="@id/register_fragment_alignment_space"
-        android:layout_alignBottom="@+id/last_name_input_text"
-        android:inputType="textAutoComplete" />
+        android:layout_alignBottom="@+id/password_input_text"
+        android:inputType="textPassword" />
+
+
+    <!-- Confirm password input field -->
+    <TextView
+        android:id="@+id/confirm_password_input_text"
+        android:text="@string/confirm_password_input_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/input_field_margin"
+        android:layout_below="@id/password_input_field"
+        android:layout_toLeftOf="@id/register_fragment_alignment_space"
+        android:textSize="@dimen/input_text_size"/>
+
+    <EditText
+        android:id="@+id/confirm_password_input_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/small_internal_margin"
+        android:layout_toRightOf="@id/register_fragment_alignment_space"
+        android:layout_alignBottom="@+id/confirm_password_input_text"
+        android:inputType="textPassword" />
 
 
     <!-- E-mail input field -->
@@ -73,7 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/input_field_margin"
-        android:layout_below="@id/last_name_input_text"
+        android:layout_below="@id/confirm_password_input_text"
         android:layout_toLeftOf="@id/register_fragment_alignment_space"
         android:textSize="@dimen/input_text_size"/>
 
@@ -138,5 +159,15 @@
         android:layout_marginTop="@dimen/large_internal_margin"
         android:layout_below="@id/city_input_field"
         android:onClick="onCompleteClick"/>
+
+    <!-- Status text -->
+    <TextView
+        android:id="@+id/register_status_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:textSize="@dimen/large_text_size"
+        android:textColor="#E50500"/>
 
 </RelativeLayout>

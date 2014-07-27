@@ -5,7 +5,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import se.liu.ida.josfa969.tddd80.JsonMethods;
 import se.liu.ida.josfa969.tddd80.R;
 
 /**

@@ -26,7 +26,7 @@
 
     <!-- First name input field -->
     <EditText
-        android:id="@+id/first_name_input_field"
+        android:id="@+id/user_name_input_field"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_field_height"
         android:layout_marginLeft="@dimen/small_internal_margin"
@@ -37,34 +37,34 @@
         android:inputType="textAutoComplete" />
 
     <TextView
-        android:id="@+id/first_name_input_text"
-        android:text="@string/first_name_input_text"
+        android:id="@+id/user_name_input_text"
+        android:text="@string/user_name_input_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/first_name_input_field"
-        android:layout_alignBottom="@id/first_name_input_field"
+        android:layout_toLeftOf="@id/user_name_input_field"
+        android:layout_alignBottom="@id/user_name_input_field"
         android:textSize="@dimen/input_text_size"/>
 
 
     <!-- Last name input field -->
     <EditText
-        android:id="@+id/last_name_input_field"
+        android:id="@+id/password_input_field"
         android:layout_width="match_parent"
         android:layout_height="@dimen/input_field_height"
         android:layout_marginLeft="@dimen/small_internal_margin"
         android:layout_marginTop="@dimen/input_field_margin"
-        android:layout_below="@id/first_name_input_field"
+        android:layout_below="@id/user_name_input_field"
         android:layout_alignStart="@id/register_fragment_middle_space"
         android:layout_alignEnd="@id/register_fragment_middle_space"
         android:inputType="textAutoComplete" />
 
     <TextView
-        android:id="@+id/last_name_input_text"
-        android:text="@string/last_name_input_text"
+        android:id="@+id/password_input_text"
+        android:text="@string/password_input_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/first_name_input_text"
-        android:layout_alignBottom="@id/last_name_input_field"
+        android:layout_alignRight="@id/user_name_input_text"
+        android:layout_alignBottom="@id/password_input_field"
         android:textSize="@dimen/input_text_size"/>
 
 
@@ -75,7 +75,7 @@
         android:layout_height="@dimen/input_field_height"
         android:layout_marginLeft="@dimen/small_internal_margin"
         android:layout_marginTop="@dimen/input_field_margin"
-        android:layout_below="@id/last_name_input_field"
+        android:layout_below="@id/password_input_field"
         android:layout_alignStart="@id/register_fragment_middle_space"
         android:layout_alignEnd="@id/register_fragment_middle_space"
         android:inputType="textEmailAddress" />
@@ -85,7 +85,7 @@
         android:text="@string/email_input_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/first_name_input_text"
+        android:layout_alignRight="@id/user_name_input_text"
         android:layout_alignBottom="@id/email_input_field"
         android:textSize="@dimen/input_text_size"/>
 
@@ -107,7 +107,7 @@
         android:text="@string/country_input_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/first_name_input_text"
+        android:layout_alignRight="@id/user_name_input_text"
         android:layout_alignBottom="@id/country_input_field"
         android:textSize="@dimen/input_text_size"/>
 
@@ -129,7 +129,7 @@
         android:text="@string/city_input_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/first_name_input_text"
+        android:layout_alignRight="@id/user_name_input_text"
         android:layout_alignBottom="@id/city_input_field"
         android:textSize="@dimen/input_text_size"/>
 

@@ -17,7 +17,7 @@
         android:layout_centerHorizontal="true"/>
 
     <ListView
-        android:id="@+id/message_list"
+        android:id="@+id/recent_events"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_internal_margin"

@@ -33,9 +33,9 @@
         android:layout_below="@id/login_screen_align_basis"
         android:inputType="textPassword" />
 
-    <!-- E-mail input field -->
+    <!-- Identifier input field -->
     <EditText
-        android:id="@+id/login_email_input"
+        android:id="@+id/login_identifier_input"
         android:layout_width="@dimen/input_field_width"
         android:layout_height="@dimen/input_field_height"
         android:layout_marginBottom="@dimen/input_field_margin"
@@ -44,11 +44,11 @@
         android:inputType="textEmailAddress" />
 
     <TextView
-        android:text="@string/email_input_text"
+        android:text="@string/identifier_input_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_above="@id/login_email_input"
+        android:layout_above="@id/login_identifier_input"
         android:textSize="@dimen/input_text_size"/>
 
     <Button
@@ -60,12 +60,14 @@
         android:layout_centerHorizontal="true"
         android:onClick="onLoginClick"/>
 
+    <!-- Status text -->
     <TextView
-        android:id="@+id/temp_tv"
-        android:text="Temp"
+        android:id="@+id/login_status_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:textSize="@dimen/large_text_size"
+        android:textColor="#E50500"/>
     
 </RelativeLayout>

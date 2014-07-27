@@ -1,7 +1,6 @@
 package se.liu.ida.josfa969.tddd80;
 
 import android.os.NetworkOnMainThreadException;
-import android.os.StrictMode;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -18,34 +17,61 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 /**
  * Created by Josef on 18/07/14.
- *
+ * <p/>
  * A class containing methods used to get JSON-responses from URLs
  */
 public class JsonMethods {
-    private static String BASE_URL = "http://localhost:5000/_register_user_/";
+    private static String BASE_URL = "http://10.0.3.2:5000/";
+    private static String replaceString = " ";
+    private static String replacementString = "&nbsp";
 
     // Sends the new user's information as a URL to a python
     // module which stores it in a sqlite3 database. A JSON
     // response is then received telling if the transaction
     // to the database succeeded or failed.
-    public static String registerNewUser(String firstName, String lastName, String eMail, String country, String city) {
-        String registerURL = BASE_URL + firstName + "/" + lastName + "/" + eMail + "/" + country + "/" + city;
-        String response = "Failed";
+    public static String registerNewUser(String userName, String password, String eMail, String country, String city) {
+        String registerURL = BASE_URL + "_register_user_/" + userName + "/" + password + "/" + eMail + "/" + country + "/" + city;
+        registerURL = registerURL.replace(replaceString, replacementString);
+        return getJsonResponse(registerURL);
+    }
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+    public static String loginUser(String identifier, String password) {
+        String loginURL = BASE_URL + "_login_user_/" + identifier + "/" + password;
+        loginURL = loginURL.replace(replaceString, replacementString);
+        return getJsonResponse(loginURL);
+    }
+
+    public static String postIdea(String ideaText, String poster) {
+        String postURL = BASE_URL + "_post_idea_/" + ideaText + "/" + poster;
+        postURL = postURL.replace(replaceString, replacementString);
+        return getJsonResponse(postURL);
+    }
+
+    public static ArrayList<IdeaRecord> getRecentEvents(String identifier) {
+        String recentEventsURL = BASE_URL + "_get_recent_activities_/" + identifier;
+        recentEventsURL = recentEventsURL.replace(replaceString, replacementString);
+
+        ArrayList<IdeaRecord> ideas = new ArrayList<IdeaRecord>();
 
         try {
-            JSONObject jsonResponseObject = new JSONObject(getUrlResponseString(registerURL));
-            JSONArray jsonResponseArray = jsonResponseObject.getJSONArray("response");
-            response = jsonResponseArray.get(0).toString();
+            JSONObject jsonResponseObject = new JSONObject(getUrlResponseString(recentEventsURL));
+            JSONArray ideaArray = jsonResponseObject.getJSONArray("ideas");
+            for (int i = 0; i < ideaArray.length(); i += 4) {
+                String ideaId = ideaArray.get(i).toString();
+                String ideaText = ideaArray.get(i + 1).toString().replace(replacementString, replaceString);
+                String poster = ideaArray.get(i + 2).toString();
+                String approvalNum = ideaArray.get(i + 3).toString();
+                ideas.add(new IdeaRecord(ideaId, ideaText, poster, approvalNum));
+            }
         } catch (JSONException e) {
             System.out.println("JSON Exception");
+            e.printStackTrace();
         }
-        return response;
+        return ideas;
     }
 
     private static String getUrlResponseString(String url) {
@@ -81,5 +107,19 @@ public class JsonMethods {
         }
         // End reading of URL
         return builder.toString();
+    }
+
+    private static String getJsonResponse(String URL) {
+        String response = "Failed";
+
+        try {
+            JSONObject jsonResponseObject = new JSONObject(getUrlResponseString(URL));
+            JSONArray jsonResponseArray = jsonResponseObject.getJSONArray("response");
+            response = jsonResponseArray.get(0).toString();
+        } catch (JSONException e) {
+            System.out.println("JSON Exception");
+            e.printStackTrace();
+        }
+        return response;
     }
 }

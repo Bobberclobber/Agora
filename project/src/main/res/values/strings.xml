@@ -45,12 +45,13 @@
     <string name="other_profile_avatar_image_description">Avatar Image</string>
 
     <!-- Input Field Strings -->
-    <string name="first_name_input_text">First name:</string>
-    <string name="last_name_input_text">Last name:</string>
+    <string name="user_name_input_text">User name:</string>
+    <string name="password_input_text">Password:</string>
+    <string name="confirm_password_input_text">Again:</string>
     <string name="email_input_text">E-mail:</string>
+    <string name="identifier_input_text">E-mail or Username:</string>
     <string name="country_input_text">Country:</string>
     <string name="city_input_text">City:</string>
-    <string name="password_input_text">Password:</string>
     <string name="message_recipient_text">To:</string>
     <string name="write_idea">Write your idea:</string>
     <string name="choose_categories">Choose categories:</string>
