@@ -1,0 +1,6 @@
+My Android project for the course TDDD80 - Mobila och Sociala Applikationer (Mobile and Social Applications) the spring and 
+summer of 2014. 
+The application is built using the android OS in combination with a server built using python in combination
+with Flask and SQLite3. 
+The purpose of the appication is to create a mobile and social environment in which the users can easily share any project
+ideas they may have on their mind or find and contact other people with interesting ideas.
