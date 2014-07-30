@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="se.liu.ida.josfa969.tddd80.fragments.ConversationFragment">
+
+    <TextView
+        android:id="@+id/conversation_title"
+        android:text="@string/conversation_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/small_title_text_size"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageButton
+        android:id="@+id/avatar_picture"
+        android:layout_width="@dimen/avatar_image_side"
+        android:layout_height="@dimen/avatar_image_side"
+        android:layout_marginTop="@dimen/large_internal_margin"
+        android:layout_below="@id/conversation_title"
+        android:contentDescription="@string/other_user_avatar_image_description"
+        android:onClick="onProfileImageClick"/>
+
+    <TextView
+        android:id="@+id/conversation_partner_name"
+        android:text="User Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_internal_margin"
+        android:layout_below="@id/conversation_title"
+        android:layout_toRightOf="@id/avatar_picture"
+        android:textSize="@dimen/large_text_size"/>
+
+    <ListView
+        android:id="@+id/recent_events"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_internal_margin"
+        android:layout_below="@id/avatar_picture"/>
+
+</RelativeLayout>
