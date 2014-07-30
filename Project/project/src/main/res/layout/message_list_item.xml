@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/message_avatar_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/small_padding"
+        android:src="@drawable/q_mark"
+        android:contentDescription="@string/user_avatar_image_description" />
+
+    <TextView
+        android:id="@+id/sender_text"
+        android:text="@string/sender_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/small_internal_margin"
+        android:layout_toRightOf="@id/message_avatar_image"
+        android:textSize="@dimen/large_text_size"/>
+
+    <TextView
+        android:id="@+id/sender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_internal_margin"
+        android:layout_toRightOf="@id/sender_text"
+        android:textSize="@dimen/large_text_size"/>
+
+    <TextView
+        android:id="@+id/receiver_text"
+        android:text="@string/receiver_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_internal_margin"
+        android:layout_marginTop="@dimen/small_internal_margin"
+        android:layout_toRightOf="@id/sender"
+        android:textSize="@dimen/large_text_size"/>
+
+    <TextView
+        android:id="@+id/receiver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_internal_margin"
+        android:layout_toRightOf="@id/receiver_text"
+        android:textSize="@dimen/large_text_size"/>
+
+</RelativeLayout>

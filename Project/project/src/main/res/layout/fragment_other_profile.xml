@@ -1,0 +1,101 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="se.liu.ida.josfa969.tddd80.fragments.OtherProfileFragment">
+
+    <ImageView
+        android:id="@+id/other_profile_image"
+        android:layout_width="@dimen/avatar_image_side"
+        android:layout_height="@dimen/avatar_image_side"
+        android:contentDescription="@string/other_profile_avatar_image_description"
+        android:src="@drawable/q_mark"/>
+
+    <TextView
+        android:id="@+id/other_profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/small_internal_margin"
+        android:layout_toRightOf="@id/other_profile_image"
+        android:textSize="@dimen/large_text_size"
+        android:textColor="@color/primary_color"/>
+
+    <TextView
+        android:id="@+id/other_profile_e_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/small_internal_margin"
+        android:layout_toRightOf="@id/other_profile_image"
+        android:layout_below="@id/other_profile_name"/>
+
+    <TextView
+        android:id="@+id/other_profile_followers"
+        android:text="@string/followers_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/small_internal_margin"
+        android:layout_toRightOf="@id/other_profile_image"
+        android:layout_below="@id/other_profile_e_mail"/>
+
+    <TextView
+        android:id="@+id/other_profile_follower_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/small_internal_margin"
+        android:layout_toRightOf="@id/other_profile_followers"
+        android:layout_below="@id/other_profile_e_mail"/>
+
+    <Space
+        android:id="@+id/other_profile_upper_margin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/large_internal_margin"
+        android:layout_below="@id/other_profile_image"/>
+
+    <Button
+        android:id="@+id/follow_button"
+        android:text="@string/follow_button_text"
+        android:layout_width="@dimen/small_button_width"
+        android:layout_height="@dimen/small_button_height"
+        android:layout_below="@id/other_profile_upper_margin"
+        android:onClick="onFollowClick"/>
+
+    <Button
+        android:id="@+id/other_profile_send_message_button"
+        android:text="@string/profile_send_message_button_text"
+        android:layout_width="@dimen/small_button_width"
+        android:layout_height="@dimen/small_button_height"
+        android:layout_toRightOf="@id/follow_button"
+        android:layout_below="@id/other_profile_upper_margin"
+        android:onClick="onMessageClick"/>
+
+    <Button
+        android:id="@+id/information_button"
+        android:text="@string/information_button_text"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/small_button_height"
+        android:layout_toRightOf="@id/other_profile_send_message_button"
+        android:layout_below="@id/other_profile_upper_margin"
+        android:onClick="onInformationClick"/>
+
+    <TextView
+        android:id="@+id/other_profile_recent_ideas_text"
+        android:text="@string/other_profile_recent_ideas_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_internal_margin"
+        android:layout_below="@id/follow_button"
+        android:textSize="@dimen/large_text_size"/>
+
+    <ListView
+        android:id="@+id/other_profile_recent_ideas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_internal_margin"
+        android:layout_marginLeft="@dimen/large_internal_margin"
+        android:layout_below="@id/other_profile_recent_ideas_text"/>
+
+</RelativeLayout>

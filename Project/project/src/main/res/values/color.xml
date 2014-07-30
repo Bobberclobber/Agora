@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_color">#0099CC</color>
+    <color name="error_color">#E50500</color>
+    <color name="success_color">#60E500</color>
+    <color name="background_holo_light">#eeeeee</color>
+</resources>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/idea_avatar_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/small_padding"
+        android:src="@drawable/q_mark"
+        android:contentDescription="@string/user_avatar_image_description" />
+
+    <TextView
+        android:id="@+id/poster"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/small_padding"
+        android:layout_toRightOf="@id/idea_avatar_image"
+        android:textSize="@dimen/large_text_size"
+        android:textColor="#0099CC"/>
+
+    <TextView
+        android:id="@+id/idea_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/small_padding"
+        android:layout_toRightOf="@id/idea_avatar_image"
+        android:layout_below="@id/poster"/>
+
+    <TextView
+        android:id="@+id/idea_id_text"
+        android:text="@string/idea_id_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_internal_margin"
+        android:paddingLeft="@dimen/small_padding"
+        android:layout_toRightOf="@id/idea_avatar_image"
+        android:layout_below="@id/idea_text"/>
+
+    <TextView
+        android:id="@+id/idea_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_internal_margin"
+        android:layout_toRightOf="@id/idea_id_text"
+        android:layout_below="@id/idea_text"
+        android:textColor="#0099CC"/>
+
+    <TextView
+        android:id="@+id/approval_num_text"
+        android:text="@string/approval_num_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_internal_margin"
+        android:layout_marginTop="@dimen/small_internal_margin"
+        android:layout_toRightOf="@id/idea_id"
+        android:layout_below="@id/idea_text"/>
+
+    <TextView
+        android:id="@+id/approval_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/approval_num_text"
+        android:layout_marginTop="@dimen/small_internal_margin"
+        android:layout_below="@id/idea_text"
+        android:textColor="#0099CC"/>
+
+</RelativeLayout>
