@@ -1,9 +1,0 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="se.liu.ida.josfa969.tddd80.activities.InitialActivity" >
-    
-    <item android:id="@+id/action_settings"
-        android:title="@string/actions_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never" />
-</menu>
