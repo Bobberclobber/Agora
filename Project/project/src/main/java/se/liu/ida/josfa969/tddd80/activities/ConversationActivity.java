@@ -93,14 +93,6 @@ public class ConversationActivity extends Activity {
         conversationPartnerName.setText(userName);
 
         ListView messagesList = (ListView) findViewById(R.id.messages_list);
-
-        ArrayList<String> items = new ArrayList<String>();
-
-        for (int i = 0; i < 50; i++) {
-            items.add("Message Message Message Message Message Message Message Message Message Message");
-        }
-
-        messagesList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items));
     }
 
     public void onProfileImageClick(View view) {
