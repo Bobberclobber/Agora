@@ -80,7 +80,7 @@
       <file leaf-file-name="OtherProfileActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="13" selection-start="746" selection-end="746" vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="2448">
+            <state line="106" column="40" selection-start="4104" selection-end="4104" vertical-scroll-proportion="2.592721" vertical-offset="0" max-vertical-offset="2448">
               <folding />
             </state>
           </provider>
@@ -110,7 +110,7 @@
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="67" selection-start="1404" selection-end="1404" vertical-scroll-proportion="-17.8" vertical-offset="65" max-vertical-offset="714">
+            <state line="30" column="67" selection-start="1404" selection-end="1404" vertical-scroll-proportion="0.0" vertical-offset="65" max-vertical-offset="714">
               <folding />
             </state>
           </provider>
@@ -523,7 +523,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -862,6 +861,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -874,6 +874,7 @@
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="192.168.56.101:5555" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RunManager" selected="Android Application.InitialActivity">
     <configuration default="false" name="InitialActivity" type="AndroidRunConfigurationType" factoryName="Android Application" temporary="true">
@@ -1077,7 +1078,6 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942432" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1094,6 +1094,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942432" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1114,6 +1115,68 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="28" selection-start="2710" selection-end="2710" vertical-scroll-proportion="0.0" vertical-offset="1173" max-vertical-offset="2448">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ProfileActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="13" selection-start="951" selection-end="951" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="4590">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ConversationActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="94" column="76" selection-start="3488" selection-end="3488" vertical-scroll-proportion="0.0" vertical-offset="1598" max-vertical-offset="2227">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_send_message.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="67" selection-start="1404" selection-end="1404" vertical-scroll-proportion="0.0" vertical-offset="65" max-vertical-offset="714">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="13" selection-start="746" selection-end="746" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="2448">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ProfileActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="13" selection-start="951" selection-end="951" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="4590">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ConversationActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="94" column="76" selection-start="3488" selection-end="3488" vertical-scroll-proportion="0.0" vertical-offset="1598" max-vertical-offset="2227">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_send_message.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="67" selection-start="1404" selection-end="1404" vertical-scroll-proportion="0.0" vertical-offset="65" max-vertical-offset="714">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="13" selection-start="746" selection-end="746" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2754">
@@ -1174,14 +1237,14 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="67" selection-start="1404" selection-end="1404" vertical-scroll-proportion="-17.8" vertical-offset="65" max-vertical-offset="714">
+        <state line="30" column="67" selection-start="1404" selection-end="1404" vertical-scroll-proportion="0.0" vertical-offset="65" max-vertical-offset="714">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="13" selection-start="746" selection-end="746" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2448">
+        <state line="106" column="40" selection-start="4104" selection-end="4104" vertical-scroll-proportion="2.592721" vertical-offset="0" max-vertical-offset="2448">
           <folding />
         </state>
       </provider>
