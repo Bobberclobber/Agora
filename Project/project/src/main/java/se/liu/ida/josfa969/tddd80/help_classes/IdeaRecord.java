@@ -3,6 +3,8 @@ package se.liu.ida.josfa969.tddd80.help_classes;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 /**
  * Created by Josef on 27/07/14.
  *
@@ -19,12 +21,14 @@ public class IdeaRecord implements Parcelable {
     public String ideaText;
     public String poster;
     public String approvalNum;
+    public ArrayList tags;
 
-    public IdeaRecord(String ideaId, String ideaText, String poster, String approvalNum) {
+    public IdeaRecord(String ideaId, String ideaText, String poster, String approvalNum, ArrayList<String> tags) {
         this.ideaId = ideaId;
         this.ideaText = ideaText;
         this.poster = poster;
         this.approvalNum = approvalNum;
+        this.tags = tags;
     }
 
     private IdeaRecord(Parcel in) {
@@ -33,6 +37,7 @@ public class IdeaRecord implements Parcelable {
         ideaText = in.readString();
         poster = in.readString();
         approvalNum = in.readString();
+        tags = in.readArrayList(null);
     }
 
     @Override
@@ -41,6 +46,7 @@ public class IdeaRecord implements Parcelable {
         out.writeString(ideaText);
         out.writeString(poster);
         out.writeString(approvalNum);
+        out.writeList(tags);
     }
 
     @Override

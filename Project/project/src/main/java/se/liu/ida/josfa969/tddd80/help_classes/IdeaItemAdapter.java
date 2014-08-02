@@ -40,6 +40,7 @@ public class IdeaItemAdapter extends ArrayAdapter<IdeaRecord> {
             TextView ideaText = (TextView) v.findViewById(R.id.idea_text);
             TextView ideaId = (TextView) v.findViewById(R.id.idea_id);
             TextView approvalNum = (TextView) v.findViewById(R.id.approval_num);
+            TextView tags = (TextView) v.findViewById(R.id.tags);
 
             if (poster != null) {
                 poster.setText(ideaRecord.poster);
@@ -55,6 +56,13 @@ public class IdeaItemAdapter extends ArrayAdapter<IdeaRecord> {
 
             if (approvalNum != null) {
                 approvalNum.setText(ideaRecord.approvalNum);
+            }
+            if (tags != null) {
+                String tagString = "";
+                for (Object tag : ideaRecord.tags) {
+                    tagString += "#" + tag + " ";
+                }
+                tags.setText(tagString);
             }
         }
         return v;

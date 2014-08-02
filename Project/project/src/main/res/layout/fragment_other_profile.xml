@@ -55,6 +55,12 @@
         android:layout_height="@dimen/large_internal_margin"
         android:layout_below="@id/other_profile_image"/>
 
+    <Space
+        android:id="@+id/button_replacement"
+        android:layout_width="@dimen/small_button_width"
+        android:layout_height="@dimen/small_button_height"
+        android:layout_below="@id/other_profile_upper_margin"/>
+
     <Button
         android:id="@+id/follow_button"
         android:text="@string/follow_button_text"
@@ -64,11 +70,19 @@
         android:onClick="onFollowClick"/>
 
     <Button
+        android:id="@+id/un_follow_button"
+        android:text="@string/un_follow_button_text"
+        android:layout_width="@dimen/small_button_width"
+        android:layout_height="@dimen/small_button_height"
+        android:layout_below="@id/other_profile_upper_margin"
+        android:onClick="onUnFollowClick"/>
+
+    <Button
         android:id="@+id/other_profile_send_message_button"
         android:text="@string/profile_send_message_button_text"
         android:layout_width="@dimen/small_button_width"
         android:layout_height="@dimen/small_button_height"
-        android:layout_toRightOf="@id/follow_button"
+        android:layout_toRightOf="@id/button_replacement"
         android:layout_below="@id/other_profile_upper_margin"
         android:onClick="onMessageClick"/>
 
@@ -87,7 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_internal_margin"
-        android:layout_below="@id/follow_button"
+        android:layout_below="@id/button_replacement"
         android:textSize="@dimen/large_text_size"/>
 
     <ListView

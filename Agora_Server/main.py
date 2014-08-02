@@ -45,9 +45,13 @@ def login_user(identifier, password):
 
 # Takes a string of the idea and a user
 # name and adds the idea to the ideas table
-@app.route('/_post_idea_/<idea_text>/<poster>')
-def post_idea(idea_text, poster):
-    db.add_new_idea(idea_text, poster)
+@app.route('/_post_idea_/<idea_text>/<poster>/<tags>')
+def post_idea(idea_text, poster, tags):
+    c = "&nbht"
+    n = tags.count(c)
+    tag_list = tags.split(c, n)
+    tag_list.remove('')
+    db.add_new_idea(idea_text, poster, tag_list)
     return jsonify({"response": ["Success"]})
 
 
@@ -55,41 +59,25 @@ def post_idea(idea_text, poster):
 # a JSON response containing the information
 # about the most recent idea posted by that
 # user and the users which that user is following
-@app.route('/_get_recent_activities_/<identifier>')
-def get_recent_activities(identifier):
+@app.route('/_get_idea_feed_/<identifier>')
+def get_idea_feed(identifier):
     if '@' in identifier:
         user_name = db.get_user_name(identifier)
         if user_name == "Invalid":
             return jsonify({"response": ["Failure"]})
         else:
-            return jsonify(get_most_recent_ideas(user_name))
+            return jsonify({"response": ["Success"], "ideas": get_ideas(user_name)})
     else:
-        return jsonify(get_most_recent_ideas(identifier))
+        return jsonify({"response": ["Success"], "ideas": get_ideas(identifier)})
 
 
-# Takes a user name and returns a dict where
-# 'response' is 'Success' and 'ideas' links
-# to a list containing the latest idea made
-# by the given user and the user which the
-# given user is following
-def get_most_recent_ideas(user_name):
-    users_to_check = [user_name, "Test_User1"]
-    users_to_check += db.get_following(user_name)
-    recent_ideas = {"response": ["Success"], "ideas": []}
-    for user in users_to_check:
-        recent_ideas["ideas"] += get_most_recent_idea(user)
-    return recent_ideas
-
-
-# Takes a user name and creates a dict linking
-# the user name to the information concerning
-# that user's latest idea
-def get_most_recent_idea(user_name):
-    recent_idea = db.get_most_recent_idea(user_name)
-    if recent_idea != "Invalid":
-        return [recent_idea[0], recent_idea[1], recent_idea[2], recent_idea[3]]
-    else:
-        return []
+def get_ideas(user_name):
+    user_list = [user_name, "test_user"]
+    user_list += db.get_following(user_name)
+    idea_list = []
+    for user in user_list:
+        idea_list.append(db.get_most_recent_idea(user))
+    return idea_list
 
 
 # Takes a user name or e-mail and returns
@@ -139,6 +127,33 @@ def get_e_mail(user_name):
 @app.route('/_get_other_user_recent_ideas_/<identifier>')
 def get_other_user_recent_ideas(identifier):
     return jsonify({"response": ["Success"], "ideas": db.get_recent_ideas(identifier)})
+
+
+@app.route('/_add_follower_/<user>/<follower>')
+def add_follower(user, follower):
+    db.add_follower(user, follower)
+    return jsonify({"response": ["success"]})
+
+
+@app.route('/_remove_follower_/<user>/<follower>')
+def remove_follower(user, follower):
+    db.remove_follower(user, follower)
+    return jsonify({"response": ["success"]})
+
+
+@app.route('/_search_ideas_/<tags>')
+def search_ideas(tags):
+    c = "&nbht"
+    n = tags.count(c)
+    tag_list = tags.split(c, n)
+    tag_list.remove('')
+    idea_list = []
+    for tag in tag_list:
+        temp = db.get_ideas(tag)
+        for item in temp:
+            if not item in idea_list:
+                idea_list.append(item)
+    return jsonify({"response": ["Success"], "ideas": idea_list})
 
 
 if __name__ == "__main__":

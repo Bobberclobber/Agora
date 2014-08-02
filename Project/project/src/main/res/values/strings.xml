@@ -81,5 +81,9 @@
     <!-- Message List Item Strings -->
     <string name="sender_text">From:</string>
     <string name="receiver_text">To:</string>
+    <string name="tags_text">#-Tags</string>
+    <string name="un_follow_button_text">Unfollow</string>
+    <string name="title_activity_found_ideas">FoundIdeasActivity</string>
+    <string name="search_results_text">Search Results</string>
 
 </resources>

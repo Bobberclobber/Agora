@@ -26,9 +26,30 @@
         android:id="@+id/idea_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_internal_margin"
         android:padding="@dimen/small_padding"
         android:layout_toRightOf="@id/idea_avatar_image"
         android:layout_below="@id/poster"/>
+
+    <TextView
+        android:id="@+id/tags_text"
+        android:text="@string/tags_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_internal_margin"
+        android:paddingLeft="@dimen/small_padding"
+        android:layout_toRightOf="@id/idea_avatar_image"
+        android:layout_below="@id/idea_text"
+        android:textColor="@color/primary_color"/>
+
+    <TextView
+        android:id="@+id/tags"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_internal_margin"
+        android:padding="@dimen/small_padding"
+        android:layout_toRightOf="@id/idea_avatar_image"
+        android:layout_below="@id/tags_text"/>
 
     <TextView
         android:id="@+id/idea_id_text"
@@ -38,7 +59,7 @@
         android:layout_marginTop="@dimen/small_internal_margin"
         android:paddingLeft="@dimen/small_padding"
         android:layout_toRightOf="@id/idea_avatar_image"
-        android:layout_below="@id/idea_text"/>
+        android:layout_below="@id/tags"/>
 
     <TextView
         android:id="@+id/idea_id"
@@ -46,7 +67,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_internal_margin"
         android:layout_toRightOf="@id/idea_id_text"
-        android:layout_below="@id/idea_text"
+        android:layout_below="@id/tags"
         android:textColor="#0099CC"/>
 
     <TextView
@@ -57,7 +78,7 @@
         android:layout_marginLeft="@dimen/large_internal_margin"
         android:layout_marginTop="@dimen/small_internal_margin"
         android:layout_toRightOf="@id/idea_id"
-        android:layout_below="@id/idea_text"/>
+        android:layout_below="@id/tags"/>
 
     <TextView
         android:id="@+id/approval_num"
@@ -65,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/approval_num_text"
         android:layout_marginTop="@dimen/small_internal_margin"
-        android:layout_below="@id/idea_text"
+        android:layout_below="@id/tags"
         android:textColor="#0099CC"/>
 
 </RelativeLayout>

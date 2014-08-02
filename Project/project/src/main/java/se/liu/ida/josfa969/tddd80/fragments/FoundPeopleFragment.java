@@ -11,14 +11,14 @@ import se.liu.ida.josfa969.tddd80.R;
 /**
  * A fragment used to display the results of a search query
  */
-public class FoundFragment extends Fragment {
+public class FoundPeopleFragment extends Fragment {
 
-    public FoundFragment() {
+    public FoundPeopleFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_found, container, false);
+        return inflater.inflate(R.layout.fragment_found_people, container, false);
     }
 }

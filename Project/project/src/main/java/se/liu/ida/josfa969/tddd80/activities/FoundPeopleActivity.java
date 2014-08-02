@@ -6,9 +6,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import se.liu.ida.josfa969.tddd80.R;
-import se.liu.ida.josfa969.tddd80.fragments.FoundFragment;
+import se.liu.ida.josfa969.tddd80.fragments.FoundPeopleFragment;
 
-public class FoundActivity extends Activity {
+public class FoundPeopleActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +16,7 @@ public class FoundActivity extends Activity {
         setContentView(R.layout.activity_found);
 
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction().add(R.id.container, new FoundFragment()).commit();
+            getFragmentManager().beginTransaction().add(R.id.container, new FoundPeopleFragment()).commit();
         }
     }
 

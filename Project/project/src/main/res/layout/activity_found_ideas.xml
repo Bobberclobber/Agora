@@ -3,5 +3,5 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="se.liu.ida.josfa969.tddd80.activities.FoundPeopleActivity"
+    tools:context="se.liu.ida.josfa969.tddd80.activities.FoundIdeasActivity"
     tools:ignore="MergeRootFrame" />

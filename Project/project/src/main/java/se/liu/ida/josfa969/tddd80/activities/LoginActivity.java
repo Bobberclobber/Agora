@@ -16,8 +16,8 @@ import se.liu.ida.josfa969.tddd80.fragments.LoginFragment;
 
 public class LoginActivity extends Activity {
 
-    private String userNameKey = Constants.USER_NAME_KEY;
-    private String eMailKey = Constants.E_MAIL_KEY;
+    private final String USER_NAME_KEY = Constants.USER_NAME_KEY;
+    private final String E_MAIL_KEY = Constants.E_MAIL_KEY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +66,11 @@ public class LoginActivity extends Activity {
                 Intent loginIntent = new Intent(this, ProfileActivity.class);
                 // Send the identifier as an extra to the next activity
                 if (identifier.contains("@")) {
-                    loginIntent.putExtra(userNameKey, JsonMethods.getUserName(identifier));
-                    loginIntent.putExtra(eMailKey, identifier);
+                    loginIntent.putExtra(USER_NAME_KEY, JsonMethods.getUserName(identifier));
+                    loginIntent.putExtra(E_MAIL_KEY, identifier);
                 } else {
-                    loginIntent.putExtra(userNameKey, identifier);
-                    loginIntent.putExtra(eMailKey, JsonMethods.getEMail(identifier));
+                    loginIntent.putExtra(USER_NAME_KEY, identifier);
+                    loginIntent.putExtra(E_MAIL_KEY, JsonMethods.getEMail(identifier));
                 }
                 startActivity(loginIntent);
             } else {

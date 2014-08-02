@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="se.liu.ida.josfa969.tddd80" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -29,7 +28,7 @@
         <activity
             android:name="se.liu.ida.josfa969.tddd80.activities.ConversationActivity"
             android:label="@string/title_activity_conversation"
-            android:parentActivityName=".activities.OtherProfileActivity">
+            android:parentActivityName="se.liu.ida.josfa969.tddd80.activities.OtherProfileActivity" >
 
             <!-- The following adds support for parent activities for all API levels lower than 16 -->
             <meta-data
@@ -37,16 +36,28 @@
                 android:value="se.liu.ida.josfa969.tddd80.activities.OtherProfileActivity" />
         </activity>
 
-        <!-- Found Activity -->
+        <!-- Found People Activity -->
         <activity
-            android:name="se.liu.ida.josfa969.tddd80.activities.FoundActivity"
+            android:name=".activities.FoundPeopleActivity"
             android:label="@string/title_activity_found"
-            android:parentActivityName=".activities.ProfileActivity">
+            android:parentActivityName="se.liu.ida.josfa969.tddd80.activities.SearchPeopleActivity" >
 
             <!-- The following adds support for parent activities for all API levels lower than 16 -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="se.liu.ida.josfa969.tddd80.activities.ProfileActivity" />
+        </activity>
+
+        <!-- Found Ideas Activity -->
+        <activity
+            android:name="se.liu.ida.josfa969.tddd80.activities.FoundIdeasActivity"
+            android:label="@string/title_activity_found_ideas"
+            android:parentActivityName=".activities.SearchIdeasActivity">
+
+            <!-- The following adds support for parent activities for all API levels lower than 16 -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="se.liu.ida.josfa969.tddd80.activities.SearchIdeasActivity" />
         </activity>
 
         <!-- Login Activity -->
@@ -77,7 +88,7 @@
         <activity
             android:name="se.liu.ida.josfa969.tddd80.activities.ProfileActivity"
             android:label="@string/title_activity_profile"
-            android:parentActivityName=".activities.LoginActivity">
+            android:parentActivityName="se.liu.ida.josfa969.tddd80.activities.LoginActivity" >
 
             <!-- The following adds support for parent activities for all API levels lower than 16 -->
             <meta-data
@@ -101,7 +112,7 @@
         <activity
             android:name="se.liu.ida.josfa969.tddd80.activities.SearchPeopleActivity"
             android:label="@string/title_activity_search"
-            android:parentActivityName=".activities.ProfileActivity">
+            android:parentActivityName="se.liu.ida.josfa969.tddd80.activities.ProfileActivity" >
 
             <!-- The following adds support for parent activities for all API levels lower than 16 -->
             <meta-data
@@ -113,7 +124,7 @@
         <activity
             android:name="se.liu.ida.josfa969.tddd80.activities.SearchIdeasActivity"
             android:label="@string/title_activity_search_ideas"
-            android:parentActivityName=".activities.ProfileActivity">
+            android:parentActivityName="se.liu.ida.josfa969.tddd80.activities.ProfileActivity" >
 
             <!-- The following adds support for parent activities for all API levels lower than 16 -->
             <meta-data
@@ -121,10 +132,25 @@
                 android:value="se.liu.ida.josfa969.tddd80.activities.ProfileActivity" />
         </activity>
 
-        <!-- Fetch Other User Ideas Service -->
+        <!-- Add Follower Service -->
         <!-- exported="false" makes the service available exclusively to this application -->
         <service
-            android:name="se.liu.ida.josfa969.tddd80.background_services.FetchOtherUserIdeas"
+            android:name="se.liu.ida.josfa969.tddd80.background_services.AddFollowerService"
+            android:exported="false" />
+
+        <!-- Add Follower Service -->
+        <!-- exported="false" makes the service available exclusively to this application -->
+        <service
+            android:name="se.liu.ida.josfa969.tddd80.background_services.RemoveFollowerService"
+            android:exported="false" />
+
+        <!-- Search People Service -->
+        <service android:name=".background_services.RemoveFollowerService"
+            android:exported="false"/>
+
+        <!-- Search Ideas Service -->
+        <service
+            android:name=".background_services.SearchIdeasService"
             android:exported="false"/>
 
     </application>

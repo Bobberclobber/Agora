@@ -1,6 +1,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="se.liu.ida.josfa969.tddd80.activities.FoundPeopleActivity" >
+    tools:context="se.liu.ida.josfa969.tddd80.activities.FoundIdeasActivity" >
     
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"

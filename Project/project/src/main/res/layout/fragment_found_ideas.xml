@@ -6,36 +6,25 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="se.liu.ida.josfa969.tddd80.fragments.SearchIdeasFragment">
+    tools:context="se.liu.ida.josfa969.tddd80.fragments.FoundIdeasFragment">
 
     <TextView
-        android:id="@+id/search_ideas_title"
-        android:text="@string/search_ideas_fragment_title_text"
+        android:id="@+id/found_ideas_title"
+        android:text="@string/search_results_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:textSize="@dimen/small_title_text_size"/>
 
-    <EditText
-        android:id="@+id/search_tags_input"
+    <ListView
+        android:id="@+id/found_ideas_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/large_internal_margin"
-        android:layout_below="@id/search_ideas_title"
-        android:inputType="textMultiLine"/>
-
-    <Button
-        android:id="@+id/idea_search_button"
-        android:text="@string/search_button_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/search_tags_input"
+        android:layout_marginLeft="@dimen/large_internal_margin"
         android:layout_marginTop="@dimen/small_internal_margin"
-        android:layout_centerHorizontal="true"
-        android:onClick="onIdeaSearchClick"/>
+        android:layout_below="@id/found_ideas_title"/>
 
     <TextView
-        android:id="@+id/search_ideas_status_text"
+        android:id="@+id/found_ideas_status_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"

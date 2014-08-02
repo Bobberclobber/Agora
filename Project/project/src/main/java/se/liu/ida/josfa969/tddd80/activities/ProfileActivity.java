@@ -38,8 +38,8 @@ public class ProfileActivity extends FragmentActivity {
     private String eMail = null;
     private String[] tabTitleList = {"Post", "Idea Feed", "Messages", "Find", "Settings"};
 
-    private String userNameKey = Constants.USER_NAME_KEY;
-    private String eMailKey = Constants.E_MAIL_KEY;
+    private final String USER_NAME_KEY = Constants.USER_NAME_KEY;
+    private final String E_MAIL_KEY = Constants.E_MAIL_KEY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +55,8 @@ public class ProfileActivity extends FragmentActivity {
 
         // Gets the users user name and e-mail address
         Intent initIntent = getIntent();
-        userName = initIntent.getStringExtra(userNameKey);
-        eMail = initIntent.getStringExtra(eMailKey);
+        userName = initIntent.getStringExtra(USER_NAME_KEY);
+        eMail = initIntent.getStringExtra(E_MAIL_KEY);
 
         System.out.println("Post Get Intent");
         System.out.println("User Name: " + userName);
@@ -69,10 +69,10 @@ public class ProfileActivity extends FragmentActivity {
         String defaultUserName = "User Name";
         String defaultEMail = "E-Mail";
         if (userName == null) {
-            userName = preferences.getString(userNameKey, defaultUserName);
+            userName = preferences.getString(USER_NAME_KEY, defaultUserName);
         }
         if (eMail == null) {
-            eMail = preferences.getString(eMailKey, defaultEMail);
+            eMail = preferences.getString(E_MAIL_KEY, defaultEMail);
         }
 
         System.out.println("Post Preferences");
@@ -151,22 +151,22 @@ public class ProfileActivity extends FragmentActivity {
         System.out.println("On Pause");
         System.out.println("----------");
 
-        System.out.println(userNameKey + " - " + userName);
-        System.out.println(eMailKey + " - " + eMail);
+        System.out.println(USER_NAME_KEY + " - " + userName);
+        System.out.println(E_MAIL_KEY + " - " + eMail);
 
         // When leaving this activity and starting a
         // new one, save the current user's username
         // and e-mail using a shared preference
         SharedPreferences preferences = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(userNameKey, userName);
-        editor.putString(eMailKey, eMail);
+        editor.putString(USER_NAME_KEY, userName);
+        editor.putString(E_MAIL_KEY, eMail);
         editor.commit();
     }
 
     private void updateRecentEvents() {
         ListView recentIdeasList = (ListView) findViewById(R.id.recent_ideas);
-        ArrayList<IdeaRecord> recentIdeas = JsonMethods.getRecentIdeas(userName);
+        ArrayList<IdeaRecord> recentIdeas = JsonMethods.getIdeaFeed(userName);
         if (recentIdeas == null) {
             System.out.println("Error!");
         } else if (recentIdeas.isEmpty()) {
@@ -212,8 +212,8 @@ public class ProfileActivity extends FragmentActivity {
         String clickedFollowers = userData.get(4);
 
         // Attaches the basic data to the intent
-        otherProfileIntent.putExtra(userNameKey, clickedUserName);
-        otherProfileIntent.putExtra(eMailKey, clickedEMail);
+        otherProfileIntent.putExtra(USER_NAME_KEY, clickedUserName);
+        otherProfileIntent.putExtra(E_MAIL_KEY, clickedEMail);
         otherProfileIntent.putExtra(countryKey, clickedCountry);
         otherProfileIntent.putExtra(cityKey, clickedCity);
         otherProfileIntent.putExtra(followersKey, clickedFollowers);
@@ -226,6 +226,7 @@ public class ProfileActivity extends FragmentActivity {
     public void onPostClick(View view) {
         // Get the inputs
         EditText ideaTextInput = (EditText) findViewById(R.id.idea_input);
+        EditText tagInput = (EditText) findViewById(R.id.tag_input);
 
         // Get the status text views
         TextView positiveStatusText = (TextView) findViewById(R.id.positive_post_status_text);
@@ -233,6 +234,7 @@ public class ProfileActivity extends FragmentActivity {
 
         // Get the contents of the inputs
         String ideaText = String.valueOf(ideaTextInput.getText());
+        String tags = String.valueOf(tagInput.getText());
 
         if (ideaText.equals("")) {
             positiveStatusText.setText("");
@@ -245,10 +247,11 @@ public class ProfileActivity extends FragmentActivity {
             progress.show();
 
             // Gets the JSON response from the given input
-            String response = JsonMethods.postIdea(ideaText, userName);
+            String response = JsonMethods.postIdea(ideaText, userName, tags);
             if (response.equals("Success")) {
                 progress.dismiss();
                 ideaTextInput.setText("");
+                tagInput.setText("");
                 positiveStatusText.setText("Idea Posted");
                 negativeStatusText.setText("");
             } else {
@@ -260,5 +263,15 @@ public class ProfileActivity extends FragmentActivity {
     }
 
     public void onUpdateClick(View view) {
+    }
+
+    public void onSearchPeopleClick(View view) {
+        Intent searchPeopleIntent = new Intent(this, SearchPeopleActivity.class);
+        startActivity(searchPeopleIntent);
+    }
+
+    public void onSearchIdeasClick(View view) {
+        Intent searchIdeasIntent = new Intent(this, SearchIdeasActivity.class);
+        startActivity(searchIdeasIntent);
     }
 }

@@ -1,8 +1,10 @@
 package se.liu.ida.josfa969.tddd80.activities;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -10,10 +12,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import se.liu.ida.josfa969.tddd80.R;
+import se.liu.ida.josfa969.tddd80.background_services.AddFollowerService;
+import se.liu.ida.josfa969.tddd80.background_services.RemoveFollowerService;
 import se.liu.ida.josfa969.tddd80.fragments.OtherProfileFragment;
 import se.liu.ida.josfa969.tddd80.help_classes.Constants;
 import se.liu.ida.josfa969.tddd80.help_classes.IdeaItemAdapter;
@@ -24,12 +29,12 @@ public class OtherProfileActivity extends Activity {
 
     // Gets strings used as keys to
     // get data sent through an intent
-    private String userNameKey = Constants.USER_NAME_KEY;
-    private String eMailKey = Constants.E_MAIL_KEY;
-    private String countryKey = Constants.COUNTRY_KEY;
-    private String cityKey = Constants.CITY_KEY;
-    private String followersKey = Constants.FOLLOWERS_KEY;
-    private String originalUserKey = Constants.ORIGINAL_USER_KEY;
+    private final String USER_NAME_KEY = Constants.USER_NAME_KEY;
+    private final String E_MAIL_KEY = Constants.E_MAIL_KEY;
+    private final String COUNTRY_KEY = Constants.COUNTRY_KEY;
+    private final String CITY_KEY = Constants.CITY_KEY;
+    private final String FOLLOWERS_KEY = Constants.FOLLOWERS_KEY;
+    private final String ORIGINAL_USER_KEY = Constants.ORIGINAL_USER_KEY;
 
     // Initializes basic data variables
     private String userName = null;
@@ -39,6 +44,9 @@ public class OtherProfileActivity extends Activity {
     private String followers = null;
     private String originalUser = null;
 
+    // Broadcast receiver
+    private ResponseReceiver receiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,14 +55,23 @@ public class OtherProfileActivity extends Activity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        // Filters for the receiver
+        IntentFilter addFollowerFilter = new IntentFilter(Constants.ADD_FOLLOWER_RESP);
+        IntentFilter removeFollowerFilter = new IntentFilter(Constants.REMOVE_FOLLOWER_RESP);
+        addFollowerFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        removeFollowerFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        receiver = new ResponseReceiver();
+        registerReceiver(receiver, addFollowerFilter);
+        registerReceiver(receiver, removeFollowerFilter);
+
         // Gets all data sent by the intent starting this activity
         Intent initIntent = getIntent();
-        userName = initIntent.getStringExtra(userNameKey);
-        eMail = initIntent.getStringExtra(eMailKey);
-        country = initIntent.getStringExtra(countryKey);
-        city = initIntent.getStringExtra(cityKey);
-        followers = initIntent.getStringExtra(followersKey);
-        originalUser = initIntent.getStringExtra(originalUserKey);
+        userName = initIntent.getStringExtra(USER_NAME_KEY);
+        eMail = initIntent.getStringExtra(E_MAIL_KEY);
+        country = initIntent.getStringExtra(COUNTRY_KEY);
+        city = initIntent.getStringExtra(CITY_KEY);
+        followers = initIntent.getStringExtra(FOLLOWERS_KEY);
+        originalUser = initIntent.getStringExtra(ORIGINAL_USER_KEY);
 
         SharedPreferences preferences = this.getPreferences(Context.MODE_PRIVATE);
         String defaultUserName = "User Name";
@@ -65,22 +82,22 @@ public class OtherProfileActivity extends Activity {
         String defaultOriginalUser = "You";
 
         if (userName == null) {
-            userName = preferences.getString(userNameKey, defaultUserName);
+            userName = preferences.getString(USER_NAME_KEY, defaultUserName);
         }
         if (eMail == null) {
-            eMail = preferences.getString(eMailKey, defaultEMail);
+            eMail = preferences.getString(E_MAIL_KEY, defaultEMail);
         }
         if (country == null) {
-            country = preferences.getString(countryKey, defaultCountry);
+            country = preferences.getString(COUNTRY_KEY, defaultCountry);
         }
         if (city == null) {
-            city = preferences.getString(cityKey, defaultCity);
+            city = preferences.getString(CITY_KEY, defaultCity);
         }
         if (followers == null) {
-            followers = preferences.getString(followersKey, defaultFollowers);
+            followers = preferences.getString(FOLLOWERS_KEY, defaultFollowers);
         }
         if (originalUser == null) {
-            originalUser = preferences.getString(originalUserKey, defaultOriginalUser);
+            originalUser = preferences.getString(ORIGINAL_USER_KEY, defaultOriginalUser);
         }
 
         if (savedInstanceState == null) {
@@ -96,23 +113,38 @@ public class OtherProfileActivity extends Activity {
         System.out.println("On Pause");
         System.out.println("----------");
 
+        // Unregister the receiver
+        unregisterReceiver(receiver);
+
         // When leaving this activity and starting a
         // new one, save the current user's username
         // and e-mail using a shared preference
         SharedPreferences preferences = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(userNameKey, userName);
-        editor.putString(eMailKey, eMail);
-        editor.putString(countryKey, country);
-        editor.putString(cityKey, city);
-        editor.putString(followersKey, followers);
-        editor.putString(originalUserKey, originalUser);
+        editor.putString(USER_NAME_KEY, userName);
+        editor.putString(E_MAIL_KEY, eMail);
+        editor.putString(COUNTRY_KEY, country);
+        editor.putString(CITY_KEY, city);
+        editor.putString(FOLLOWERS_KEY, followers);
+        editor.putString(ORIGINAL_USER_KEY, originalUser);
         editor.commit();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        // Sets the follow/un-follow buttons' visibility depending on
+        // if the current user is following the other user
+        Button followButton = (Button) findViewById(R.id.follow_button);
+        Button unFollowButton = (Button) findViewById(R.id.un_follow_button);
+        if (JsonMethods.userIsFollowing(originalUser, userName)) {
+            followButton.setVisibility(View.GONE);
+            unFollowButton.setVisibility(View.VISIBLE);
+        } else {
+            followButton.setVisibility(View.VISIBLE);
+            unFollowButton.setVisibility(View.GONE);
+        }
 
         // Gets text views
         TextView nameView = (TextView) findViewById(R.id.other_profile_name);
@@ -141,8 +173,8 @@ public class OtherProfileActivity extends Activity {
 
     public void onMessageClick(View view) {
         Intent conversationIntent = new Intent(this, ConversationActivity.class);
-        conversationIntent.putExtra(userNameKey, userName);
-        conversationIntent.putExtra(originalUserKey, originalUser);
+        conversationIntent.putExtra(USER_NAME_KEY, userName);
+        conversationIntent.putExtra(ORIGINAL_USER_KEY, originalUser);
         startActivity(conversationIntent);
     }
 
@@ -150,7 +182,59 @@ public class OtherProfileActivity extends Activity {
     }
 
     public void onFollowClick(View view) {
+        System.out.println("On Follow Click");
+        // Gets widgets
         Button followButton = (Button) findViewById(R.id.follow_button);
-        followButton.setEnabled(false);
+        Button unFollowButton = (Button) findViewById(R.id.un_follow_button);
+        TextView followersView = (TextView) findViewById(R.id.other_profile_follower_number);
+
+        // Temporarily increases the follower number by one
+        int incFollowerNum = Integer.parseInt(followers) + 1;
+        followersView.setText(String.valueOf(incFollowerNum));
+
+        // Starts the AddFollowerService
+        Intent addFollowerIntent = new Intent(this, AddFollowerService.class);
+        addFollowerIntent.putExtra(ORIGINAL_USER_KEY, originalUser);
+        addFollowerIntent.putExtra(Constants.TARGET_USER_KEY, userName);
+        startService(addFollowerIntent);
+
+        // Hides the follow button and displays the un-follow button
+        followButton.setVisibility(View.GONE);
+        unFollowButton.setVisibility(View.VISIBLE);
+    }
+
+    public void onUnFollowClick(View view) {
+        System.out.println("On Un-Follow Click");
+        // Gets widgets
+        Button followButton = (Button) findViewById(R.id.follow_button);
+        Button unFollowButton = (Button) findViewById(R.id.un_follow_button);
+        TextView followersView = (TextView) findViewById(R.id.other_profile_follower_number);
+
+        // Temporarily decreases the follower number by one
+        int decFollowerNum = Integer.parseInt(followers);
+        followersView.setText(String.valueOf(decFollowerNum));
+
+        // Starts the RemoveFollowerService
+        Intent removeFollowerIntent = new Intent(this, RemoveFollowerService.class);
+        removeFollowerIntent.putExtra(ORIGINAL_USER_KEY, originalUser);
+        removeFollowerIntent.putExtra(Constants.TARGET_USER_KEY, userName);
+        startService(removeFollowerIntent);
+
+        // Hides the un-follow button and displays the follow button
+        unFollowButton.setVisibility(View.GONE);
+        followButton.setVisibility(View.VISIBLE);
+    }
+
+    public class ResponseReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            System.out.println("----------");
+            System.out.println("On Receive");
+            System.out.println("----------");
+
+            // Creates a toast showing that you now follow the target user
+            String toastMsg = intent.getStringExtra(Constants.FOLLOW_TOAST_MSG_KEY);
+            Toast.makeText(context, toastMsg, Toast.LENGTH_SHORT).show();
+        }
     }
 }
