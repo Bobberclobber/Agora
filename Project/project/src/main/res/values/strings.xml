@@ -85,5 +85,14 @@
     <string name="un_follow_button_text">Unfollow</string>
     <string name="title_activity_found_ideas">FoundIdeasActivity</string>
     <string name="search_results_text">Search Results</string>
+    <string name="change_button_text">Change</string>
+    <string name="approval_symbol">+</string>
+    <string name="un_approval_symbol">-</string>
+    <string name="title_activity_information">InformationActivity</string>
+    <string name="information_title_text">Information</string>
+    <string name="following_text">Following:</string>
+    <string name="approving_text">Approving:</string>
+    <string name="title_activity_idea_detail">IdeaDetailActivity</string>
+    <string name="comment_button_text">Comment</string>
 
 </resources>

@@ -1,7 +1,8 @@
-package se.liu.ida.josfa969.tddd80.help_classes;
+package se.liu.ida.josfa969.tddd80.item_records;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -16,7 +17,6 @@ import java.util.ArrayList;
  * this object can be sent with an intent
  */
 public class IdeaRecord implements Parcelable {
-
     public String ideaId;
     public String ideaText;
     public String poster;

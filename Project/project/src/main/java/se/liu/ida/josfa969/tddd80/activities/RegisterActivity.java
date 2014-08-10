@@ -16,9 +16,6 @@ import se.liu.ida.josfa969.tddd80.fragments.RegisterFragment;
 
 public class RegisterActivity extends Activity {
 
-    private String userNameKey = Constants.USER_NAME_KEY;
-    private String eMailKey = Constants.E_MAIL_KEY;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,8 +69,11 @@ public class RegisterActivity extends Activity {
                 progress.dismiss();
                 // Create an intent to start the Profile Activity
                 Intent completeIntent = new Intent(this, ProfileActivity.class);
-                completeIntent.putExtra(userNameKey, userName);
-                completeIntent.putExtra(eMailKey, eMail);
+                completeIntent.putExtra(Constants.USER_NAME_KEY, userName);
+                completeIntent.putExtra(Constants.E_MAIL_KEY, eMail);
+                completeIntent.putExtra(Constants.PASSWORD_KEY, password);
+                completeIntent.putExtra(Constants.COUNTRY_KEY, country);
+                completeIntent.putExtra(Constants.CITY_KEY, city);
                 startActivity(completeIntent);
             } else {
                 progress.dismiss();

@@ -21,8 +21,8 @@ import se.liu.ida.josfa969.tddd80.background_services.AddFollowerService;
 import se.liu.ida.josfa969.tddd80.background_services.RemoveFollowerService;
 import se.liu.ida.josfa969.tddd80.fragments.OtherProfileFragment;
 import se.liu.ida.josfa969.tddd80.help_classes.Constants;
-import se.liu.ida.josfa969.tddd80.help_classes.IdeaItemAdapter;
-import se.liu.ida.josfa969.tddd80.help_classes.IdeaRecord;
+import se.liu.ida.josfa969.tddd80.list_adapters.IdeaItemAdapter;
+import se.liu.ida.josfa969.tddd80.item_records.IdeaRecord;
 import se.liu.ida.josfa969.tddd80.help_classes.JsonMethods;
 
 public class OtherProfileActivity extends Activity {
@@ -167,7 +167,7 @@ public class OtherProfileActivity extends Activity {
         } else if (recentIdeas.isEmpty()) {
             System.out.println("No Recent Events");
         } else {
-            recentIdeasList.setAdapter(new IdeaItemAdapter(this, R.layout.idea_list_item, recentIdeas));
+            recentIdeasList.setAdapter(new IdeaItemAdapter(this, R.layout.idea_list_item, recentIdeas, originalUser));
         }
     }
 
@@ -179,6 +179,14 @@ public class OtherProfileActivity extends Activity {
     }
 
     public void onInformationClick(View view) {
+        Intent informationIntent = new Intent(this, InformationActivity.class);
+        informationIntent.putExtra(Constants.USER_NAME_KEY, userName);
+        informationIntent.putExtra(Constants.E_MAIL_KEY, eMail);
+        informationIntent.putExtra(Constants.COUNTRY_KEY, country);
+        informationIntent.putExtra(Constants.CITY_KEY, city);
+        informationIntent.putExtra(Constants.FOLLOWERS_KEY, followers);
+        informationIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
+        startActivity(informationIntent);
     }
 
     public void onFollowClick(View view) {
@@ -189,7 +197,8 @@ public class OtherProfileActivity extends Activity {
         TextView followersView = (TextView) findViewById(R.id.other_profile_follower_number);
 
         // Temporarily increases the follower number by one
-        int incFollowerNum = Integer.parseInt(followers) + 1;
+        String followerNum = String.valueOf(followersView.getText());
+        int incFollowerNum = Integer.parseInt(followerNum) + 1;
         followersView.setText(String.valueOf(incFollowerNum));
 
         // Starts the AddFollowerService
@@ -211,7 +220,8 @@ public class OtherProfileActivity extends Activity {
         TextView followersView = (TextView) findViewById(R.id.other_profile_follower_number);
 
         // Temporarily decreases the follower number by one
-        int decFollowerNum = Integer.parseInt(followers);
+        String followerNum = String.valueOf(followersView.getText());
+        int decFollowerNum = Integer.parseInt(followerNum) - 1;
         followersView.setText(String.valueOf(decFollowerNum));
 
         // Starts the RemoveFollowerService
@@ -225,7 +235,7 @@ public class OtherProfileActivity extends Activity {
         followButton.setVisibility(View.VISIBLE);
     }
 
-    public class ResponseReceiver extends BroadcastReceiver {
+    private class ResponseReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             System.out.println("----------");

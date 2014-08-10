@@ -7,7 +7,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import se.liu.ida.josfa969.tddd80.help_classes.Constants;
-import se.liu.ida.josfa969.tddd80.help_classes.IdeaRecord;
+import se.liu.ida.josfa969.tddd80.item_records.IdeaRecord;
 import se.liu.ida.josfa969.tddd80.help_classes.JsonMethods;
 
 /**
@@ -29,7 +29,7 @@ public class SearchIdeasService extends IntentService {
 
         String tagString = intent.getStringExtra(Constants.TAG_STRING_KEY);
         ArrayList<IdeaRecord> ideas = JsonMethods.searchIdeas(tagString);
-        Log.v("SearchIdeasService", "Found ideas: " + ideas);
+        Log.i("SearchIdeasService", "Found ideas: " + ideas);
 
         Intent broadCastIntent = new Intent();
         broadCastIntent.setAction(Constants.SEARCH_IDEAS_RESP);

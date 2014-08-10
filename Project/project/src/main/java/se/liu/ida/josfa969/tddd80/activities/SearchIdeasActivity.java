@@ -35,6 +35,7 @@ public class SearchIdeasActivity extends Activity {
         } else {
             Intent ideasSearchIntent = new Intent(this, FoundIdeasActivity.class);
             ideasSearchIntent.putExtra(Constants.TAG_STRING_KEY, tagString);
+            ideasSearchIntent.putExtra(Constants.ORIGINAL_USER_KEY, getIntent().getStringExtra(Constants.ORIGINAL_USER_KEY));
             startActivity(ideasSearchIntent);
         }
     }

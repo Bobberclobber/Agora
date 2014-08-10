@@ -38,7 +38,7 @@
 
         <!-- Found People Activity -->
         <activity
-            android:name=".activities.FoundPeopleActivity"
+            android:name="se.liu.ida.josfa969.tddd80.activities.FoundPeopleActivity"
             android:label="@string/title_activity_found"
             android:parentActivityName="se.liu.ida.josfa969.tddd80.activities.SearchPeopleActivity" >
 
@@ -52,7 +52,7 @@
         <activity
             android:name="se.liu.ida.josfa969.tddd80.activities.FoundIdeasActivity"
             android:label="@string/title_activity_found_ideas"
-            android:parentActivityName=".activities.SearchIdeasActivity">
+            android:parentActivityName="se.liu.ida.josfa969.tddd80.activities.SearchIdeasActivity" >
 
             <!-- The following adds support for parent activities for all API levels lower than 16 -->
             <meta-data
@@ -132,25 +132,113 @@
                 android:value="se.liu.ida.josfa969.tddd80.activities.ProfileActivity" />
         </activity>
 
+        <!-- Information Activity -->
+        <activity
+            android:name="se.liu.ida.josfa969.tddd80.activities.InformationActivity"
+            android:label="@string/title_activity_information"
+            android:parentActivityName="se.liu.ida.josfa969.tddd80.activities.OtherProfileActivity" >
+
+            <!-- The following adds support for parent activities for all API levels lower than 16 -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="se.liu.ida.josfa969.tddd80.activities.OtherProfileActivity" />
+        </activity>
+
+        <!-- Idea Detail Activity -->
+        <activity
+            android:name="se.liu.ida.josfa969.tddd80.activities.IdeaDetailActivity"
+            android:label="@string/title_activity_idea_detail"
+            android:parentActivityName=".activities.ProfileActivity">
+
+            <!-- The following adds support for parent activities for all API levels lower than 16 -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="se.liu.ida.josfa969.tddd80.activities.ProfileActivity" />
+        </activity>
+
+
+        <!-- Services -->
+
         <!-- Add Follower Service -->
         <!-- exported="false" makes the service available exclusively to this application -->
         <service
             android:name="se.liu.ida.josfa969.tddd80.background_services.AddFollowerService"
             android:exported="false" />
 
-        <!-- Add Follower Service -->
+        <!-- Remove Follower Service -->
         <!-- exported="false" makes the service available exclusively to this application -->
         <service
             android:name="se.liu.ida.josfa969.tddd80.background_services.RemoveFollowerService"
             android:exported="false" />
 
         <!-- Search People Service -->
-        <service android:name=".background_services.RemoveFollowerService"
-            android:exported="false"/>
+        <service
+            android:name="se.liu.ida.josfa969.tddd80.background_services.SearchPeopleService"
+            android:exported="false" />
 
         <!-- Search Ideas Service -->
         <service
-            android:name=".background_services.SearchIdeasService"
+            android:name="se.liu.ida.josfa969.tddd80.background_services.SearchIdeasService"
+            android:exported="false" />
+
+        <!-- Update User Data Service -->
+        <service
+            android:name="se.liu.ida.josfa969.tddd80.background_services.UpdateUserDataService"
+            android:exported="false" />
+
+        <!-- Add Approving Service -->
+        <service
+            android:name="se.liu.ida.josfa969.tddd80.background_services.AddApprovingService"
+            android:exported="false" />
+
+        <!-- Remove Approving Service -->
+        <service
+            android:name="se.liu.ida.josfa969.tddd80.background_services.RemoveApprovingService"
+            android:exported="false" />
+
+        <!-- Get Following Service -->
+        <service
+            android:name="se.liu.ida.josfa969.tddd80.background_services.GetFollowingService"
+            android:exported="false" />
+
+        <!-- Get Approving Service -->
+        <service
+            android:name="se.liu.ida.josfa969.tddd80.background_services.GetApprovingService"
+            android:exported="false" />
+
+        <!-- Get Idea Feed Service -->
+        <service
+            android:name="se.liu.ida.josfa969.tddd80.background_services.GetIdeaFeedService"
+            android:exported="false" />
+
+        <!-- Post Idea Service -->
+        <service
+            android:name="se.liu.ida.josfa969.tddd80.background_services.PostIdeaService"
+            android:exported="false" />
+
+        <!-- Get Recent Messages Service -->
+        <service
+            android:name="se.liu.ida.josfa969.tddd80.background_services.GetRecentMessagesService"
+            android:exported="false" />
+
+        <!-- Send Message Service -->
+        <service
+            android:name="se.liu.ida.josfa969.tddd80.background_services.SendMessageService"
+            android:exported="false" />
+
+        <!-- Post Comment Service -->
+        <service
+            android:name=".background_services.PostCommentService"
+            android:exported="false"/>
+
+        <!-- Get Comments Service -->
+        <service
+            android:name=".background_services.GetCommentsService"
+            android:exported="false"/>
+
+        <!-- Get User Data Service -->
+        <service
+            android:name=".background_services.GetUserDataService"
             android:exported="false"/>
 
     </application>

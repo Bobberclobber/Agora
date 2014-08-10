@@ -16,42 +16,101 @@
         android:layout_centerHorizontal="true"
         android:textSize="@dimen/small_title_text_size"/>
 
-    <ImageView
+    <!-- Change avatar image -->
+    <ImageButton
         android:id="@+id/profile_image"
         android:layout_width="@dimen/avatar_image_side"
         android:layout_height="@dimen/avatar_image_side"
+        android:layout_marginLeft="@dimen/large_internal_margin"
         android:layout_marginTop="@dimen/large_internal_margin"
         android:layout_below="@id/profile_settings_title"
         android:src="@drawable/q_mark"
         android:contentDescription="@string/user_avatar_image_description" />
 
-    <TextView
+    <!-- Change user name -->
+    <EditText
         android:id="@+id/profile_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_internal_margin"
-        android:layout_marginLeft="@dimen/small_internal_margin"
-        android:layout_toRightOf="@id/profile_image"
-        android:layout_below="@id/profile_settings_title"
+        android:layout_marginLeft="@dimen/large_internal_margin"
+        android:layout_below="@id/profile_image"
         android:textSize="@dimen/large_text_size"
-        android:textColor="@color/primary_color"/>
+        android:textColor="@color/primary_color"
+        android:inputType="text"/>
 
-    <TextView
+    <!-- Change e-mail -->
+    <EditText
         android:id="@+id/profile_e_mail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/small_internal_margin"
-        android:layout_toRightOf="@id/profile_image"
-        android:layout_below="@id/profile_user_name"/>
+        android:layout_marginLeft="@dimen/large_internal_margin"
+        android:layout_marginTop="@dimen/large_internal_margin"
+        android:layout_below="@id/profile_user_name"
+        android:textSize="@dimen/large_text_size"
+        android:inputType="textEmailAddress"/>
 
+    <!-- Change password -->
+    <EditText
+        android:id="@+id/profile_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_internal_margin"
+        android:layout_marginTop="@dimen/large_internal_margin"
+        android:layout_below="@id/profile_e_mail"
+        android:textSize="@dimen/large_text_size"
+        android:inputType="textPassword"/>
+
+    <!-- Change country -->
+    <EditText
+        android:id="@+id/profile_country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_internal_margin"
+        android:layout_marginTop="@dimen/large_internal_margin"
+        android:layout_below="@id/profile_password"
+        android:textSize="@dimen/large_text_size"
+        android:inputType="text"/>
+
+    <!-- Change city -->
+    <EditText
+        android:id="@+id/profile_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_internal_margin"
+        android:layout_marginTop="@dimen/large_internal_margin"
+        android:layout_below="@id/profile_country"
+        android:textSize="@dimen/large_text_size"
+        android:inputType="text"/>
+
+    <!-- Update settings -->
     <Button
         android:id="@+id/update_settings_button"
         android:text="@string/update_settings_button_text"
-        android:layout_width="@dimen/large_button_width"
-        android:layout_height="@dimen/large_button_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_internal_margin"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:onClick="onUpdateClick"/>
+
+    <!-- Status Texts -->
+    <TextView
+        android:id="@+id/negative_settings_status_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/update_settings_button"
+        android:textSize="@dimen/large_text_size"
+        android:textColor="@color/error_color"/>
+
+    <TextView
+        android:id="@+id/positive_settings_status_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/update_settings_button"
+        android:textSize="@dimen/large_text_size"
+        android:textColor="@color/success_color"/>
 
 </RelativeLayout>

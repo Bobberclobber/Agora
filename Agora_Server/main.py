@@ -72,12 +72,24 @@ def get_idea_feed(identifier):
 
 
 def get_ideas(user_name):
-    user_list = [user_name, "test_user"]
+    user_list = [user_name]
     user_list += db.get_following(user_name)
     idea_list = []
     for user in user_list:
         idea_list.append(db.get_most_recent_idea(user))
     return idea_list
+
+
+@app.route('/_get_recent_messages_/<user_name>/<original_user_name>')
+def get_recent_messages(user_name, original_user_name):
+    recent_messages = db.get_recent_messages(user_name, original_user_name)
+    return jsonify({"response": ["Success"], "messages": recent_messages})
+
+
+@app.route('/_send_message_/<sender>/<receiver>/<message_text>')
+def send_message(sender, receiver, message_text):
+    db.add_message(sender, receiver, message_text)
+    return jsonify({"response": ["Success"]})
 
 
 # Takes a user name or e-mail and returns
@@ -99,11 +111,6 @@ def get_user_data(identifier):
                         "followers": [followers]})
     else:
         return jsonify({"response": ["Failure"]})
-
-
-@app.route('/_get_following_/<identifier>')
-def get_following(identifier):
-    return jsonify({"response": "Success", "following": db.get_following(identifier)})
 
 
 @app.route('/_get_user_name_/<e_mail>')
@@ -146,7 +153,8 @@ def search_ideas(tags):
     c = "&nbht"
     n = tags.count(c)
     tag_list = tags.split(c, n)
-    tag_list.remove('')
+    if '' in tag_list:
+        tag_list.remove('')
     idea_list = []
     for tag in tag_list:
         temp = db.get_ideas(tag)
@@ -154,6 +162,81 @@ def search_ideas(tags):
             if not item in idea_list:
                 idea_list.append(item)
     return jsonify({"response": ["Success"], "ideas": idea_list})
+
+
+@app.route('/_search_people_/<identifiers>')
+def search_people(identifiers):
+    c = "&nbsp"
+    n = identifiers.count(c)
+    identifier_list = identifiers.split(c, n)
+    if '' in identifier_list:
+        identifier_list.remove('')
+    people_list = []
+    for identifier in identifier_list:
+        temp = db.get_people(identifier)
+        for item in temp:
+            if not item in people_list:
+                people_list.append(item)
+    return jsonify({"response": ["Success"], "people": people_list})
+
+
+@app.route('/_user_is_following_/<user>/<other_user>')
+def user_is_following(user, other_user):
+    is_following = db.user_is_following(user, other_user)
+    return jsonify({"response": ["Success"], "is_following": [is_following]})
+
+
+@app.route('/_update_user_data_/<original_user_name>/<original_e_mail>/<new_user_name>/<new_e_mail>/'
+           '<new_password>/<new_country>/<new_city>')
+def update_user_data(original_user_name, original_e_mail, new_user_name, new_e_mail,
+                     new_password, new_country, new_city):
+    response = "Success"
+    if original_user_name != new_user_name and db.user_name_exists(new_user_name):
+        response = "User Name Exists"
+    elif original_e_mail != new_e_mail and db.email_exists(new_e_mail):
+        response = "E-Mail Exists"
+    else:
+        db.update_user_data(original_user_name, new_user_name, new_e_mail, new_password, new_country, new_city)
+    return jsonify({"response": [response]})
+
+
+@app.route('/_add_approving_/<user_name>/<idea_id>')
+def add_approving(user_name, idea_id):
+    db.add_approving(user_name, idea_id)
+    return jsonify({"response": ["Success"]})
+
+
+@app.route('/_remove_approving_/<user_name>/<idea_id>')
+def remove_approving(user_name, idea_id):
+    db.remove_approving(user_name, idea_id)
+    return jsonify({"response": ["Success"]})
+
+
+@app.route('/_user_is_approving_/<user_name>/<idea_id>')
+def user_is_approving(user_name, idea_id):
+    return jsonify({"response": ["Success"], "approving": [db.user_is_approving(user_name, idea_id)]})
+
+
+@app.route('/_get_following_/<user_name>')
+def get_following(user_name):
+    return jsonify({"response": ["Success"], "following": db.get_following_data(user_name)})
+
+
+@app.route('/_get_approving_/<user_name>')
+def get_approving(user_name):
+    return jsonify({"response": ["Success"], "approving": db.get_approving_data(user_name)})
+
+
+@app.route('/_add_comment_/<user>/<idea_id>/comment_text')
+def add_comment(user, idea_id, comment_text):
+    db.add_comment(user, idea_id, comment_text)
+    return jsonify({"response": ["Success"]})
+
+
+@app.route('/_get_comments_/<idea_id>')
+def get_comments(idea_id):
+    comments = db.get_comments(idea_id)
+    return jsonify({"response": ["Success"], "comments": comments})
 
 
 if __name__ == "__main__":

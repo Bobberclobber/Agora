@@ -3,5 +3,6 @@
     <color name="primary_color">#0099CC</color>
     <color name="error_color">#E50500</color>
     <color name="success_color">#60E500</color>
-    <color name="background_holo_light">#eeeeee</color>
+    <color name="background_holo_light">#EEEEEE</color>
+    <color name="clicked_item_background">#7DCBE7</color>
 </resources>

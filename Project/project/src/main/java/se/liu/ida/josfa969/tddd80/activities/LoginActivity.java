@@ -9,15 +9,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import se.liu.ida.josfa969.tddd80.help_classes.Constants;
 import se.liu.ida.josfa969.tddd80.help_classes.JsonMethods;
 import se.liu.ida.josfa969.tddd80.R;
 import se.liu.ida.josfa969.tddd80.fragments.LoginFragment;
 
 public class LoginActivity extends Activity {
-
-    private final String USER_NAME_KEY = Constants.USER_NAME_KEY;
-    private final String E_MAIL_KEY = Constants.E_MAIL_KEY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,14 +63,19 @@ public class LoginActivity extends Activity {
                 progress.dismiss();
                 // Create an intent to start Profile Activity
                 Intent loginIntent = new Intent(this, ProfileActivity.class);
+                // Gets the user's basic data
+                ArrayList<String> userData = JsonMethods.getUserData(identifier);
                 // Send the identifier as an extra to the next activity
                 if (identifier.contains("@")) {
-                    loginIntent.putExtra(USER_NAME_KEY, JsonMethods.getUserName(identifier));
-                    loginIntent.putExtra(E_MAIL_KEY, identifier);
+                    loginIntent.putExtra(Constants.USER_NAME_KEY, JsonMethods.getUserName(identifier));
+                    loginIntent.putExtra(Constants.E_MAIL_KEY, identifier);
                 } else {
-                    loginIntent.putExtra(USER_NAME_KEY, identifier);
-                    loginIntent.putExtra(E_MAIL_KEY, JsonMethods.getEMail(identifier));
+                    loginIntent.putExtra(Constants.USER_NAME_KEY, identifier);
+                    loginIntent.putExtra(Constants.E_MAIL_KEY, JsonMethods.getEMail(identifier));
                 }
+                loginIntent.putExtra(Constants.PASSWORD_KEY, password);
+                loginIntent.putExtra(Constants.COUNTRY_KEY, userData.get(2));
+                loginIntent.putExtra(Constants.CITY_KEY, userData.get(3));
                 startActivity(loginIntent);
             } else {
                 progress.dismiss();

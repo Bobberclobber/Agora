@@ -23,4 +23,13 @@
         android:layout_marginTop="@dimen/small_internal_margin"
         android:layout_below="@id/found_people_title"/>
 
+    <TextView
+        android:id="@+id/found_people_status_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:textSize="@dimen/large_text_size"
+        android:textColor="@color/error_color"/>
+
 </RelativeLayout>

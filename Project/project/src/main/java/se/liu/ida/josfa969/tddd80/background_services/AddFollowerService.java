@@ -27,7 +27,7 @@ public class AddFollowerService extends IntentService {
 
         String originalUser = intent.getStringExtra(Constants.ORIGINAL_USER_KEY);
         String targetUser = intent.getStringExtra(Constants.TARGET_USER_KEY);
-        Log.v("AddFollowerService", "Adding " + originalUser + " as follower to " + targetUser);
+        Log.i("AddFollowerService", "Adding " + originalUser + " as follower to " + targetUser);
         JsonMethods.addFollower(targetUser, originalUser);
 
         String toastMsg = "Now following " + targetUser;

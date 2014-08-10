@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/small_padding">
+
+    <TextView
+        android:id="@+id/user_list_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/large_text_size"
+        android:textColor="@color/primary_color"/>
+
+    <TextView
+        android:id="@+id/user_list_e_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_internal_margin"
+        android:layout_marginTop="@dimen/small_internal_margin"
+        android:layout_below="@id/user_list_user_name"/>
+
+    <TextView
+        android:id="@+id/user_list_follower_text"
+        android:text="@string/followers_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_internal_margin"
+        android:layout_marginLeft="@dimen/large_internal_margin"
+        android:layout_below="@id/user_list_e_mail"/>
+
+    <TextView
+        android:id="@+id/user_list_follower_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_internal_margin"
+        android:layout_toRightOf="@id/user_list_follower_text"
+        android:layout_below="@id/user_list_e_mail"/>
+
+    <TextView
+        android:id="@+id/user_list_country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_internal_margin"
+        android:layout_marginTop="@dimen/small_internal_margin"
+        android:layout_below="@id/user_list_follower_num"/>
+
+    <TextView
+        android:id="@+id/user_list_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/large_internal_margin"
+        android:layout_marginTop="@dimen/small_internal_margin"
+        android:layout_below="@id/user_list_follower_num"
+        android:layout_toRightOf="@id/user_list_country"/>
+
+</RelativeLayout>

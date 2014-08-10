@@ -1,44 +1,60 @@
 package se.liu.ida.josfa969.tddd80.activities;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.os.Handler;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import se.liu.ida.josfa969.tddd80.R;
+import se.liu.ida.josfa969.tddd80.background_services.GetRecentMessagesService;
+import se.liu.ida.josfa969.tddd80.background_services.SendMessageService;
 import se.liu.ida.josfa969.tddd80.fragments.ConversationFragment;
-import se.liu.ida.josfa969.tddd80.fragments.SendMessageFragment;
 import se.liu.ida.josfa969.tddd80.help_classes.Constants;
 import se.liu.ida.josfa969.tddd80.help_classes.JsonMethods;
+import se.liu.ida.josfa969.tddd80.item_records.MessageRecord;
+import se.liu.ida.josfa969.tddd80.list_adapters.MessageItemAdapter;
 
 /**
  * An activity displaying a conversation between two users.
  * The following data should be attached
  * to the intent starting this activity:
- *
+ * <br/>
  * USER_NAME_KEY - The user name of the user not using the current instance of the application
  * ORIGINAL_USER_KEY - The user name of the user currently using the application
  */
 public class ConversationActivity extends Activity {
 
-    // Gets strings used as keys to
-    // get data sent through an intent
-    private String userNameKey = Constants.USER_NAME_KEY;
-    private String originalUserKey = Constants.ORIGINAL_USER_KEY;
-
     // Initializes basic data variables
     private String userName = null;
     private String originalUser = null;
+
+    // Broadcast receiver
+    private ResponseReceiver receiver;
+
+    // Intent to start the get recent messages service
+    public Intent getRecentMessagesIntent;
+
+    // Progress dialog
+    public ProgressDialog progress;
+
+    // Objects used when checking for new messages
+    Handler handler;
+    Timer timer;
+    UpdateMessagesTask updateMessagesTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,24 +63,35 @@ public class ConversationActivity extends Activity {
 
         // Gets all data sent by the intent starting this activity
         Intent initIntent = getIntent();
-        userName = initIntent.getStringExtra(userNameKey);
-        originalUser = initIntent.getStringExtra(originalUserKey);
+        userName = initIntent.getStringExtra(Constants.USER_NAME_KEY);
+        originalUser = initIntent.getStringExtra(Constants.ORIGINAL_USER_KEY);
 
         SharedPreferences preferences = this.getPreferences(Context.MODE_PRIVATE);
         String defaultUserName = "User Name";
         String defaultOriginalUser = "You";
 
         if (userName == null) {
-            userName = preferences.getString(userNameKey, defaultUserName);
+            userName = preferences.getString(Constants.USER_NAME_KEY, defaultUserName);
         }
         if (originalUser == null) {
-            originalUser = preferences.getString(originalUserKey, defaultOriginalUser);
+            originalUser = preferences.getString(Constants.ORIGINAL_USER_KEY, defaultOriginalUser);
         }
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().add(R.id.container, new ConversationFragment()).commit();
-            getFragmentManager().beginTransaction().add(R.id.container, new SendMessageFragment()).commit();
         }
+
+        // Filters for the receiver
+        IntentFilter getRecentMessagesFilter = new IntentFilter(Constants.GET_RECENT_MESSAGES_RESP);
+        IntentFilter sendMessageFilter = new IntentFilter(Constants.SEND_MESSAGE_RESP);
+        getRecentMessagesFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        sendMessageFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        receiver = new ResponseReceiver();
+        registerReceiver(receiver, getRecentMessagesFilter);
+        registerReceiver(receiver, sendMessageFilter);
+
+        getRecentMessagesIntent = new Intent(getBaseContext(), GetRecentMessagesService.class);
+        progress = new ProgressDialog(this);
     }
 
     @Override
@@ -75,13 +102,16 @@ public class ConversationActivity extends Activity {
         System.out.println("On Pause");
         System.out.println("----------");
 
+        // Stops the automatic updating of messages
+        updateMessagesTask.cancel();
+
         // When leaving this activity and starting a
         // new one, save the current user's username
         // and e-mail using a shared preference
         SharedPreferences preferences = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(userNameKey, userName);
-        editor.putString(originalUserKey, originalUser);
+        editor.putString(Constants.USER_NAME_KEY, userName);
+        editor.putString(Constants.ORIGINAL_USER_KEY, originalUser);
         editor.commit();
     }
 
@@ -92,7 +122,38 @@ public class ConversationActivity extends Activity {
         TextView conversationPartnerName = (TextView) findViewById(R.id.conversation_partner_name);
         conversationPartnerName.setText(userName);
 
-        ListView messagesList = (ListView) findViewById(R.id.messages_list);
+        handler = new Handler();
+        timer = new Timer();
+        updateMessagesTask = new UpdateMessagesTask(handler);
+        timer.schedule(updateMessagesTask, 0, 10000);
+    }
+
+    // A timer task which every 10 seconds checks
+    // if any new messages has been sent
+    private class UpdateMessagesTask extends TimerTask {
+        private Handler handler;
+
+        private UpdateMessagesTask(Handler handler) {
+            this.handler = handler;
+        }
+
+        @Override
+        public void run() {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    getRecentMessagesIntent.putExtra(Constants.USER_NAME_KEY, userName);
+                    getRecentMessagesIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
+                    startService(getRecentMessagesIntent);
+                }
+            });
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(receiver);
+        super.onDestroy();
     }
 
     public void onProfileImageClick(View view) {
@@ -112,14 +173,58 @@ public class ConversationActivity extends Activity {
         Intent otherProfileIntent = new Intent(this, OtherProfileActivity.class);
 
         // Attaches the basic data to the intent
-        otherProfileIntent.putExtra(userNameKey, userName);
+        otherProfileIntent.putExtra(Constants.USER_NAME_KEY, userName);
         otherProfileIntent.putExtra(eMailKey, eMail);
         otherProfileIntent.putExtra(countryKey, country);
         otherProfileIntent.putExtra(cityKey, city);
         otherProfileIntent.putExtra(followersKey, followers);
-        otherProfileIntent.putExtra(originalUserKey, userName);
+        otherProfileIntent.putExtra(Constants.ORIGINAL_USER_KEY, userName);
 
         // Starts the new activity
         startActivity(otherProfileIntent);
+    }
+
+    public void onSendMessageClick(View view) {
+        progress.setTitle("Loading");
+        progress.setMessage("Sending message...");
+        progress.show();
+
+        // Gets the message text
+        EditText messageInput = (EditText) findViewById(R.id.send_message_input);
+        String messageText = String.valueOf(messageInput.getText());
+        if (messageText.equals("")) {
+            progress.dismiss();
+            String toastMsg = "You have to write something.";
+            Toast.makeText(this, toastMsg, Toast.LENGTH_SHORT).show();
+        } else {
+            messageInput.setText("");
+            Intent sendMessageIntent = new Intent(this, SendMessageService.class);
+            sendMessageIntent.putExtra(Constants.SENDER_KEY, originalUser);
+            sendMessageIntent.putExtra(Constants.RECEIVER_KEY, userName);
+            sendMessageIntent.putExtra(Constants.MESSAGE_TEXT_KEY, messageText);
+            startService(sendMessageIntent);
+        }
+    }
+
+    private class ResponseReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String intentAction = intent.getAction();
+            if (intentAction != null) {
+                if (intent.getAction().equals(Constants.SEND_MESSAGE_RESP)) {
+                    progress.dismiss();
+                    getRecentMessagesIntent.putExtra(Constants.USER_NAME_KEY, userName);
+                    getRecentMessagesIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
+                    startService(getRecentMessagesIntent);
+                } else {
+                    ListView messagesList = (ListView) findViewById(R.id.messages_list);
+                    ArrayList<MessageRecord> messages = intent.getParcelableArrayListExtra(Constants.MESSAGES_KEY);
+                    messagesList.setAdapter(new MessageItemAdapter(context, R.layout.message_list_item, messages));
+                    if (messages != null) {
+                        messagesList.setSelection(messages.size());
+                    }
+                }
+            }
+        }
     }
 }

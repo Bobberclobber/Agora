@@ -14,9 +14,6 @@ import se.liu.ida.josfa969.tddd80.help_classes.JsonMethods;
  * "Un-Follow" button on another user's profile
  */
 public class RemoveFollowerService extends IntentService {
-    // Gets keys
-    private final String ORIGINAL_USER_KEY = Constants.ORIGINAL_USER_KEY;
-    private final String TARGET_USER_KEY = Constants.TARGET_USER_KEY;
 
     public RemoveFollowerService() {
         super("RemoveFollowerService");
@@ -28,9 +25,9 @@ public class RemoveFollowerService extends IntentService {
         System.out.println("On Handle Intent");
         System.out.println("----------");
 
-        String originalUser = intent.getStringExtra(ORIGINAL_USER_KEY);
-        String targetUser = intent.getStringExtra(TARGET_USER_KEY);
-        Log.v("AddFollowerService", "Adding " + originalUser + " as follower to " + targetUser);
+        String originalUser = intent.getStringExtra(Constants.ORIGINAL_USER_KEY);
+        String targetUser = intent.getStringExtra(Constants.TARGET_USER_KEY);
+        Log.i("AddFollowerService", "Adding " + originalUser + " as follower to " + targetUser);
         JsonMethods.removeFollower(targetUser, originalUser);
 
         String toastMsg = "No longer following " + targetUser;
