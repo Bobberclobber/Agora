@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="se.liu.ida.josfa969.tddd80" >
 
+    <uses-feature android:name="android.hardware.camera" android:required="true"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
+        android:debuggable="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
@@ -14,7 +18,7 @@
         <!-- Initial Activity -->
         <activity
             android:name="se.liu.ida.josfa969.tddd80.activities.InitialActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
 
             <!-- Sets this activity to the main activity -->
             <intent-filter>
@@ -28,12 +32,12 @@
         <activity
             android:name="se.liu.ida.josfa969.tddd80.activities.ConversationActivity"
             android:label="@string/title_activity_conversation"
-            android:parentActivityName="se.liu.ida.josfa969.tddd80.activities.OtherProfileActivity" >
+            android:parentActivityName="se.liu.ida.josfa969.tddd80.activities.ProfileActivity" >
 
             <!-- The following adds support for parent activities for all API levels lower than 16 -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="se.liu.ida.josfa969.tddd80.activities.OtherProfileActivity" />
+                android:value="se.liu.ida.josfa969.tddd80.activities.ProfileActivity" />
         </activity>
 
         <!-- Found People Activity -->
@@ -211,6 +215,11 @@
             android:name="se.liu.ida.josfa969.tddd80.background_services.GetIdeaFeedService"
             android:exported="false" />
 
+        <!-- Get Message Feed Service -->
+        <service
+            android:name=".background_services.GetMessageFeedService"
+            android:exported="false"/>
+
         <!-- Post Idea Service -->
         <service
             android:name="se.liu.ida.josfa969.tddd80.background_services.PostIdeaService"
@@ -239,6 +248,21 @@
         <!-- Get User Data Service -->
         <service
             android:name=".background_services.GetUserDataService"
+            android:exported="false"/>
+
+        <!-- Is Approving Service -->
+        <service
+            android:name=".background_services.IsApprovingService"
+            android:exported="false"/>
+
+        <!-- Get Other User Recent Ideas Service -->
+        <service
+            android:name=".background_services.GetOtherUserIdeasService"
+            android:exported="false"/>
+
+        <!-- Login User Service -->
+        <service
+            android:name=".background_services.LoginUserService"
             android:exported="false"/>
 
     </application>

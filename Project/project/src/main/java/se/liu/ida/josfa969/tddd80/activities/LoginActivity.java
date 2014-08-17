@@ -2,33 +2,80 @@ package se.liu.ida.josfa969.tddd80.activities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import se.liu.ida.josfa969.tddd80.help_classes.Constants;
-import se.liu.ida.josfa969.tddd80.help_classes.JsonMethods;
 import se.liu.ida.josfa969.tddd80.R;
+import se.liu.ida.josfa969.tddd80.background_services.GetUserDataService;
+import se.liu.ida.josfa969.tddd80.background_services.LoginUserService;
 import se.liu.ida.josfa969.tddd80.fragments.LoginFragment;
+import se.liu.ida.josfa969.tddd80.help_classes.Constants;
 
 public class LoginActivity extends Activity {
+    String identifier;
+    String password;
+
+    // An intent used to login the user
+    Intent loginIntent;
+
+    // An intent used to start the LoginUser service
+    Intent loginUserIntent;
+
+    // An intent used to start the GetUserData service
+    Intent getUserDataIntent;
+
+    // Broadcast receiver
+    ResponseReceiver receiver;
+
+    // The status text view
+    TextView statusText;
+
+    // Progress dialog
+    ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+        // Filters for the receiver
+        IntentFilter loginUserFilter = new IntentFilter(Constants.LOGIN_USER_RESP);
+        IntentFilter getUserDataFilter = new IntentFilter(Constants.GET_USER_DATA_RESP);
+        loginUserFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        getUserDataFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        receiver = new ResponseReceiver();
+        registerReceiver(receiver, loginUserFilter);
+        registerReceiver(receiver, getUserDataFilter);
+
+        // Creates the login intent
+        loginIntent = new Intent(this, ProfileActivity.class);
+
+        // Creates the login user intent
+        loginUserIntent = new Intent(this, LoginUserService.class);
+
+        // Creates the get user data intent
+        getUserDataIntent = new Intent(this, GetUserDataService.class);
+
+        // Creates the progress dialog
+        progress = new ProgressDialog(this);
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().add(R.id.container, new LoginFragment()).commit();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        unregisterReceiver(receiver);
+        super.onPause();
     }
 
     public void onLoginClick(View view) {
@@ -37,49 +84,62 @@ public class LoginActivity extends Activity {
         EditText passwordInput = (EditText) findViewById(R.id.login_password_input);
 
         // Get the status text view
-        TextView statusText = (TextView) findViewById(R.id.login_status_text);
+        statusText = (TextView) findViewById(R.id.login_status_text);
 
         // Get the view's input
-        String identifier = String.valueOf(identifierInput.getText());
-        String password = String.valueOf(passwordInput.getText());
+        identifier = String.valueOf(identifierInput.getText());
+        password = String.valueOf(passwordInput.getText());
 
-        if (identifier.equals("") && password.equals("")){
+        if (identifier.equals("") && password.equals("")) {
             statusText.setText("Inputs are empty");
         } else if (identifier.equals("")) {
             statusText.setText("Enter username or e-mail");
         } else if (password.equals("")) {
             statusText.setText("Enter your password");
         } else {
-            // Create and show the loading spinner
-            ProgressDialog progress = new ProgressDialog(this);
+            // Show the loading spinner
             progress.setTitle("Loading");
             progress.setMessage("Wait While Login In...");
             progress.show();
+            // Starts the login user service
+            loginUserIntent.putExtra(Constants.IDENTIFIER_STRING_KEY, identifier);
+            loginUserIntent.putExtra(Constants.PASSWORD_KEY, password);
+            startService(loginUserIntent);
+        }
+    }
 
-            // Gets the JSON response from the given input
-            String response = JsonMethods.loginUser(identifier, password);
-
-            if (response.equals("Success")) {
-                progress.dismiss();
-                // Create an intent to start Profile Activity
-                Intent loginIntent = new Intent(this, ProfileActivity.class);
-                // Gets the user's basic data
-                ArrayList<String> userData = JsonMethods.getUserData(identifier);
-                // Send the identifier as an extra to the next activity
-                if (identifier.contains("@")) {
-                    loginIntent.putExtra(Constants.USER_NAME_KEY, JsonMethods.getUserName(identifier));
-                    loginIntent.putExtra(Constants.E_MAIL_KEY, identifier);
+    private class ResponseReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String intentAction = intent.getAction();
+            if (intentAction != null) {
+                if (intentAction.equals(Constants.LOGIN_USER_RESP)) {
+                    String response = intent.getStringExtra(Constants.RESPONSE_KEY);
+                    if (response != null) {
+                        if (response.equals("Success")) {
+                            String userName = intent.getStringExtra(Constants.USER_NAME_KEY);
+                            getUserDataIntent.putExtra(Constants.USER_NAME_KEY, userName);
+                            startService(getUserDataIntent);
+                        } else {
+                            progress.dismiss();
+                            statusText.setText(response);
+                        }
+                    }
                 } else {
-                    loginIntent.putExtra(Constants.USER_NAME_KEY, identifier);
-                    loginIntent.putExtra(Constants.E_MAIL_KEY, JsonMethods.getEMail(identifier));
+                    // Dismisses the progress dialog
+                    progress.dismiss();
+                    // Gets the user's basic data
+                    ArrayList<String> userData = intent.getStringArrayListExtra(Constants.USER_DATA_KEY);
+                    if (userData != null) {
+                        // Sends the user data extras to the next activity
+                        loginIntent.putExtra(Constants.USER_NAME_KEY, userData.get(0));
+                        loginIntent.putExtra(Constants.E_MAIL_KEY, userData.get(1));
+                        loginIntent.putExtra(Constants.PASSWORD_KEY, password);
+                        loginIntent.putExtra(Constants.COUNTRY_KEY, userData.get(2));
+                        loginIntent.putExtra(Constants.CITY_KEY, userData.get(3));
+                        startActivity(loginIntent);
+                    }
                 }
-                loginIntent.putExtra(Constants.PASSWORD_KEY, password);
-                loginIntent.putExtra(Constants.COUNTRY_KEY, userData.get(2));
-                loginIntent.putExtra(Constants.CITY_KEY, userData.get(3));
-                startActivity(loginIntent);
-            } else {
-                progress.dismiss();
-                statusText.setText(response);
             }
         }
     }

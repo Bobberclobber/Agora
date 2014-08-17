@@ -86,7 +86,7 @@ public class IdeaItemAdapter extends ArrayAdapter<IdeaRecord> {
 
             // Displays the correct button depending on
             // if the user is approving the idea or not
-            if (JsonMethods.userIsApproving(originalUser, ideaRecord.ideaId)) {
+            if (ideaRecord.isApproving) {
                 approvalButton.setVisibility(View.GONE);
                 unApprovalButton.setVisibility(View.VISIBLE);
             } else {

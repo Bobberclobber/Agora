@@ -27,6 +27,9 @@ public class FoundIdeasActivity extends Activity {
     private String tagString;
     private String originalUser;
 
+    // An intent used to visit the detail view of an idea
+    public Intent ideaDetailIntent;
+
     // Broadcast receiver
     private ResponseReceiver receiver;
 
@@ -41,6 +44,9 @@ public class FoundIdeasActivity extends Activity {
         Intent initIntent = getIntent();
         tagString = initIntent.getStringExtra(Constants.TAG_STRING_KEY);
         originalUser = initIntent.getStringExtra(Constants.ORIGINAL_USER_KEY);
+
+        // Creates an intent used to get basic user data
+        ideaDetailIntent = new Intent(this, IdeaDetailActivity.class);
 
         // Filters for the receiver
         IntentFilter searchIdeasFilter = new IntentFilter(Constants.SEARCH_IDEAS_RESP);
@@ -71,6 +77,7 @@ public class FoundIdeasActivity extends Activity {
         // Starts the search ideas service
         Intent searchIdeasIntent = new Intent(this, SearchIdeasService.class);
         searchIdeasIntent.putExtra(Constants.TAG_STRING_KEY, tagString);
+        searchIdeasIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
         startService(searchIdeasIntent);
     }
 
@@ -87,38 +94,16 @@ public class FoundIdeasActivity extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 IdeaRecord o = (IdeaRecord) foundIdeasList.getItemAtPosition(position);
                 if (o != null) {
-                    ArrayList<String> userData = JsonMethods.getUserData(o.poster);
-                    String clickedUserName = userData.get(0);
-                    if (!clickedUserName.equals(originalUser)) {
-                        onListItemClick(userData);
-                    }
+                    ideaDetailIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
+                    ideaDetailIntent.putExtra(Constants.POSTER_KEY, o.poster);
+                    ideaDetailIntent.putExtra(Constants.IDEA_TEXT_KEY, o.ideaText);
+                    ideaDetailIntent.putExtra(Constants.TAG_STRING_KEY, o.tags);
+                    ideaDetailIntent.putExtra(Constants.APPROVAL_NUM_KEY, o.approvalNum);
+                    ideaDetailIntent.putExtra(Constants.IDEA_ID_KEY, o.ideaId);
+                    startActivity(ideaDetailIntent);
                 }
             }
         });
-    }
-
-    public void onListItemClick(ArrayList<String> userData) {
-        Intent otherProfileIntent = new Intent(this, OtherProfileActivity.class);
-
-        // Gets basic data of the user whose idea
-        // was clicked (excluding the users which
-        // the user whose idea was clicked is following)
-        String clickedUserName = userData.get(0);
-        String clickedEMail = userData.get(1);
-        String clickedCountry = userData.get(2);
-        String clickedCity = userData.get(3);
-        String clickedFollowers = userData.get(4);
-
-        // Attaches the basic data to the intent
-        otherProfileIntent.putExtra(Constants.USER_NAME_KEY, clickedUserName);
-        otherProfileIntent.putExtra(Constants.E_MAIL_KEY, clickedEMail);
-        otherProfileIntent.putExtra(Constants.COUNTRY_KEY, clickedCountry);
-        otherProfileIntent.putExtra(Constants.CITY_KEY, clickedCity);
-        otherProfileIntent.putExtra(Constants.FOLLOWERS_KEY, clickedFollowers);
-        otherProfileIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
-
-        // Starts the new activity
-        startActivity(otherProfileIntent);
     }
 
     private class ResponseReceiver extends BroadcastReceiver {

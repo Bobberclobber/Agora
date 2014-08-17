@@ -62,7 +62,8 @@
         android:layout_below="@id/idea_detail_tags"
         android:layout_toRightOf="@id/idea_detail_avatar_image"
         android:focusable="false"
-        android:textColor="@color/success_color"/>
+        android:textColor="@color/success_color"
+        android:onClick="onIdeaDetailApprovalClick"/>
 
     <Button
         android:id="@+id/idea_detail_un_approval_button"
@@ -72,7 +73,8 @@
         android:layout_below="@id/idea_detail_tags"
         android:layout_toRightOf="@id/idea_detail_avatar_image"
         android:focusable="false"
-        android:textColor="@color/error_color"/>
+        android:textColor="@color/error_color"
+        android:onClick="onIdeaDetailUnApprovalClick"/>
 
     <Space
         android:id="@+id/idea_detail_approval_button_replacement"
@@ -133,6 +135,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/post_comment_button"
+        android:background="@color/background_holo_light"
         android:inputType="textMultiLine"/>
 
     <ListView

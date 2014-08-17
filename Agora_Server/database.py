@@ -23,6 +23,7 @@ def init():
     c.execute("DROP TABLE IF EXISTS users")
     c.execute("DROP TABLE IF EXISTS ideas")
     c.execute("DROP TABLE IF EXISTS messages")
+    c.execute("DROP TABLE IF EXISTS comments")
 
     c.execute("CREATE TABLE users "
               "(user_name TEXT, "
@@ -32,7 +33,8 @@ def init():
               "city TEXT, "
               "followers INTEGER, "
               "following BLOB, "
-              "approving BLOB)")
+              "approving BLOB,"
+              "home_location TEXT)")
 
     c.execute("CREATE TABLE ideas "
               "(idea_id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -42,7 +44,8 @@ def init():
               "tags BLOB)")
 
     c.execute("CREATE TABLE messages "
-              "(sender TEXT, "
+              "(message_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+              "sender TEXT, "
               "receiver TEXT,"
               "message_text TEXT)")
 
@@ -53,11 +56,25 @@ def init():
     c.commit()
 
 
+def destroy():
+    c = get_db()
+    c.execute("DROP TABLE IF EXISTS users")
+    c.execute("DROP TABLE IF EXISTS ideas")
+    c.execute("DROP TABLE IF EXISTS messages")
+    c.execute("DROP TABLE IF EXISTS comments")
+    c.commit()
+
+
+def close():
+    get_db().close()
+
+
 def add_new_user(user_name, password, e_mail, country, city):
     c = get_db()
-    c.execute("INSERT INTO users (user_name, password, e_mail, country, city, followers, following, approving) "
-              "VALUES (?,?,?,?,?,?,?,?)",
-              (user_name, password, e_mail, country, city, 0, marshal.dumps([]), marshal.dumps([])))
+    c.execute("INSERT INTO users (user_name, password, e_mail, country, city, followers, following, approving, "
+              "home_location) "
+              "VALUES (?,?,?,?,?,?,?,?,?)",
+              (user_name, password, e_mail, country, city, 0, marshal.dumps([]), marshal.dumps([]), "Not set"))
     c.commit()
 
 
@@ -134,16 +151,27 @@ def get_most_recent_idea(poster):
     return []
 
 
+def get_message_feed(user_name):
+    c = get_db()
+    cur = c.execute("SELECT * FROM messages ORDER BY message_id DESC")
+    added_users = []
+    messages = []
+    for row in cur:
+        if user_name == row[2] and not row[1] in added_users:
+            added_users.append(row[1])
+            messages.append([row[1], row[2], row[3]])
+    return messages
+
+
 def get_recent_messages(user_name, original_user_name):
     c = get_db()
     cur = c.execute("SELECT * FROM messages")
     messages = []
     for row in cur:
-        print(row)
-        scen_1 = user_name == row[0] and original_user_name == row[1]
-        scen_2 = user_name == row[1] and original_user_name == row[0]
+        scen_1 = user_name == row[1] and original_user_name == row[2]
+        scen_2 = user_name == row[2] and original_user_name == row[1]
         if scen_1 or scen_2:
-            temp = [row[0], row[1], row[2]]
+            temp = [row[1], row[2], row[3]]
             messages.append(temp)
     return messages
 

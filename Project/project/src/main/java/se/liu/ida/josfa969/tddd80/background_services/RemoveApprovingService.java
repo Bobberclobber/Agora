@@ -21,15 +21,8 @@ public class RemoveApprovingService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        System.out.println("----------");
-        System.out.println("On Handle Intent");
-        System.out.println("Remove Approving");
-        System.out.println("----------");
-
         String originalUser = intent.getStringExtra(Constants.ORIGINAL_USER_KEY);
         String ideaId = intent.getStringExtra(Constants.IDEA_ID_KEY);
-        System.out.println("Original User: " + originalUser);
-        System.out.println("Idea ID: " + ideaId);
         Log.i("RemoveApprovingService", "User: " + originalUser + " no longer approving idea id: " + ideaId);
         JsonMethods.removeApproving(originalUser, ideaId);
 

@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,12 +18,14 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import se.liu.ida.josfa969.tddd80.R;
+import se.liu.ida.josfa969.tddd80.background_services.AddApprovingService;
 import se.liu.ida.josfa969.tddd80.background_services.GetCommentsService;
 import se.liu.ida.josfa969.tddd80.background_services.GetUserDataService;
+import se.liu.ida.josfa969.tddd80.background_services.IsApprovingService;
 import se.liu.ida.josfa969.tddd80.background_services.PostCommentService;
+import se.liu.ida.josfa969.tddd80.background_services.RemoveApprovingService;
 import se.liu.ida.josfa969.tddd80.fragments.IdeaDetailFragment;
 import se.liu.ida.josfa969.tddd80.help_classes.Constants;
-import se.liu.ida.josfa969.tddd80.help_classes.JsonMethods;
 import se.liu.ida.josfa969.tddd80.item_records.CommentRecord;
 import se.liu.ida.josfa969.tddd80.list_adapters.CommentItemAdapter;
 
@@ -30,7 +33,7 @@ public class IdeaDetailActivity extends Activity {
     private String originalUser;
     private String poster;
     private String ideaText;
-    private String tagsText;
+    private ArrayList<String> tags;
     private String approvalNum;
     private String ideaId;
 
@@ -59,27 +62,39 @@ public class IdeaDetailActivity extends Activity {
         originalUser = initIntent.getStringExtra(Constants.ORIGINAL_USER_KEY);
         poster = initIntent.getStringExtra(Constants.POSTER_KEY);
         ideaText = initIntent.getStringExtra(Constants.IDEA_TEXT_KEY);
-        tagsText = initIntent.getStringExtra(Constants.TAG_STRING_KEY);
+        tags = initIntent.getStringArrayListExtra(Constants.TAG_STRING_KEY);
         approvalNum = initIntent.getStringExtra(Constants.APPROVAL_NUM_KEY);
         ideaId = initIntent.getStringExtra(Constants.IDEA_ID_KEY);
 
         // Creates an intent used to get basic user data
         getUserDataIntent = new Intent(this, GetUserDataService.class);
 
+        // Creates the intent to get comments
+        getCommentsIntent = new Intent(this, GetCommentsService.class);
+
         // Filters for the receiver
         IntentFilter getCommentsFilter = new IntentFilter(Constants.GET_COMMENTS_RESP);
         IntentFilter postCommentFilter = new IntentFilter(Constants.POST_COMMENT_RESP);
         IntentFilter getUserDataFilter = new IntentFilter(Constants.GET_USER_DATA_RESP);
+        IntentFilter isApprovingFilter = new IntentFilter(Constants.IS_APPROVING_RESP);
+        IntentFilter addApprovingFilter = new IntentFilter(Constants.ADD_APPROVING_RESP);
+        IntentFilter removeApprovingFilter = new IntentFilter(Constants.REMOVE_APPROVING_RESP);
         getCommentsFilter.addCategory(Intent.CATEGORY_DEFAULT);
         postCommentFilter.addCategory(Intent.CATEGORY_DEFAULT);
         getUserDataFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        isApprovingFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        addApprovingFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        removeApprovingFilter.addCategory(Intent.CATEGORY_DEFAULT);
         receiver = new ResponseReceiver();
         registerReceiver(receiver, getCommentsFilter);
         registerReceiver(receiver, postCommentFilter);
         registerReceiver(receiver, getUserDataFilter);
+        registerReceiver(receiver, isApprovingFilter);
+        registerReceiver(receiver, addApprovingFilter);
+        registerReceiver(receiver, removeApprovingFilter);
 
-        // Creates the intent to get comments
-        getCommentsIntent = new Intent(this, GetCommentsService.class);
+        // Creates the progress dialog
+        progress = new ProgressDialog(this);
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().add(R.id.container, new IdeaDetailFragment()).commit();
@@ -100,11 +115,22 @@ public class IdeaDetailActivity extends Activity {
         // Updates the view's data
         posterView.setText(poster);
         ideaTextView.setText(ideaText);
-        tagsTextView.setText(tagsText);
+        String tagString = "";
+        for (Object tag : tags) {
+            tagString += "#" + tag + " ";
+        }
+        tagsTextView.setText(tagString);
         approvalNumView.setText(approvalNum);
         ideaIdView.setText(ideaId);
 
         progress.setTitle("Loading");
+        progress.setMessage("Fetching idea data...");
+        progress.show();
+        Intent isApprovingIntent = new Intent(this, IsApprovingService.class);
+        isApprovingIntent.putExtra(Constants.USER_NAME_KEY, originalUser);
+        isApprovingIntent.putExtra(Constants.IDEA_ID_KEY, ideaId);
+        startService(isApprovingIntent);
+
         progress.setMessage("Fetching comments...");
         progress.show();
         getCommentsIntent.putExtra(Constants.IDEA_ID_KEY, ideaId);
@@ -128,6 +154,7 @@ public class IdeaDetailActivity extends Activity {
             progress.setTitle("Loading");
             progress.setMessage("Posting comment...");
             progress.show();
+            commentInput.setText("");
             Intent postCommentIntent = new Intent(this, PostCommentService.class);
             postCommentIntent.putExtra(Constants.USER_NAME_KEY, originalUser);
             postCommentIntent.putExtra(Constants.IDEA_ID_KEY, ideaId);
@@ -137,7 +164,7 @@ public class IdeaDetailActivity extends Activity {
     }
 
     public void onIdeaDetailAvatarClick(View view) {
-        if (poster != null) {
+        if (poster != null && !poster.equals(originalUser)) {
             progress.setTitle("Loading");
             progress.setMessage("Fetching user data...");
             progress.show();
@@ -153,11 +180,13 @@ public class IdeaDetailActivity extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 CommentRecord o = (CommentRecord) commentList.getItemAtPosition(position);
                 if (o != null) {
-                    progress.setTitle("Loading");
-                    progress.setMessage("Fetching user data...");
-                    progress.show();
-                    getUserDataIntent.putExtra(Constants.USER_NAME_KEY, o.user);
-                    startService(getUserDataIntent);
+                    if (!originalUser.equals(o.user)) {
+                        progress.setTitle("Loading");
+                        progress.setMessage("Fetching user data...");
+                        progress.show();
+                        getUserDataIntent.putExtra(Constants.USER_NAME_KEY, o.user);
+                        startService(getUserDataIntent);
+                    }
                 }
             }
         });
@@ -190,6 +219,44 @@ public class IdeaDetailActivity extends Activity {
         startActivity(otherProfileIntent);
     }
 
+    public void onIdeaDetailApprovalClick(View view) {
+        // Temporarily updates approval num
+        TextView approvalNum = (TextView) findViewById(R.id.idea_detail_approval_num);
+        int incApprovalNum = Integer.parseInt(String.valueOf(approvalNum.getText())) + 1;
+        approvalNum.setText(String.valueOf(incApprovalNum));
+
+        // Temporarily switches the visibility of the buttons
+        Button approvalButton = (Button) findViewById(R.id.idea_detail_approval_button);
+        Button unApprovalButton = (Button) findViewById(R.id.idea_detail_un_approval_button);
+        approvalButton.setVisibility(View.GONE);
+        unApprovalButton.setVisibility(View.VISIBLE);
+
+        // Starts a service to increase approval num
+        Intent addApprovingIntent = new Intent(this, AddApprovingService.class);
+        addApprovingIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
+        addApprovingIntent.putExtra(Constants.IDEA_ID_KEY, ideaId);
+        startService(addApprovingIntent);
+    }
+
+    public void onIdeaDetailUnApprovalClick(View view) {
+        // Temporarily updates approval num
+        TextView approvalNum = (TextView) findViewById(R.id.idea_detail_approval_num);
+        int decApprovalNum = Integer.parseInt(String.valueOf(approvalNum.getText())) - 1;
+        approvalNum.setText(String.valueOf(decApprovalNum));
+
+        // Temporarily switches the visibility of the buttons
+        Button approvalButton = (Button) findViewById(R.id.idea_detail_approval_button);
+        Button unApprovalButton = (Button) findViewById(R.id.idea_detail_un_approval_button);
+        approvalButton.setVisibility(View.VISIBLE);
+        unApprovalButton.setVisibility(View.GONE);
+
+        // Starts a service to increase approval num
+        Intent removeApprovingIntent = new Intent(this, RemoveApprovingService.class);
+        removeApprovingIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
+        removeApprovingIntent.putExtra(Constants.IDEA_ID_KEY, ideaId);
+        startService(removeApprovingIntent);
+    }
+
     private class ResponseReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -211,14 +278,23 @@ public class IdeaDetailActivity extends Activity {
                     startService(getCommentsIntent);
                     String toastMsg = "Comment posted";
                     Toast.makeText(context, toastMsg, Toast.LENGTH_SHORT).show();
-                } else {
+                } else if (intentAction.equals(Constants.GET_USER_DATA_RESP)) {
                     userData = intent.getStringArrayListExtra(Constants.USER_DATA_KEY);
-                    if (userData != null) {
-                        String clickedUserName = userData.get(0);
-                        if (!clickedUserName.equals(originalUser)) {
-                            visitOtherProfile();
-                        }
+                    visitOtherProfile();
+                } else if (intentAction.equals(Constants.IS_APPROVING_RESP)) {
+                    boolean isApproving = intent.getBooleanExtra(Constants.IS_APPROVING_KEY, false);
+                    Button approvalButton = (Button) findViewById(R.id.idea_detail_approval_button);
+                    Button unApprovalButton = (Button) findViewById(R.id.idea_detail_un_approval_button);
+                    if (isApproving) {
+                        approvalButton.setVisibility(View.GONE);
+                        unApprovalButton.setVisibility(View.VISIBLE);
+                    } else {
+                        approvalButton.setVisibility(View.VISIBLE);
+                        unApprovalButton.setVisibility(View.GONE);
                     }
+                } else {
+                    String toastMsg = intent.getStringExtra(Constants.APPROVING_TOAST_MSG_KEY);
+                    Toast.makeText(context, toastMsg, Toast.LENGTH_SHORT).show();
                 }
             }
         }

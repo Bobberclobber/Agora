@@ -14,74 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="@dimen/small_title_text_size"/>
-
-    <!-- Change avatar image -->
-    <ImageButton
-        android:id="@+id/profile_image"
-        android:layout_width="@dimen/avatar_image_side"
-        android:layout_height="@dimen/avatar_image_side"
-        android:layout_marginLeft="@dimen/large_internal_margin"
-        android:layout_marginTop="@dimen/large_internal_margin"
-        android:layout_below="@id/profile_settings_title"
-        android:src="@drawable/q_mark"
-        android:contentDescription="@string/user_avatar_image_description" />
-
-    <!-- Change user name -->
-    <EditText
-        android:id="@+id/profile_user_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/large_internal_margin"
-        android:layout_marginLeft="@dimen/large_internal_margin"
-        android:layout_below="@id/profile_image"
-        android:textSize="@dimen/large_text_size"
-        android:textColor="@color/primary_color"
-        android:inputType="text"/>
-
-    <!-- Change e-mail -->
-    <EditText
-        android:id="@+id/profile_e_mail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/large_internal_margin"
-        android:layout_marginTop="@dimen/large_internal_margin"
-        android:layout_below="@id/profile_user_name"
-        android:textSize="@dimen/large_text_size"
-        android:inputType="textEmailAddress"/>
-
-    <!-- Change password -->
-    <EditText
-        android:id="@+id/profile_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/large_internal_margin"
-        android:layout_marginTop="@dimen/large_internal_margin"
-        android:layout_below="@id/profile_e_mail"
-        android:textSize="@dimen/large_text_size"
-        android:inputType="textPassword"/>
-
-    <!-- Change country -->
-    <EditText
-        android:id="@+id/profile_country"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/large_internal_margin"
-        android:layout_marginTop="@dimen/large_internal_margin"
-        android:layout_below="@id/profile_password"
-        android:textSize="@dimen/large_text_size"
-        android:inputType="text"/>
-
-    <!-- Change city -->
-    <EditText
-        android:id="@+id/profile_city"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/large_internal_margin"
-        android:layout_marginTop="@dimen/large_internal_margin"
-        android:layout_below="@id/profile_country"
-        android:textSize="@dimen/large_text_size"
-        android:inputType="text"/>
+        android:textSize="@dimen/small_title_text_size" />
 
     <!-- Update settings -->
     <Button
@@ -92,7 +25,126 @@
         android:layout_marginTop="@dimen/small_internal_margin"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:onClick="onUpdateClick"/>
+        android:onClick="onUpdateClick" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_internal_margin"
+        android:layout_above="@id/update_settings_button"
+        android:layout_below="@id/profile_settings_title">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Change avatar image -->
+            <ImageButton
+                android:id="@+id/profile_image"
+                android:layout_width="@dimen/avatar_image_side"
+                android:layout_height="@dimen/avatar_image_side"
+                android:layout_marginLeft="@dimen/large_internal_margin"
+                android:src="@drawable/q_mark"
+                android:contentDescription="@string/take_photo_button_description"
+                android:onClick="onTakePictureButtonClick" />
+
+            <!-- Change user name -->
+            <EditText
+                android:id="@+id/profile_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/large_internal_margin"
+                android:layout_marginLeft="@dimen/large_internal_margin"
+                android:layout_below="@id/profile_image"
+                android:textSize="@dimen/large_text_size"
+                android:textColor="@color/primary_color"
+                android:inputType="text" />
+
+            <!-- Change e-mail -->
+            <EditText
+                android:id="@+id/profile_e_mail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/large_internal_margin"
+                android:layout_marginTop="@dimen/large_internal_margin"
+                android:layout_below="@id/profile_user_name"
+                android:textSize="@dimen/large_text_size"
+                android:inputType="textEmailAddress" />
+
+            <!-- Change password -->
+            <EditText
+                android:id="@+id/profile_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/large_internal_margin"
+                android:layout_marginTop="@dimen/large_internal_margin"
+                android:layout_below="@id/profile_e_mail"
+                android:textSize="@dimen/large_text_size"
+                android:inputType="textPassword" />
+
+            <!-- Change country -->
+            <EditText
+                android:id="@+id/profile_country"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/large_internal_margin"
+                android:layout_marginTop="@dimen/large_internal_margin"
+                android:layout_below="@id/profile_password"
+                android:textSize="@dimen/large_text_size"
+                android:inputType="text" />
+
+            <!-- Change city -->
+            <EditText
+                android:id="@+id/profile_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/large_internal_margin"
+                android:layout_marginTop="@dimen/large_internal_margin"
+                android:layout_below="@id/profile_country"
+                android:textSize="@dimen/large_text_size"
+                android:inputType="text" />
+
+            <!-- Set home position -->
+            <TextView
+                android:id="@+id/set_location_text"
+                android:text="@string/home_coordinates_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/large_internal_margin"
+                android:layout_marginTop="@dimen/large_internal_margin"
+                android:layout_below="@id/profile_city"
+                android:textSize="@dimen/large_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/large_internal_margin"
+                android:layout_below="@id/profile_city"
+                android:layout_toRightOf="@id/set_location_text"
+                android:textSize="@dimen/large_text_size"/>
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_internal_margin"
+                android:layout_below="@id/set_location_text"
+                android:layout_centerHorizontal="true"
+                android:textSize="@dimen/large_text_size"
+                android:textColor="@color/primary_color"/>
+
+            <Button
+                android:text="@string/set_coordinates_button_text"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/small_button_height"
+                android:layout_marginTop="@dimen/small_internal_margin"
+                android:layout_below="@id/location"
+                android:layout_centerHorizontal="true"
+                android:onClick="onSetCoordinatesClick"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
 
     <!-- Status Texts -->
     <TextView
@@ -102,7 +154,7 @@
         android:layout_centerHorizontal="true"
         android:layout_above="@id/update_settings_button"
         android:textSize="@dimen/large_text_size"
-        android:textColor="@color/error_color"/>
+        android:textColor="@color/error_color" />
 
     <TextView
         android:id="@+id/positive_settings_status_text"
@@ -111,6 +163,6 @@
         android:layout_centerHorizontal="true"
         android:layout_above="@id/update_settings_button"
         android:textSize="@dimen/large_text_size"
-        android:textColor="@color/success_color"/>
+        android:textColor="@color/success_color" />
 
 </RelativeLayout>

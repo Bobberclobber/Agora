@@ -30,7 +30,8 @@ public class GetApprovingService extends IntentService {
         System.out.println("----------");
 
         String userName = intent.getStringExtra(Constants.USER_NAME_KEY);
-        ArrayList<IdeaRecord> approving = JsonMethods.getApproving(userName);
+        String originalUser = intent.getStringExtra(Constants.ORIGINAL_USER_KEY);
+        ArrayList<IdeaRecord> approving = JsonMethods.getApproving(userName, originalUser);
         Log.i("GetApprovingService", "Fetched ideas: " + approving);
 
         Intent broadCastIntent = new Intent();

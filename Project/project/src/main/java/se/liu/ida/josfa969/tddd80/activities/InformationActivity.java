@@ -100,6 +100,7 @@ public class InformationActivity extends Activity {
         Intent getApprovingIntent = new Intent(this, GetApprovingService.class);
         getFollowingIntent.putExtra(Constants.USER_NAME_KEY, userName);
         getApprovingIntent.putExtra(Constants.USER_NAME_KEY, userName);
+        getApprovingIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
         startService(getFollowingIntent);
         startService(getApprovingIntent);
     }

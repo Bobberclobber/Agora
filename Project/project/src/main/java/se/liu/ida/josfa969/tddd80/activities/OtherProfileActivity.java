@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 
 import se.liu.ida.josfa969.tddd80.R;
 import se.liu.ida.josfa969.tddd80.background_services.AddFollowerService;
+import se.liu.ida.josfa969.tddd80.background_services.GetOtherUserIdeasService;
 import se.liu.ida.josfa969.tddd80.background_services.RemoveFollowerService;
 import se.liu.ida.josfa969.tddd80.fragments.OtherProfileFragment;
 import se.liu.ida.josfa969.tddd80.help_classes.Constants;
@@ -27,15 +29,6 @@ import se.liu.ida.josfa969.tddd80.help_classes.JsonMethods;
 
 public class OtherProfileActivity extends Activity {
 
-    // Gets strings used as keys to
-    // get data sent through an intent
-    private final String USER_NAME_KEY = Constants.USER_NAME_KEY;
-    private final String E_MAIL_KEY = Constants.E_MAIL_KEY;
-    private final String COUNTRY_KEY = Constants.COUNTRY_KEY;
-    private final String CITY_KEY = Constants.CITY_KEY;
-    private final String FOLLOWERS_KEY = Constants.FOLLOWERS_KEY;
-    private final String ORIGINAL_USER_KEY = Constants.ORIGINAL_USER_KEY;
-
     // Initializes basic data variables
     private String userName = null;
     private String eMail = null;
@@ -43,6 +36,9 @@ public class OtherProfileActivity extends Activity {
     private String city = null;
     private String followers = null;
     private String originalUser = null;
+
+    // An intent used to visit the detail view of an idea
+    public Intent ideaDetailIntent;
 
     // Broadcast receiver
     private ResponseReceiver receiver;
@@ -55,23 +51,39 @@ public class OtherProfileActivity extends Activity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        // Creates an intent used to get basic user data
+        ideaDetailIntent = new Intent(this, IdeaDetailActivity.class);
+
+        // Add filters for the receiver
+        addReceiverFilters();
+
+        // Gets the other user's data
+        getOtherUserData(savedInstanceState);
+    }
+
+    private void addReceiverFilters() {
         // Filters for the receiver
         IntentFilter addFollowerFilter = new IntentFilter(Constants.ADD_FOLLOWER_RESP);
         IntentFilter removeFollowerFilter = new IntentFilter(Constants.REMOVE_FOLLOWER_RESP);
+        IntentFilter getIdeasFilter = new IntentFilter(Constants.GET_OTHER_USER_IDEAS_RESP);
         addFollowerFilter.addCategory(Intent.CATEGORY_DEFAULT);
         removeFollowerFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        getIdeasFilter.addCategory(Intent.CATEGORY_DEFAULT);
         receiver = new ResponseReceiver();
         registerReceiver(receiver, addFollowerFilter);
         registerReceiver(receiver, removeFollowerFilter);
+        registerReceiver(receiver, getIdeasFilter);
+    }
 
+    private void getOtherUserData(Bundle savedInstanceState) {
         // Gets all data sent by the intent starting this activity
         Intent initIntent = getIntent();
-        userName = initIntent.getStringExtra(USER_NAME_KEY);
-        eMail = initIntent.getStringExtra(E_MAIL_KEY);
-        country = initIntent.getStringExtra(COUNTRY_KEY);
-        city = initIntent.getStringExtra(CITY_KEY);
-        followers = initIntent.getStringExtra(FOLLOWERS_KEY);
-        originalUser = initIntent.getStringExtra(ORIGINAL_USER_KEY);
+        userName = initIntent.getStringExtra(Constants.USER_NAME_KEY);
+        eMail = initIntent.getStringExtra(Constants.E_MAIL_KEY);
+        country = initIntent.getStringExtra(Constants.COUNTRY_KEY);
+        city = initIntent.getStringExtra(Constants.CITY_KEY);
+        followers = initIntent.getStringExtra(Constants.FOLLOWERS_KEY);
+        originalUser = initIntent.getStringExtra(Constants.ORIGINAL_USER_KEY);
 
         SharedPreferences preferences = this.getPreferences(Context.MODE_PRIVATE);
         String defaultUserName = "User Name";
@@ -82,22 +94,22 @@ public class OtherProfileActivity extends Activity {
         String defaultOriginalUser = "You";
 
         if (userName == null) {
-            userName = preferences.getString(USER_NAME_KEY, defaultUserName);
+            userName = preferences.getString(Constants.USER_NAME_KEY, defaultUserName);
         }
         if (eMail == null) {
-            eMail = preferences.getString(E_MAIL_KEY, defaultEMail);
+            eMail = preferences.getString(Constants.E_MAIL_KEY, defaultEMail);
         }
         if (country == null) {
-            country = preferences.getString(COUNTRY_KEY, defaultCountry);
+            country = preferences.getString(Constants.COUNTRY_KEY, defaultCountry);
         }
         if (city == null) {
-            city = preferences.getString(CITY_KEY, defaultCity);
+            city = preferences.getString(Constants.CITY_KEY, defaultCity);
         }
         if (followers == null) {
-            followers = preferences.getString(FOLLOWERS_KEY, defaultFollowers);
+            followers = preferences.getString(Constants.FOLLOWERS_KEY, defaultFollowers);
         }
         if (originalUser == null) {
-            originalUser = preferences.getString(ORIGINAL_USER_KEY, defaultOriginalUser);
+            originalUser = preferences.getString(Constants.ORIGINAL_USER_KEY, defaultOriginalUser);
         }
 
         if (savedInstanceState == null) {
@@ -121,12 +133,12 @@ public class OtherProfileActivity extends Activity {
         // and e-mail using a shared preference
         SharedPreferences preferences = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString(USER_NAME_KEY, userName);
-        editor.putString(E_MAIL_KEY, eMail);
-        editor.putString(COUNTRY_KEY, country);
-        editor.putString(CITY_KEY, city);
-        editor.putString(FOLLOWERS_KEY, followers);
-        editor.putString(ORIGINAL_USER_KEY, originalUser);
+        editor.putString(Constants.USER_NAME_KEY, userName);
+        editor.putString(Constants.E_MAIL_KEY, eMail);
+        editor.putString(Constants.COUNTRY_KEY, country);
+        editor.putString(Constants.CITY_KEY, city);
+        editor.putString(Constants.FOLLOWERS_KEY, followers);
+        editor.putString(Constants.ORIGINAL_USER_KEY, originalUser);
         editor.commit();
     }
 
@@ -156,25 +168,15 @@ public class OtherProfileActivity extends Activity {
         eMailView.setText(eMail);
         followersView.setText(followers);
 
-        updateRecentIdeas();
-    }
-
-    private void updateRecentIdeas() {
-        ListView recentIdeasList = (ListView) findViewById(R.id.other_profile_recent_ideas);
-        ArrayList<IdeaRecord> recentIdeas = JsonMethods.getOtherUserRecentIdeas(userName);
-        if (recentIdeas == null) {
-            System.out.println("Error!");
-        } else if (recentIdeas.isEmpty()) {
-            System.out.println("No Recent Events");
-        } else {
-            recentIdeasList.setAdapter(new IdeaItemAdapter(this, R.layout.idea_list_item, recentIdeas, originalUser));
-        }
+        Intent getOtherUserIdeasIntent = new Intent(this, GetOtherUserIdeasService.class);
+        getOtherUserIdeasIntent.putExtra(Constants.USER_NAME_KEY, userName);
+        startService(getOtherUserIdeasIntent);
     }
 
     public void onMessageClick(View view) {
         Intent conversationIntent = new Intent(this, ConversationActivity.class);
-        conversationIntent.putExtra(USER_NAME_KEY, userName);
-        conversationIntent.putExtra(ORIGINAL_USER_KEY, originalUser);
+        conversationIntent.putExtra(Constants.USER_NAME_KEY, userName);
+        conversationIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
         startActivity(conversationIntent);
     }
 
@@ -203,7 +205,7 @@ public class OtherProfileActivity extends Activity {
 
         // Starts the AddFollowerService
         Intent addFollowerIntent = new Intent(this, AddFollowerService.class);
-        addFollowerIntent.putExtra(ORIGINAL_USER_KEY, originalUser);
+        addFollowerIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
         addFollowerIntent.putExtra(Constants.TARGET_USER_KEY, userName);
         startService(addFollowerIntent);
 
@@ -226,7 +228,7 @@ public class OtherProfileActivity extends Activity {
 
         // Starts the RemoveFollowerService
         Intent removeFollowerIntent = new Intent(this, RemoveFollowerService.class);
-        removeFollowerIntent.putExtra(ORIGINAL_USER_KEY, originalUser);
+        removeFollowerIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
         removeFollowerIntent.putExtra(Constants.TARGET_USER_KEY, userName);
         startService(removeFollowerIntent);
 
@@ -235,16 +237,43 @@ public class OtherProfileActivity extends Activity {
         followButton.setVisibility(View.VISIBLE);
     }
 
+    private void addListOnClickListener() {
+        final ListView otherUserIdeasList = (ListView) findViewById(R.id.other_profile_recent_ideas);
+        otherUserIdeasList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                IdeaRecord o = (IdeaRecord) otherUserIdeasList.getItemAtPosition(position);
+                if (o != null) {
+                    ideaDetailIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
+                    ideaDetailIntent.putExtra(Constants.POSTER_KEY, o.poster);
+                    ideaDetailIntent.putExtra(Constants.IDEA_TEXT_KEY, o.ideaText);
+                    ideaDetailIntent.putExtra(Constants.TAG_STRING_KEY, o.tags);
+                    ideaDetailIntent.putExtra(Constants.APPROVAL_NUM_KEY, o.approvalNum);
+                    ideaDetailIntent.putExtra(Constants.IDEA_ID_KEY, o.ideaId);
+                    startActivity(ideaDetailIntent);
+                }
+            }
+        });
+    }
+
     private class ResponseReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            System.out.println("----------");
-            System.out.println("On Receive");
-            System.out.println("----------");
-
-            // Creates a toast showing that you now follow the target user
-            String toastMsg = intent.getStringExtra(Constants.FOLLOW_TOAST_MSG_KEY);
-            Toast.makeText(context, toastMsg, Toast.LENGTH_SHORT).show();
+            String intentAction = intent.getAction();
+            if (intentAction != null) {
+                if (intentAction.equals(Constants.GET_OTHER_USER_IDEAS_RESP)) {
+                    ListView recentIdeasList = (ListView) findViewById(R.id.other_profile_recent_ideas);
+                    ArrayList<IdeaRecord> recentIdeas = intent.getParcelableArrayListExtra(Constants.IDEAS_KEY);
+                    if (recentIdeas != null) {
+                        recentIdeasList.setAdapter(new IdeaItemAdapter(context, R.layout.idea_list_item, recentIdeas, originalUser));
+                    }
+                    addListOnClickListener();
+                } else {
+                    // Creates a toast showing that you now follow the target user
+                    String toastMsg = intent.getStringExtra(Constants.FOLLOW_TOAST_MSG_KEY);
+                    Toast.makeText(context, toastMsg, Toast.LENGTH_SHORT).show();
+                }
+            }
         }
     }
 }

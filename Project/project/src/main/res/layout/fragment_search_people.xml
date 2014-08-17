@@ -16,12 +16,20 @@
         android:layout_centerHorizontal="true"
         android:textSize="@dimen/small_title_text_size"/>
 
+    <TextView
+        android:id="@+id/people_search_info"
+        android:text="@string/people_search_ino_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_people_title"
+        android:layout_centerHorizontal="true"/>
+
     <EditText
         android:id="@+id/search_people_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_internal_margin"
-        android:layout_below="@id/search_people_title"
+        android:layout_below="@id/people_search_info"
         android:inputType="textMultiLine"/>
 
     <Button

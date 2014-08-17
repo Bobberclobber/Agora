@@ -30,7 +30,8 @@ import se.liu.ida.josfa969.tddd80.item_records.UserRecord;
  * A class containing methods used to get JSON-responses from URLs
  */
 public class JsonMethods {
-    private static String BASE_URL = "http://10.0.3.2:5000/";
+    // private static String BASE_URL = "http://10.0.3.2:5000/";
+    private static String BASE_URL = "http://localhost:5000/";
     private static final String SPACE = " ";
     private static final String SPACE_REPLACE = "&nbsp";
     private static final String HASH_TAG = "#";
@@ -80,12 +81,13 @@ public class JsonMethods {
                     ideaText = ideaText.replace(ENTER_REPLACE, ENTER);
                     String poster = temp.getString(2);
                     String approvalNum = temp.getString(3);
+                    boolean isApproving = userIsApproving(identifier, ideaId);
                     JSONArray tagJsonArray = temp.getJSONArray(4);
                     ArrayList<String> tags = new ArrayList<String>();
                     for (int n = 0; n < tagJsonArray.length(); n++) {
                         tags.add(tagJsonArray.getString(n));
                     }
-                    ideas.add(new IdeaRecord(ideaId, ideaText, poster, approvalNum, tags));
+                    ideas.add(new IdeaRecord(ideaId, ideaText, poster, approvalNum, isApproving, tags));
                 }
             }
         } catch (JSONException e) {
@@ -114,12 +116,13 @@ public class JsonMethods {
                     ideaText = ideaText.replace(ENTER_REPLACE, ENTER);
                     String poster = temp.getString(2);
                     String approvalNum = temp.getString(3);
+                    boolean isApproving = userIsApproving(identifier, ideaId);
                     JSONArray tagJsonArray = temp.getJSONArray(4);
                     ArrayList<String> tags = new ArrayList<String>();
                     for (int n = 0; n < tagJsonArray.length(); n++) {
                         tags.add(tagJsonArray.getString(n));
                     }
-                    ideas.add(new IdeaRecord(ideaId, ideaText, poster, approvalNum, tags));
+                    ideas.add(new IdeaRecord(ideaId, ideaText, poster, approvalNum, isApproving, tags));
                 }
             }
         } catch (JSONException e) {
@@ -130,7 +133,31 @@ public class JsonMethods {
     }
 
     public static ArrayList<MessageRecord> getMessageFeed(String userName) {
-        return null;
+        String getMessageFeedURL = BASE_URL + "_get_message_feed_/" + userName;
+        getMessageFeedURL = getMessageFeedURL.replace(SPACE, SPACE_REPLACE);
+        getMessageFeedURL = getMessageFeedURL.replace(HASH_TAG, HASH_TAG_REPLACE);
+        ArrayList<MessageRecord> messages = new ArrayList<MessageRecord>();
+
+        try {
+            JSONObject jsonResponseObject = new JSONObject(getUrlResponseString(getMessageFeedURL));
+            JSONArray messagesArray = jsonResponseObject.getJSONArray("messages");
+            for (int i = 0; i < messagesArray.length(); i++) {
+                JSONArray temp = messagesArray.getJSONArray(i);
+                if (temp.length() >= 3) {
+                    String sender = temp.getString(0);
+                    String receiver = temp.getString(1);
+                    String messageText = temp.getString(2);
+                    messageText = messageText.replace(SPACE_REPLACE, SPACE);
+                    messageText = messageText.replace(HASH_TAG_REPLACE, HASH_TAG);
+                    messageText = messageText.replace(ENTER_REPLACE, ENTER);
+                    messages.add(new MessageRecord(sender, receiver, messageText));
+                }
+            }
+        } catch (JSONException e) {
+            System.out.println("JSON Exception");
+            e.printStackTrace();
+        }
+        return messages;
     }
 
     public static ArrayList<MessageRecord> getRecentMessages(String userName, String originalUserName) {
@@ -185,13 +212,23 @@ public class JsonMethods {
                 JSONArray cityArray = jsonResponseObject.getJSONArray("city");
                 JSONArray followersArray = jsonResponseObject.getJSONArray("followers");
 
-                // Converts the JSON Arrays to strings and
-                // adds them to the userData array list
-                userData.add(userNameArray.getString(0));
-                userData.add(emailArray.getString(0));
-                userData.add(countryArray.getString(0));
-                userData.add(cityArray.getString(0));
-                userData.add(followersArray.getString(0));
+                // Converts the JSON Arrays to strings
+                String userName = userNameArray.getString(0);
+                userName = userName.replace(SPACE_REPLACE, SPACE);
+                userName = userName.replace(HASH_TAG_REPLACE, HASH_TAG);
+                String eMail = emailArray.getString(0);
+                String country = countryArray.getString(0);
+                country = country.replace(SPACE_REPLACE, SPACE);
+                String city = cityArray.getString(0);
+                city = city.replace(SPACE_REPLACE, SPACE);
+                String followers = followersArray.getString(0);
+
+                // Adds the strings to the userData array list
+                userData.add(userName);
+                userData.add(eMail);
+                userData.add(country);
+                userData.add(city);
+                userData.add(followers);
             } catch (JSONException e) {
                 System.out.println("JSON Exception");
                 e.printStackTrace();
@@ -212,31 +249,13 @@ public class JsonMethods {
                 JSONObject jsonResponseObject = new JSONObject(getUrlResponseString(getUserNameURL));
                 JSONArray userNameArray = jsonResponseObject.getJSONArray("user_name");
                 userName = userNameArray.getString(0);
+                userName = userName.replace(SPACE_REPLACE, SPACE);
+                userName = userName.replace(HASH_TAG_REPLACE, HASH_TAG);
             } catch (JSONException e) {
                 System.out.println("JSON Exception");
                 e.printStackTrace();
             }
             return userName;
-        } else {
-            return "ERROR!!!";
-        }
-    }
-
-    public static String getEMail(String userName) {
-        String getEMailURL = BASE_URL + "_get_e_mail_/" + userName;
-        getEMailURL = getEMailURL.replace(SPACE, SPACE_REPLACE);
-        String eMail = "";
-
-        if (getJsonResponse(getEMailURL).equals("Success")) {
-            try {
-                JSONObject jsonResponseObject = new JSONObject(getUrlResponseString(getEMailURL));
-                JSONArray eMailArray = jsonResponseObject.getJSONArray("e_mail");
-                eMail = eMailArray.getString(0);
-            } catch (JSONException e) {
-                System.out.println("JSON Exception");
-                e.printStackTrace();
-            }
-            return eMail;
         } else {
             return "ERROR!!!";
         }
@@ -270,7 +289,7 @@ public class JsonMethods {
         return getUrlResponseString(removeFollowerURL);
     }
 
-    public static ArrayList<IdeaRecord> searchIdeas(String tags) {
+    public static ArrayList<IdeaRecord> searchIdeas(String tags, String originalUser) {
         String searchIdeasURL = BASE_URL + "_search_ideas_/" + tags;
         searchIdeasURL = searchIdeasURL.replace(SPACE, "");
         searchIdeasURL = searchIdeasURL.replace(HASH_TAG, HASH_TAG_REPLACE);
@@ -285,14 +304,20 @@ public class JsonMethods {
                 if (tempArray.length() >= 5) {
                     String ideaId = tempArray.getString(0);
                     String ideaText = tempArray.getString(1);
+                    ideaText = ideaText.replace(SPACE_REPLACE, SPACE);
+                    ideaText = ideaText.replace(HASH_TAG_REPLACE, HASH_TAG);
+                    ideaText = ideaText.replace(ENTER_REPLACE, ENTER);
                     String poster = tempArray.getString(2);
+                    poster = poster.replace(SPACE_REPLACE, SPACE);
+                    poster = poster.replace(HASH_TAG_REPLACE, HASH_TAG);
                     String approvalNum = tempArray.getString(3);
+                    boolean isApproving = userIsApproving(originalUser, ideaId);
                     JSONArray tempTags = tempArray.getJSONArray(4);
                     ArrayList<String> tagList = new ArrayList<String>();
                     for (int n = 0; n < tempTags.length(); n++) {
                         tagList.add(tempTags.getString(n));
                     }
-                    ideas.add(new IdeaRecord(ideaId, ideaText, poster, approvalNum, tagList));
+                    ideas.add(new IdeaRecord(ideaId, ideaText, poster, approvalNum, isApproving, tagList));
                 }
             }
         } catch (JSONException e) {
@@ -304,6 +329,8 @@ public class JsonMethods {
 
     public static ArrayList<UserRecord> searchPeople(String identifiers) {
         String searchPeopleURL = BASE_URL + "_search_people_/" + identifiers;
+        searchPeopleURL = searchPeopleURL.replace("," + SPACE, HASH_TAG_REPLACE);
+        searchPeopleURL = searchPeopleURL.replace(",", HASH_TAG_REPLACE);
         searchPeopleURL = searchPeopleURL.replace(SPACE, SPACE_REPLACE);
         searchPeopleURL = searchPeopleURL.replace(ENTER, SPACE_REPLACE);
         ArrayList<UserRecord> people = new ArrayList<UserRecord>();
@@ -315,9 +342,13 @@ public class JsonMethods {
                 JSONArray tempArray = peopleJsonArray.getJSONArray(i);
                 if (tempArray.length() >= 5) {
                     String userName = tempArray.getString(0);
+                    userName = userName.replace(SPACE_REPLACE, SPACE);
+                    userName = userName.replace(HASH_TAG_REPLACE, HASH_TAG);
                     String eMail = tempArray.getString(1);
                     String country = tempArray.getString(2);
+                    country = country.replace(SPACE_REPLACE, SPACE);
                     String city = tempArray.getString(3);
+                    city = city.replace(SPACE_REPLACE, SPACE);
                     String followers = tempArray.getString(4);
                     people.add(new UserRecord(userName, eMail, country, city, followers));
                 }
@@ -391,7 +422,7 @@ public class JsonMethods {
         return following;
     }
 
-    public static ArrayList<IdeaRecord> getApproving(String userName) {
+    public static ArrayList<IdeaRecord> getApproving(String userName, String originalUserName) {
         String getApprovingURL = BASE_URL + "_get_approving_/" + userName;
         getApprovingURL = getApprovingURL.replace(SPACE, SPACE_REPLACE);
         ArrayList<IdeaRecord> approving = new ArrayList<IdeaRecord>();
@@ -406,6 +437,7 @@ public class JsonMethods {
                 fIdeaText = fIdeaText.replace(HASH_TAG_REPLACE, HASH_TAG);
                 String fPoster = temp.getString(2);
                 String fApprovalNum = temp.getString(3);
+                boolean isApproving = userIsApproving(originalUserName, fIdeaId);
                 JSONArray tagsJsonArray = temp.getJSONArray(4);
                 ArrayList<String> fTags = new ArrayList<String>();
                 for (int n = 0; n < tagsJsonArray.length(); n++) {
@@ -413,7 +445,7 @@ public class JsonMethods {
                     tempTag = tempTag.replace(HASH_TAG_REPLACE, HASH_TAG);
                     fTags.add(tempTag);
                 }
-                approving.add(new IdeaRecord(fIdeaId, fIdeaText, fPoster, fApprovalNum, fTags));
+                approving.add(new IdeaRecord(fIdeaId, fIdeaText, fPoster, fApprovalNum, isApproving, fTags));
             }
         } catch (JSONException e) {
             System.out.println("JSON Exception");
@@ -439,9 +471,9 @@ public class JsonMethods {
             JSONArray commentsArray = jsonResponseObject.getJSONArray("comments");
             for (int i = 0; i < commentsArray.length(); i++) {
                 JSONArray tempArray = commentsArray.getJSONArray(i);
-                if (tempArray.length() >= 3) {
+                if (tempArray.length() >= 2) {
                     String user = tempArray.getString(0);
-                    String commentText = tempArray.getString(2);
+                    String commentText = tempArray.getString(1);
                     commentText = commentText.replace(SPACE_REPLACE, SPACE);
                     commentText = commentText.replace(HASH_TAG_REPLACE, HASH_TAG);
                     commentText = commentText.replace(ENTER_REPLACE, ENTER);
