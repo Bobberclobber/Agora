@@ -4,3 +4,11 @@ The application is built using the android OS in combination with a server built
 with Flask and SQLite3. 
 The purpose of the appication is to create a mobile and social environment in which the users can easily share any project
 ideas they may have on their mind or find and contact other people with interesting ideas.
+
+NOTE: The final launchable (though untested) version (completed 20/08/2014) was completed using Androd Studio 8.6.0 with a separately downloaded SDK. 
+	  Starting android studio using this SDK resulted in a bunch of errors which were solved using the IDE's own solutions, hopefully this will work on other machines as well.
+
+TODO:
+	> Improve the back-navigation with a back-stack so that the user won't end up in an activity which is
+	  several steps further back than the one which was active before the current one.
+	> Add a preview feature
