@@ -70,12 +70,30 @@
             android:textSize="@dimen/large_text_size" />
 
         <TextView
+            android:id="@+id/other_user_home_location_text"
+            android:text="@string/home_location_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_internal_margin"
+            android:layout_below="@id/other_user_followers"
+            android:textSize="@dimen/large_text_size"/>
+
+        <TextView
+            android:id="@+id/other_user_home_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_internal_margin"
+            android:layout_below="@id/other_user_followers"
+            android:layout_toRightOf="@id/other_user_home_location_text"
+            android:textSize="@dimen/large_text_size"/>
+
+        <TextView
             android:id="@+id/other_user_following_title"
             android:text="@string/following_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/large_internal_margin"
-            android:layout_below="@id/information_other_user_follower_number"
+            android:layout_below="@id/other_user_home_location_text"
             android:textSize="@dimen/large_text_size" />
 
         <!-- Using Linear Layouts instead of ListViews in order

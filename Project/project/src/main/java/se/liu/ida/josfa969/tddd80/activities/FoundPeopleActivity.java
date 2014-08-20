@@ -70,11 +70,6 @@ public class FoundPeopleActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        System.out.println("----------");
-        System.out.println("On Resume");
-        System.out.println("----------");
-
         // Shows the progress dialog
         progress.show();
 
@@ -97,9 +92,11 @@ public class FoundPeopleActivity extends Activity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 progress.setTitle("Loading");
                 progress.setMessage("Fetching user data...");
+                progress.show();
                 UserRecord o = (UserRecord) foundPeopleList.getItemAtPosition(position);
                 if (o != null) {
                     getUserDataIntent.putExtra(Constants.USER_NAME_KEY, o.userName);
+                    startService(getUserDataIntent);
                 }
             }
         });
@@ -116,6 +113,7 @@ public class FoundPeopleActivity extends Activity {
         String clickedCountry = userData.get(2);
         String clickedCity = userData.get(3);
         String clickedFollowers = userData.get(4);
+        String clickedLocation = userData.get(5);
 
         // Attaches the basic data to the intent
         otherProfileIntent.putExtra(Constants.USER_NAME_KEY, clickedUserName);
@@ -123,6 +121,7 @@ public class FoundPeopleActivity extends Activity {
         otherProfileIntent.putExtra(Constants.COUNTRY_KEY, clickedCountry);
         otherProfileIntent.putExtra(Constants.CITY_KEY, clickedCity);
         otherProfileIntent.putExtra(Constants.FOLLOWERS_KEY, clickedFollowers);
+        otherProfileIntent.putExtra(Constants.LOCATION_KEY, clickedLocation);
         otherProfileIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
 
         // Dismisses the progress dialog

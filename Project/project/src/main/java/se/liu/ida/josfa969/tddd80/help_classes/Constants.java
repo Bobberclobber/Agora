@@ -14,6 +14,7 @@ public class Constants {
     public static final String COUNTRY_KEY = "se.liu.ida.josfa969.activities.COUNTRY";
     public static final String CITY_KEY = "se.liu.ida.josfa969.activities.CITY";
     public static final String FOLLOWERS_KEY = "se.liu.ida.josfa969.activities.FOLLOWERS";
+    public static final String LOCATION_KEY = "se.liu.ida.josfa969.activities.LOCATION";
     public static final String ORIGINAL_USER_KEY = "se.liu.ida.josfa969.activities.ORIGINAL_USER";
     public static final String ORIGINAL_E_MAIL_KEY = "se.liu.ida.josfa969.activities.ORIGINAL_E_MAIL";
     public static final String TARGET_USER_KEY = "se.liu.ida.josfa969.activities.TARGET_USER";
@@ -51,7 +52,7 @@ public class Constants {
     public static final String GET_IDEA_FEED_RESP = "se.liu.ida.josfa969.background_services.action.GET_IDEA_FEED";
     public static final String GET_MESSAGE_FEED_RESP = "se.liu.ida.josfa969.background_services.action.GET_MESSAGE_FEED";
     public static final String POST_IDEA_RESP = "se.liu.ida.josfa969.background_services.action.POST_IDEA";
-    public static final String GET_RECENT_MESSAGES_RESP = "se.liu.ida.josfa969.background_services.action.GET_RESENT_MESSAGES";
+    public static final String GET_CONVERSATION_RESP = "se.liu.ida.josfa969.background_services.action.GET_CONVERSATION";
     public static final String SEND_MESSAGE_RESP = "se.liu.ida.josfa969.background_services.action.SEND_MESSAGE";
     public static final String GET_COMMENTS_RESP = "se.liu.ida.josfa969.background_services.action.GET_COMMENTS";
     public static final String POST_COMMENT_RESP = "se.liu.ida.josfa969.background_services.action.POST_COMMENT";
@@ -59,4 +60,5 @@ public class Constants {
     public static final String IS_APPROVING_RESP = "se.liu.ida.josfa969.background_services.action.IS_APPROVING";
     public static final String GET_OTHER_USER_IDEAS_RESP = "se.liu.ida.josfa969.background_services.action.GET_OTHER_USER_RECENT_IDEAS";
     public static final String LOGIN_USER_RESP = "se.liu.ida.josfa969.background_services.action.LOGIN_USER";
+    public static final String REGISTER_USER_RESP = "se.liu.ida.josfa969.background_services.action.REGISTER_USER";
 }

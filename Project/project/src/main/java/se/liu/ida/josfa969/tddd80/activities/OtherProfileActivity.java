@@ -35,6 +35,7 @@ public class OtherProfileActivity extends Activity {
     private String country = null;
     private String city = null;
     private String followers = null;
+    private String location = null;
     private String originalUser = null;
 
     // An intent used to visit the detail view of an idea
@@ -84,6 +85,7 @@ public class OtherProfileActivity extends Activity {
         city = initIntent.getStringExtra(Constants.CITY_KEY);
         followers = initIntent.getStringExtra(Constants.FOLLOWERS_KEY);
         originalUser = initIntent.getStringExtra(Constants.ORIGINAL_USER_KEY);
+        location = initIntent.getStringExtra(Constants.LOCATION_KEY);
 
         SharedPreferences preferences = this.getPreferences(Context.MODE_PRIVATE);
         String defaultUserName = "User Name";
@@ -91,6 +93,7 @@ public class OtherProfileActivity extends Activity {
         String defaultCountry = "Country";
         String defaultCity = "City";
         String defaultFollowers = "0";
+        String defaultLocation = "Not Set";
         String defaultOriginalUser = "You";
 
         if (userName == null) {
@@ -108,6 +111,9 @@ public class OtherProfileActivity extends Activity {
         if (followers == null) {
             followers = preferences.getString(Constants.FOLLOWERS_KEY, defaultFollowers);
         }
+        if (location == null) {
+            location = preferences.getString(Constants.LOCATION_KEY, defaultLocation);
+        }
         if (originalUser == null) {
             originalUser = preferences.getString(Constants.ORIGINAL_USER_KEY, defaultOriginalUser);
         }
@@ -120,11 +126,6 @@ public class OtherProfileActivity extends Activity {
     @Override
     protected void onPause() {
         super.onPause();
-
-        System.out.println("----------");
-        System.out.println("On Pause");
-        System.out.println("----------");
-
         // Unregister the receiver
         unregisterReceiver(receiver);
 
@@ -138,6 +139,7 @@ public class OtherProfileActivity extends Activity {
         editor.putString(Constants.COUNTRY_KEY, country);
         editor.putString(Constants.CITY_KEY, city);
         editor.putString(Constants.FOLLOWERS_KEY, followers);
+        editor.putString(Constants.LOCATION_KEY, location);
         editor.putString(Constants.ORIGINAL_USER_KEY, originalUser);
         editor.commit();
     }
@@ -187,12 +189,12 @@ public class OtherProfileActivity extends Activity {
         informationIntent.putExtra(Constants.COUNTRY_KEY, country);
         informationIntent.putExtra(Constants.CITY_KEY, city);
         informationIntent.putExtra(Constants.FOLLOWERS_KEY, followers);
+        informationIntent.putExtra(Constants.LOCATION_KEY, location);
         informationIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
         startActivity(informationIntent);
     }
 
     public void onFollowClick(View view) {
-        System.out.println("On Follow Click");
         // Gets widgets
         Button followButton = (Button) findViewById(R.id.follow_button);
         Button unFollowButton = (Button) findViewById(R.id.un_follow_button);

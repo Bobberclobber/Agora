@@ -20,7 +20,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import se.liu.ida.josfa969.tddd80.R;
-import se.liu.ida.josfa969.tddd80.background_services.GetRecentMessagesService;
+import se.liu.ida.josfa969.tddd80.background_services.GetConversationService;
 import se.liu.ida.josfa969.tddd80.background_services.SendMessageService;
 import se.liu.ida.josfa969.tddd80.fragments.ConversationFragment;
 import se.liu.ida.josfa969.tddd80.help_classes.Constants;
@@ -46,7 +46,7 @@ public class ConversationActivity extends Activity {
     private ResponseReceiver receiver;
 
     // Intent to start the get recent messages service
-    public Intent getRecentMessagesIntent;
+    public Intent getConversationIntent;
 
     // Progress dialog
     public ProgressDialog progress;
@@ -82,7 +82,7 @@ public class ConversationActivity extends Activity {
         }
 
         // Filters for the receiver
-        IntentFilter getRecentMessagesFilter = new IntentFilter(Constants.GET_RECENT_MESSAGES_RESP);
+        IntentFilter getRecentMessagesFilter = new IntentFilter(Constants.GET_CONVERSATION_RESP);
         IntentFilter sendMessageFilter = new IntentFilter(Constants.SEND_MESSAGE_RESP);
         getRecentMessagesFilter.addCategory(Intent.CATEGORY_DEFAULT);
         sendMessageFilter.addCategory(Intent.CATEGORY_DEFAULT);
@@ -90,18 +90,13 @@ public class ConversationActivity extends Activity {
         registerReceiver(receiver, getRecentMessagesFilter);
         registerReceiver(receiver, sendMessageFilter);
 
-        getRecentMessagesIntent = new Intent(getBaseContext(), GetRecentMessagesService.class);
+        getConversationIntent = new Intent(getBaseContext(), GetConversationService.class);
         progress = new ProgressDialog(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-
-        System.out.println("----------");
-        System.out.println("On Pause");
-        System.out.println("----------");
-
         // Stops the automatic updating of messages
         updateMessagesTask.cancel();
 
@@ -142,9 +137,9 @@ public class ConversationActivity extends Activity {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    getRecentMessagesIntent.putExtra(Constants.USER_NAME_KEY, userName);
-                    getRecentMessagesIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
-                    startService(getRecentMessagesIntent);
+                    getConversationIntent.putExtra(Constants.USER_NAME_KEY, userName);
+                    getConversationIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
+                    startService(getConversationIntent);
                 }
             });
         }
@@ -157,27 +152,23 @@ public class ConversationActivity extends Activity {
     }
 
     public void onProfileImageClick(View view) {
-        // Gets required key strings
-        String eMailKey = Constants.E_MAIL_KEY;
-        String countryKey = Constants.COUNTRY_KEY;
-        String cityKey = Constants.CITY_KEY;
-        String followersKey = Constants.FOLLOWERS_KEY;
-
         // Gets the user's data
         ArrayList<String> userData = JsonMethods.getUserData(userName);
         String eMail = userData.get(1);
         String country = userData.get(2);
         String city = userData.get(3);
         String followers = userData.get(4);
+        String location = userData.get(5);
 
         Intent otherProfileIntent = new Intent(this, OtherProfileActivity.class);
 
         // Attaches the basic data to the intent
         otherProfileIntent.putExtra(Constants.USER_NAME_KEY, userName);
-        otherProfileIntent.putExtra(eMailKey, eMail);
-        otherProfileIntent.putExtra(countryKey, country);
-        otherProfileIntent.putExtra(cityKey, city);
-        otherProfileIntent.putExtra(followersKey, followers);
+        otherProfileIntent.putExtra(Constants.E_MAIL_KEY, eMail);
+        otherProfileIntent.putExtra(Constants.COUNTRY_KEY, country);
+        otherProfileIntent.putExtra(Constants.CITY_KEY, city);
+        otherProfileIntent.putExtra(Constants.FOLLOWERS_KEY, followers);
+        otherProfileIntent.putExtra(Constants.LOCATION_KEY, location);
         otherProfileIntent.putExtra(Constants.ORIGINAL_USER_KEY, userName);
 
         // Starts the new activity
@@ -213,9 +204,9 @@ public class ConversationActivity extends Activity {
             if (intentAction != null) {
                 if (intent.getAction().equals(Constants.SEND_MESSAGE_RESP)) {
                     progress.dismiss();
-                    getRecentMessagesIntent.putExtra(Constants.USER_NAME_KEY, userName);
-                    getRecentMessagesIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
-                    startService(getRecentMessagesIntent);
+                    getConversationIntent.putExtra(Constants.USER_NAME_KEY, userName);
+                    getConversationIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
+                    startService(getConversationIntent);
                 } else {
                     ListView messagesList = (ListView) findViewById(R.id.messages_list);
                     ArrayList<MessageRecord> messages = intent.getParcelableArrayListExtra(Constants.MESSAGES_KEY);

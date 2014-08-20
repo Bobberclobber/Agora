@@ -100,5 +100,6 @@
     <string name="receiver_text">To:</string>
     <string name="idea_search_info_text">Separate tags with # or # and space</string>
     <string name="people_search_ino_text">Separate items with , or , and space</string>
+    <string name="home_location_text">Home Location:</string>
 
 </resources>

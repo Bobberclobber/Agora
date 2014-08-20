@@ -72,8 +72,8 @@ def get_message_feed(user_name):
     return {"response": "Success", "messages": db.get_message_feed(user_name)}
 
 
-def get_recent_messages(user_name, original_user_name):
-    recent_messages = db.get_recent_messages(user_name, original_user_name)
+def get_conversation(user_name, original_user_name):
+    recent_messages = db.get_conversation(user_name, original_user_name)
     return {"response": "Success", "messages": recent_messages}
 
 
@@ -92,12 +92,14 @@ def get_user_data(identifier):
         country = user_data[3]
         city = user_data[4]
         followers = user_data[5]
+        location = user_data[6]
         return {"response": "Success",
                 "user_name": user_name,
                 "e_mail": e_mail,
                 "country": country,
                 "city": city,
-                "followers": followers}
+                "followers": followers,
+                "location": location}
     else:
         return {"response": "Failure"}
 
@@ -168,14 +170,15 @@ def user_is_following(user, other_user):
 
 
 def update_user_data(original_user_name, original_e_mail, new_user_name, new_e_mail,
-                     new_password, new_country, new_city):
+                     new_password, new_country, new_city, new_location):
     response = "Success"
     if original_user_name != new_user_name and db.user_name_exists(new_user_name):
         response = "User Name Exists"
     elif original_e_mail != new_e_mail and db.email_exists(new_e_mail):
         response = "E-Mail Exists"
     else:
-        db.update_user_data(original_user_name, new_user_name, new_e_mail, new_password, new_country, new_city)
+        db.update_user_data(original_user_name, new_user_name, new_e_mail, new_password, new_country, new_city,
+                            new_location)
     return {"response": response}
 
 

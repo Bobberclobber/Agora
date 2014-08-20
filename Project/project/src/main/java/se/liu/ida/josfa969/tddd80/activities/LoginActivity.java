@@ -137,6 +137,7 @@ public class LoginActivity extends Activity {
                         loginIntent.putExtra(Constants.PASSWORD_KEY, password);
                         loginIntent.putExtra(Constants.COUNTRY_KEY, userData.get(2));
                         loginIntent.putExtra(Constants.CITY_KEY, userData.get(3));
+                        loginIntent.putExtra(Constants.LOCATION_KEY, userData.get(5));
                         startActivity(loginIntent);
                     }
                 }

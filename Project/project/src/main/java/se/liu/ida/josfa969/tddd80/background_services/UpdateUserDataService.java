@@ -22,10 +22,6 @@ public class UpdateUserDataService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        System.out.println("----------");
-        System.out.println("On Handle Intent");
-        System.out.println("----------");
-
         // Gets data
         String originalUserName = intent.getStringExtra(Constants.ORIGINAL_USER_KEY);
         String originalEMail = intent.getStringExtra(Constants.ORIGINAL_E_MAIL_KEY);
@@ -34,8 +30,9 @@ public class UpdateUserDataService extends IntentService {
         String newPassword = intent.getStringExtra(Constants.PASSWORD_KEY);
         String newCountry = intent.getStringExtra(Constants.COUNTRY_KEY);
         String newCity = intent.getStringExtra(Constants.CITY_KEY);
+        String newLocation = intent.getStringExtra(Constants.LOCATION_KEY);
 
-        String result = JsonMethods.updateUserData(originalUserName, originalEMail, newUserName, newEMail, newPassword, newCountry, newCity);
+        String result = JsonMethods.updateUserData(originalUserName, originalEMail, newUserName, newEMail, newPassword, newCountry, newCity, newLocation);
         Log.i("UpdateUserDataService", "Result: " + result);
 
         Intent broadCastIntent = new Intent();

@@ -163,7 +163,7 @@ def get_message_feed(user_name):
     return messages
 
 
-def get_recent_messages(user_name, original_user_name):
+def get_conversation(user_name, original_user_name):
     c = get_db()
     cur = c.execute("SELECT * FROM messages")
     messages = []
@@ -212,13 +212,12 @@ def get_following(user_name):
 
 def get_user_data(identifier):
     c = get_db()
-    cur = c.execute("SELECT * FROM users")
+    cur = c.execute("SELECT user_name, e_mail, country, city, followers, home_location FROM users")
     user_data = []
     for row in cur:
         if identifier == row[0] or identifier == row[2]:
             for item in row:
                 user_data += [item]
-            user_data[6] = marshal.loads(user_data[6])
             return user_data
     return "Invalid"
 
@@ -294,7 +293,7 @@ def user_is_following(user, other_user):
     return False
 
 
-def update_user_data(original_user_name, new_user_name, new_e_mail, new_password, new_country, new_city):
+def update_user_data(original_user_name, new_user_name, new_e_mail, new_password, new_country, new_city, new_location):
 
     c = get_db()
     c.execute("UPDATE users SET user_name=? WHERE user_name=?", (new_user_name, original_user_name))
@@ -302,6 +301,7 @@ def update_user_data(original_user_name, new_user_name, new_e_mail, new_password
     c.execute("UPDATE users SET password=? WHERE user_name=?", (new_password, original_user_name))
     c.execute("UPDATE users SET country=? WHERE user_name=?", (new_country, original_user_name))
     c.execute("UPDATE users SET city=? WHERE user_name=?", (new_city, original_user_name))
+    c.execute("UPDATE users SET home_location=? WHERE user_name=?", (new_location, original_user_name))
 
     # Changes the user name in all required
     # places if it has been changed

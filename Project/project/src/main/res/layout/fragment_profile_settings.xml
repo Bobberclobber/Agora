@@ -27,11 +27,30 @@
         android:layout_alignParentBottom="true"
         android:onClick="onUpdateClick" />
 
+    <!-- Status Texts -->
+    <TextView
+        android:id="@+id/negative_settings_status_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/update_settings_button"
+        android:textSize="@dimen/large_text_size"
+        android:textColor="@color/error_color" />
+
+    <TextView
+        android:id="@+id/positive_settings_status_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/update_settings_button"
+        android:textSize="@dimen/large_text_size"
+        android:textColor="@color/success_color" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_internal_margin"
-        android:layout_above="@id/update_settings_button"
+        android:layout_above="@id/negative_settings_status_text"
         android:layout_below="@id/profile_settings_title">
 
         <RelativeLayout
@@ -124,7 +143,7 @@
                 android:textSize="@dimen/large_text_size"/>
 
             <TextView
-                android:id="@+id/location"
+                android:id="@+id/profile_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_internal_margin"
@@ -138,31 +157,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/small_button_height"
                 android:layout_marginTop="@dimen/small_internal_margin"
-                android:layout_below="@id/location"
+                android:layout_below="@id/profile_location"
                 android:layout_centerHorizontal="true"
                 android:onClick="onSetCoordinatesClick"/>
 
         </RelativeLayout>
 
     </ScrollView>
-
-    <!-- Status Texts -->
-    <TextView
-        android:id="@+id/negative_settings_status_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@id/update_settings_button"
-        android:textSize="@dimen/large_text_size"
-        android:textColor="@color/error_color" />
-
-    <TextView
-        android:id="@+id/positive_settings_status_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@id/update_settings_button"
-        android:textSize="@dimen/large_text_size"
-        android:textColor="@color/success_color" />
 
 </RelativeLayout>

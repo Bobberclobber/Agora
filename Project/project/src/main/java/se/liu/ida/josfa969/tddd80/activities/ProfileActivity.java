@@ -4,19 +4,23 @@ import android.app.ActionBar;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentTransaction;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.location.Location;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
@@ -26,6 +30,12 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationClient;
 
 import java.util.ArrayList;
 
@@ -41,7 +51,9 @@ import se.liu.ida.josfa969.tddd80.item_records.MessageRecord;
 import se.liu.ida.josfa969.tddd80.list_adapters.IdeaItemAdapter;
 import se.liu.ida.josfa969.tddd80.list_adapters.MessageItemAdapter;
 
-public class ProfileActivity extends FragmentActivity {
+public class ProfileActivity extends FragmentActivity implements
+        GooglePlayServicesClient.ConnectionCallbacks,
+        GooglePlayServicesClient.OnConnectionFailedListener {
     // Variables used for the photo capture feature
     private static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -62,6 +74,7 @@ public class ProfileActivity extends FragmentActivity {
     private String password = null;
     private String country = null;
     private String city = null;
+    private String location = null;
 
     // The user data from the updated user settings
     private String newUserName;
@@ -69,6 +82,7 @@ public class ProfileActivity extends FragmentActivity {
     private String newPassword;
     private String newCountry;
     private String newCity;
+    private String newLocation;
 
     // A list of tab titles
     private String[] tabTitleList = {"Post", "Idea Feed", "Messages", "Find", "Settings"};
@@ -85,6 +99,15 @@ public class ProfileActivity extends FragmentActivity {
     // Progress dialog
     public ProgressDialog progress;
 
+    // The location client
+    LocationClient locationClient;
+
+    // Global variable to hold the current location
+    Location mCurrentLocation;
+
+    // Global variable to store connection result
+    ConnectionResult mConnectionResult;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Requests to use a feature which displays a progress bar
@@ -100,6 +123,9 @@ public class ProfileActivity extends FragmentActivity {
 
         // Creates the progress dialog
         progress = new ProgressDialog(this);
+
+        // Creates the location client
+        locationClient = new LocationClient(this, this, this);
 
         // Creates the page change listener
         createPageChangeListener();
@@ -175,6 +201,7 @@ public class ProfileActivity extends FragmentActivity {
                     EditText profilePassword = (EditText) findViewById(R.id.profile_password);
                     EditText profileCountry = (EditText) findViewById(R.id.profile_country);
                     EditText profileCity = (EditText) findViewById(R.id.profile_city);
+                    TextView profileLocation = (TextView) findViewById(R.id.profile_location);
 
                     // Sets the text of the views
                     profileUserName.setText(userName);
@@ -182,6 +209,7 @@ public class ProfileActivity extends FragmentActivity {
                     profilePassword.setText(password);
                     profileCountry.setText(country);
                     profileCity.setText(city);
+                    profileLocation.setText(location);
                 }
             }
         };
@@ -222,6 +250,7 @@ public class ProfileActivity extends FragmentActivity {
         password = initIntent.getStringExtra(Constants.PASSWORD_KEY);
         country = initIntent.getStringExtra(Constants.COUNTRY_KEY);
         city = initIntent.getStringExtra(Constants.CITY_KEY);
+        location = initIntent.getStringExtra(Constants.LOCATION_KEY);
 
         // Creates an intent used to view the detail view of an idea
         ideaDetailIntent = new Intent(this, IdeaDetailActivity.class);
@@ -238,6 +267,7 @@ public class ProfileActivity extends FragmentActivity {
         String defaultPassword = "Password";
         String defaultCountry = "Country";
         String defaultCity = "City";
+        String defaultLocation = "Not Set";
         if (userName == null) {
             userName = preferences.getString(Constants.USER_NAME_KEY, defaultUserName);
         }
@@ -253,6 +283,25 @@ public class ProfileActivity extends FragmentActivity {
         if (city == null) {
             city = preferences.getString(Constants.CITY_KEY, defaultCity);
         }
+        if (location == null) {
+            location = preferences.getString(Constants.LOCATION_KEY, defaultLocation);
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Connect the client
+        locationClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        if (servicesConnected()) {
+            // Disconnects the client
+            locationClient.disconnect();
+        }
+        super.onStop();
     }
 
     @Override
@@ -269,6 +318,7 @@ public class ProfileActivity extends FragmentActivity {
         editor.putString(Constants.PASSWORD_KEY, password);
         editor.putString(Constants.COUNTRY_KEY, country);
         editor.putString(Constants.CITY_KEY, city);
+        editor.putString(Constants.LOCATION_KEY, location);
         editor.commit();
     }
 
@@ -363,6 +413,7 @@ public class ProfileActivity extends FragmentActivity {
         EditText profilePassword = (EditText) findViewById(R.id.profile_password);
         EditText profileCountry = (EditText) findViewById(R.id.profile_country);
         EditText profileCity = (EditText) findViewById(R.id.profile_city);
+        TextView profileLocation = (TextView) findViewById(R.id.profile_location);
 
         // Gets input
         newUserName = String.valueOf(profileUserName.getText());
@@ -370,6 +421,7 @@ public class ProfileActivity extends FragmentActivity {
         newPassword = String.valueOf(profilePassword.getText());
         newCountry = String.valueOf(profileCountry.getText());
         newCity = String.valueOf(profileCity.getText());
+        newLocation = String.valueOf(profileLocation.getText());
 
         // Starts the progress dialog
         progress = new ProgressDialog(this);
@@ -386,6 +438,7 @@ public class ProfileActivity extends FragmentActivity {
         updateUserDataIntent.putExtra(Constants.PASSWORD_KEY, newPassword);
         updateUserDataIntent.putExtra(Constants.COUNTRY_KEY, newCountry);
         updateUserDataIntent.putExtra(Constants.CITY_KEY, newCity);
+        updateUserDataIntent.putExtra(Constants.LOCATION_KEY, newLocation);
         startService(updateUserDataIntent);
     }
 
@@ -452,11 +505,103 @@ public class ProfileActivity extends FragmentActivity {
     }
 
     public void onSetCoordinatesClick(View view) {
+        if (servicesConnected()) {
+            // Gets the most recently registered location
+            mCurrentLocation = locationClient.getLastLocation();
+
+            // Sets the location text views text
+            TextView profileLocationView = (TextView) findViewById(R.id.profile_location);
+            location = mCurrentLocation.toString();
+            profileLocationView.setText(location);
+        }
     }
 
     private boolean servicesConnected() {
         // Check that google play services are available
-        return true;
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        // If Google Play Services is available
+        if (resultCode == ConnectionResult.SUCCESS) {
+            // in debug mode, log the status
+            Log.d("Location Updates", "Google Play Services is available");
+            // Continue
+            return true;
+            // Google Play Services was unavailable for some reason
+        } else {
+            // Get the error code
+            int errorCode = mConnectionResult.getErrorCode();
+            // Shows an error dialog
+            showErrorDialog(errorCode);
+            return false;
+        }
+    }
+
+    /*
+     * Called by Location Services when the request to connect the
+     * client finished successfully. At this point ,you can
+     * request the current location or start periodic updates
+     */
+    @Override
+    public void onConnected(Bundle bundle) {
+        // Display the connection status
+        Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show();
+    }
+
+    /*
+     * Called by Location Services if the connection to the
+     * location client drops because of an error
+     */
+    @Override
+    public void onDisconnected() {
+        // Displays the connection status
+        Toast.makeText(this, "Disconnected. Please re-connect.", Toast.LENGTH_SHORT).show();
+    }
+
+    /*
+     * Called by Location Services if the attempt to
+     * connect fails.
+     */
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+        mConnectionResult = connectionResult;
+        /*
+         * Google Play services can resolve some errors it detects.
+         * If the error has a resolution, try sending an Intent to
+         * start a Google Play services activity that can resolve
+         * error.
+         */
+        if (connectionResult.hasResolution()) {
+            try {
+                // Start an activity that tries to resolve the error
+                connectionResult.startResolutionForResult(this, CONNECTION_FAILURE_RESOLUTION_REQUEST);
+                /*
+                 * Thrown if Google Play Services canceled the original
+                 * PendingIntent
+                 */
+            } catch (IntentSender.SendIntentException e) {
+                // Log the error
+                e.printStackTrace();
+            }
+        } else {
+            /*
+             * If no resolution is available, display a dialog to the
+             * user with the error
+             */
+            showErrorDialog(connectionResult.getErrorCode());
+        }
+    }
+
+    public void showErrorDialog(int errorCode) {
+        // Get the error dialog from Google Play Services
+        Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(errorCode, this, CONNECTION_FAILURE_RESOLUTION_REQUEST);
+        // If Google Play Services can supply an error dialog
+        if (errorDialog != null) {
+            // Create a new fragment for the error dialog
+            ErrorDialogFragment errorFragment = new ErrorDialogFragment();
+            // Set the dialog in the dialog fragment
+            errorFragment.setDialog(errorDialog);
+            // Show the error dialog in the dialog fragment
+            errorFragment.show(getFragmentManager(), "Location Updates");
+        }
     }
 
     // Define a DialogFragment that displays the error dialog
@@ -548,6 +693,7 @@ public class ProfileActivity extends FragmentActivity {
                 password = newPassword;
                 country = newCountry;
                 city = newCity;
+                location = newLocation;
             }
 
             // Dismiss the progress dialog

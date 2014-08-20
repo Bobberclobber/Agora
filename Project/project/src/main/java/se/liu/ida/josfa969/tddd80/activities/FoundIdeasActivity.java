@@ -109,10 +109,6 @@ public class FoundIdeasActivity extends Activity {
     private class ResponseReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            System.out.println("----------");
-            System.out.println("On Receive");
-            System.out.println("----------");
-
             // Gets the array list of idea records from the broadcast intent
             ArrayList<IdeaRecord> ideas = intent.getParcelableArrayListExtra(Constants.IDEAS_KEY);
             TextView statusText = (TextView) findViewById(R.id.found_ideas_status_text);

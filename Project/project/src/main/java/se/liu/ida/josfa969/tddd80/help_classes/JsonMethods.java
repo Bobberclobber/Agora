@@ -30,8 +30,10 @@ import se.liu.ida.josfa969.tddd80.item_records.UserRecord;
  * A class containing methods used to get JSON-responses from URLs
  */
 public class JsonMethods {
-    // private static String BASE_URL = "http://10.0.3.2:5000/";
-    private static String BASE_URL = "http://localhost:5000/";
+    // Base url for emulator
+    private static String BASE_URL = "http://10.0.3.2:5000/";
+    // Base url for real device
+    // private static String BASE_URL = "http://localhost:5000/";
     private static final String SPACE = " ";
     private static final String SPACE_REPLACE = "&nbsp";
     private static final String HASH_TAG = "#";
@@ -80,6 +82,8 @@ public class JsonMethods {
                     ideaText = ideaText.replace(HASH_TAG_REPLACE, HASH_TAG);
                     ideaText = ideaText.replace(ENTER_REPLACE, ENTER);
                     String poster = temp.getString(2);
+                    poster = poster.replace(SPACE_REPLACE, SPACE);
+                    poster = poster.replace(HASH_TAG_REPLACE, HASH_TAG);
                     String approvalNum = temp.getString(3);
                     boolean isApproving = userIsApproving(identifier, ideaId);
                     JSONArray tagJsonArray = temp.getJSONArray(4);
@@ -160,14 +164,14 @@ public class JsonMethods {
         return messages;
     }
 
-    public static ArrayList<MessageRecord> getRecentMessages(String userName, String originalUserName) {
-        String getRecentMessagesURL = BASE_URL + "_get_recent_messages_/" + userName + "/" + originalUserName;
-        getRecentMessagesURL = getRecentMessagesURL.replace(SPACE, SPACE_REPLACE);
-        getRecentMessagesURL = getRecentMessagesURL.replace(HASH_TAG, HASH_TAG_REPLACE);
+    public static ArrayList<MessageRecord> getConversation(String userName, String originalUserName) {
+        String getConversationURL = BASE_URL + "_get_conversation_/" + userName + "/" + originalUserName;
+        getConversationURL = getConversationURL.replace(SPACE, SPACE_REPLACE);
+        getConversationURL = getConversationURL.replace(HASH_TAG, HASH_TAG_REPLACE);
         ArrayList<MessageRecord> recentMessages = new ArrayList<MessageRecord>();
 
         try {
-            JSONObject jsonResponseObject = new JSONObject(getUrlResponseString(getRecentMessagesURL));
+            JSONObject jsonResponseObject = new JSONObject(getUrlResponseString(getConversationURL));
             JSONArray messagesArray = jsonResponseObject.getJSONArray("messages");
             for (int i = 0; i < messagesArray.length(); i++) {
                 JSONArray temp = messagesArray.getJSONArray(i);
@@ -211,6 +215,7 @@ public class JsonMethods {
                 JSONArray countryArray = jsonResponseObject.getJSONArray("country");
                 JSONArray cityArray = jsonResponseObject.getJSONArray("city");
                 JSONArray followersArray = jsonResponseObject.getJSONArray("followers");
+                JSONArray locationArray = jsonResponseObject.getJSONArray("location");
 
                 // Converts the JSON Arrays to strings
                 String userName = userNameArray.getString(0);
@@ -222,6 +227,8 @@ public class JsonMethods {
                 String city = cityArray.getString(0);
                 city = city.replace(SPACE_REPLACE, SPACE);
                 String followers = followersArray.getString(0);
+                String location = locationArray.getString(0);
+                location = location.replace(SPACE_REPLACE, SPACE);
 
                 // Adds the strings to the userData array list
                 userData.add(userName);
@@ -229,6 +236,7 @@ public class JsonMethods {
                 userData.add(country);
                 userData.add(city);
                 userData.add(followers);
+                userData.add(location);
             } catch (JSONException e) {
                 System.out.println("JSON Exception");
                 e.printStackTrace();
@@ -362,11 +370,12 @@ public class JsonMethods {
 
     public static String updateUserData(String originalUserName, String originalEMail,
                                         String newUserName, String newEMail, String newPassword,
-                                        String newCountry, String newCity) {
+                                        String newCountry, String newCity, String newLocation) {
         String updateUserDataURL = BASE_URL + "_update_user_data_/" + originalUserName + "/" +
                 originalEMail + "/" + newUserName + "/" + newEMail + "/" + newPassword + "/"
-                + newCountry + "/" + newCity;
+                + newCountry + "/" + newCity + "/" + newLocation;
         updateUserDataURL = updateUserDataURL.replace(SPACE, SPACE_REPLACE);
+        updateUserDataURL = updateUserDataURL.replace(HASH_TAG, HASH_TAG_REPLACE);
         return getJsonResponse(updateUserDataURL);
     }
 

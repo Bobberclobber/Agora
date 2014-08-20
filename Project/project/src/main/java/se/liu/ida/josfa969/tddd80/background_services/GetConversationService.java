@@ -15,20 +15,20 @@ import se.liu.ida.josfa969.tddd80.item_records.MessageRecord;
  * A service called in order to get the most
  * recent messages sent between two people
  */
-public class GetRecentMessagesService extends IntentService {
+public class GetConversationService extends IntentService {
 
-    public GetRecentMessagesService() {
-        super("GetRecentMessagesService");
+    public GetConversationService() {
+        super("GetConversationService");
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
         String userName = intent.getStringExtra(Constants.USER_NAME_KEY);
         String originalUserName = intent.getStringExtra(Constants.ORIGINAL_USER_KEY);
-        ArrayList<MessageRecord> recentMessages = JsonMethods.getRecentMessages(userName, originalUserName);
+        ArrayList<MessageRecord> recentMessages = JsonMethods.getConversation(userName, originalUserName);
 
         Intent broadCastIntent = new Intent();
-        broadCastIntent.setAction(Constants.GET_RECENT_MESSAGES_RESP);
+        broadCastIntent.setAction(Constants.GET_CONVERSATION_RESP);
         broadCastIntent.addCategory(Intent.CATEGORY_DEFAULT);
         broadCastIntent.putExtra(Constants.MESSAGES_KEY, recentMessages);
         sendBroadcast(broadCastIntent);

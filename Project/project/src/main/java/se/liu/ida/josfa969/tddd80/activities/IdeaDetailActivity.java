@@ -34,6 +34,7 @@ public class IdeaDetailActivity extends Activity {
     private String poster;
     private String ideaText;
     private ArrayList<String> tags;
+    private String tagString;
     private String approvalNum;
     private String ideaId;
 
@@ -63,6 +64,7 @@ public class IdeaDetailActivity extends Activity {
         poster = initIntent.getStringExtra(Constants.POSTER_KEY);
         ideaText = initIntent.getStringExtra(Constants.IDEA_TEXT_KEY);
         tags = initIntent.getStringArrayListExtra(Constants.TAG_STRING_KEY);
+        tagString = initIntent.getStringExtra(Constants.TAG_STRING_KEY);
         approvalNum = initIntent.getStringExtra(Constants.APPROVAL_NUM_KEY);
         ideaId = initIntent.getStringExtra(Constants.IDEA_ID_KEY);
 
@@ -115,9 +117,11 @@ public class IdeaDetailActivity extends Activity {
         // Updates the view's data
         posterView.setText(poster);
         ideaTextView.setText(ideaText);
-        String tagString = "";
-        for (Object tag : tags) {
-            tagString += "#" + tag + " ";
+        if (tags != null) {
+            tagString = "";
+            for (Object tag : tags) {
+                tagString += "#" + tag + " ";
+            }
         }
         tagsTextView.setText(tagString);
         approvalNumView.setText(approvalNum);

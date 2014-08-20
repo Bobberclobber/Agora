@@ -18,10 +18,10 @@ import se.liu.ida.josfa969.tddd80.R;
 import se.liu.ida.josfa969.tddd80.background_services.AddApprovingService;
 import se.liu.ida.josfa969.tddd80.background_services.GetApprovingService;
 import se.liu.ida.josfa969.tddd80.background_services.GetFollowingService;
+import se.liu.ida.josfa969.tddd80.background_services.GetUserDataService;
 import se.liu.ida.josfa969.tddd80.background_services.RemoveApprovingService;
 import se.liu.ida.josfa969.tddd80.fragments.InformationFragment;
 import se.liu.ida.josfa969.tddd80.help_classes.Constants;
-import se.liu.ida.josfa969.tddd80.help_classes.JsonMethods;
 import se.liu.ida.josfa969.tddd80.item_records.IdeaRecord;
 import se.liu.ida.josfa969.tddd80.item_records.UserRecord;
 
@@ -31,7 +31,14 @@ public class InformationActivity extends Activity {
     private String country;
     private String city;
     private String followers;
+    private String location;
     private String originalUser;
+
+    // An intent used to fetch user data
+    Intent getUserDataIntent;
+
+    // An intent to start the idea detail activity
+    Intent ideaDetailIntent;
 
     // Broadcast receiver
     private ResponseReceiver receiver;
@@ -50,16 +57,26 @@ public class InformationActivity extends Activity {
         country = initIntent.getStringExtra(Constants.COUNTRY_KEY);
         city = initIntent.getStringExtra(Constants.CITY_KEY);
         followers = initIntent.getStringExtra(Constants.FOLLOWERS_KEY);
+        location = initIntent.getStringExtra(Constants.LOCATION_KEY);
         originalUser = initIntent.getStringExtra(Constants.ORIGINAL_USER_KEY);
+
+        // Creates the get user data intent
+        getUserDataIntent = new Intent(this, GetUserDataService.class);
+
+        // Creates the idea detail intent
+        ideaDetailIntent = new Intent(this, IdeaDetailActivity.class);
 
         // Filters for the receiver
         IntentFilter getFollowingFilter = new IntentFilter(Constants.GET_FOLLOWING_RESP);
         IntentFilter getApprovingFilter = new IntentFilter(Constants.GET_APPROVING_RESP);
+        IntentFilter getUserDataFilter = new IntentFilter(Constants.GET_USER_DATA_RESP);
         getFollowingFilter.addCategory(Intent.CATEGORY_DEFAULT);
         getApprovingFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        getUserDataFilter.addCategory(Intent.CATEGORY_DEFAULT);
         receiver = new ResponseReceiver();
         registerReceiver(receiver, getFollowingFilter);
         registerReceiver(receiver, getApprovingFilter);
+        registerReceiver(receiver, getUserDataFilter);
 
         progress = new ProgressDialog(this);
         progress.setTitle("Loading");
@@ -73,11 +90,6 @@ public class InformationActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        System.out.println("----------");
-        System.out.println("On Resume");
-        System.out.println("----------");
-
         // Shows the progress dialog
         progress.show();
 
@@ -87,6 +99,7 @@ public class InformationActivity extends Activity {
         TextView countryView = (TextView) findViewById(R.id.other_user_country);
         TextView cityView = (TextView) findViewById(R.id.other_user_city);
         TextView followersView = (TextView) findViewById(R.id.information_other_user_follower_number);
+        TextView locationView = (TextView) findViewById(R.id.other_user_home_location);
 
         // Sets the content
         userNameView.setText(userName);
@@ -94,6 +107,7 @@ public class InformationActivity extends Activity {
         countryView.setText(country);
         cityView.setText(city);
         followersView.setText(followers);
+        locationView.setText(location);
 
         // Starts the get following and get approving service
         Intent getFollowingIntent = new Intent(this, GetFollowingService.class);
@@ -118,8 +132,11 @@ public class InformationActivity extends Activity {
             TextView userNameView = (TextView) view.findViewById(R.id.user_list_user_name);
             String clickedUserName = String.valueOf(userNameView.getText());
             if (!clickedUserName.equals(originalUser)) {
-                ArrayList<String> userData = JsonMethods.getUserData(clickedUserName);
-                onListItemClick(userData);
+                progress.setTitle("Loading");
+                progress.setMessage("Fetching user data...");
+                progress.show();
+                getUserDataIntent.putExtra(Constants.USER_NAME_KEY, clickedUserName);
+                startService(getUserDataIntent);
             }
         }
     }
@@ -128,16 +145,34 @@ public class InformationActivity extends Activity {
         @Override
         public void onClick(View view) {
             view.setBackgroundResource(R.color.clicked_item_background);
+
+            // Gets the individual views
             TextView posterView = (TextView) view.findViewById(R.id.poster);
-            String clickedUserName = String.valueOf(posterView.getText());
-            if (!clickedUserName.equals(originalUser)) {
-                ArrayList<String> userData = JsonMethods.getUserData(clickedUserName);
-                onListItemClick(userData);
+            TextView ideaTextView = (TextView) view.findViewById(R.id.idea_text);
+            TextView tagView = (TextView) view.findViewById(R.id.tags);
+            TextView approvalNumView = (TextView) view.findViewById(R.id.approval_num);
+            TextView ideaIdView = (TextView) view.findViewById(R.id.idea_id);
+
+            // Gets view content
+            String poster = String.valueOf(posterView.getText());
+            String ideaText = String.valueOf(ideaTextView.getText());
+            String tagString = String.valueOf(tagView.getText());
+            String approvalNum = String.valueOf(approvalNumView.getText());
+            String ideaId = String.valueOf(ideaIdView.getText());
+
+            if (!poster.equals(originalUser)) {
+                ideaDetailIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
+                ideaDetailIntent.putExtra(Constants.POSTER_KEY, poster);
+                ideaDetailIntent.putExtra(Constants.IDEA_TEXT_KEY, ideaText);
+                ideaDetailIntent.putExtra(Constants.TAG_STRING_KEY, tagString);
+                ideaDetailIntent.putExtra(Constants.APPROVAL_NUM_KEY, approvalNum);
+                ideaDetailIntent.putExtra(Constants.IDEA_ID_KEY, ideaId);
             }
+            startActivity(ideaDetailIntent);
         }
     }
 
-    public void onListItemClick(ArrayList<String> userData) {
+    public void onUserListItemClick(ArrayList<String> userData) {
         Intent otherProfileIntent = new Intent(this, OtherProfileActivity.class);
 
         // Gets basic data of the user whose idea
@@ -148,6 +183,7 @@ public class InformationActivity extends Activity {
         String clickedCountry = userData.get(2);
         String clickedCity = userData.get(3);
         String clickedFollowers = userData.get(4);
+        String clickedLocation = userData.get(5);
 
         // Attaches the basic data to the intent
         otherProfileIntent.putExtra(Constants.USER_NAME_KEY, clickedUserName);
@@ -155,7 +191,11 @@ public class InformationActivity extends Activity {
         otherProfileIntent.putExtra(Constants.COUNTRY_KEY, clickedCountry);
         otherProfileIntent.putExtra(Constants.CITY_KEY, clickedCity);
         otherProfileIntent.putExtra(Constants.FOLLOWERS_KEY, clickedFollowers);
+        otherProfileIntent.putExtra(Constants.LOCATION_KEY, clickedLocation);
         otherProfileIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
+
+        // Dismisses the progress dialog
+        progress.dismiss();
 
         // Starts the new activity
         startActivity(otherProfileIntent);
@@ -164,10 +204,6 @@ public class InformationActivity extends Activity {
     private class ResponseReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            System.out.println("----------");
-            System.out.println("On Receive");
-            System.out.println("----------");
-
             String intentAction = intent.getAction();
             if (intentAction != null) {
                 if (intentAction.equals(Constants.GET_FOLLOWING_RESP)) {
@@ -181,7 +217,7 @@ public class InformationActivity extends Activity {
                             createUserListItem(followingListView, userRecord);
                         }
                     }
-                } else {
+                } else if (intentAction.equals(Constants.GET_APPROVING_RESP)) {
                     ArrayList<IdeaRecord> approvingList = intent.getParcelableArrayListExtra(Constants.IDEAS_KEY);
                     LinearLayout approvingListView = (LinearLayout) findViewById(R.id.other_user_approving_list);
 
@@ -193,6 +229,9 @@ public class InformationActivity extends Activity {
                         }
                     }
                     progress.dismiss();
+                } else if (intentAction.equals(Constants.GET_USER_DATA_RESP)) {
+                    ArrayList<String> userData = intent.getStringArrayListExtra(Constants.USER_DATA_KEY);
+                    onUserListItemClick(userData);
                 }
             }
         }
@@ -275,7 +314,7 @@ public class InformationActivity extends Activity {
 
                 // Displays the correct button depending on
                 // if the user is approving the idea or not
-                if (JsonMethods.userIsApproving(originalUser, ideaRecord.ideaId)) {
+                if (ideaRecord.isApproving) {
                     approvalButton.setVisibility(View.GONE);
                     unApprovalButton.setVisibility(View.VISIBLE);
                 } else {

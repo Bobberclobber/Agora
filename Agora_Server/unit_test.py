@@ -18,7 +18,13 @@ TEST_IDEAS = [["This is an idea. Idea number one.", "TestUser1", "&nbhtidea&nbht
               ["Wall of text. Wall of text. Wall of text.", "John", "&nbhtidea"],
               ["An incredibly long idea posted by a user.", "THE MIGHTY MONARCH", "&nbhttest&nbhtlong_idea"]]
 
-# This shows the data of the ideas above when just recently added to the database
+TEST_MESSAGES = [["John", "Sterling Archer", "Message from John to Sterling Archer"],
+                 ["THE MIGHTY MONARCH", "Bender", "Hey man, this is THE MIGHTY MONARCH..."],
+                 ["Bender", "Fry", "Oh wait you're serious, let me laugh even harder."],
+                 ["John", "Bender", "Another message"],
+                 ["Sterling Archer", "John", "Hey! Phrasing!"]]
+
+# This shows the data of the ideas above when added, in order, to the database
 STORED_TEST_IDEAS = [[1, "This is an idea. Idea number one.", "TestUser1", 0, ["idea", "test"]],
                      [2, "Wall of text. Wall of text. Wall of text.", "John", 0, ["idea"]],
                      [3, "An incredibly long idea posted by a user.", "THE MIGHTY MONARCH", 0, ["test", "long_idea"]]]
@@ -113,6 +119,14 @@ class UserRegistrationTest(unittest.TestCase):
 
             self.failIf(not login_failed())
 
+    # TODO: Make test for get user data
+    def test_get_user_data(self):
+        with app.test_request_context():
+            user = TEST_USERS[0]
+            register_user(user)
+            user_data1 = main.get_user_data(user[0])
+            user_data2 = main.get_user_data(user[2])
+
     def tearDown(self):
         with app.test_request_context():
             # Destroys and closes the database
@@ -143,7 +157,6 @@ class IdeaPostingAndFetchingTest(unittest.TestCase):
             response = main.get_idea_feed(user1[0])
 
             def correct_idea_feed():
-                print(response["ideas"])
                 return response["ideas"] == [STORED_TEST_IDEAS[0], STORED_TEST_IDEAS[1]]
 
             self.failIf(not correct_idea_feed())
@@ -176,6 +189,47 @@ class IdeaPostingAndFetchingTest(unittest.TestCase):
             # Destroys and closes the database
             db.destroy()
             db.close()
+
+
+# Tests if messages can be sent and fetched correctly
+class MessageSendingAndFetchingTest(unittest.TestCase):
+    def setUp(self):
+        with app.test_request_context():
+            # Initializes the database
+            db.init()
+            register_all_users()
+            send_messages()
+
+    # Tests if the correct message feed is
+    # returned from the get_message_feed function
+    def test_get_message_feed(self):
+        with app.test_request_context():
+            # Gets the the most recent message
+            # sent by any user to the given user
+            # ordered by most recent message sent
+            message_feed = main.get_message_feed("Bender")
+
+            def correct_message_feed():
+                return message_feed["messages"] == [TEST_MESSAGES[3], TEST_MESSAGES[1]]
+
+        self.failIf(not correct_message_feed())
+
+    # Tests if the correct messages are returned
+    # from the get_conversation function
+    def test_get_conversation(self):
+        with app.test_request_context():
+            # Gets the messages sent between
+            # the two given people, ordered by
+            # the most recent message sent
+            conversation1 = main.get_conversation("John", "Sterling Archer")
+            conversation2 = main.get_conversation("Sterling Archer", "John")
+
+            def correct_conversation():
+                cond_1 = conversation1["messages"] == [TEST_MESSAGES[0], TEST_MESSAGES[4]]
+                cond_2 = conversation1["messages"] == conversation2["messages"]
+                return cond_1 and cond_2
+
+            self.failIf(not correct_conversation())
 
 
 # Tests the two search functions
@@ -252,6 +306,12 @@ class SearchFunctionsTest(unittest.TestCase):
 
             self.failIf(not correct_search_results())
 
+    def tearDown(self):
+        with app.test_request_context():
+            # Destroys and closes the database
+            db.destroy()
+            db.close()
+
 
 # Registers a user and returns the response
 def register_user(user):
@@ -269,3 +329,9 @@ def register_all_users():
 def post_ideas():
     for idea in TEST_IDEAS:
         main.post_idea(idea[0], idea[1], idea[2])
+
+
+# Sends all test messages
+def send_messages():
+    for message in TEST_MESSAGES:
+        main.send_message(message[0], message[1], message[2])
