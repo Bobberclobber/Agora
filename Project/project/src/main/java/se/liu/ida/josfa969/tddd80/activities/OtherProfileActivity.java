@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
@@ -23,9 +24,8 @@ import se.liu.ida.josfa969.tddd80.background_services.GetOtherUserIdeasService;
 import se.liu.ida.josfa969.tddd80.background_services.RemoveFollowerService;
 import se.liu.ida.josfa969.tddd80.fragments.OtherProfileFragment;
 import se.liu.ida.josfa969.tddd80.help_classes.Constants;
-import se.liu.ida.josfa969.tddd80.list_adapters.IdeaItemAdapter;
 import se.liu.ida.josfa969.tddd80.item_records.IdeaRecord;
-import se.liu.ida.josfa969.tddd80.help_classes.JsonMethods;
+import se.liu.ida.josfa969.tddd80.list_adapters.IdeaItemAdapter;
 
 public class OtherProfileActivity extends Activity {
 
@@ -37,6 +37,7 @@ public class OtherProfileActivity extends Activity {
     private String followers = null;
     private String location = null;
     private String originalUser = null;
+    private boolean isFollowing = false;
 
     // An intent used to visit the detail view of an idea
     public Intent ideaDetailIntent;
@@ -46,11 +47,10 @@ public class OtherProfileActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Requests to use a feature which displays a progress bar
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_other_profile);
-
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
 
         // Creates an intent used to get basic user data
         ideaDetailIntent = new Intent(this, IdeaDetailActivity.class);
@@ -86,6 +86,7 @@ public class OtherProfileActivity extends Activity {
         followers = initIntent.getStringExtra(Constants.FOLLOWERS_KEY);
         originalUser = initIntent.getStringExtra(Constants.ORIGINAL_USER_KEY);
         location = initIntent.getStringExtra(Constants.LOCATION_KEY);
+        isFollowing = initIntent.getBooleanExtra(Constants.IS_FOLLOWING_KEY, false);
 
         SharedPreferences preferences = this.getPreferences(Context.MODE_PRIVATE);
         String defaultUserName = "User Name";
@@ -152,7 +153,7 @@ public class OtherProfileActivity extends Activity {
         // if the current user is following the other user
         Button followButton = (Button) findViewById(R.id.follow_button);
         Button unFollowButton = (Button) findViewById(R.id.un_follow_button);
-        if (JsonMethods.userIsFollowing(originalUser, userName)) {
+        if (isFollowing) {
             followButton.setVisibility(View.GONE);
             unFollowButton.setVisibility(View.VISIBLE);
         } else {
@@ -170,8 +171,11 @@ public class OtherProfileActivity extends Activity {
         eMailView.setText(eMail);
         followersView.setText(followers);
 
+        // Displays a progress bar
+        setProgressBarIndeterminateVisibility(true);
         Intent getOtherUserIdeasIntent = new Intent(this, GetOtherUserIdeasService.class);
         getOtherUserIdeasIntent.putExtra(Constants.USER_NAME_KEY, userName);
+        getOtherUserIdeasIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
         startService(getOtherUserIdeasIntent);
     }
 
@@ -217,7 +221,6 @@ public class OtherProfileActivity extends Activity {
     }
 
     public void onUnFollowClick(View view) {
-        System.out.println("On Un-Follow Click");
         // Gets widgets
         Button followButton = (Button) findViewById(R.id.follow_button);
         Button unFollowButton = (Button) findViewById(R.id.un_follow_button);
@@ -256,6 +259,8 @@ public class OtherProfileActivity extends Activity {
                 }
             }
         });
+        // Hides the progress bar
+        setProgressBarIndeterminateVisibility(false);
     }
 
     private class ResponseReceiver extends BroadcastReceiver {

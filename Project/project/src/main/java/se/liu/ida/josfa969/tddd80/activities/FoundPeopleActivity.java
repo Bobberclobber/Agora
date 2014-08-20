@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import se.liu.ida.josfa969.tddd80.R;
 import se.liu.ida.josfa969.tddd80.background_services.GetUserDataService;
+import se.liu.ida.josfa969.tddd80.background_services.IsFollowingService;
 import se.liu.ida.josfa969.tddd80.background_services.SearchPeopleService;
 import se.liu.ida.josfa969.tddd80.fragments.FoundPeopleFragment;
 import se.liu.ida.josfa969.tddd80.help_classes.Constants;
@@ -31,6 +32,9 @@ public class FoundPeopleActivity extends Activity {
 
     // An intent to get user data
     Intent getUserDataIntent;
+
+    // An intent to check if the user is following the clicked user
+    Intent isFollowingIntent;
 
     // Broadcast receiver
     private ResponseReceiver receiver;
@@ -47,20 +51,24 @@ public class FoundPeopleActivity extends Activity {
         identifierString = initIntent.getStringExtra(Constants.IDENTIFIER_STRING_KEY);
         originalUser = initIntent.getStringExtra(Constants.ORIGINAL_USER_KEY);
 
+        // Creates intents
         getUserDataIntent = new Intent(this, GetUserDataService.class);
+        isFollowingIntent = new Intent(this, IsFollowingService.class);
 
         // Filters for the receiver
         IntentFilter searchPeopleFilter = new IntentFilter(Constants.SEARCH_PEOPLE_RESP);
         IntentFilter getUserDataFilter = new IntentFilter(Constants.GET_USER_DATA_RESP);
+        IntentFilter isFollowingFilter = new IntentFilter(Constants.IS_FOLLOWING_RESP);
         searchPeopleFilter.addCategory(Intent.CATEGORY_DEFAULT);
         getUserDataFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        isFollowingFilter.addCategory(Intent.CATEGORY_DEFAULT);
         receiver = new ResponseReceiver();
         registerReceiver(receiver, searchPeopleFilter);
         registerReceiver(receiver, getUserDataFilter);
+        registerReceiver(receiver, isFollowingFilter);
 
+        // Creates the progress dialog
         progress = new ProgressDialog(this);
-        progress.setTitle("Loading");
-        progress.setMessage("Searching for people...");
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().add(R.id.container, new FoundPeopleFragment()).commit();
@@ -71,6 +79,8 @@ public class FoundPeopleActivity extends Activity {
     protected void onResume() {
         super.onResume();
         // Shows the progress dialog
+        progress.setTitle("Loading");
+        progress.setMessage("Searching for people...");
         progress.show();
 
         // Starts the search people service
@@ -102,7 +112,7 @@ public class FoundPeopleActivity extends Activity {
         });
     }
 
-    public void onListItemClick(ArrayList<String> userData) {
+    public void onListItemClick(ArrayList<String> userData, boolean isFollowing) {
         Intent otherProfileIntent = new Intent(this, OtherProfileActivity.class);
 
         // Gets basic data of the user whose idea
@@ -123,6 +133,7 @@ public class FoundPeopleActivity extends Activity {
         otherProfileIntent.putExtra(Constants.FOLLOWERS_KEY, clickedFollowers);
         otherProfileIntent.putExtra(Constants.LOCATION_KEY, clickedLocation);
         otherProfileIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
+        otherProfileIntent.putExtra(Constants.IS_FOLLOWING_KEY, isFollowing);
 
         // Dismisses the progress dialog
         progress.dismiss();
@@ -132,6 +143,8 @@ public class FoundPeopleActivity extends Activity {
     }
 
     private class ResponseReceiver extends BroadcastReceiver {
+        private ArrayList<String> userData;
+
         @Override
         public void onReceive(Context context, Intent intent) {
             String intentAction = intent.getAction();
@@ -153,14 +166,18 @@ public class FoundPeopleActivity extends Activity {
                     // Dismisses the progress dialog
                     progress.dismiss();
                     addListOnClickListener();
-                } else {
-                    ArrayList<String> userData = intent.getStringArrayListExtra(Constants.USER_DATA_KEY);
+                } else if (intentAction.equals(Constants.GET_USER_DATA_RESP)) {
+                    userData = intent.getStringArrayListExtra(Constants.USER_DATA_KEY);
                     if (userData != null) {
                         String clickedUserName = userData.get(0);
                         if (!clickedUserName.equals(originalUser)) {
-                            onListItemClick(userData);
+                            isFollowingIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
+                            isFollowingIntent.putExtra(Constants.USER_NAME_KEY, clickedUserName);
+                            startService(isFollowingIntent);
                         }
                     }
+                } else if (intentAction.equals(Constants.IS_FOLLOWING_RESP)) {
+                    onListItemClick(userData, intent.getBooleanExtra(Constants.IS_FOLLOWING_KEY, false));
                 }
             }
         }

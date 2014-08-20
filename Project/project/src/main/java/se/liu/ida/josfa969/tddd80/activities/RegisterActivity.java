@@ -137,6 +137,7 @@ public class RegisterActivity extends Activity {
                     completeIntent.putExtra(Constants.PASSWORD_KEY, password);
                     completeIntent.putExtra(Constants.COUNTRY_KEY, country);
                     completeIntent.putExtra(Constants.CITY_KEY, city);
+                    completeIntent.putExtra(Constants.LOCATION_KEY, "Not set");
                     startActivity(completeIntent);
                 } else {
                     progress.dismiss();

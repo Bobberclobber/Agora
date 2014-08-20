@@ -23,10 +23,6 @@ public class SearchPeopleService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        System.out.println("----------");
-        System.out.println("On Handle Intent");
-        System.out.println("----------");
-
         String identifierString = intent.getStringExtra(Constants.IDENTIFIER_STRING_KEY);
         ArrayList<UserRecord> people = JsonMethods.searchPeople(identifierString);
         Log.i("SearchPeopleService", "Found users: " + people);

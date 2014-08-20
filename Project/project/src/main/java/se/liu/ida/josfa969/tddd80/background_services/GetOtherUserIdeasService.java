@@ -22,7 +22,8 @@ public class GetOtherUserIdeasService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         String userName = intent.getStringExtra(Constants.USER_NAME_KEY);
-        ArrayList<IdeaRecord> ideas = JsonMethods.getOtherUserRecentIdeas(userName);
+        String originalUserName = intent.getStringExtra(Constants.ORIGINAL_USER_KEY);
+        ArrayList<IdeaRecord> ideas = JsonMethods.getOtherUserRecentIdeas(userName, originalUserName);
 
         Intent broadCastIntent = new Intent();
         broadCastIntent.setAction(Constants.GET_OTHER_USER_IDEAS_RESP);

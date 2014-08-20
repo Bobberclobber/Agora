@@ -258,6 +258,11 @@
             android:name=".background_services.IsApprovingService"
             android:exported="false"/>
 
+        <!-- Is Following Service -->
+        <service
+            android:name=".background_services.IsFollowingService"
+            android:exported="false"/>
+
         <!-- Get Other User Recent Ideas Service -->
         <service
             android:name=".background_services.GetOtherUserIdeasService"

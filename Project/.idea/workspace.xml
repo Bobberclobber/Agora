@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidConfiguredLogFilters">
+    <filters>
+      <filter>
+        <option name="name" value="app: se.liu.ida.josfa969.tddd80" />
+        <option name="packageNamePattern" value="se.liu.ida.josfa969.tddd80" />
+      </filter>
+    </filters>
+  </component>
   <component name="AndroidLayoutPreviewToolWindow">
     <option name="state">
       <GlobalState />
@@ -25,59 +33,31 @@
     </layouts>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="ERROR" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="System.out" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: se.liu.ida.josfa969.tddd80" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ed115b9-8fb5-4117-8f45-e88e1e04a5ef" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_19_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_5_2_08.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_v13_19_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_19_1_0.xml" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora\Project\.idea\libraries\ComAndroidSupportSupportV132100Rc1_aar.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora\Project\.idea\libraries\ComAndroidSupportSupportV42100Rc1_aar.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora\Project\.idea\libraries\Gradle__ComAndroidSupportSupportV132100Rc1_aar.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora\Project\.idea\libraries\Gradle__ComAndroidSupportSupportV42100Rc1_aar.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora\Project\.idea\libraries\Gradle__internal_impl_21_0_0_rc1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora\Project\.idea\libraries\Gradle__support_annotations_21_0_0_rc1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora\Project\.idea\libraries\Gradle__support_v13_19_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora\Project\.idea\libraries\Gradle__support_v4_19_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora\Project\.idea\libraries\internal_impl_21_0_0_rc1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora\Project\.idea\libraries\support_annotations_21_0_0_rc1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora\Project\.idea\libraries\support_v13_19_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora\Project\.idea\libraries\support_v4_19_0_1.xml" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora\Project\project\src\main\java\se\liu\ida\josfa969\tddd80\background_services\GetRecentMessagesService.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetConversationService.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/IsFollowingService.java" />
+      <change type="MOVED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora\Project\.idea\libraries\play_services_5_2_08.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_5_0_89.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Openshift Server" afterPath="$PROJECT_DIR$/../Openshift Server" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Agora_Server/database.db" afterPath="$PROJECT_DIR$/../Agora_Server/database.db" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/project/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/Constants.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/Constants.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ConversationActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ConversationActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/FoundIdeasActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/FoundIdeasActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/FoundPeopleActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/FoundPeopleActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/IdeaDetailActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/IdeaDetailActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/InformationActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/InformationActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetOtherUserIdeasService.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetOtherUserIdeasService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/Josef.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Josef.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/LoginActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/LoginActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ProfileActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ProfileActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Project.iml" afterPath="$PROJECT_DIR$/Project.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/RegisterActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/RegisterActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/RegisterUserService.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/RegisterUserService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/SearchPeopleService.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/SearchPeopleService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/UpdateUserDataService.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/UpdateUserDataService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/build.gradle" afterPath="$PROJECT_DIR$/project/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Agora_Server/database.py" afterPath="$PROJECT_DIR$/../Agora_Server/database.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/layout/fragment_information.xml" afterPath="$PROJECT_DIR$/project/src/main/res/layout/fragment_information.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/layout/fragment_profile_settings.xml" afterPath="$PROJECT_DIR$/project/src/main/res/layout/fragment_profile_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Agora_Server/main.py" afterPath="$PROJECT_DIR$/../Agora_Server/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Agora_Server/main_test.py" afterPath="$PROJECT_DIR$/../Agora_Server/main_test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/proguard-rules.txt" afterPath="$PROJECT_DIR$/project/proguard-rules.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/project.iml" afterPath="$PROJECT_DIR$/project/project.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/project/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Agora_Server/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Agora_Server/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -145,31 +125,50 @@
       <file leaf-file-name="ProfileActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ProfileActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="9529" max-vertical-offset="11917">
-              <caret line="602" column="73" selection-start-line="602" selection-start-column="73" selection-end-line="602" selection-end-column="73" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="12882" max-vertical-offset="13430">
+              <caret line="199" column="29" selection-start-line="199" selection-start-column="29" selection-end-line="199" selection-end-column="29" />
               <folding>
-                <element signature="e#6654#8610#0" expanded="true" />
-                <element signature="e#8599#8600#0" expanded="true" />
-                <element signature="e#14168#15109#0" expanded="true" />
-                <element signature="e#15098#15099#0" expanded="true" />
-                <element signature="e#15309#15920#0" expanded="true" />
-                <element signature="e#15909#15910#0" expanded="true" />
-                <element signature="e#19942#19943#0" expanded="true" />
-                <element signature="e#19985#19986#0" expanded="true" />
-                <element signature="e#26211#26212#0" expanded="true" />
-                <element signature="e#26251#26252#0" expanded="true" />
-                <element signature="e#26385#26386#0" expanded="true" />
-                <element signature="e#26423#26424#0" expanded="true" />
+                <element signature="e#14745#15686#0" expanded="true" />
+                <element signature="e#15675#15676#0" expanded="true" />
+                <element signature="e#20474#20475#0" expanded="true" />
+                <element signature="e#20517#20518#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fragment_profile_settings.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_profile_settings.xml">
+      <file leaf-file-name="OtherProfileActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.037037037" vertical-offset="2075" max-vertical-offset="2941">
-              <caret line="122" column="5" selection-start-line="122" selection-start-column="5" selection-end-line="122" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2808" max-vertical-offset="4964">
+              <caret line="177" column="84" selection-start-line="177" selection-start-column="84" selection-end-line="177" selection-end-column="84" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#10835#11720#0" expanded="true" />
+                <element signature="e#11709#11710#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IdeaItemAdapter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/IdeaItemAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="819" max-vertical-offset="2261">
+              <caret line="84" column="93" selection-start-line="84" selection-start-column="93" selection-end-line="84" selection-end-column="93" />
+              <folding>
+                <element signature="e#3681#4838#0" expanded="true" />
+                <element signature="e#4823#4824#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_information.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_information.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.444445" vertical-offset="153" max-vertical-offset="2329">
+              <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -178,21 +177,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JsonMethods.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java">
+      <file leaf-file-name="fragment_find.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_find.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2132" max-vertical-offset="9027">
-              <caret line="167" column="65" selection-start-line="167" selection-start-column="65" selection-end-line="167" selection-end-column="65" />
+            <state vertical-scroll-proportion="3.3703704" vertical-offset="414" max-vertical-offset="935">
+              <caret line="19" column="59" selection-start-line="19" selection-start-column="59" selection-end-line="19" selection-end-column="59" />
               <folding />
             </state>
           </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConversationActivity.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ConversationActivity.java">
+      <file leaf-file-name="JsonMethods.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.0851064" vertical-offset="2193" max-vertical-offset="3332">
-              <caret line="98" column="24" selection-start-line="98" selection-start-column="24" selection-end-line="98" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.27372262" vertical-offset="1312" max-vertical-offset="9027">
+              <caret line="108" column="66" selection-start-line="108" selection-start-column="66" selection-end-line="108" selection-end-column="66" />
               <folding />
             </state>
           </provider>
@@ -540,9 +542,9 @@
                 <option name="name" value="prepareComAndroidSupportAppcompatV71910Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
-                <option name="description" value="Prepare com.google.android.gms:play-services:5.2.08" />
+                <option name="description" value="Prepare com.google.android.gms:play-services:5.0.89" />
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/project" />
-                <option name="name" value="prepareComGoogleAndroidGmsPlayServices5208Library" />
+                <option name="name" value="prepareComGoogleAndroidGmsPlayServices5089Library" />
               </ExternalTaskPojo>
               <ExternalTaskPojo>
                 <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/project" />
@@ -632,7 +634,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="4223628521845" />
+        <entry key="$PROJECT_DIR$" value="4223726146393" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -791,7 +793,7 @@
                             <option value="$APPLICATION_HOME_DIR$/sdk/extras/android/m2repository/com/android/support/support-v13/19.1.0/support-v13-19.1.0-sources.jar" />
                             <option value="$APPLICATION_HOME_DIR$/sdk/extras/android/m2repository/com/android/support/support-v13/19.1.0/support-v13-19.1.0.jar" />
                             <option value="$APPLICATION_HOME_DIR$/sdk/extras/android/m2repository/com/android/support/appcompat-v7/19.1.0/appcompat-v7-19.1.0.aar" />
-                            <option value="$APPLICATION_HOME_DIR$/sdk/extras/google/m2repository/com/google/android/gms/play-services/5.2.08/play-services-5.2.08.aar" />
+                            <option value="$APPLICATION_HOME_DIR$/sdk/extras/google/m2repository/com/google/android/gms/play-services/5.0.89/play-services-5.0.89.aar" />
                           </list>
                         </option>
                         <option name="path" value="$PROJECT_DIR$/project" />
@@ -896,8 +898,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetRecentMessagesService.java" />
-        <option value="$PROJECT_DIR$/project/src/main/res/layout/fragment_send_message.xml" />
         <option value="$PROJECT_DIR$/project/src/main/res/layout/fragment_conversation.xml" />
         <option value="$PROJECT_DIR$/project/src/main/res/layout/message_list_item.xml" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/fragments/IdeaDetailFragment.java" />
@@ -911,42 +911,44 @@
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetUserDataService.java" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/AddApprovingService.java" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/RemoveApprovingService.java" />
-        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetOtherUserIdeasService.java" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetMessageFeedService.java" />
         <option value="$PROJECT_DIR$/project/src/main/res/layout/fragment_messages.xml" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/InitialActivity.java" />
         <option value="$PROJECT_DIR$/project/src/main/res/layout/fragment_idea_detail.xml" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/item_records/IdeaRecord.java" />
-        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/IdeaItemAdapter.java" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/SearchIdeasService.java" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetApprovingService.java" />
         <option value="$PROJECT_DIR$/project/src/main/res/layout/fragment_post_idea.xml" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/LoginUserService.java" />
         <option value="$PROJECT_DIR$/project/src/main/res/layout/fragment_find.xml" />
-        <option value="$PROJECT_DIR$/project/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/project/src/main/res/layout/fragment_search_ideas.xml" />
         <option value="$PROJECT_DIR$/project/src/main/res/layout/fragment_search_people.xml" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/FoundIdeasActivity.java" />
         <option value="$PROJECT_DIR$/project/src/main/res/layout/fragment_information.xml" />
-        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/LoginActivity.java" />
-        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/FoundPeopleActivity.java" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/InformationActivity.java" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/IdeaDetailActivity.java" />
-        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/UpdateUserDataService.java" />
-        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/RegisterActivity.java" />
         <option value="$PROJECT_DIR$/project/build/exploded-bundles/ComAndroidSupportSupportV132100Rc1.aar/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/project/build/exploded-bundles/ComAndroidSupportSupportV42100Rc1.aar/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/project/src/main/res/layout/fragment_profile_settings.xml" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/RegisterUserService.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/project/build.gradle" />
-        <option value="$PROJECT_DIR$/project/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/project/proguard-rules.txt" />
+        <option value="$PROJECT_DIR$/project/build.gradle" />
+        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/UpdateUserDataService.java" />
+        <option value="$PROJECT_DIR$/project/src/main/res/layout/fragment_profile_settings.xml" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ProfileActivity.java" />
-        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java" />
+        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/RegisterActivity.java" />
+        <option value="$PROJECT_DIR$/project/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ConversationActivity.java" />
+        <option value="$PROJECT_DIR$/project/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/Constants.java" />
+        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/IsFollowingService.java" />
+        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/FoundPeopleActivity.java" />
+        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/SearchPeopleService.java" />
+        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/IdeaItemAdapter.java" />
+        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java" />
+        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetOtherUserIdeasService.java" />
+        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java" />
       </list>
     </option>
   </component>
@@ -1422,6 +1424,7 @@
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="03bf07bce2558dbf" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -1664,11 +1667,11 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22760417" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37472284" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37459284" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1703,42 +1706,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetCommentsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_found_ideas.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_other_profile.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetOtherUserIdeasService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetMessageFeedService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -1810,13 +1777,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/IdeaItemAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/SearchIdeasActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -1852,32 +1812,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_find.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#227#262#0" expanded="false" />
-            <element signature="e#288#323#0" expanded="false" />
-            <element signature="e#347#380#0" expanded="false" />
-            <element signature="e#407#440#0" expanded="false" />
-            <element signature="e#717#751#0" expanded="false" />
-            <element signature="e#878#908#0" expanded="false" />
-            <element signature="e#1111#1139#0" expanded="false" />
-            <element signature="e#1293#1326#0" expanded="false" />
-            <element signature="e#1360#1387#0" expanded="false" />
-            <element signature="e#1422#1450#0" expanded="false" />
-            <element signature="e#1704#1736#0" expanded="false" />
-            <element signature="e#1770#1797#0" expanded="false" />
-            <element signature="e#1832#1860#0" expanded="false" />
-            <element signature="e#1898#1928#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_post_idea.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -1887,13 +1821,6 @@
       </provider>
       <provider editor-type-id="android-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_search_people.xml">
@@ -1931,13 +1858,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/idea_list_item.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -1949,20 +1869,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetUserDataService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/FoundPeopleActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1983,29 +1889,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/UpdateUserDataService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project/src/main/res/values-w820dp/dimens.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_information.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/settings.gradle">
@@ -2038,34 +1926,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/RegisterUserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/RegisterActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22844344" vertical-offset="0" max-vertical-offset="2380">
-          <caret line="26" column="27" selection-start-line="26" selection-start-column="27" selection-end-line="26" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project/proguard-rules.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.60918254" vertical-offset="0" max-vertical-offset="893">
           <caret line="32" column="36" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34266517" vertical-offset="0" max-vertical-offset="4828">
-          <caret line="18" column="64" selection-start-line="18" selection-start-column="64" selection-end-line="18" selection-end-column="64" />
           <folding />
         </state>
       </provider>
@@ -2080,16 +1944,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/project/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4949608" vertical-offset="0" max-vertical-offset="893">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
+          <caret line="24" column="57" selection-start-line="24" selection-start-column="57" selection-end-line="24" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_profile_settings.xml">
+    <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_conversation.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.037037037" vertical-offset="2075" max-vertical-offset="2941">
-          <caret line="122" column="5" selection-start-line="122" selection-start-column="5" selection-end-line="122" selection-end-column="5" />
+        <state vertical-scroll-proportion="25.407408" vertical-offset="686" max-vertical-offset="1207">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -2097,47 +1961,182 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="2312">
+          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/UpdateUserDataService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="56" max-vertical-offset="765">
+          <caret line="37" column="55" selection-start-line="37" selection-start-column="55" selection-end-line="37" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/RegisterUserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27919707" vertical-offset="0" max-vertical-offset="578">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/RegisterActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6277372" vertical-offset="1781" max-vertical-offset="2397">
+          <caret line="139" column="79" selection-start-line="139" selection-start-column="79" selection-end-line="139" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_find.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.3703704" vertical-offset="414" max-vertical-offset="935">
+          <caret line="19" column="59" selection-start-line="19" selection-start-column="59" selection-end-line="19" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_profile_settings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5547025" vertical-offset="2006" max-vertical-offset="2805">
+          <caret line="135" column="0" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24817519" vertical-offset="0" max-vertical-offset="1887">
+          <caret line="8" column="87" selection-start-line="8" selection-start-column="87" selection-end-line="8" selection-end-column="87" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_information.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.444445" vertical-offset="153" max-vertical-offset="2329">
+          <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ConversationActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="4.875912" vertical-offset="609" max-vertical-offset="3485">
+          <caret line="222" column="63" selection-start-line="222" selection-start-column="63" selection-end-line="222" selection-end-column="63" />
+          <folding>
+            <element signature="e#5202#5663#0" expanded="true" />
+            <element signature="e#5648#5649#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1551095" vertical-offset="404" max-vertical-offset="1224">
+          <caret line="61" column="43" selection-start-line="61" selection-start-column="43" selection-end-line="61" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/IsFollowingService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.83759123" vertical-offset="0" max-vertical-offset="646">
+          <caret line="27" column="61" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#430#431#0" expanded="true" />
+            <element signature="e#473#474#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36678833" vertical-offset="1210" max-vertical-offset="4913">
+          <caret line="83" column="64" selection-start-line="83" selection-start-column="64" selection-end-line="83" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/SearchPeopleService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43430656" vertical-offset="0" max-vertical-offset="548">
+          <caret line="24" column="50" selection-start-line="24" selection-start-column="50" selection-end-line="24" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/FoundPeopleActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6113139" vertical-offset="1569" max-vertical-offset="2788">
+          <caret line="139" column="0" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ProfileActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="9529" max-vertical-offset="11917">
-          <caret line="602" column="73" selection-start-line="602" selection-start-column="73" selection-end-line="602" selection-end-column="73" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="12882" max-vertical-offset="13430">
+          <caret line="199" column="29" selection-start-line="199" selection-start-column="29" selection-end-line="199" selection-end-column="29" />
           <folding>
-            <element signature="e#6654#8610#0" expanded="true" />
-            <element signature="e#8599#8600#0" expanded="true" />
-            <element signature="e#14168#15109#0" expanded="true" />
-            <element signature="e#15098#15099#0" expanded="true" />
-            <element signature="e#15309#15920#0" expanded="true" />
-            <element signature="e#15909#15910#0" expanded="true" />
-            <element signature="e#19942#19943#0" expanded="true" />
-            <element signature="e#19985#19986#0" expanded="true" />
-            <element signature="e#26211#26212#0" expanded="true" />
-            <element signature="e#26251#26252#0" expanded="true" />
-            <element signature="e#26385#26386#0" expanded="true" />
-            <element signature="e#26423#26424#0" expanded="true" />
+            <element signature="e#14745#15686#0" expanded="true" />
+            <element signature="e#15675#15676#0" expanded="true" />
+            <element signature="e#20474#20475#0" expanded="true" />
+            <element signature="e#20517#20518#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetOtherUserIdeasService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49635038" vertical-offset="0" max-vertical-offset="548">
+          <caret line="25" column="100" selection-start-line="25" selection-start-column="100" selection-end-line="25" selection-end-column="100" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/IdeaItemAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="819" max-vertical-offset="2261">
+          <caret line="84" column="93" selection-start-line="84" selection-start-column="93" selection-end-line="84" selection-end-column="93" />
+          <folding>
+            <element signature="e#3681#4838#0" expanded="true" />
+            <element signature="e#4823#4824#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2808" max-vertical-offset="4964">
+          <caret line="177" column="84" selection-start-line="177" selection-start-column="84" selection-end-line="177" selection-end-column="84" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#10835#11720#0" expanded="true" />
+            <element signature="e#11709#11710#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2132" max-vertical-offset="9027">
-          <caret line="167" column="65" selection-start-line="167" selection-start-column="65" selection-end-line="167" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7995521" vertical-offset="204" max-vertical-offset="1190">
-          <caret line="54" column="121" selection-start-line="54" selection-start-column="121" selection-end-line="54" selection-end-column="121" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ConversationActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.0851064" vertical-offset="2193" max-vertical-offset="3332">
-          <caret line="98" column="24" selection-start-line="98" selection-start-column="24" selection-end-line="98" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.27372262" vertical-offset="1312" max-vertical-offset="9027">
+          <caret line="108" column="66" selection-start-line="108" selection-start-column="66" selection-end-line="108" selection-end-column="66" />
           <folding />
         </state>
       </provider>

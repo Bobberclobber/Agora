@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -58,6 +59,8 @@ public class ConversationActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Requests to use a feature which displays a progress bar
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversation);
 
@@ -137,6 +140,8 @@ public class ConversationActivity extends Activity {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
+                    // Displays a progress bar
+                    setProgressBarIndeterminateVisibility(true);
                     getConversationIntent.putExtra(Constants.USER_NAME_KEY, userName);
                     getConversationIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
                     startService(getConversationIntent);
@@ -214,6 +219,8 @@ public class ConversationActivity extends Activity {
                     if (messages != null) {
                         messagesList.setSelection(messages.size());
                     }
+                    // Hides the progress bar
+                    setProgressBarIndeterminateVisibility(false);
                 }
             }
         }

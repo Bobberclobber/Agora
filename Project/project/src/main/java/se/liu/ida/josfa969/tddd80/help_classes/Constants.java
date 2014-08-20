@@ -34,6 +34,7 @@ public class Constants {
     public static final String APPROVAL_NUM_KEY = "se.liu.ida.josfa969.activities.APPROVAL_NUM";
     public static final String USER_DATA_KEY = "se.liu.ida.josfa969.activities.USER_DATA";
     public static final String IS_APPROVING_KEY = "se.liu.ida.josfa969.activities.IS_APPROVING";
+    public static final String IS_FOLLOWING_KEY = "se.liu.ida.josfa969.activities.IS_FOLLOWING";
     public static final String RESPONSE_KEY = "se.liu.ida.josfa969.activities.RESPONSE";
     public static final String FOLLOW_TOAST_MSG_KEY = "se.liu.ida.josfa969.background_services.FOLLOW_TOAST_MSG";
     public static final String APPROVING_TOAST_MSG_KEY = "se.liu.ida.josfa969.background_services.APPROVE_TOAST_MSG";
@@ -58,6 +59,7 @@ public class Constants {
     public static final String POST_COMMENT_RESP = "se.liu.ida.josfa969.background_services.action.POST_COMMENT";
     public static final String GET_USER_DATA_RESP = "se.liu.ida.josfa969.background_services.action.GET_USER_DATA";
     public static final String IS_APPROVING_RESP = "se.liu.ida.josfa969.background_services.action.IS_APPROVING";
+    public static final String IS_FOLLOWING_RESP = "se.liu.ida.josfa969.background_services.action.IS_FOLLOWING";
     public static final String GET_OTHER_USER_IDEAS_RESP = "se.liu.ida.josfa969.background_services.action.GET_OTHER_USER_RECENT_IDEAS";
     public static final String LOGIN_USER_RESP = "se.liu.ida.josfa969.background_services.action.LOGIN_USER";
     public static final String REGISTER_USER_RESP = "se.liu.ida.josfa969.background_services.action.REGISTER_USER";

@@ -15,7 +15,11 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
@@ -37,7 +41,12 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationClient;
 
+import org.w3c.dom.Text;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 import se.liu.ida.josfa969.tddd80.R;
 import se.liu.ida.josfa969.tddd80.background_services.GetIdeaFeedService;
@@ -210,6 +219,11 @@ public class ProfileActivity extends FragmentActivity implements
                     profileCountry.setText(country);
                     profileCity.setText(city);
                     profileLocation.setText(location);
+
+                    // Hides the keyboard
+                    TextView profileSettingsTitle = (TextView) findViewById(R.id.profile_settings_title);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(profileSettingsTitle.getWindowToken(), 0);
                 }
             }
         };
@@ -424,7 +438,6 @@ public class ProfileActivity extends FragmentActivity implements
         newLocation = String.valueOf(profileLocation.getText());
 
         // Starts the progress dialog
-        progress = new ProgressDialog(this);
         progress.setTitle("Loading");
         progress.setMessage("Updating user data...");
         progress.show();
@@ -470,6 +483,7 @@ public class ProfileActivity extends FragmentActivity implements
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        System.out.println("On Activity Result");
         switch (requestCode) {
             case REQUEST_IMAGE_CAPTURE:
                 // Temporarily sets the avatar image
@@ -478,6 +492,7 @@ public class ProfileActivity extends FragmentActivity implements
             case CONNECTION_FAILURE_RESOLUTION_REQUEST:
                 if (resultCode == RESULT_OK) {
                     // Try the request again
+                    locationClient.connect();
                 }
                 break;
         }
@@ -504,15 +519,108 @@ public class ProfileActivity extends FragmentActivity implements
         }
     }
 
-    public void onSetCoordinatesClick(View view) {
+    public void onSetLocationClick(View view) {
         if (servicesConnected()) {
-            // Gets the most recently registered location
-            mCurrentLocation = locationClient.getLastLocation();
+            // Ensure that a Geocoder services is available
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD && Geocoder.isPresent()) {
 
-            // Sets the location text views text
-            TextView profileLocationView = (TextView) findViewById(R.id.profile_location);
-            location = mCurrentLocation.toString();
-            profileLocationView.setText(location);
+                // Display the progress dialog
+                progress.setTitle("Loading...");
+                progress.setMessage("Fetching current location");
+                progress.show();
+
+                // Gets the most recently registered location
+                mCurrentLocation = locationClient.getLastLocation();
+
+                // Get the location text view
+                TextView locationTextView = (TextView) findViewById(R.id.profile_location);
+
+                // Run the get address task
+                (new GetAddressTask(this, locationTextView)).execute(mCurrentLocation);
+            }
+        }
+    }
+
+    /*
+     * A subclass of AsyncTask that calls getFromLocation() in the background.
+     * The class definition has these generic types:
+     * Location - A Location object containing the current location
+     * Void - Indicates that progress units are not used
+     *  String - An address passed to onPostExecute()
+     */
+    private class GetAddressTask extends AsyncTask<Location, Void, String> {
+        Context mContext;
+        TextView mTextView;
+
+        public GetAddressTask(Context context, TextView locationTextView) {
+            super();
+            mContext = context;
+            mTextView = locationTextView;
+        }
+
+        /*
+         * Get a Geocoder instance, get the latitude and longitude,
+         * look up the address, and return it.
+         */
+        @Override
+        protected String doInBackground(Location... locations) {
+            Geocoder geocoder = new Geocoder(mContext, Locale.getDefault());
+            // Get the current location from the input parameter list
+            Location loc = locations[0];
+            // Create a list to contain the result address
+            List<Address> addresses;
+            try {
+                // Return 1 address
+                addresses = geocoder.getFromLocation(loc.getLatitude(), loc.getLongitude(), 1);
+            } catch (IOException e1) {
+                Log.e("ProfileActivity", "IO Exception in getFromLocation()");
+                e1.printStackTrace();
+                return "IO Exception trying to get address";
+            } catch (IllegalArgumentException e2) {
+                // Error message to post in the log
+                String errorString = "Illegal arguments " +
+                        Double.toString(loc.getLatitude()) +
+                        ", " +
+                        Double.toString(loc.getLongitude()) +
+                        " passed to address service";
+                Log.e("ProfileActivity", errorString);
+                e2.printStackTrace();
+                return errorString;
+            }
+            // If the reverse geocode returned an address
+            if (addresses != null && addresses.size() > 0) {
+                // Get the first address
+                Address address = addresses.get(0);
+                /*
+                 * Format the first line of address (if available), city, and country name.
+                 */
+                // Return the text
+                return String.format(
+                        "%s, %s, %s",
+                        // If there's a street address, add it
+                        address.getMaxAddressLineIndex() > 0 ? address.getAddressLine(0) : "",
+                        // Locality is usually a city
+                        address.getLocality(),
+                        // The country of the address
+                        address.getCountryName());
+            } else {
+                return "No address found";
+            }
+        }
+
+        /*
+         * A method that's called once doInBackground() completes.
+         * Dismiss the progress dialog and set the the location
+         * variable and text view values to the acquired address.
+         */
+
+        @Override
+        protected void onPostExecute(String address) {
+            // Set the values
+            location = address;
+            mTextView.setText(location);
+            // Dismiss the progress dialog
+            progress.dismiss();
         }
     }
 
@@ -660,9 +768,9 @@ public class ProfileActivity extends FragmentActivity implements
                 }
                 // If the user updated his/her user data
                 else if (intentAction.equals(Constants.UPDATE_USER_DATA_RESP)) {
+                    System.out.println("Update User Data Resp");
                     // Take actions according to the response from the database
                     onUserDataUpdatedResult(intent);
-
                 }
             }
         }

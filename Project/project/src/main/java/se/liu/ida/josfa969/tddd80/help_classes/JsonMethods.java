@@ -31,9 +31,9 @@ import se.liu.ida.josfa969.tddd80.item_records.UserRecord;
  */
 public class JsonMethods {
     // Base url for emulator
-    private static String BASE_URL = "http://10.0.3.2:5000/";
+    // private static String BASE_URL = "http://10.0.3.2:5000/";
     // Base url for real device
-    // private static String BASE_URL = "http://localhost:5000/";
+    private static String BASE_URL = "http://localhost:5000/";
     private static final String SPACE = " ";
     private static final String SPACE_REPLACE = "&nbsp";
     private static final String HASH_TAG = "#";
@@ -103,7 +103,7 @@ public class JsonMethods {
 
     // Takes a user name or e-mail and returns
     // a list of that users most recent ideas
-    public static ArrayList<IdeaRecord> getOtherUserRecentIdeas(String identifier) {
+    public static ArrayList<IdeaRecord> getOtherUserRecentIdeas(String identifier, String originalUser) {
         String recentIdeasURL = BASE_URL + "_get_other_user_recent_ideas_/" + identifier;
         recentIdeasURL = recentIdeasURL.replace(SPACE, SPACE_REPLACE);
         ArrayList<IdeaRecord> ideas = new ArrayList<IdeaRecord>();
@@ -120,7 +120,7 @@ public class JsonMethods {
                     ideaText = ideaText.replace(ENTER_REPLACE, ENTER);
                     String poster = temp.getString(2);
                     String approvalNum = temp.getString(3);
-                    boolean isApproving = userIsApproving(identifier, ideaId);
+                    boolean isApproving = userIsApproving(originalUser, ideaId);
                     JSONArray tagJsonArray = temp.getJSONArray(4);
                     ArrayList<String> tags = new ArrayList<String>();
                     for (int n = 0; n < tagJsonArray.length(); n++) {

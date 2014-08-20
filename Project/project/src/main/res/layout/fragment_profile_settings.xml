@@ -135,14 +135,6 @@
                 android:textSize="@dimen/large_text_size"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/large_internal_margin"
-                android:layout_below="@id/profile_city"
-                android:layout_toRightOf="@id/set_location_text"
-                android:textSize="@dimen/large_text_size"/>
-
-            <TextView
                 android:id="@+id/profile_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -159,7 +151,7 @@
                 android:layout_marginTop="@dimen/small_internal_margin"
                 android:layout_below="@id/profile_location"
                 android:layout_centerHorizontal="true"
-                android:onClick="onSetCoordinatesClick"/>
+                android:onClick="onSetLocationClick"/>
 
         </RelativeLayout>
 
