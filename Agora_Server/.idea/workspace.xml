@@ -27,17 +27,17 @@
       <file leaf-file-name="database.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2407" max-vertical-offset="7633">
-              <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="7616">
+              <caret line="386" column="0" selection-start-line="386" selection-start-column="0" selection-end-line="386" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36572438" vertical-offset="3431" max-vertical-offset="4216">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1595" max-vertical-offset="4216">
               <caret line="214" column="19" selection-start-line="214" selection-start-column="19" selection-end-line="214" selection-end-column="19" />
               <folding>
                 <element signature="e#22#54#0" expanded="true" />
@@ -49,18 +49,18 @@
       <file leaf-file-name="main_test.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1236" max-vertical-offset="3740">
-              <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3123" max-vertical-offset="3740">
+              <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="unit_test.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="unit_test.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/unit_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-221.0" vertical-offset="1734" max-vertical-offset="5814">
-              <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.8439716" vertical-offset="0" max-vertical-offset="7701">
+              <caret line="28" column="49" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -78,10 +78,10 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/database.py" />
         <option value="$PROJECT_DIR$/temp.py" />
-        <option value="$PROJECT_DIR$/main_test.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/main_test.py" />
+        <option value="$PROJECT_DIR$/database.py" />
         <option value="$PROJECT_DIR$/unit_test.py" />
       </list>
     </option>
@@ -157,8 +157,8 @@
       <console-settings />
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in MessageSendingAndFetchingTest">
-    <configuration default="false" name="Unittests in SearchFunctionsTest (2)" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittest FollowersTest.test_get_following">
+    <configuration default="false" name="Unittests in FollowersTest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -169,7 +169,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Agora_Server" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/unit_test.py" />
-      <option name="CLASS_NAME" value="SearchFunctionsTest" />
+      <option name="CLASS_NAME" value="FollowersTest" />
       <option name="METHOD_NAME" value="" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_CLASS" />
@@ -178,11 +178,13 @@
       <option name="PUREUNITTEST" value="true" />
       <option name="PARAMS" value="" />
       <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="Basic" />
       <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="Basic" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittests in unit_test (1)" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest FollowersTest.test_add_follower" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -193,10 +195,10 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Agora_Server" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/unit_test.py" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="FollowersTest" />
+      <option name="METHOD_NAME" value="test_add_follower" />
       <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
       <option name="PUREUNITTEST" value="true" />
@@ -206,31 +208,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittests in Agora_Server" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Agora_Server" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="$PROJECT_DIR$" />
-      <option name="TEST_TYPE" value="TEST_FOLDER" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittests in MessageSendingAndFetchingTest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest FollowersTest.test_remove_follower" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -241,10 +219,10 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Agora_Server" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/unit_test.py" />
-      <option name="CLASS_NAME" value="MessageSendingAndFetchingTest" />
-      <option name="METHOD_NAME" value="" />
+      <option name="CLASS_NAME" value="FollowersTest" />
+      <option name="METHOD_NAME" value="test_remove_follower" />
       <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_CLASS" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
       <option name="PUREUNITTEST" value="true" />
@@ -254,7 +232,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest MessageSendingAndFetchingTest.test_get_conversation" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest FollowersTest.test_is_following" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -265,8 +243,32 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Agora_Server" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/unit_test.py" />
-      <option name="CLASS_NAME" value="MessageSendingAndFetchingTest" />
-      <option name="METHOD_NAME" value="test_get_conversation" />
+      <option name="CLASS_NAME" value="FollowersTest" />
+      <option name="METHOD_NAME" value="test_is_following" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest FollowersTest.test_get_following" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Agora_Server" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/unit_test.py" />
+      <option name="CLASS_NAME" value="FollowersTest" />
+      <option name="METHOD_NAME" value="test_get_following" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -445,20 +447,20 @@
     </configuration>
     <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in unit_test" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in SearchFunctionsTest (2)" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in unit_test (1)" />
-      <item index="3" class="java.lang.String" itemvalue="Python.main_test" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in Agora_Server" />
-      <item index="5" class="java.lang.String" itemvalue="Python tests.Unittests in MessageSendingAndFetchingTest" />
-      <item index="6" class="java.lang.String" itemvalue="Python tests.Unittest MessageSendingAndFetchingTest.test_get_conversation" />
+      <item index="1" class="java.lang.String" itemvalue="Python.main_test" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in FollowersTest" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest FollowersTest.test_add_follower" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest FollowersTest.test_remove_follower" />
+      <item index="5" class="java.lang.String" itemvalue="Python tests.Unittest FollowersTest.test_is_following" />
+      <item index="6" class="java.lang.String" itemvalue="Python tests.Unittest FollowersTest.test_get_following" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in MessageSendingAndFetchingTest" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest MessageSendingAndFetchingTest.test_get_conversation" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in Agora_Server" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in unit_test (1)" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in SearchFunctionsTest (2)" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest FollowersTest.test_get_following" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest FollowersTest.test_is_following" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest FollowersTest.test_remove_follower" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest FollowersTest.test_add_follower" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in FollowersTest" />
       </list>
     </recent_temporary>
   </component>
@@ -636,38 +638,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="418" max-vertical-offset="7633">
-          <caret line="39" column="32" selection-start-line="39" selection-start-column="32" selection-end-line="39" selection-end-column="32" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3431" max-vertical-offset="4216">
+          <caret line="214" column="19" selection-start-line="214" selection-start-column="19" selection-end-line="214" selection-end-column="19" />
+          <folding>
+            <element signature="e#22#54#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1236" max-vertical-offset="3740">
-          <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2970" max-vertical-offset="3740">
+          <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6321" max-vertical-offset="7616">
+          <caret line="386" column="0" selection-start-line="386" selection-start-column="0" selection-end-line="386" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/unit_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-221.0" vertical-offset="1734" max-vertical-offset="5814">
-          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.8439716" vertical-offset="0" max-vertical-offset="7701">
+          <caret line="28" column="49" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36572438" vertical-offset="3431" max-vertical-offset="4216">
-          <caret line="214" column="19" selection-start-line="214" selection-start-column="19" selection-end-line="214" selection-end-column="19" />
-          <folding>
-            <element signature="e#22#54#0" expanded="true" />
           </folding>
         </state>
       </provider>

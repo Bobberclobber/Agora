@@ -38,27 +38,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ed115b9-8fb5-4117-8f45-e88e1e04a5ef" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/IsFollowingService.java" />
-      <change type="MOVED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora\Project\.idea\libraries\play_services_5_2_08.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_5_0_89.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Openshift Server" afterPath="$PROJECT_DIR$/../Openshift Server" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Agora_Server/database.db" afterPath="$PROJECT_DIR$/../Agora_Server/database.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/project/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/Constants.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ConversationActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ConversationActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/FoundPeopleActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/FoundPeopleActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetOtherUserIdeasService.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetOtherUserIdeasService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/Josef.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Josef.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ProfileActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ProfileActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/RegisterActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/RegisterActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/SearchPeopleService.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/SearchPeopleService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/UpdateUserDataService.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/UpdateUserDataService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/build.gradle" afterPath="$PROJECT_DIR$/project/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/layout/fragment_profile_settings.xml" afterPath="$PROJECT_DIR$/project/src/main/res/layout/fragment_profile_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/project.iml" afterPath="$PROJECT_DIR$/project/project.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/project/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Agora_Server/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Agora_Server/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Project.iws" />
@@ -125,14 +106,9 @@
       <file leaf-file-name="ProfileActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ProfileActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="12882" max-vertical-offset="13430">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3383" max-vertical-offset="14586">
               <caret line="199" column="29" selection-start-line="199" selection-start-column="29" selection-end-line="199" selection-end-column="29" />
-              <folding>
-                <element signature="e#14745#15686#0" expanded="true" />
-                <element signature="e#15675#15676#0" expanded="true" />
-                <element signature="e#20474#20475#0" expanded="true" />
-                <element signature="e#20517#20518#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -142,11 +118,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="2808" max-vertical-offset="4964">
               <caret line="177" column="84" selection-start-line="177" selection-start-column="84" selection-end-line="177" selection-end-column="84" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#10835#11720#0" expanded="true" />
-                <element signature="e#11709#11710#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -154,12 +126,9 @@
       <file leaf-file-name="IdeaItemAdapter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/IdeaItemAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="819" max-vertical-offset="2261">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1428" max-vertical-offset="2584">
               <caret line="84" column="93" selection-start-line="84" selection-start-column="93" selection-end-line="84" selection-end-column="93" />
-              <folding>
-                <element signature="e#3681#4838#0" expanded="true" />
-                <element signature="e#4823#4824#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -167,7 +136,7 @@
       <file leaf-file-name="fragment_information.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_information.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.444445" vertical-offset="153" max-vertical-offset="2329">
+            <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="2329">
               <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
               <folding />
             </state>
@@ -180,7 +149,7 @@
       <file leaf-file-name="fragment_find.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_find.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.3703704" vertical-offset="414" max-vertical-offset="935">
+            <state vertical-scroll-proportion="0.0" vertical-offset="414" max-vertical-offset="935">
               <caret line="19" column="59" selection-start-line="19" selection-start-column="59" selection-end-line="19" selection-end-column="59" />
               <folding />
             </state>
@@ -193,8 +162,8 @@
       <file leaf-file-name="JsonMethods.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.27372262" vertical-offset="1312" max-vertical-offset="9027">
-              <caret line="108" column="66" selection-start-line="108" selection-start-column="66" selection-end-line="108" selection-end-column="66" />
+            <state vertical-scroll-proportion="0.40328467" vertical-offset="0" max-vertical-offset="9027">
+              <caret line="35" column="65" selection-start-line="35" selection-start-column="65" selection-end-line="35" selection-end-column="65" />
               <folding />
             </state>
           </provider>
@@ -1000,6 +969,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1406,9 +1376,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1424,7 +1393,11 @@
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="03bf07bce2558dbf" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="192.168.56.101:5555" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -1654,27 +1627,25 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33984798" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22760417" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37459284" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1684,6 +1655,8 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22760417" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1900,7 +1873,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="580">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1915,7 +1887,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.55135137" vertical-offset="306" max-vertical-offset="2890">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1930,7 +1901,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.60918254" vertical-offset="0" max-vertical-offset="893">
           <caret line="32" column="36" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1965,7 +1935,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="816" max-vertical-offset="2312">
           <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1989,13 +1958,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6277372" vertical-offset="1781" max-vertical-offset="2397">
           <caret line="139" column="79" selection-start-line="139" selection-start-column="79" selection-end-line="139" selection-end-column="79" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_find.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.3703704" vertical-offset="414" max-vertical-offset="935">
+        <state vertical-scroll-proportion="0.0" vertical-offset="414" max-vertical-offset="935">
           <caret line="19" column="59" selection-start-line="19" selection-start-column="59" selection-end-line="19" selection-end-column="59" />
           <folding />
         </state>
@@ -2025,7 +1993,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_information.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.444445" vertical-offset="153" max-vertical-offset="2329">
+        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="2329">
           <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
           <folding />
         </state>
@@ -2038,10 +2006,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="4.875912" vertical-offset="609" max-vertical-offset="3485">
           <caret line="222" column="63" selection-start-line="222" selection-start-column="63" selection-end-line="222" selection-end-column="63" />
-          <folding>
-            <element signature="e#5202#5663#0" expanded="true" />
-            <element signature="e#5648#5649#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2049,7 +2013,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.1551095" vertical-offset="404" max-vertical-offset="1224">
           <caret line="61" column="43" selection-start-line="61" selection-start-column="43" selection-end-line="61" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2058,9 +2021,9 @@
         <state vertical-scroll-proportion="0.83759123" vertical-offset="0" max-vertical-offset="646">
           <caret line="27" column="61" selection-start-line="27" selection-start-column="61" selection-end-line="27" selection-end-column="61" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#430#431#0" expanded="true" />
-            <element signature="e#473#474#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#430#431#0" expanded="false" />
+            <element signature="e#473#474#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2085,7 +2048,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6113139" vertical-offset="1569" max-vertical-offset="2788">
           <caret line="139" column="0" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2093,12 +2055,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="12882" max-vertical-offset="13430">
           <caret line="199" column="29" selection-start-line="199" selection-start-column="29" selection-end-line="199" selection-end-column="29" />
-          <folding>
-            <element signature="e#14745#15686#0" expanded="true" />
-            <element signature="e#15675#15676#0" expanded="true" />
-            <element signature="e#20474#20475#0" expanded="true" />
-            <element signature="e#20517#20518#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2114,10 +2071,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="819" max-vertical-offset="2261">
           <caret line="84" column="93" selection-start-line="84" selection-start-column="93" selection-end-line="84" selection-end-column="93" />
-          <folding>
-            <element signature="e#3681#4838#0" expanded="true" />
-            <element signature="e#4823#4824#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2125,18 +2079,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2808" max-vertical-offset="4964">
           <caret line="177" column="84" selection-start-line="177" selection-start-column="84" selection-end-line="177" selection-end-column="84" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#10835#11720#0" expanded="true" />
-            <element signature="e#11709#11710#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27372262" vertical-offset="1312" max-vertical-offset="9027">
-          <caret line="108" column="66" selection-start-line="108" selection-start-column="66" selection-end-line="108" selection-end-column="66" />
+        <state vertical-scroll-proportion="0.40328467" vertical-offset="0" max-vertical-offset="9027">
+          <caret line="35" column="65" selection-start-line="35" selection-start-column="65" selection-end-line="35" selection-end-column="65" />
           <folding />
         </state>
       </provider>

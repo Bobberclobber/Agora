@@ -88,11 +88,11 @@ def get_user_data(identifier):
     user_data = db.get_user_data(identifier)
     if user_data != "Invalid":
         user_name = user_data[0]
-        e_mail = user_data[2]
-        country = user_data[3]
-        city = user_data[4]
-        followers = user_data[5]
-        location = user_data[6]
+        e_mail = user_data[1]
+        country = user_data[2]
+        city = user_data[3]
+        followers = user_data[4]
+        location = user_data[5]
         return {"response": "Success",
                 "user_name": user_name,
                 "e_mail": e_mail,

@@ -215,7 +215,7 @@ def get_user_data(identifier):
     cur = c.execute("SELECT user_name, e_mail, country, city, followers, home_location FROM users")
     user_data = []
     for row in cur:
-        if identifier == row[0] or identifier == row[2]:
+        if identifier == row[0] or identifier == row[1]:
             for item in row:
                 user_data += [item]
             return user_data
@@ -294,7 +294,6 @@ def user_is_following(user, other_user):
 
 
 def update_user_data(original_user_name, new_user_name, new_e_mail, new_password, new_country, new_city, new_location):
-
     c = get_db()
     c.execute("UPDATE users SET user_name=? WHERE user_name=?", (new_user_name, original_user_name))
     c.execute("UPDATE users SET e_mail=? WHERE user_name=?", (new_e_mail, original_user_name))
