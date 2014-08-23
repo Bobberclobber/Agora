@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import se.liu.ida.josfa969.tddd80.R;
+import se.liu.ida.josfa969.tddd80.help_classes.Constants;
 import se.liu.ida.josfa969.tddd80.item_records.MessageRecord;
 
 /**
@@ -39,6 +41,7 @@ public class MessageItemAdapter extends ArrayAdapter<MessageRecord> {
             TextView sender = (TextView) v.findViewById(R.id.sender);
             TextView receiver = (TextView) v.findViewById(R.id.receiver);
             TextView messageText = (TextView) v.findViewById(R.id.message_text);
+            ImageView avatarImage = (ImageView) v.findViewById(R.id.message_avatar_image);
 
             if (sender != null) {
                 sender.setText(messageRecord.sender);
@@ -48,6 +51,9 @@ public class MessageItemAdapter extends ArrayAdapter<MessageRecord> {
             }
             if (messageText != null) {
                 messageText.setText(messageRecord.messageText);
+            }
+            if (avatarImage != null) {
+                avatarImage.setImageBitmap(Constants.stringToBitmap(messageRecord.image));
             }
         }
         return v;

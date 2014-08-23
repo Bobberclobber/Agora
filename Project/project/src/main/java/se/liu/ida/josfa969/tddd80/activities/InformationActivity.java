@@ -9,8 +9,11 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -33,6 +36,16 @@ public class InformationActivity extends Activity {
     private String followers;
     private String location;
     private String originalUser;
+
+    // Array Lists used to hold all users which
+    // this user is following and all the ideas
+    // which this user is approving
+    ArrayList<UserRecord> followingList;
+    ArrayList<IdeaRecord> approvingList;
+
+    // The views which display the two lists above
+    LinearLayout followingListView;
+    LinearLayout approvingListView;
 
     // An intent used to fetch user data
     Intent getUserDataIntent;
@@ -79,8 +92,6 @@ public class InformationActivity extends Activity {
         registerReceiver(receiver, getUserDataFilter);
 
         progress = new ProgressDialog(this);
-        progress.setTitle("Loading");
-        progress.setMessage("Fetching data...");
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().add(R.id.container, new InformationFragment()).commit();
@@ -91,6 +102,8 @@ public class InformationActivity extends Activity {
     protected void onResume() {
         super.onResume();
         // Shows the progress dialog
+        progress.setTitle("Loading");
+        progress.setMessage("Fetching data...");
         progress.show();
 
         // Gets views
@@ -146,28 +159,35 @@ public class InformationActivity extends Activity {
         public void onClick(View view) {
             view.setBackgroundResource(R.color.clicked_item_background);
 
-            // Gets the individual views
-            TextView posterView = (TextView) view.findViewById(R.id.poster);
-            TextView ideaTextView = (TextView) view.findViewById(R.id.idea_text);
-            TextView tagView = (TextView) view.findViewById(R.id.tags);
-            TextView approvalNumView = (TextView) view.findViewById(R.id.approval_num);
+            // Gets the idea ID
             TextView ideaIdView = (TextView) view.findViewById(R.id.idea_id);
-
-            // Gets view content
-            String poster = String.valueOf(posterView.getText());
-            String ideaText = String.valueOf(ideaTextView.getText());
-            String tagString = String.valueOf(tagView.getText());
-            String approvalNum = String.valueOf(approvalNumView.getText());
             String ideaId = String.valueOf(ideaIdView.getText());
 
-            if (!poster.equals(originalUser)) {
-                ideaDetailIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
-                ideaDetailIntent.putExtra(Constants.POSTER_KEY, poster);
-                ideaDetailIntent.putExtra(Constants.IDEA_TEXT_KEY, ideaText);
-                ideaDetailIntent.putExtra(Constants.TAG_STRING_KEY, tagString);
-                ideaDetailIntent.putExtra(Constants.APPROVAL_NUM_KEY, approvalNum);
-                ideaDetailIntent.putExtra(Constants.IDEA_ID_KEY, ideaId);
+            // Initializes the values
+            String poster = "";
+            String ideaText = "";
+            String tagString = "";
+            String approvalNum = "";
+            String image = "";
+
+            for (IdeaRecord record : approvingList) {
+                if (record.ideaId.equals(ideaId)) {
+                    poster = record.poster;
+                    ideaText = record.ideaText;
+                    for (Object tag : record.tags) {
+                        tagString += "#" + tag + " ";
+                    }
+                    image = record.image;
+                }
             }
+
+            ideaDetailIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
+            ideaDetailIntent.putExtra(Constants.POSTER_KEY, poster);
+            ideaDetailIntent.putExtra(Constants.IDEA_TEXT_KEY, ideaText);
+            ideaDetailIntent.putExtra(Constants.TAG_STRING_KEY, tagString);
+            ideaDetailIntent.putExtra(Constants.APPROVAL_NUM_KEY, approvalNum);
+            ideaDetailIntent.putExtra(Constants.IDEA_ID_KEY, ideaId);
+            ideaDetailIntent.putExtra(Constants.AVATAR_IMAGE_KEY, image);
             startActivity(ideaDetailIntent);
         }
     }
@@ -184,6 +204,7 @@ public class InformationActivity extends Activity {
         String clickedCity = userData.get(3);
         String clickedFollowers = userData.get(4);
         String clickedLocation = userData.get(5);
+        String clickedAvatarImage = userData.get(6);
 
         // Attaches the basic data to the intent
         otherProfileIntent.putExtra(Constants.USER_NAME_KEY, clickedUserName);
@@ -192,6 +213,7 @@ public class InformationActivity extends Activity {
         otherProfileIntent.putExtra(Constants.CITY_KEY, clickedCity);
         otherProfileIntent.putExtra(Constants.FOLLOWERS_KEY, clickedFollowers);
         otherProfileIntent.putExtra(Constants.LOCATION_KEY, clickedLocation);
+        otherProfileIntent.putExtra(Constants.AVATAR_IMAGE_KEY, clickedAvatarImage);
         otherProfileIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
 
         // Dismisses the progress dialog
@@ -207,8 +229,8 @@ public class InformationActivity extends Activity {
             String intentAction = intent.getAction();
             if (intentAction != null) {
                 if (intentAction.equals(Constants.GET_FOLLOWING_RESP)) {
-                    ArrayList<UserRecord> followingList = intent.getParcelableArrayListExtra(Constants.PEOPLE_KEY);
-                    LinearLayout followingListView = (LinearLayout) findViewById(R.id.other_user_following_list);
+                    followingList = intent.getParcelableArrayListExtra(Constants.PEOPLE_KEY);
+                    followingListView = (LinearLayout) findViewById(R.id.other_user_following_list);
 
                     // Adds user list items to the linear layout
                     if (followingList != null) {
@@ -218,8 +240,8 @@ public class InformationActivity extends Activity {
                         }
                     }
                 } else if (intentAction.equals(Constants.GET_APPROVING_RESP)) {
-                    ArrayList<IdeaRecord> approvingList = intent.getParcelableArrayListExtra(Constants.IDEAS_KEY);
-                    LinearLayout approvingListView = (LinearLayout) findViewById(R.id.other_user_approving_list);
+                    approvingList = intent.getParcelableArrayListExtra(Constants.IDEAS_KEY);
+                    approvingListView = (LinearLayout) findViewById(R.id.other_user_approving_list);
 
                     // Adds idea list items to the linear layout
                     if (approvingList != null) {
@@ -239,13 +261,13 @@ public class InformationActivity extends Activity {
         private void createIdeaListItem(LinearLayout approvingListView, final IdeaRecord ideaRecord) {
             final View temp = getLayoutInflater().inflate(R.layout.idea_list_item, null);
             if (temp != null) {
-
                 // Gets views
                 TextView posterView = (TextView) temp.findViewById(R.id.poster);
                 TextView ideaTextView = (TextView) temp.findViewById(R.id.idea_text);
                 TextView tagsView = (TextView) temp.findViewById(R.id.tags);
                 TextView approvalNumView = (TextView) temp.findViewById(R.id.approval_num);
                 TextView ideaIdView = (TextView) temp.findViewById(R.id.idea_id);
+                ImageView ideaAvatarImage = (ImageView) temp.findViewById(R.id.idea_avatar_image);
 
                 // Sets texts
                 posterView.setText(ideaRecord.poster);
@@ -257,6 +279,7 @@ public class InformationActivity extends Activity {
                 tagsView.setText(tagString);
                 approvalNumView.setText(ideaRecord.approvalNum);
                 ideaIdView.setText(ideaRecord.ideaId);
+                ideaAvatarImage.setImageBitmap(Constants.stringToBitmap(ideaRecord.image));
 
                 // Adds the item to the list
                 approvingListView.addView(temp);
@@ -334,6 +357,7 @@ public class InformationActivity extends Activity {
                 TextView followerNumView = (TextView) temp.findViewById(R.id.user_list_follower_num);
                 TextView countryView = (TextView) temp.findViewById(R.id.user_list_country);
                 TextView cityView = (TextView) temp.findViewById(R.id.user_list_city);
+                ImageView avatarImageView = (ImageView) temp.findViewById(R.id.user_avatar_image);
 
                 // Sets texts
                 userNameView.setText(userRecord.userName);
@@ -341,6 +365,7 @@ public class InformationActivity extends Activity {
                 followerNumView.setText(userRecord.followers);
                 countryView.setText(userRecord.country);
                 cityView.setText(userRecord.city);
+                avatarImageView.setImageBitmap(Constants.stringToBitmap(userRecord.image));
 
                 // Adds the item to the list
                 followingListView.addView(temp);

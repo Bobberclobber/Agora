@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ public class ConversationActivity extends Activity {
 
     // Initializes basic data variables
     private String userName = null;
+    private String avatarImage = "";
     private String originalUser = null;
 
     // Broadcast receiver
@@ -67,6 +69,7 @@ public class ConversationActivity extends Activity {
         // Gets all data sent by the intent starting this activity
         Intent initIntent = getIntent();
         userName = initIntent.getStringExtra(Constants.USER_NAME_KEY);
+        avatarImage = initIntent.getStringExtra(Constants.AVATAR_IMAGE_KEY);
         originalUser = initIntent.getStringExtra(Constants.ORIGINAL_USER_KEY);
 
         SharedPreferences preferences = this.getPreferences(Context.MODE_PRIVATE);
@@ -118,7 +121,9 @@ public class ConversationActivity extends Activity {
         super.onResume();
 
         TextView conversationPartnerName = (TextView) findViewById(R.id.conversation_partner_name);
+        ImageButton avatarImageButton = (ImageButton) findViewById(R.id.avatar_picture);
         conversationPartnerName.setText(userName);
+        avatarImageButton.setImageBitmap(Constants.stringToBitmap(avatarImage));
 
         handler = new Handler();
         timer = new Timer();
@@ -174,6 +179,7 @@ public class ConversationActivity extends Activity {
         otherProfileIntent.putExtra(Constants.CITY_KEY, city);
         otherProfileIntent.putExtra(Constants.FOLLOWERS_KEY, followers);
         otherProfileIntent.putExtra(Constants.LOCATION_KEY, location);
+        otherProfileIntent.putExtra(Constants.AVATAR_IMAGE_KEY, avatarImage);
         otherProfileIntent.putExtra(Constants.ORIGINAL_USER_KEY, userName);
 
         // Starts the new activity

@@ -6,13 +6,13 @@ from main import app
 # This test module uses the main_test module in order
 # to test that the responses sent by its methods are correct
 
-TEST_USERS = [["TestUser1", "password1", "email.1@email.com", "Test-Land", "Test-City"],
-              ["John", "guest123", "john.peterson@hotmail.com", "England", "London"],
-              ["THE MIGHTY MONARCH", "monarch", "the.mighty@monar.ch", "The Grand Canyon", "The Cocoon"],
-              ["Sterling Archer", "GUEST", "chet.manly@isismail.com", "United States", "New York"],
-              ["Bender", "Bender Is Great", "bender@benderisgreat.com", "United States", "New New York"],
-              ["Fry", "password", "philipfry@hotmail.com", "United States", "New New York"],
-              ["TestUser2", "password2", "email.2@email.com", "Not-Test-Land", "Test-City"]]
+TEST_USERS = [["TestUser1", "password1", "email.1@email.com", "Test-Land", "Test-City", "image"],
+              ["John", "guest123", "john.peterson@hotmail.com", "England", "London", "image"],
+              ["THE MIGHTY MONARCH", "monarch", "the.mighty@monar.ch", "The Grand Canyon", "The Cocoon", "image"],
+              ["Sterling Archer", "GUEST", "chet.manly@isismail.com", "United States", "New York", "image"],
+              ["Bender", "Bender Is Great", "bender@benderisgreat.com", "United States", "New New York", "image"],
+              ["Fry", "password", "philipfry@hotmail.com", "United States", "New New York", "image"],
+              ["TestUser2", "password2", "email.2@email.com", "Not-Test-Land", "Test-City", "image"]]
 
 TEST_IDEAS = [["This is an idea. Idea number one.", "TestUser1", "&nbhtidea&nbhttest"],
               ["Wall of text. Wall of text. Wall of text.", "John", "&nbhtidea"],
@@ -426,7 +426,7 @@ class CommentsAndApprovingTest(unittest.TestCase):
 
 # Registers a user and returns the response
 def register_user(user):
-    response = main.register_user(user[0], user[1], user[2], user[3], user[4])
+    response = main.register_user(user[0], user[1], user[2], user[3], user[4], user[5])
     return response
 
 

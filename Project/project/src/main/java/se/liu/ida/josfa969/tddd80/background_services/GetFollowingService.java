@@ -25,10 +25,6 @@ public class GetFollowingService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        System.out.println("----------");
-        System.out.println("On Handle Intent");
-        System.out.println("----------");
-
         String userName = intent.getStringExtra(Constants.USER_NAME_KEY);
         ArrayList<UserRecord> following = JsonMethods.getFollowing(userName);
         Log.i("GetFollowingService", "Fetched users: " + following);

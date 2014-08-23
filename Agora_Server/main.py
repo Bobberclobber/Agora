@@ -19,14 +19,14 @@ def init_database():
     return "Database Initialized"
 
 
-@app.route('/_register_user_/<user_name>/<password>/<e_mail>/<country>/<city>')
-def register_user(user_name, password, e_mail, country, city):
+@app.route('/_register_user_/<user_name>/<password>/<e_mail>/<country>/<city>/<avatar_image>')
+def register_user(user_name, password, e_mail, country, city, avatar_image):
     if db.email_exists(e_mail):
         return jsonify({"response": ["E-Mail Already Registered"]})
     elif db.user_name_exists(user_name):
         return jsonify({"response": ["User Name Taken"]})
     else:
-        db.add_new_user(user_name, password, e_mail, country, city)
+        db.add_new_user(user_name, password, e_mail, country, city, avatar_image)
         return jsonify({"response": ["Success"]})
 
 
@@ -102,13 +102,15 @@ def get_user_data(identifier):
         city = user_data[3]
         followers = user_data[4]
         location = user_data[5]
+        avatar_image = user_data[6]
         return jsonify({"response": ["Success"],
                         "user_name": [user_name],
                         "e_mail": [e_mail],
                         "country": [country],
                         "city": [city],
                         "followers": [followers],
-                        "location": [location]})
+                        "location": [location],
+                        "avatar_image": [avatar_image]})
     else:
         return jsonify({"response": ["Failure"]})
 
@@ -129,6 +131,11 @@ def get_e_mail(user_name):
         return jsonify({"response": ["Success"], "e_mail": [e_mail]})
     else:
         return jsonify({"response": ["Failure"]})
+
+
+@app.route('/_get_avatar_image_/<user_name>')
+def get_avatar_image(user_name):
+    return jsonify({"response": ["Success"], "avatar_image": [db.get_avatar_image(user_name)]})
 
 
 @app.route('/_get_other_user_recent_ideas_/<identifier>')
@@ -187,16 +194,17 @@ def user_is_following(user, other_user):
 
 
 @app.route('/_update_user_data_/<original_user_name>/<original_e_mail>/<new_user_name>/<new_e_mail>/'
-           '<new_password>/<new_country>/<new_city>/<new_location>')
+           '<new_password>/<new_country>/<new_city>/<new_location>/<new_image>')
 def update_user_data(original_user_name, original_e_mail, new_user_name, new_e_mail,
-                     new_password, new_country, new_city, new_location):
+                     new_password, new_country, new_city, new_location, new_image):
     response = "Success"
     if original_user_name != new_user_name and db.user_name_exists(new_user_name):
         response = "User Name Exists"
     elif original_e_mail != new_e_mail and db.email_exists(new_e_mail):
         response = "E-Mail Exists"
     else:
-        db.update_user_data(original_user_name, new_user_name, new_e_mail, new_password, new_country, new_city, new_location)
+        db.update_user_data(original_user_name, new_user_name, new_e_mail, new_password, new_country, new_city,
+                            new_location, new_image)
     return jsonify({"response": [response]})
 
 
@@ -237,6 +245,12 @@ def add_comment(user, idea_id, comment_text):
 def get_comments(idea_id):
     comments = db.get_comments(idea_id)
     return jsonify({"response": ["Success"], "comments": comments})
+
+
+@app.route('/_test_/<blob>')
+def test(blob):
+    print(blob)
+    return jsonify({"response": ["Success"]})
 
 
 if __name__ == "__main__":

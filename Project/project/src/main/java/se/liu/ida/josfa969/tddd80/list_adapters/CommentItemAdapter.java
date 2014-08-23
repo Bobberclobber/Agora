@@ -1,15 +1,18 @@
 package se.liu.ida.josfa969.tddd80.list_adapters;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import se.liu.ida.josfa969.tddd80.R;
+import se.liu.ida.josfa969.tddd80.help_classes.Constants;
 import se.liu.ida.josfa969.tddd80.item_records.CommentRecord;
 
 /**
@@ -38,12 +41,16 @@ public class CommentItemAdapter extends ArrayAdapter<CommentRecord> {
         if (commentRecord != null && v != null) {
             TextView user = (TextView) v.findViewById(R.id.comment_user_name);
             TextView commentText = (TextView) v.findViewById(R.id.comment_text);
+            ImageView avatarImage = (ImageView) v.findViewById(R.id.comment_avatar_image);
 
             if (user != null) {
                 user.setText(commentRecord.user);
             }
             if (commentText != null) {
                 commentText.setText(commentRecord.commentText);
+            }
+            if (avatarImage != null) {
+                avatarImage.setImageBitmap(Constants.stringToBitmap(commentRecord.image));
             }
         }
         return v;

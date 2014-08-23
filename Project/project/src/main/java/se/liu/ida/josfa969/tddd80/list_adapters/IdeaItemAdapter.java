@@ -2,11 +2,13 @@ package se.liu.ida.josfa969.tddd80.list_adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -43,6 +45,7 @@ public class IdeaItemAdapter extends ArrayAdapter<IdeaRecord> {
         TextView ideaId;
         TextView approvalNum;
         TextView tags;
+        ImageView avatarImage;
 
         if (v == null) {
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -56,6 +59,7 @@ public class IdeaItemAdapter extends ArrayAdapter<IdeaRecord> {
             ideaId = (TextView) v.findViewById(R.id.idea_id);
             approvalNum = (TextView) v.findViewById(R.id.approval_num);
             tags = (TextView) v.findViewById(R.id.tags);
+            avatarImage = (ImageView) v.findViewById(R.id.idea_avatar_image);
 
             if (poster != null) {
                 poster.setText(ideaRecord.poster);
@@ -78,6 +82,9 @@ public class IdeaItemAdapter extends ArrayAdapter<IdeaRecord> {
                     tagString += "#" + tag + " ";
                 }
                 tags.setText(tagString);
+            }
+            if (avatarImage != null) {
+                avatarImage.setImageBitmap(Constants.stringToBitmap(ideaRecord.image));
             }
 
             // Gets the button views

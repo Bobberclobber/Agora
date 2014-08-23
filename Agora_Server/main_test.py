@@ -18,13 +18,13 @@ def init_database():
 
 
 # Registers a new user
-def register_user(user_name, password, e_mail, country, city):
+def register_user(user_name, password, e_mail, country, city, avatar_image):
     if db.email_exists(e_mail):
         return {"response": "E-Mail Already Registered"}
     elif db.user_name_exists(user_name):
         return {"response": "User Name Taken"}
     else:
-        db.add_new_user(user_name, password, e_mail, country, city)
+        db.add_new_user(user_name, password, e_mail, country, city, avatar_image)
         return {"response": "Success"}
 
 
@@ -93,13 +93,15 @@ def get_user_data(identifier):
         city = user_data[3]
         followers = user_data[4]
         location = user_data[5]
+        avatar_image = user_data[6]
         return {"response": "Success",
                 "user_name": user_name,
                 "e_mail": e_mail,
                 "country": country,
                 "city": city,
                 "followers": followers,
-                "location": location}
+                "location": location,
+                "avatar_image": avatar_image}
     else:
         return {"response": "Failure"}
 
@@ -118,6 +120,10 @@ def get_e_mail(user_name):
         return {"response": "Success", "e_mail": e_mail}
     else:
         return {"response": "Failure"}
+
+
+def get_avatar_image(user_name):
+    return {"response": "Success", "avatar_image": db.get_avatar_image(user_name)}
 
 
 def get_other_user_recent_ideas(identifier):
@@ -170,7 +176,7 @@ def user_is_following(user, other_user):
 
 
 def update_user_data(original_user_name, original_e_mail, new_user_name, new_e_mail,
-                     new_password, new_country, new_city, new_location):
+                     new_password, new_country, new_city, new_location, new_image):
     response = "Success"
     if original_user_name != new_user_name and db.user_name_exists(new_user_name):
         response = "User Name Exists"
@@ -178,7 +184,7 @@ def update_user_data(original_user_name, original_e_mail, new_user_name, new_e_m
         response = "E-Mail Exists"
     else:
         db.update_user_data(original_user_name, new_user_name, new_e_mail, new_password, new_country, new_city,
-                            new_location)
+                            new_location, new_image)
     return {"response": response}
 
 

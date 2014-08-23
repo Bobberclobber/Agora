@@ -31,11 +31,11 @@ public class UpdateUserDataService extends IntentService {
         String newCountry = intent.getStringExtra(Constants.COUNTRY_KEY);
         String newCity = intent.getStringExtra(Constants.CITY_KEY);
         String newLocation = intent.getStringExtra(Constants.LOCATION_KEY);
+        String newImage = intent.getStringExtra(Constants.AVATAR_IMAGE_KEY);
 
-        String result = JsonMethods.updateUserData(originalUserName, originalEMail, newUserName, newEMail, newPassword, newCountry, newCity, newLocation);
+        String result = JsonMethods.updateUserData(originalUserName, originalEMail, newUserName, newEMail, newPassword,
+                                                   newCountry, newCity, newLocation, newImage);
         Log.i("UpdateUserDataService", "Result: " + result);
-
-        System.out.println("Update User Data Service");
 
         Intent broadCastIntent = new Intent();
         broadCastIntent.setAction(Constants.UPDATE_USER_DATA_RESP);

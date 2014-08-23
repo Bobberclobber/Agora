@@ -138,6 +138,7 @@ public class LoginActivity extends Activity {
                         loginIntent.putExtra(Constants.COUNTRY_KEY, userData.get(2));
                         loginIntent.putExtra(Constants.CITY_KEY, userData.get(3));
                         loginIntent.putExtra(Constants.LOCATION_KEY, userData.get(5));
+                        loginIntent.putExtra(Constants.AVATAR_IMAGE_KEY, userData.get(6));
                         startActivity(loginIntent);
                     }
                 }

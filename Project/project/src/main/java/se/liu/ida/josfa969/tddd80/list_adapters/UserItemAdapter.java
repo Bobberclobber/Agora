@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import se.liu.ida.josfa969.tddd80.R;
+import se.liu.ida.josfa969.tddd80.help_classes.Constants;
 import se.liu.ida.josfa969.tddd80.item_records.UserRecord;
 
 /**
@@ -41,6 +43,7 @@ public class UserItemAdapter extends ArrayAdapter<UserRecord> {
             TextView country = (TextView) v.findViewById(R.id.user_list_country);
             TextView city = (TextView) v.findViewById(R.id.user_list_city);
             TextView followerNum = (TextView) v.findViewById(R.id.user_list_follower_num);
+            ImageView avatarImage = (ImageView) v.findViewById(R.id.user_avatar_image);
 
             if (userName != null) {
                 userName.setText(userRecord.userName);
@@ -56,6 +59,9 @@ public class UserItemAdapter extends ArrayAdapter<UserRecord> {
             }
             if (followerNum != null) {
                 followerNum.setText(userRecord.followers);
+            }
+            if (avatarImage != null) {
+                avatarImage.setImageBitmap(Constants.stringToBitmap(userRecord.image));
             }
         }
         return v;

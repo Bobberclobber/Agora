@@ -6,10 +6,16 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import java.io.ByteArrayOutputStream;
+import java.util.Arrays;
 
 import se.liu.ida.josfa969.tddd80.R;
 import se.liu.ida.josfa969.tddd80.background_services.RegisterUserService;
@@ -23,6 +29,7 @@ public class RegisterActivity extends Activity {
     private String password;
     private String country;
     private String city;
+    private String image;
 
     // The status text view
     TextView statusText;
@@ -99,12 +106,18 @@ public class RegisterActivity extends Activity {
             progress.setMessage("Wait While Registering...");
             progress.show();
 
+            // Gets the default avatar image
+            Bitmap avatarImg = BitmapFactory.decodeResource(this.getResources(), R.drawable.avatar_img);
+            // Turns the bitmap avatar image to a string which can be passed with a URL
+            image = Constants.bitmapToString(avatarImg);
+
             Intent registerUserIntent = new Intent(this, RegisterUserService.class);
             registerUserIntent.putExtra(Constants.USER_NAME_KEY, userName);
             registerUserIntent.putExtra(Constants.PASSWORD_KEY, password);
             registerUserIntent.putExtra(Constants.E_MAIL_KEY, eMail);
             registerUserIntent.putExtra(Constants.COUNTRY_KEY, country);
             registerUserIntent.putExtra(Constants.CITY_KEY, city);
+            registerUserIntent.putExtra(Constants.AVATAR_IMAGE_KEY, image);
             startService(registerUserIntent);
         }
     }
@@ -138,6 +151,7 @@ public class RegisterActivity extends Activity {
                     completeIntent.putExtra(Constants.COUNTRY_KEY, country);
                     completeIntent.putExtra(Constants.CITY_KEY, city);
                     completeIntent.putExtra(Constants.LOCATION_KEY, "Not set");
+                    completeIntent.putExtra(Constants.AVATAR_IMAGE_KEY, image);
                     startActivity(completeIntent);
                 } else {
                     progress.dismiss();

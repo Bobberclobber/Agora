@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/idea_avatar_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/avatar_image_side"
+        android:layout_height="@dimen/avatar_image_side"
         android:padding="@dimen/small_padding"
         android:src="@drawable/q_mark"
         android:contentDescription="@string/user_avatar_image_description" />
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_internal_margin"
-        android:paddingLeft="@dimen/small_padding"
+        android:padding="@dimen/small_padding"
         android:layout_toRightOf="@id/idea_avatar_image"
         android:layout_below="@id/idea_text"
         android:textColor="@color/primary_color"/>

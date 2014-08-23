@@ -124,6 +124,7 @@ public class FoundPeopleActivity extends Activity {
         String clickedCity = userData.get(3);
         String clickedFollowers = userData.get(4);
         String clickedLocation = userData.get(5);
+        String clickedAvatarImage = userData.get(6);
 
         // Attaches the basic data to the intent
         otherProfileIntent.putExtra(Constants.USER_NAME_KEY, clickedUserName);
@@ -134,6 +135,7 @@ public class FoundPeopleActivity extends Activity {
         otherProfileIntent.putExtra(Constants.LOCATION_KEY, clickedLocation);
         otherProfileIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
         otherProfileIntent.putExtra(Constants.IS_FOLLOWING_KEY, isFollowing);
+        otherProfileIntent.putExtra(Constants.AVATAR_IMAGE_KEY, clickedAvatarImage);
 
         // Dismisses the progress dialog
         progress.dismiss();

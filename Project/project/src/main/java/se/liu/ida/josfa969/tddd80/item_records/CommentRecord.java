@@ -14,22 +14,26 @@ import android.os.Parcelable;
 public class CommentRecord implements Parcelable {
     public String user;
     public String commentText;
+    public String image;
 
-    public CommentRecord(String user, String commentText) {
+    public CommentRecord(String user, String commentText, String image) {
         this.user = user;
         this.commentText = commentText;
+        this.image = image;
     }
 
     private CommentRecord(Parcel in) {
         // This order must match the order in writeToParcel()
         user = in.readString();
         commentText = in.readString();
+        image = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel out, int i) {
         out.writeString(user);
         out.writeString(commentText);
+        out.writeString(image);
     }
 
     @Override

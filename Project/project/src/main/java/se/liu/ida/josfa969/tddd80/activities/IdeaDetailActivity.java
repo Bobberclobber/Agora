@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +38,7 @@ public class IdeaDetailActivity extends Activity {
     private String tagString;
     private String approvalNum;
     private String ideaId;
+    private String avatarImage;
 
     // An intent used to get user data
     public Intent getUserDataIntent;
@@ -67,6 +69,7 @@ public class IdeaDetailActivity extends Activity {
         tagString = initIntent.getStringExtra(Constants.TAG_STRING_KEY);
         approvalNum = initIntent.getStringExtra(Constants.APPROVAL_NUM_KEY);
         ideaId = initIntent.getStringExtra(Constants.IDEA_ID_KEY);
+        avatarImage = initIntent.getStringExtra(Constants.AVATAR_IMAGE_KEY);
 
         // Creates an intent used to get basic user data
         getUserDataIntent = new Intent(this, GetUserDataService.class);
@@ -113,6 +116,7 @@ public class IdeaDetailActivity extends Activity {
         TextView tagsTextView = (TextView) findViewById(R.id.idea_detail_tags);
         TextView approvalNumView = (TextView) findViewById(R.id.idea_detail_approval_num);
         TextView ideaIdView = (TextView) findViewById(R.id.idea_detail_idea_id);
+        ImageButton avatarImageView = (ImageButton) findViewById(R.id.idea_detail_avatar_image);
 
         // Updates the view's data
         posterView.setText(poster);
@@ -126,6 +130,7 @@ public class IdeaDetailActivity extends Activity {
         tagsTextView.setText(tagString);
         approvalNumView.setText(approvalNum);
         ideaIdView.setText(ideaId);
+        avatarImageView.setImageBitmap(Constants.stringToBitmap(avatarImage));
 
         progress.setTitle("Loading");
         progress.setMessage("Fetching idea data...");
@@ -207,6 +212,8 @@ public class IdeaDetailActivity extends Activity {
         String clickedCountry = userData.get(2);
         String clickedCity = userData.get(3);
         String clickedFollowers = userData.get(4);
+        String clickedLocation = userData.get(5);
+        String clickedAvatarImage = userData.get(6);
 
         // Attaches the basic data to the intent
         otherProfileIntent.putExtra(Constants.USER_NAME_KEY, clickedUserName);
@@ -214,6 +221,8 @@ public class IdeaDetailActivity extends Activity {
         otherProfileIntent.putExtra(Constants.COUNTRY_KEY, clickedCountry);
         otherProfileIntent.putExtra(Constants.CITY_KEY, clickedCity);
         otherProfileIntent.putExtra(Constants.FOLLOWERS_KEY, clickedFollowers);
+        otherProfileIntent.putExtra(Constants.LOCATION_KEY, clickedLocation);
+        otherProfileIntent.putExtra(Constants.AVATAR_IMAGE_KEY, clickedAvatarImage);
         otherProfileIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
 
         // Dismisses the progress dialog

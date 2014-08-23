@@ -4,7 +4,6 @@ import android.app.ActionBar;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.FragmentTransaction;
-import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -38,10 +37,7 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationClient;
-
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -84,6 +80,7 @@ public class ProfileActivity extends FragmentActivity implements
     private String country = null;
     private String city = null;
     private String location = null;
+    private String image = null;
 
     // The user data from the updated user settings
     private String newUserName;
@@ -92,6 +89,7 @@ public class ProfileActivity extends FragmentActivity implements
     private String newCountry;
     private String newCity;
     private String newLocation;
+    private String newImage = "null";
 
     // A list of tab titles
     private String[] tabTitleList = {"Post", "Idea Feed", "Messages", "Find", "Settings"};
@@ -211,19 +209,16 @@ public class ProfileActivity extends FragmentActivity implements
                     EditText profileCountry = (EditText) findViewById(R.id.profile_country);
                     EditText profileCity = (EditText) findViewById(R.id.profile_city);
                     TextView profileLocation = (TextView) findViewById(R.id.profile_location);
+                    ImageButton profileImage = (ImageButton) findViewById(R.id.profile_image);
 
-                    // Sets the text of the views
+                    // Sets the content of the views
                     profileUserName.setText(userName);
                     profileEMail.setText(eMail);
                     profilePassword.setText(password);
                     profileCountry.setText(country);
                     profileCity.setText(city);
                     profileLocation.setText(location);
-
-                    // Hides the keyboard
-                    TextView profileSettingsTitle = (TextView) findViewById(R.id.profile_settings_title);
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(profileSettingsTitle.getWindowToken(), 0);
+                    profileImage.setImageBitmap(Constants.stringToBitmap(image));
                 }
             }
         };
@@ -265,6 +260,7 @@ public class ProfileActivity extends FragmentActivity implements
         country = initIntent.getStringExtra(Constants.COUNTRY_KEY);
         city = initIntent.getStringExtra(Constants.CITY_KEY);
         location = initIntent.getStringExtra(Constants.LOCATION_KEY);
+        image = initIntent.getStringExtra(Constants.AVATAR_IMAGE_KEY);
 
         // Creates an intent used to view the detail view of an idea
         ideaDetailIntent = new Intent(this, IdeaDetailActivity.class);
@@ -282,6 +278,7 @@ public class ProfileActivity extends FragmentActivity implements
         String defaultCountry = "Country";
         String defaultCity = "City";
         String defaultLocation = "Not Set";
+        String defaultImage = "";
         if (userName == null) {
             userName = preferences.getString(Constants.USER_NAME_KEY, defaultUserName);
         }
@@ -299,6 +296,9 @@ public class ProfileActivity extends FragmentActivity implements
         }
         if (location == null) {
             location = preferences.getString(Constants.LOCATION_KEY, defaultLocation);
+        }
+        if (image == null) {
+            image = preferences.getString(Constants.AVATAR_IMAGE_KEY, defaultImage);
         }
     }
 
@@ -333,6 +333,7 @@ public class ProfileActivity extends FragmentActivity implements
         editor.putString(Constants.COUNTRY_KEY, country);
         editor.putString(Constants.CITY_KEY, city);
         editor.putString(Constants.LOCATION_KEY, location);
+        editor.putString(Constants.AVATAR_IMAGE_KEY, image);
         editor.commit();
     }
 
@@ -367,6 +368,7 @@ public class ProfileActivity extends FragmentActivity implements
                     ideaDetailIntent.putExtra(Constants.TAG_STRING_KEY, ideaRecord.tags);
                     ideaDetailIntent.putExtra(Constants.APPROVAL_NUM_KEY, ideaRecord.approvalNum);
                     ideaDetailIntent.putExtra(Constants.IDEA_ID_KEY, ideaRecord.ideaId);
+                    ideaDetailIntent.putExtra(Constants.AVATAR_IMAGE_KEY, ideaRecord.image);
                     startActivity(ideaDetailIntent);
                 }
             }
@@ -382,6 +384,7 @@ public class ProfileActivity extends FragmentActivity implements
                 if (messageRecord != null) {
                     conversationIntent.putExtra(Constants.USER_NAME_KEY, messageRecord.sender);
                     conversationIntent.putExtra(Constants.ORIGINAL_USER_KEY, messageRecord.receiver);
+                    conversationIntent.putExtra(Constants.AVATAR_IMAGE_KEY, messageRecord.image);
                     startActivity(conversationIntent);
                 }
             }
@@ -452,6 +455,7 @@ public class ProfileActivity extends FragmentActivity implements
         updateUserDataIntent.putExtra(Constants.COUNTRY_KEY, newCountry);
         updateUserDataIntent.putExtra(Constants.CITY_KEY, newCity);
         updateUserDataIntent.putExtra(Constants.LOCATION_KEY, newLocation);
+        updateUserDataIntent.putExtra(Constants.AVATAR_IMAGE_KEY, newImage);
         startService(updateUserDataIntent);
     }
 
@@ -515,6 +519,8 @@ public class ProfileActivity extends FragmentActivity implements
                 // Sets the image button's image to the one just taken
                 ImageButton avatarImageView = (ImageButton) findViewById(R.id.profile_image);
                 avatarImageView.setImageBitmap(rotatedImage);
+
+                newImage = Constants.bitmapToString(rotatedImage);
             }
         }
     }
@@ -613,7 +619,6 @@ public class ProfileActivity extends FragmentActivity implements
          * Dismiss the progress dialog and set the the location
          * variable and text view values to the acquired address.
          */
-
         @Override
         protected void onPostExecute(String address) {
             // Set the values
@@ -802,6 +807,11 @@ public class ProfileActivity extends FragmentActivity implements
                 country = newCountry;
                 city = newCity;
                 location = newLocation;
+
+                // If the image contains a decipherable value
+                if (!newImage.equals("null")) {
+                    image = newImage;
+                }
             }
 
             // Dismiss the progress dialog

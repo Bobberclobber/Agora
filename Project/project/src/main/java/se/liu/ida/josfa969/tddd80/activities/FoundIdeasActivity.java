@@ -45,7 +45,7 @@ public class FoundIdeasActivity extends Activity {
         tagString = initIntent.getStringExtra(Constants.TAG_STRING_KEY);
         originalUser = initIntent.getStringExtra(Constants.ORIGINAL_USER_KEY);
 
-        // Creates an intent used to get basic user data
+        // Creates an intent used to visit the detail view of an idea
         ideaDetailIntent = new Intent(this, IdeaDetailActivity.class);
 
         // Filters for the receiver
@@ -92,14 +92,15 @@ public class FoundIdeasActivity extends Activity {
         foundIdeasList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                IdeaRecord o = (IdeaRecord) foundIdeasList.getItemAtPosition(position);
-                if (o != null) {
+                IdeaRecord ideaRecord = (IdeaRecord) foundIdeasList.getItemAtPosition(position);
+                if (ideaRecord != null) {
                     ideaDetailIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
-                    ideaDetailIntent.putExtra(Constants.POSTER_KEY, o.poster);
-                    ideaDetailIntent.putExtra(Constants.IDEA_TEXT_KEY, o.ideaText);
-                    ideaDetailIntent.putExtra(Constants.TAG_STRING_KEY, o.tags);
-                    ideaDetailIntent.putExtra(Constants.APPROVAL_NUM_KEY, o.approvalNum);
-                    ideaDetailIntent.putExtra(Constants.IDEA_ID_KEY, o.ideaId);
+                    ideaDetailIntent.putExtra(Constants.POSTER_KEY, ideaRecord.poster);
+                    ideaDetailIntent.putExtra(Constants.IDEA_TEXT_KEY, ideaRecord.ideaText);
+                    ideaDetailIntent.putExtra(Constants.TAG_STRING_KEY, ideaRecord.tags);
+                    ideaDetailIntent.putExtra(Constants.APPROVAL_NUM_KEY, ideaRecord.approvalNum);
+                    ideaDetailIntent.putExtra(Constants.IDEA_ID_KEY, ideaRecord.ideaId);
+                    ideaDetailIntent.putExtra(Constants.AVATAR_IMAGE_KEY, ideaRecord.image);
                     startActivity(ideaDetailIntent);
                 }
             }

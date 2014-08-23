@@ -34,7 +34,8 @@ def init():
               "followers INTEGER, "
               "following BLOB, "
               "approving BLOB,"
-              "home_location TEXT)")
+              "home_location TEXT,"
+              "avatar_image TEXT)")
 
     c.execute("CREATE TABLE ideas "
               "(idea_id INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -69,12 +70,13 @@ def close():
     get_db().close()
 
 
-def add_new_user(user_name, password, e_mail, country, city):
+def add_new_user(user_name, password, e_mail, country, city, avatar_image):
     c = get_db()
     c.execute("INSERT INTO users (user_name, password, e_mail, country, city, followers, following, approving, "
-              "home_location) "
-              "VALUES (?,?,?,?,?,?,?,?,?)",
-              (user_name, password, e_mail, country, city, 0, marshal.dumps([]), marshal.dumps([]), "Not set"))
+              "home_location, avatar_image) "
+              "VALUES (?,?,?,?,?,?,?,?,?,?)",
+              (user_name, password, e_mail, country, city, 0, marshal.dumps([]), marshal.dumps([]),
+               "Not set", avatar_image))
     c.commit()
 
 
@@ -212,7 +214,7 @@ def get_following(user_name):
 
 def get_user_data(identifier):
     c = get_db()
-    cur = c.execute("SELECT user_name, e_mail, country, city, followers, home_location FROM users")
+    cur = c.execute("SELECT user_name, e_mail, country, city, followers, home_location, avatar_image FROM users")
     user_data = []
     for row in cur:
         if identifier == row[0] or identifier == row[1]:
@@ -220,6 +222,15 @@ def get_user_data(identifier):
                 user_data += [item]
             return user_data
     return "Invalid"
+
+
+def get_avatar_image(user_name):
+    c = get_db()
+    cur = c.execute("SELECT user_name, avatar_image FROM users")
+    for row in cur:
+        if user_name == row[0]:
+            return row[1]
+    return ""
 
 
 def add_follower(user, follower):
@@ -293,7 +304,8 @@ def user_is_following(user, other_user):
     return False
 
 
-def update_user_data(original_user_name, new_user_name, new_e_mail, new_password, new_country, new_city, new_location):
+def update_user_data(original_user_name, new_user_name, new_e_mail, new_password, new_country, new_city, new_location,
+                     new_image):
     c = get_db()
     c.execute("UPDATE users SET user_name=? WHERE user_name=?", (new_user_name, original_user_name))
     c.execute("UPDATE users SET e_mail=? WHERE user_name=?", (new_e_mail, original_user_name))
@@ -301,6 +313,10 @@ def update_user_data(original_user_name, new_user_name, new_e_mail, new_password
     c.execute("UPDATE users SET country=? WHERE user_name=?", (new_country, original_user_name))
     c.execute("UPDATE users SET city=? WHERE user_name=?", (new_city, original_user_name))
     c.execute("UPDATE users SET home_location=? WHERE user_name=?", (new_location, original_user_name))
+
+    # If the image was updated, updated the corresponding column in the users table
+    if new_image != "null":
+        c.execute("UPDATE users SET avatar_image=? WHERE user_name=?", (new_image, original_user_name))
 
     # Changes the user name in all required
     # places if it has been changed

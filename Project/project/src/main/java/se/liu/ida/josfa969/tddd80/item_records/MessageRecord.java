@@ -14,15 +14,16 @@ import android.os.Parcelable;
  * this object can be sent with an intent
  */
 public class MessageRecord implements Parcelable {
-
     public String sender;
     public String receiver;
     public String messageText;
+    public String image;
 
-    public MessageRecord(String sender, String receiver, String messageText) {
+    public MessageRecord(String sender, String receiver, String messageText, String image) {
         this.sender = sender;
         this.receiver = receiver;
         this.messageText = messageText;
+        this.image = image;
     }
 
     private MessageRecord(Parcel in) {
@@ -30,6 +31,7 @@ public class MessageRecord implements Parcelable {
         sender = in.readString();
         receiver = in.readString();
         messageText = in.readString();
+        image = in.readString();
     }
 
     @Override
@@ -37,6 +39,7 @@ public class MessageRecord implements Parcelable {
         out.writeString(sender);
         out.writeString(receiver);
         out.writeString(messageText);
+        out.writeString(image);
     }
 
     @Override
