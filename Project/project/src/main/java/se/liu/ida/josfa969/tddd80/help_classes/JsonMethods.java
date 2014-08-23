@@ -31,9 +31,9 @@ import se.liu.ida.josfa969.tddd80.item_records.UserRecord;
  */
 public class JsonMethods {
     // Base url for emulator
-    private static String BASE_URL = "http://10.0.3.2:5000/";
+    // private static String BASE_URL = "http://10.0.3.2:5000/";
     // Base url for real device
-    // private static String BASE_URL = "http://localhost:5000/";
+    private static String BASE_URL = "http://localhost:5000/";
     private static final String SPACE = " ";
     private static final String SPACE_REPLACE = "&nbsp";
     private static final String HASH_TAG = "#";
@@ -418,6 +418,7 @@ public class JsonMethods {
                 + newCountry + "/" + newCity + "/" + newLocation + "/" + newImage;
         updateUserDataURL = updateUserDataURL.replace(SPACE, SPACE_REPLACE);
         updateUserDataURL = updateUserDataURL.replace(HASH_TAG, HASH_TAG_REPLACE);
+        updateUserDataURL = updateUserDataURL.replace(ENTER, ENTER_REPLACE);
         return getJsonResponse(updateUserDataURL);
     }
 

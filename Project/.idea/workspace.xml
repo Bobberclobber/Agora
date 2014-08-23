@@ -38,37 +38,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2ed115b9-8fb5-4117-8f45-e88e1e04a5ef" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Openshift Server" afterPath="$PROJECT_DIR$/../Openshift Server" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Agora_Server/database.db" afterPath="$PROJECT_DIR$/../Agora_Server/database.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/CommentItemAdapter.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/CommentItemAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/item_records/CommentRecord.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/item_records/CommentRecord.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/Constants.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ConversationActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ConversationActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/FoundIdeasActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/FoundIdeasActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/FoundPeopleActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/FoundPeopleActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetApprovingService.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetApprovingService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetFollowingService.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetFollowingService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/IdeaDetailActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/IdeaDetailActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/IdeaItemAdapter.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/IdeaItemAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/item_records/IdeaRecord.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/item_records/IdeaRecord.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/InformationActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/InformationActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/InitialActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/InitialActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/LoginActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/LoginActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/MessageItemAdapter.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/MessageItemAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/item_records/MessageRecord.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/item_records/MessageRecord.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ProfileActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ProfileActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/RegisterActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/RegisterActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/RegisterUserService.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/RegisterUserService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/UpdateUserDataService.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/UpdateUserDataService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/UserItemAdapter.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/UserItemAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/item_records/UserRecord.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/item_records/UserRecord.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Agora_Server/database.py" afterPath="$PROJECT_DIR$/../Agora_Server/database.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/layout/idea_list_item.xml" afterPath="$PROJECT_DIR$/project/src/main/res/layout/idea_list_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Agora_Server/main.py" afterPath="$PROJECT_DIR$/../Agora_Server/main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Agora_Server/main_test.py" afterPath="$PROJECT_DIR$/../Agora_Server/main_test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Agora_Server/unit_test.py" afterPath="$PROJECT_DIR$/../Agora_Server/unit_test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/layout/user_list_item.xml" afterPath="$PROJECT_DIR$/project/src/main/res/layout/user_list_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/layout/message_list_item.xml" afterPath="$PROJECT_DIR$/project/src/main/res/layout/message_list_item.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../Agora_Server/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../Agora_Server/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -136,8 +107,8 @@
       <file leaf-file-name="ProfileActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ProfileActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="10515" max-vertical-offset="14756">
-              <caret line="635" column="53" selection-start-line="635" selection-start-column="53" selection-end-line="635" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="5789" max-vertical-offset="14756">
+              <caret line="349" column="0" selection-start-line="349" selection-start-column="0" selection-end-line="349" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#6830#8966#0" expanded="true" />
@@ -157,6 +128,19 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="message_list_item.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/message_list_item.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.111111" vertical-offset="510" max-vertical-offset="1088">
+              <caret line="54" column="46" selection-start-line="54" selection-start-column="46" selection-end-line="54" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="OtherProfileActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -170,10 +154,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InformationActivity.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="InformationActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/InformationActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.8149533" vertical-offset="3572" max-vertical-offset="6035">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3572" max-vertical-offset="6035">
               <caret line="179" column="41" selection-start-line="179" selection-start-column="41" selection-end-line="179" selection-end-column="41" />
               <folding>
                 <element signature="e#13098#14320#0" expanded="true" />
@@ -203,18 +187,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JsonMethods.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="JsonMethods.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="7746" max-vertical-offset="9962">
-              <caret line="492" column="51" selection-start-line="492" selection-start-column="51" selection-end-line="492" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.5906542" vertical-offset="6484" max-vertical-offset="9979">
+              <caret line="422" column="5" selection-start-line="422" selection-start-column="5" selection-end-line="422" selection-end-column="5" />
               <folding>
                 <element signature="e#6303#6311#0" expanded="true" />
                 <element signature="e#9007#9022#0" expanded="true" />
                 <element signature="e#11401#11409#0" expanded="true" />
                 <element signature="e#19408#19420#0" expanded="true" />
-                <element signature="e#23241#23253#0" expanded="true" />
-                <element signature="e#24837#24849#0" expanded="true" />
+                <element signature="e#23318#23330#0" expanded="true" />
+                <element signature="e#24914#24926#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -918,7 +902,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetUserDataService.java" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/AddApprovingService.java" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/RemoveApprovingService.java" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetMessageFeedService.java" />
@@ -965,10 +948,11 @@
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetFollowingService.java" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetApprovingService.java" />
-        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/InformationActivity.java" />
         <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ProfileActivity.java" />
         <option value="$PROJECT_DIR$/project/src/main/res/layout/idea_list_item.xml" />
+        <option value="$PROJECT_DIR$/project/src/main/res/layout/message_list_item.xml" />
+        <option value="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java" />
       </list>
     </option>
   </component>
@@ -1474,7 +1458,7 @@
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="192.168.56.101:5555" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="03bf07bce2558dbf" />
     <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -1977,17 +1961,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/message_list_item.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1088">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/MessageItemAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8897196" vertical-offset="255" max-vertical-offset="935">
@@ -2114,8 +2087,8 @@
         <state vertical-scroll-proportion="0.6875" vertical-offset="981" max-vertical-offset="1955">
           <caret line="102" column="92" selection-start-line="102" selection-start-column="92" selection-end-line="102" selection-end-column="92" />
           <folding>
-            <element signature="e#3226#4263#0" expanded="true" />
-            <element signature="e#4252#4253#0" expanded="true" />
+            <element signature="e#3226#4263#0" expanded="false" />
+            <element signature="e#4252#4253#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2147,43 +2120,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ProfileActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="10515" max-vertical-offset="14756">
-          <caret line="635" column="53" selection-start-line="635" selection-start-column="53" selection-end-line="635" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6830#8966#0" expanded="true" />
-            <element signature="e#8955#8956#0" expanded="true" />
-            <element signature="e#14814#15848#0" expanded="true" />
-            <element signature="e#15837#15838#0" expanded="true" />
-            <element signature="e#16048#16757#0" expanded="true" />
-            <element signature="e#16746#16747#0" expanded="true" />
-            <element signature="e#20811#20812#0" expanded="true" />
-            <element signature="e#20854#20855#0" expanded="true" />
-            <element signature="e#31070#31071#0" expanded="true" />
-            <element signature="e#31110#31111#0" expanded="true" />
-            <element signature="e#31244#31245#0" expanded="true" />
-            <element signature="e#31282#31283#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="7746" max-vertical-offset="9962">
-          <caret line="492" column="51" selection-start-line="492" selection-start-column="51" selection-end-line="492" selection-end-column="51" />
-          <folding>
-            <element signature="e#6303#6311#0" expanded="true" />
-            <element signature="e#9007#9022#0" expanded="true" />
-            <element signature="e#11401#11409#0" expanded="true" />
-            <element signature="e#19408#19420#0" expanded="true" />
-            <element signature="e#23241#23253#0" expanded="true" />
-            <element signature="e#24837#24849#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_information.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.43503937" vertical-offset="1581" max-vertical-offset="2329">
@@ -2206,27 +2142,72 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/idea_list_item.xml">
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/InformationActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33464566" vertical-offset="0" max-vertical-offset="2091">
-          <caret line="10" column="56" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3572" max-vertical-offset="6035">
+          <caret line="179" column="41" selection-start-line="179" selection-start-column="41" selection-end-line="179" selection-end-column="41" />
           <folding>
-            <element signature="e#290#316#0" expanded="true" />
-            <element signature="e#347#373#0" expanded="true" />
+            <element signature="e#13098#14320#0" expanded="true" />
+            <element signature="e#14301#14302#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ProfileActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5789" max-vertical-offset="14756">
+          <caret line="349" column="0" selection-start-line="349" selection-start-column="0" selection-end-line="349" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6830#8966#0" expanded="true" />
+            <element signature="e#8955#8956#0" expanded="true" />
+            <element signature="e#14814#15848#0" expanded="true" />
+            <element signature="e#15837#15838#0" expanded="true" />
+            <element signature="e#16048#16757#0" expanded="true" />
+            <element signature="e#16746#16747#0" expanded="true" />
+            <element signature="e#20811#20812#0" expanded="true" />
+            <element signature="e#20854#20855#0" expanded="true" />
+            <element signature="e#31070#31071#0" expanded="true" />
+            <element signature="e#31110#31111#0" expanded="true" />
+            <element signature="e#31244#31245#0" expanded="true" />
+            <element signature="e#31282#31283#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/message_list_item.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.111111" vertical-offset="510" max-vertical-offset="1088">
+          <caret line="54" column="46" selection-start-line="54" selection-start-column="46" selection-end-line="54" selection-end-column="46" />
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="android-designer">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/InformationActivity.java">
+    <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/idea_list_item.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.8149533" vertical-offset="3572" max-vertical-offset="6035">
-          <caret line="179" column="41" selection-start-line="179" selection-start-column="41" selection-end-line="179" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.2007874" vertical-offset="68" max-vertical-offset="2091">
+          <caret line="10" column="56" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5906542" vertical-offset="6484" max-vertical-offset="9979">
+          <caret line="422" column="5" selection-start-line="422" selection-start-column="5" selection-end-line="422" selection-end-column="5" />
           <folding>
-            <element signature="e#13098#14320#0" expanded="true" />
-            <element signature="e#14301#14302#0" expanded="true" />
+            <element signature="e#6303#6311#0" expanded="true" />
+            <element signature="e#9007#9022#0" expanded="true" />
+            <element signature="e#11401#11409#0" expanded="true" />
+            <element signature="e#19408#19420#0" expanded="true" />
+            <element signature="e#23318#23330#0" expanded="true" />
+            <element signature="e#24914#24926#0" expanded="true" />
           </folding>
         </state>
       </provider>

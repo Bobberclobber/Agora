@@ -54,6 +54,6 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/small_padding"
         android:layout_toRightOf="@id/message_avatar_image"
-        android:layout_below="@id/message_avatar_image"/>
+        android:layout_below="@id/receiver_text"/>
 
 </RelativeLayout>
