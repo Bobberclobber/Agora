@@ -307,7 +307,8 @@ def user_is_following(user, other_user):
 def update_user_data(original_user_name, new_user_name, new_e_mail, new_password, new_country, new_city, new_location,
                      new_image):
     c = get_db()
-    c.execute("UPDATE users SET user_name=? WHERE user_name=?", (new_user_name, original_user_name))
+
+    # Updates all user data
     c.execute("UPDATE users SET e_mail=? WHERE user_name=?", (new_e_mail, original_user_name))
     c.execute("UPDATE users SET password=? WHERE user_name=?", (new_password, original_user_name))
     c.execute("UPDATE users SET country=? WHERE user_name=?", (new_country, original_user_name))
@@ -317,6 +318,9 @@ def update_user_data(original_user_name, new_user_name, new_e_mail, new_password
     # If the image was updated, updated the corresponding column in the users table
     if new_image != "null":
         c.execute("UPDATE users SET avatar_image=? WHERE user_name=?", (new_image, original_user_name))
+
+    # Updates the user name last
+    c.execute("UPDATE users SET user_name=? WHERE user_name=?", (new_user_name, original_user_name))
 
     # Changes the user name in all required
     # places if it has been changed
@@ -337,6 +341,9 @@ def update_user_data(original_user_name, new_user_name, new_e_mail, new_password
         # Changes the user name in all messages
         c.execute("UPDATE messages SET sender=? WHERE sender=?", (new_user_name, original_user_name))
         c.execute("UPDATE messages SET receiver=? WHERE receiver=?", (new_user_name, original_user_name))
+
+        # Changes the user name in all comments
+        c.execute("UPDATE comments SET user=? WHERE user=?", (new_user_name, original_user_name))
     c.commit()
 
 
@@ -348,8 +355,8 @@ def add_approving(user_name, idea_id):
     for row in cur:
         if user_name == row[0]:
             approving = marshal.loads(row[1])
-            if not idea_id in approving:
-                approving.append(idea_id)
+            if not str(idea_id) in approving:
+                approving.append(str(idea_id))
                 approving = marshal.dumps(approving)
                 c.execute("UPDATE users SET approving=? WHERE user_name=?", (approving, user_name))
             break
@@ -373,8 +380,8 @@ def remove_approving(user_name, idea_id):
     for row in cur:
         if user_name == row[0]:
             approving = marshal.loads(row[1])
-            if idea_id in approving:
-                approving.remove(idea_id)
+            if str(idea_id) in approving:
+                approving.remove(str(idea_id))
                 approving = marshal.dumps(approving)
                 c.execute("UPDATE users SET approving=? WHERE user_name=?", (approving, user_name))
             break
@@ -396,7 +403,7 @@ def user_is_approving(user_name, idea_id):
     for row in cur:
         if user_name == row[0]:
             approving = marshal.loads(row[1])
-            if idea_id in approving:
+            if str(idea_id) in approving:
                 return True
     return False
 
@@ -437,10 +444,10 @@ def get_approving_data(user_name):
     # Builds a list of all the idea data of
     # the idea the given user is approving
     approving = []
-    for idea in approving_ids:
+    for idea_id in approving_ids:
         cur = c.execute("SELECT idea_id, idea_text, poster, approval_num, tags FROM ideas")
         for row in cur:
-            if idea == str(row[0]):
+            if idea_id == str(row[0]):
                 approving.append([row[0], row[1], row[2], row[3], marshal.loads(row[4])])
     return approving
 
@@ -456,7 +463,7 @@ def get_comments(idea_id):
     cur = c.execute("SELECT * FROM comments")
     comments = []
     for row in cur:
-        if idea_id == str(row[1]):
+        if str(idea_id) == str(row[1]):
             temp = [row[0], row[2]]
             comments.append(temp)
     return comments

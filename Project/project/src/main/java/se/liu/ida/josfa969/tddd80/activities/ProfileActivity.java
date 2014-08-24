@@ -321,7 +321,6 @@ public class ProfileActivity extends FragmentActivity implements
     @Override
     protected void onPause() {
         super.onPause();
-
         // When leaving this activity and starting a
         // new one, save the current user's username
         // and e-mail using a shared preference

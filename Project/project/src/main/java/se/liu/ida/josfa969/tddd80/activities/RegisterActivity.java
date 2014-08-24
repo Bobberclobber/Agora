@@ -67,8 +67,8 @@ public class RegisterActivity extends Activity {
 
     @Override
     protected void onPause() {
-        super.onPause();
         unregisterReceiver(receiver);
+        super.onPause();
     }
 
     @Override

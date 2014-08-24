@@ -133,9 +133,10 @@ public class OtherProfileActivity extends Activity {
 
     @Override
     protected void onPause() {
-        super.onPause();
         // Unregister the receiver
         unregisterReceiver(receiver);
+
+        super.onPause();
 
         // When leaving this activity and starting a
         // new one, save the current user's username

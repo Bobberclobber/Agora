@@ -102,7 +102,6 @@ public class ConversationActivity extends Activity {
 
     @Override
     protected void onPause() {
-        super.onPause();
         // Stops the automatic updating of messages
         updateMessagesTask.cancel();
 
@@ -114,6 +113,7 @@ public class ConversationActivity extends Activity {
         editor.putString(Constants.USER_NAME_KEY, userName);
         editor.putString(Constants.ORIGINAL_USER_KEY, originalUser);
         editor.commit();
+        super.onPause();
     }
 
     @Override
