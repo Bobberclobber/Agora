@@ -306,15 +306,19 @@ public class ProfileActivity extends FragmentActivity implements
     protected void onStart() {
         super.onStart();
         // Connect the client
-        locationClient.connect();
+        // TODO: Re-enable this on real device
+        // locationClient.connect();
     }
 
     @Override
     protected void onStop() {
+        // TODO: Re-enable this on real device
+/*
         if (servicesConnected()) {
             // Disconnects the client
             locationClient.disconnect();
         }
+*/
         super.onStop();
     }
 
@@ -525,6 +529,8 @@ public class ProfileActivity extends FragmentActivity implements
     }
 
     public void onSetLocationClick(View view) {
+        // TODO: Re-enable this on real device
+/*
         if (servicesConnected()) {
             // Ensure that a Geocoder services is available
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD && Geocoder.isPresent()) {
@@ -544,6 +550,7 @@ public class ProfileActivity extends FragmentActivity implements
                 (new GetAddressTask(this, locationTextView)).execute(mCurrentLocation);
             }
         }
+*/
     }
 
     /*
@@ -553,6 +560,8 @@ public class ProfileActivity extends FragmentActivity implements
      * Void - Indicates that progress units are not used
      *  String - An address passed to onPostExecute()
      */
+    // TODO: Re-enable this on real device
+/*
     private class GetAddressTask extends AsyncTask<Location, Void, String> {
         Context mContext;
         TextView mTextView;
@@ -567,6 +576,7 @@ public class ProfileActivity extends FragmentActivity implements
          * Get a Geocoder instance, get the latitude and longitude,
          * look up the address, and return it.
          */
+/*
         @Override
         protected String doInBackground(Location... locations) {
             Geocoder geocoder = new Geocoder(mContext, Locale.getDefault());
@@ -600,6 +610,7 @@ public class ProfileActivity extends FragmentActivity implements
                  * Format the first line of address (if available), city, and country name.
                  */
                 // Return the text
+/*
                 return String.format(
                         "%s, %s, %s",
                         // If there's a street address, add it
@@ -618,6 +629,7 @@ public class ProfileActivity extends FragmentActivity implements
          * Dismiss the progress dialog and set the the location
          * variable and text view values to the acquired address.
          */
+/*
         @Override
         protected void onPostExecute(String address) {
             // Set the values

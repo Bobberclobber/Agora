@@ -151,12 +151,17 @@ public class OtherProfileActivity extends Activity {
         editor.putString(Constants.LOCATION_KEY, location);
         editor.putString(Constants.AVATAR_IMAGE_KEY, avatarImage);
         editor.putString(Constants.ORIGINAL_USER_KEY, originalUser);
+        editor.putBoolean(Constants.IS_FOLLOWING_KEY, isFollowing);
         editor.commit();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        // Gets updates isFollowing value
+        SharedPreferences preferences = this.getPreferences(Context.MODE_PRIVATE);
+        isFollowing = preferences.getBoolean(Constants.IS_FOLLOWING_KEY, false);
 
         // Sets the follow/un-follow buttons' visibility depending on
         // if the current user is following the other user
@@ -220,6 +225,10 @@ public class OtherProfileActivity extends Activity {
         String followerNum = String.valueOf(followersView.getText());
         int incFollowerNum = Integer.parseInt(followerNum) + 1;
         followersView.setText(String.valueOf(incFollowerNum));
+        followers = String.valueOf(incFollowerNum);
+
+        // Temporarily sets the isFollowing variable
+        isFollowing = true;
 
         // Starts the AddFollowerService
         Intent addFollowerIntent = new Intent(this, AddFollowerService.class);
@@ -242,6 +251,10 @@ public class OtherProfileActivity extends Activity {
         String followerNum = String.valueOf(followersView.getText());
         int decFollowerNum = Integer.parseInt(followerNum) - 1;
         followersView.setText(String.valueOf(decFollowerNum));
+        followers = String.valueOf(decFollowerNum);
+
+        // Temporarily sets the isFollowing variable
+        isFollowing = false;
 
         // Starts the RemoveFollowerService
         Intent removeFollowerIntent = new Intent(this, RemoveFollowerService.class);

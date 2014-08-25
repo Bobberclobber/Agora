@@ -70,6 +70,7 @@ public class InformationActivity extends Activity {
         country = initIntent.getStringExtra(Constants.COUNTRY_KEY);
         city = initIntent.getStringExtra(Constants.CITY_KEY);
         followers = initIntent.getStringExtra(Constants.FOLLOWERS_KEY);
+        System.out.println("Followers: " + followers);
         location = initIntent.getStringExtra(Constants.LOCATION_KEY);
         originalUser = initIntent.getStringExtra(Constants.ORIGINAL_USER_KEY);
 

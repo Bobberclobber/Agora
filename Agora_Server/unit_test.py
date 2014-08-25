@@ -256,6 +256,12 @@ class UpdateUserDataTest(unittest.TestCase):
 
             self.failIf(not correct_response())
 
+    def tearDown(self):
+        with app.test_request_context():
+            # Destroys and closes the database
+            db.destroy()
+            db.close()
+
 
 # Tests if ideas can be posted and retrieved correctly
 class IdeaPostingAndFetchingTest(unittest.TestCase):

@@ -48,12 +48,6 @@ public class RegisterActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_fragment);
 
-        // Adds filters for the receiver
-        IntentFilter registerUserFilter = new IntentFilter(Constants.REGISTER_USER_RESP);
-        registerUserFilter.addCategory(Intent.CATEGORY_DEFAULT);
-        receiver = new ResponseReceiver();
-        registerReceiver(receiver, registerUserFilter);
-
         // Creates the progress dialog
         progress = new ProgressDialog(this);
 
@@ -63,6 +57,16 @@ public class RegisterActivity extends Activity {
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().add(R.id.container, new RegisterFragment()).commit();
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Adds filters for the receiver
+        IntentFilter registerUserFilter = new IntentFilter(Constants.REGISTER_USER_RESP);
+        registerUserFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        receiver = new ResponseReceiver();
+        registerReceiver(receiver, registerUserFilter);
     }
 
     @Override
