@@ -4,11 +4,22 @@ import android.os.NetworkOnMainThreadException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpVersion;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.conn.ClientConnectionManager;
+import org.apache.http.conn.scheme.PlainSocketFactory;
+import org.apache.http.conn.scheme.Scheme;
+import org.apache.http.conn.scheme.SchemeRegistry;
+import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpParams;
+import org.apache.http.params.HttpProtocolParams;
+import org.apache.http.protocol.HTTP;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,6 +28,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.security.KeyStore;
 import java.util.ArrayList;
 
 import se.liu.ida.josfa969.tddd80.item_records.CommentRecord;
@@ -30,8 +42,9 @@ import se.liu.ida.josfa969.tddd80.item_records.UserRecord;
  * A class containing methods used to get JSON-responses from URLs
  */
 public class JsonMethods {
+    private static String BASE_URL = "http://agoraserver-josfa969.rhcloud.com/";
     // Base url for emulator
-    private static String BASE_URL = "http://10.0.3.2:5000/";
+    // private static String BASE_URL = "http://10.0.3.2:5000/";
     // Base url for real device
     // private static String BASE_URL = "http://localhost:5000/";
     private static final String SPACE = " ";
@@ -555,7 +568,7 @@ public class JsonMethods {
     private static String getUrlResponseString(String url) {
         // Reading URL response
         StringBuilder builder = new StringBuilder();
-        HttpClient client = new DefaultHttpClient();
+        HttpClient client = getNewHttpClient();
         HttpGet httpGet = new HttpGet(url);
 
         try {
@@ -585,6 +598,31 @@ public class JsonMethods {
         }
         // End reading of URL
         return builder.toString();
+    }
+
+    // Gets a Http Client which will accept all certificates
+    private static HttpClient getNewHttpClient() {
+        try {
+            KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
+            trustStore.load(null, null);
+
+            SSLSocketFactory sf = new MySSLSocketFactory(trustStore);
+            sf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+
+            HttpParams params = new BasicHttpParams();
+            HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);
+            HttpProtocolParams.setContentCharset(params, HTTP.UTF_8);
+
+            SchemeRegistry registry = new SchemeRegistry();
+            registry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
+            registry.register(new Scheme("https", sf, 443));
+
+            ClientConnectionManager ccm = new ThreadSafeClientConnManager(params, registry);
+
+            return new DefaultHttpClient(ccm, params);
+        } catch (Exception e) {
+            return new DefaultHttpClient();
+        }
     }
 
     private static String getJsonResponse(String URL) {
