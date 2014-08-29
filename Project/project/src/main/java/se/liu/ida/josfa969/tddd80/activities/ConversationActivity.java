@@ -24,10 +24,11 @@ import java.util.TimerTask;
 
 import se.liu.ida.josfa969.tddd80.R;
 import se.liu.ida.josfa969.tddd80.background_services.GetConversationService;
+import se.liu.ida.josfa969.tddd80.background_services.GetUserDataService;
+import se.liu.ida.josfa969.tddd80.background_services.IsFollowingService;
 import se.liu.ida.josfa969.tddd80.background_services.SendMessageService;
 import se.liu.ida.josfa969.tddd80.fragments.ConversationFragment;
 import se.liu.ida.josfa969.tddd80.help_classes.Constants;
-import se.liu.ida.josfa969.tddd80.help_classes.JsonMethods;
 import se.liu.ida.josfa969.tddd80.item_records.MessageRecord;
 import se.liu.ida.josfa969.tddd80.list_adapters.MessageItemAdapter;
 
@@ -53,6 +54,12 @@ public class ConversationActivity extends Activity {
 
     // Intent to start the get recent messages service
     public Intent getConversationIntent;
+
+    // Intent to start the is following service
+    public Intent isFollowingIntent;
+
+    // Intent to visit other user's profile
+    public Intent otherUserIntent;
 
     // Progress dialog
     public ProgressDialog progress;
@@ -91,7 +98,9 @@ public class ConversationActivity extends Activity {
             getFragmentManager().beginTransaction().add(R.id.container, new ConversationFragment()).commit();
         }
 
-        getConversationIntent = new Intent(getBaseContext(), GetConversationService.class);
+        getConversationIntent = new Intent(this, GetConversationService.class);
+        isFollowingIntent = new Intent(this, IsFollowingService.class);
+        otherUserIntent = new Intent(this, OtherProfileActivity.class);
         progress = new ProgressDialog(this);
     }
 
@@ -101,11 +110,17 @@ public class ConversationActivity extends Activity {
         // Filters for the receiver
         IntentFilter getRecentMessagesFilter = new IntentFilter(Constants.GET_CONVERSATION_RESP);
         IntentFilter sendMessageFilter = new IntentFilter(Constants.SEND_MESSAGE_RESP);
+        IntentFilter getUserDataFilter = new IntentFilter(Constants.GET_USER_DATA_RESP);
+        IntentFilter isFollowingFilter = new IntentFilter(Constants.IS_FOLLOWING_RESP);
         getRecentMessagesFilter.addCategory(Intent.CATEGORY_DEFAULT);
         sendMessageFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        getUserDataFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        isFollowingFilter.addCategory(Intent.CATEGORY_DEFAULT);
         receiver = new ResponseReceiver();
         registerReceiver(receiver, getRecentMessagesFilter);
         registerReceiver(receiver, sendMessageFilter);
+        registerReceiver(receiver, getUserDataFilter);
+        registerReceiver(receiver, isFollowingFilter);
     }
 
     @Override
@@ -177,28 +192,13 @@ public class ConversationActivity extends Activity {
 
     public void onProfileImageClick(View view) {
         Log.d(ACTIVITY_TAG, "On Profile Image Click");
-        // Gets the user's data
-        ArrayList<String> userData = JsonMethods.getUserData(userName);
-        String eMail = userData.get(1);
-        String country = userData.get(2);
-        String city = userData.get(3);
-        String followers = userData.get(4);
-        String location = userData.get(5);
-
-        Intent otherProfileIntent = new Intent(this, OtherProfileActivity.class);
-
-        // Attaches the basic data to the intent
-        otherProfileIntent.putExtra(Constants.USER_NAME_KEY, userName);
-        otherProfileIntent.putExtra(Constants.E_MAIL_KEY, eMail);
-        otherProfileIntent.putExtra(Constants.COUNTRY_KEY, country);
-        otherProfileIntent.putExtra(Constants.CITY_KEY, city);
-        otherProfileIntent.putExtra(Constants.FOLLOWERS_KEY, followers);
-        otherProfileIntent.putExtra(Constants.LOCATION_KEY, location);
-        otherProfileIntent.putExtra(Constants.AVATAR_IMAGE_KEY, avatarImage);
-        otherProfileIntent.putExtra(Constants.ORIGINAL_USER_KEY, userName);
-
-        // Starts the new activity
-        startActivity(otherProfileIntent);
+        progress.setTitle("Loading");
+        progress.setMessage("Fetching user data...");
+        progress.show();
+        Intent getUserDataService = new Intent(this, GetUserDataService.class);
+        getUserDataService.putExtra(Constants.USER_NAME_KEY, userName);
+        // Starts the service
+        startService(getUserDataService);
     }
 
     public void onSendMessageClick(View view) {
@@ -230,13 +230,13 @@ public class ConversationActivity extends Activity {
             Log.d(ACTIVITY_TAG, "On Receive");
             String intentAction = intent.getAction();
             if (intentAction != null) {
-                if (intent.getAction().equals(Constants.SEND_MESSAGE_RESP)) {
+                if (intentAction.equals(Constants.SEND_MESSAGE_RESP)) {
                     Log.d(ACTIVITY_TAG, "SEND_MESSAGE_RESP");
                     progress.dismiss();
                     getConversationIntent.putExtra(Constants.USER_NAME_KEY, userName);
                     getConversationIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
                     startService(getConversationIntent);
-                } else if (intent.getAction().equals(Constants.GET_CONVERSATION_RESP)) {
+                } else if (intentAction.equals(Constants.GET_CONVERSATION_RESP)) {
                     Log.d(ACTIVITY_TAG, "GET_CONVERSATION_RESP");
                     ListView messagesList = (ListView) findViewById(R.id.messages_list);
                     ArrayList<MessageRecord> messages = intent.getParcelableArrayListExtra(Constants.MESSAGES_KEY);
@@ -246,6 +246,41 @@ public class ConversationActivity extends Activity {
                     }
                     // Hides the progress bar
                     setProgressBarIndeterminateVisibility(false);
+                } else if (intentAction.equals(Constants.GET_USER_DATA_RESP)) {
+                    Log.d(ACTIVITY_TAG, "GET_USER_DATA_RESP");
+                    ArrayList<String> userData = intent.getStringArrayListExtra(Constants.USER_DATA_KEY);
+                    isFollowingIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
+                    isFollowingIntent.putExtra(Constants.USER_NAME_KEY, userName);
+                    isFollowingIntent.putExtra(Constants.USER_DATA_KEY, userData);
+                    startService(isFollowingIntent);
+                } else if (intentAction.equals(Constants.IS_FOLLOWING_RESP)) {
+                    Log.d(ACTIVITY_TAG, "IS_FOLLOWING_RESP");
+                    ArrayList<String> userData = intent.getStringArrayListExtra(Constants.USER_DATA_KEY);
+                    String userName = userData.get(0);
+                    String eMail = userData.get(1);
+                    String country = userData.get(2);
+                    String city = userData.get(3);
+                    String followers = userData.get(4);
+                    String location = userData.get(5);
+                    String avatarImage = userData.get(6);
+                    boolean isFollowing = intent.getBooleanExtra(Constants.IS_FOLLOWING_KEY, false);
+
+                    // Adds data to the other user intent
+                    otherUserIntent.putExtra(Constants.USER_NAME_KEY, userName);
+                    otherUserIntent.putExtra(Constants.E_MAIL_KEY, eMail);
+                    otherUserIntent.putExtra(Constants.COUNTRY_KEY, country);
+                    otherUserIntent.putExtra(Constants.CITY_KEY, city);
+                    otherUserIntent.putExtra(Constants.FOLLOWERS_KEY, followers);
+                    otherUserIntent.putExtra(Constants.LOCATION_KEY, location);
+                    otherUserIntent.putExtra(Constants.AVATAR_IMAGE_KEY, avatarImage);
+                    otherUserIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
+                    otherUserIntent.putExtra(Constants.IS_FOLLOWING_KEY, isFollowing);
+
+                    // Dismisses the progress dialog
+                    progress.dismiss();
+
+                    // Starts the other profile activity
+                    startActivity(otherUserIntent);
                 }
             }
         }
