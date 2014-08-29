@@ -59,6 +59,9 @@ import se.liu.ida.josfa969.tddd80.list_adapters.MessageItemAdapter;
 public class ProfileActivity extends FragmentActivity implements
         GooglePlayServicesClient.ConnectionCallbacks,
         GooglePlayServicesClient.OnConnectionFailedListener {
+    // A tag of this class used by Log
+    private final String ACTIVITY_TAG = "se.liu.ida.josfa969.tddd80.activities.ProfileActivity";
+
     // Variables used for the photo capture feature
     private static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -121,6 +124,7 @@ public class ProfileActivity extends FragmentActivity implements
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        Log.d(ACTIVITY_TAG, "On Create");
 
         // Gets all the user data defined by variables above
         getUserData();
@@ -153,6 +157,7 @@ public class ProfileActivity extends FragmentActivity implements
         ActionBar.TabListener tabListener = new ActionBar.TabListener() {
             @Override
             public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+                Log.d(ACTIVITY_TAG, "On Tab Selected");
                 // When the tab is selected, switch to the corresponding tab in the ViewPager
                 profilePager.setCurrentItem(tab.getPosition());
             }
@@ -175,17 +180,16 @@ public class ProfileActivity extends FragmentActivity implements
                 actionBar.addTab(tempTab);
             }
         }
-
-        // Adds filters to the receiver
-        addReceiverFilters();
     }
 
     // Creates the listener for when the page changes
     private void createPageChangeListener() {
+        Log.d(ACTIVITY_TAG, "Create Page Change Listener");
         onPageChangeListener = new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+                Log.d(ACTIVITY_TAG, "On Page Selected");
                 // When swiping between pages, select the corresponding tab
                 ActionBar ab = getActionBar();
                 if (ab != null) {
@@ -226,6 +230,7 @@ public class ProfileActivity extends FragmentActivity implements
 
     // Adds filters for the response receiver
     private void addReceiverFilters() {
+        Log.d(ACTIVITY_TAG, "Add Receiver Filters");
         // Filters for the receiver
         IntentFilter updateUserDataFilter = new IntentFilter(Constants.UPDATE_USER_DATA_RESP);
         IntentFilter addApprovingFilter = new IntentFilter(Constants.ADD_APPROVING_RESP);
@@ -253,6 +258,7 @@ public class ProfileActivity extends FragmentActivity implements
     // which the data has previously been saved
     // if no intent started the activity
     private void getUserData() {
+        Log.d(ACTIVITY_TAG, "Get User Data");
         Intent initIntent = getIntent();
         userName = initIntent.getStringExtra(Constants.USER_NAME_KEY);
         eMail = initIntent.getStringExtra(Constants.E_MAIL_KEY);
@@ -305,25 +311,42 @@ public class ProfileActivity extends FragmentActivity implements
     @Override
     protected void onStart() {
         super.onStart();
+        Log.d(ACTIVITY_TAG, "On Start");
         // Connect the client
         // TODO: Re-enable this on real device
         // locationClient.connect();
     }
 
     @Override
+    protected void onResume() {
+        addReceiverFilters();
+        super.onResume();
+    }
+
+    @Override
     protected void onStop() {
         // TODO: Re-enable this on real device
-/*
+        /*
         if (servicesConnected()) {
             // Disconnects the client
             locationClient.disconnect();
         }
-*/
+        */
+        Log.d(ACTIVITY_TAG, "On Stop");
         super.onStop();
     }
 
     @Override
     protected void onPause() {
+        // Unregister the receiver
+        try {
+            unregisterReceiver(receiver);
+        } catch (IllegalArgumentException e) {
+            Log.e(ACTIVITY_TAG, "Receiver not registered", e);
+            e.printStackTrace();
+        }
+
+        Log.d(ACTIVITY_TAG, "On Pause");
         super.onPause();
         // When leaving this activity and starting a
         // new one, save the current user's username
@@ -340,29 +363,27 @@ public class ProfileActivity extends FragmentActivity implements
         editor.commit();
     }
 
-    @Override
-    protected void onDestroy() {
-        unregisterReceiver(receiver);
-        super.onDestroy();
-    }
-
     private void startIdeaFeedService() {
+        Log.d(ACTIVITY_TAG, "Start Idea Feed Service");
         Intent getIdeaFeedIntent = new Intent(this, GetIdeaFeedService.class);
         getIdeaFeedIntent.putExtra(Constants.USER_NAME_KEY, userName);
         startService(getIdeaFeedIntent);
     }
 
     private void startMessageFeedService() {
+        Log.d(ACTIVITY_TAG, "Start Message Feed Service");
         Intent getMessageFeedIntent = new Intent(this, GetMessageFeedService.class);
         getMessageFeedIntent.putExtra(Constants.USER_NAME_KEY, userName);
         startService(getMessageFeedIntent);
     }
 
     private void addIdeaListClickListener() {
+        Log.d(ACTIVITY_TAG, "Add Idea List Click Listener");
         final ListView recentIdeasList = (ListView) findViewById(R.id.recent_ideas);
         recentIdeasList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Log.d(ACTIVITY_TAG, "On List Item Click");
                 IdeaRecord ideaRecord = (IdeaRecord) recentIdeasList.getItemAtPosition(position);
                 if (ideaRecord != null) {
                     ideaDetailIntent.putExtra(Constants.ORIGINAL_USER_KEY, userName);
@@ -379,10 +400,12 @@ public class ProfileActivity extends FragmentActivity implements
     }
 
     private void addMessageListClickListener() {
+        Log.d(ACTIVITY_TAG, "Add Message List Click Listener");
         final ListView recentMessagesList = (ListView) findViewById(R.id.recent_messages);
         recentMessagesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Log.d(ACTIVITY_TAG, "On List Item Click");
                 MessageRecord messageRecord = (MessageRecord) recentMessagesList.getItemAtPosition(position);
                 if (messageRecord != null) {
                     conversationIntent.putExtra(Constants.USER_NAME_KEY, messageRecord.sender);
@@ -395,6 +418,7 @@ public class ProfileActivity extends FragmentActivity implements
     }
 
     public void onPostClick(View view) {
+        Log.d(ACTIVITY_TAG, "On Post Click");
         // Get the inputs
         EditText ideaTextInput = (EditText) findViewById(R.id.idea_input);
         EditText tagInput = (EditText) findViewById(R.id.tag_input);
@@ -408,6 +432,7 @@ public class ProfileActivity extends FragmentActivity implements
         String tags = String.valueOf(tagInput.getText());
 
         if (ideaText.equals("")) {
+            Log.e(ACTIVITY_TAG, "Input field empty");
             positiveStatusText.setText("");
             negativeStatusText.setText("You have to write something");
         } else {
@@ -427,6 +452,7 @@ public class ProfileActivity extends FragmentActivity implements
     }
 
     public void onUpdateClick(View view) {
+        Log.d(ACTIVITY_TAG, "On Update Click");
         // Gets views
         EditText profileUserName = (EditText) findViewById(R.id.profile_user_name);
         EditText profileEMail = (EditText) findViewById(R.id.profile_e_mail);
@@ -463,22 +489,26 @@ public class ProfileActivity extends FragmentActivity implements
     }
 
     public void onSearchPeopleClick(View view) {
+        Log.d(ACTIVITY_TAG, "On Search People Click");
         Intent searchPeopleIntent = new Intent(this, SearchPeopleActivity.class);
         searchPeopleIntent.putExtra(Constants.ORIGINAL_USER_KEY, userName);
         startActivity(searchPeopleIntent);
     }
 
     public void onSearchIdeasClick(View view) {
+        Log.d(ACTIVITY_TAG, "On Search Ideas Click");
         Intent searchIdeasIntent = new Intent(this, SearchIdeasActivity.class);
         searchIdeasIntent.putExtra(Constants.ORIGINAL_USER_KEY, userName);
         startActivity(searchIdeasIntent);
     }
 
     public void onTakePictureButtonClick(View view) {
+        Log.d(ACTIVITY_TAG, "On Take Picture Button Click");
         dispatchTakePictureIntent();
     }
 
     private void dispatchTakePictureIntent() {
+        Log.d(ACTIVITY_TAG, "Dispatch Take Picture Intent");
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         PackageManager pm = getPackageManager();
         if (pm != null) {
@@ -490,14 +520,17 @@ public class ProfileActivity extends FragmentActivity implements
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        System.out.println("On Activity Result");
+        Log.d(ACTIVITY_TAG, "On Activity Result");
         switch (requestCode) {
             case REQUEST_IMAGE_CAPTURE:
+                Log.d(ACTIVITY_TAG, "REQUEST_IMAGE_CAPTURE");
                 // Temporarily sets the avatar image
                 setAvatarImage(resultCode, data);
                 break;
             case CONNECTION_FAILURE_RESOLUTION_REQUEST:
+                Log.d(ACTIVITY_TAG, "CONNECTION_FAILURE_RESOLUTION_REQUEST");
                 if (resultCode == RESULT_OK) {
+                    Log.d(ACTIVITY_TAG, "RESULT_OK");
                     // Try the request again
                     locationClient.connect();
                 }
@@ -506,7 +539,9 @@ public class ProfileActivity extends FragmentActivity implements
     }
 
     private void setAvatarImage(int resultCode, Intent data) {
+        Log.d(ACTIVITY_TAG, "Set Avatar Image");
         if (resultCode == RESULT_OK) {
+            Log.d(ACTIVITY_TAG, "RESULT_OK");
             Bundle extras = data.getExtras();
             if (extras != null) {
                 Bitmap imageBitmap = (Bitmap) extras.get("data");
@@ -529,8 +564,9 @@ public class ProfileActivity extends FragmentActivity implements
     }
 
     public void onSetLocationClick(View view) {
+        Log.d(ACTIVITY_TAG, "On Set Location Click");
         // TODO: Re-enable this on real device
-/*
+        /*
         if (servicesConnected()) {
             // Ensure that a Geocoder services is available
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD && Geocoder.isPresent()) {
@@ -550,7 +586,7 @@ public class ProfileActivity extends FragmentActivity implements
                 (new GetAddressTask(this, locationTextView)).execute(mCurrentLocation);
             }
         }
-*/
+        */
     }
 
     /*
@@ -561,7 +597,7 @@ public class ProfileActivity extends FragmentActivity implements
      *  String - An address passed to onPostExecute()
      */
     // TODO: Re-enable this on real device
-/*
+    /*
     private class GetAddressTask extends AsyncTask<Location, Void, String> {
         Context mContext;
         TextView mTextView;
@@ -576,9 +612,11 @@ public class ProfileActivity extends FragmentActivity implements
          * Get a Geocoder instance, get the latitude and longitude,
          * look up the address, and return it.
          */
-/*
+    // TODO: Re-enable this on real device
+    /*
         @Override
         protected String doInBackground(Location... locations) {
+            Log.d(ACTIVITY_TAG, "Do In Background");
             Geocoder geocoder = new Geocoder(mContext, Locale.getDefault());
             // Get the current location from the input parameter list
             Location loc = locations[0];
@@ -588,7 +626,7 @@ public class ProfileActivity extends FragmentActivity implements
                 // Return 1 address
                 addresses = geocoder.getFromLocation(loc.getLatitude(), loc.getLongitude(), 1);
             } catch (IOException e1) {
-                Log.e("ProfileActivity", "IO Exception in getFromLocation()");
+                Log.e("ProfileActivity", "IO Exception in getFromLocation()", e1);
                 e1.printStackTrace();
                 return "IO Exception trying to get address";
             } catch (IllegalArgumentException e2) {
@@ -598,7 +636,7 @@ public class ProfileActivity extends FragmentActivity implements
                         ", " +
                         Double.toString(loc.getLongitude()) +
                         " passed to address service";
-                Log.e("ProfileActivity", errorString);
+                Log.e("ProfileActivity", errorString, e2);
                 e2.printStackTrace();
                 return errorString;
             }
@@ -610,7 +648,8 @@ public class ProfileActivity extends FragmentActivity implements
                  * Format the first line of address (if available), city, and country name.
                  */
                 // Return the text
-/*
+    // TODO: Re-enable this on real device
+    /*
                 return String.format(
                         "%s, %s, %s",
                         // If there's a street address, add it
@@ -620,6 +659,7 @@ public class ProfileActivity extends FragmentActivity implements
                         // The country of the address
                         address.getCountryName());
             } else {
+                Log.e(ACTIVITY_TAG, "No address found");
                 return "No address found";
             }
         }
@@ -629,9 +669,11 @@ public class ProfileActivity extends FragmentActivity implements
          * Dismiss the progress dialog and set the the location
          * variable and text view values to the acquired address.
          */
-/*
+    // TODO: Re-enable this on real device
+    /*
         @Override
         protected void onPostExecute(String address) {
+            Log.d(ACTIVITY_TAG, "On Post Execute");
             // Set the values
             location = address;
             mTextView.setText(location);
@@ -639,8 +681,10 @@ public class ProfileActivity extends FragmentActivity implements
             progress.dismiss();
         }
     }
+    */
 
     private boolean servicesConnected() {
+        Log.d(ACTIVITY_TAG, "Services Connected");
         // Check that google play services are available
         int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
         // If Google Play Services is available
@@ -651,6 +695,7 @@ public class ProfileActivity extends FragmentActivity implements
             return true;
             // Google Play Services was unavailable for some reason
         } else {
+            Log.d("Location Updates", "Google Play Services is not available");
             // Get the error code
             int errorCode = mConnectionResult.getErrorCode();
             // Shows an error dialog
@@ -666,6 +711,7 @@ public class ProfileActivity extends FragmentActivity implements
      */
     @Override
     public void onConnected(Bundle bundle) {
+        Log.d(ACTIVITY_TAG, "On Connected");
         // Display the connection status
         Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show();
     }
@@ -676,6 +722,7 @@ public class ProfileActivity extends FragmentActivity implements
      */
     @Override
     public void onDisconnected() {
+        Log.d(ACTIVITY_TAG, "On Disconnected");
         // Displays the connection status
         Toast.makeText(this, "Disconnected. Please re-connect.", Toast.LENGTH_SHORT).show();
     }
@@ -686,6 +733,7 @@ public class ProfileActivity extends FragmentActivity implements
      */
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
+        Log.d(ACTIVITY_TAG, "On Connection Failed");
         mConnectionResult = connectionResult;
         /*
          * Google Play services can resolve some errors it detects.
@@ -702,6 +750,7 @@ public class ProfileActivity extends FragmentActivity implements
                  * PendingIntent
                  */
             } catch (IntentSender.SendIntentException e) {
+                Log.e(ACTIVITY_TAG, "SendIntentException", e);
                 // Log the error
                 e.printStackTrace();
             }
@@ -715,6 +764,7 @@ public class ProfileActivity extends FragmentActivity implements
     }
 
     public void showErrorDialog(int errorCode) {
+        Log.d(ACTIVITY_TAG, "Show Error Dialog");
         // Get the error dialog from Google Play Services
         Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(errorCode, this, CONNECTION_FAILURE_RESOLUTION_REQUEST);
         // If Google Play Services can supply an error dialog
@@ -747,6 +797,7 @@ public class ProfileActivity extends FragmentActivity implements
         // Return a Dialog to the DialogFragment
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
+            Log.d("ErrorDialogFragment", "On Create Dialog");
             return mDialog;
         }
     }
@@ -754,6 +805,7 @@ public class ProfileActivity extends FragmentActivity implements
     private class ResponseReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.d(ACTIVITY_TAG, "On Receive");
             String intentAction = intent.getAction();
             if (intentAction != null) {
                 // If the user approved or un-approved an idea
@@ -761,10 +813,12 @@ public class ProfileActivity extends FragmentActivity implements
                     // Show a toast with the message passed with the intent
                     // This message will tell the user it either approved or un-approved the idea
                     String toastMsg = intent.getStringExtra(Constants.APPROVING_TOAST_MSG_KEY);
+                    Log.d(ACTIVITY_TAG, toastMsg);
                     Toast.makeText(context, toastMsg, Toast.LENGTH_SHORT).show();
                 }
                 // If the idea feed has been fetched from the database
                 else if (intentAction.equals(Constants.GET_IDEA_FEED_RESP)) {
+                    Log.d(ACTIVITY_TAG, "GET_IDEA_FEED_RESP");
                     // Update the idea feed
                     updateIdeaFeed(context, intent);
                     // Hides the progress bar
@@ -772,6 +826,7 @@ public class ProfileActivity extends FragmentActivity implements
                 }
                 // If the message feed has been fetched from the database
                 else if (intentAction.equals(Constants.GET_MESSAGE_FEED_RESP)) {
+                    Log.d(ACTIVITY_TAG, "GET_MESSAGE_FEED_RESP");
                     // Update the message feed
                     updateMessageFeed(context, intent);
                     // Hides the progress bar
@@ -779,12 +834,13 @@ public class ProfileActivity extends FragmentActivity implements
                 }
                 // If the user posted an idea
                 else if (intentAction.equals(Constants.POST_IDEA_RESP)) {
+                    Log.d(ACTIVITY_TAG, "POST_IDEA_RESP");
                     // Take actions according to the response from the database
                     onIdeaPostResult(intent);
                 }
                 // If the user updated his/her user data
                 else if (intentAction.equals(Constants.UPDATE_USER_DATA_RESP)) {
-                    System.out.println("Update User Data Resp");
+                    Log.d(ACTIVITY_TAG, "UPDATE_USER_DATA_RESP");
                     // Take actions according to the response from the database
                     onUserDataUpdatedResult(intent);
                 }
@@ -792,24 +848,28 @@ public class ProfileActivity extends FragmentActivity implements
         }
 
         private void onUserDataUpdatedResult(Intent intent) {
+            Log.d(ACTIVITY_TAG, "On User Data Updated Result");
             // Gets the response message
-            String resp = intent.getStringExtra(Constants.USER_DATA_UPDATE_MSG_KEY);
+            String response = intent.getStringExtra(Constants.USER_DATA_UPDATE_MSG_KEY);
             // Gets status text views
             TextView negativeStatusText = (TextView) findViewById(R.id.negative_settings_status_text);
             TextView positiveStatusText = (TextView) findViewById(R.id.positive_settings_status_text);
             // If the response is null or not success,
             // set the negative status text to corresponding message
-            if (resp == null) {
+            if (response == null) {
+                Log.e(ACTIVITY_TAG, "Update User Data Response is null");
                 positiveStatusText.setText("");
                 negativeStatusText.setText("Something went wrong");
-            } else if (!resp.equals("Success")) {
+            } else if (!response.equals("Success")) {
+                Log.e(ACTIVITY_TAG, "Update User Data Response is: " + response);
                 positiveStatusText.setText("");
-                negativeStatusText.setText(resp);
+                negativeStatusText.setText(response);
             }
             // If the response is success
             else {
+                Log.d(ACTIVITY_TAG, "Update User Data Response is: " + response);
                 // Set the positive status text to the response
-                positiveStatusText.setText(resp);
+                positiveStatusText.setText(response);
                 negativeStatusText.setText("");
                 // Update the "cached" user data variables
                 userName = newUserName;
@@ -830,6 +890,7 @@ public class ProfileActivity extends FragmentActivity implements
         }
 
         private void onIdeaPostResult(Intent intent) {
+            Log.d(ACTIVITY_TAG, "On Idea Post Result");
             String response = intent.getStringExtra(Constants.RESPONSE_KEY);
             TextView positiveStatusText = (TextView) findViewById(R.id.positive_post_status_text);
             TextView negativeStatusText = (TextView) findViewById(R.id.negative_post_status_text);
@@ -837,14 +898,17 @@ public class ProfileActivity extends FragmentActivity implements
             EditText tagInput = (EditText) findViewById(R.id.tag_input);
 
             if (response == null) {
+                Log.e(ACTIVITY_TAG, "Post Idea Response is null");
                 positiveStatusText.setText("");
                 negativeStatusText.setText("Something went wrong");
             } else if (response.equals("Success")) {
+                Log.d(ACTIVITY_TAG, "Post Idea Response is: " + response);
                 ideaTextInput.setText("");
                 tagInput.setText("");
                 positiveStatusText.setText("Idea Posted");
                 negativeStatusText.setText("");
             } else {
+                Log.e(ACTIVITY_TAG, "Post Idea Response is: " + response);
                 positiveStatusText.setText("");
                 negativeStatusText.setText("Something went wrong");
             }
@@ -853,6 +917,7 @@ public class ProfileActivity extends FragmentActivity implements
         }
 
         private void updateMessageFeed(Context context, Intent intent) {
+            Log.d(ACTIVITY_TAG, "Update Message Feed");
             ListView recentMessagesList = (ListView) findViewById(R.id.recent_messages);
             ArrayList<MessageRecord> recentMessages = intent.getParcelableArrayListExtra(Constants.MESSAGES_KEY);
             if (recentMessages != null && recentMessagesList != null) {
@@ -862,6 +927,7 @@ public class ProfileActivity extends FragmentActivity implements
         }
 
         private void updateIdeaFeed(Context context, Intent intent) {
+            Log.d(ACTIVITY_TAG, "Update Idea Feed");
             ListView recentIdeasList = (ListView) findViewById(R.id.recent_ideas);
             ArrayList<IdeaRecord> recentIdeas = intent.getParcelableArrayListExtra(Constants.IDEAS_KEY);
             if (recentIdeas != null && recentIdeasList != null) {

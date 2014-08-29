@@ -23,7 +23,7 @@ public class RemoveApprovingService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         String originalUser = intent.getStringExtra(Constants.ORIGINAL_USER_KEY);
         String ideaId = intent.getStringExtra(Constants.IDEA_ID_KEY);
-        Log.i("RemoveApprovingService", "User: " + originalUser + " no longer approving idea id: " + ideaId);
+        Log.d("RemoveApprovingService", "User: " + originalUser + " no longer approving idea id: " + ideaId);
         JsonMethods.removeApproving(originalUser, ideaId);
 
         String toastMsg = "No longer approving idea ID: " +ideaId;

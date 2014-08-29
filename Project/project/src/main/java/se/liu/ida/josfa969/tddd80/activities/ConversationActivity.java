@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
@@ -39,6 +40,8 @@ import se.liu.ida.josfa969.tddd80.list_adapters.MessageItemAdapter;
  * ORIGINAL_USER_KEY - The user name of the user currently using the application
  */
 public class ConversationActivity extends Activity {
+    // A tag of this class used by Log
+    private final String ACTIVITY_TAG = "se.liu.ida.josfa969.tddd80.activities.ConversationActivity";
 
     // Initializes basic data variables
     private String userName = null;
@@ -65,6 +68,7 @@ public class ConversationActivity extends Activity {
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversation);
+        Log.d(ACTIVITY_TAG, "On Create");
 
         // Gets all data sent by the intent starting this activity
         Intent initIntent = getIntent();
@@ -87,6 +91,13 @@ public class ConversationActivity extends Activity {
             getFragmentManager().beginTransaction().add(R.id.container, new ConversationFragment()).commit();
         }
 
+        getConversationIntent = new Intent(getBaseContext(), GetConversationService.class);
+        progress = new ProgressDialog(this);
+    }
+
+    // Adds filters to the receiver
+    private void addReceiverFilters() {
+        Log.d(ACTIVITY_TAG, "Add Receiver Filters");
         // Filters for the receiver
         IntentFilter getRecentMessagesFilter = new IntentFilter(Constants.GET_CONVERSATION_RESP);
         IntentFilter sendMessageFilter = new IntentFilter(Constants.SEND_MESSAGE_RESP);
@@ -95,15 +106,23 @@ public class ConversationActivity extends Activity {
         receiver = new ResponseReceiver();
         registerReceiver(receiver, getRecentMessagesFilter);
         registerReceiver(receiver, sendMessageFilter);
-
-        getConversationIntent = new Intent(getBaseContext(), GetConversationService.class);
-        progress = new ProgressDialog(this);
     }
 
     @Override
     protected void onPause() {
         // Stops the automatic updating of messages
         updateMessagesTask.cancel();
+
+        // Unregister the receiver
+        try {
+            unregisterReceiver(receiver);
+        } catch (IllegalArgumentException e) {
+            Log.e(ACTIVITY_TAG, "Receiver not registered", e);
+            e.printStackTrace();
+        }
+
+        Log.d(ACTIVITY_TAG, "On Pause");
+        super.onPause();
 
         // When leaving this activity and starting a
         // new one, save the current user's username
@@ -113,12 +132,13 @@ public class ConversationActivity extends Activity {
         editor.putString(Constants.USER_NAME_KEY, userName);
         editor.putString(Constants.ORIGINAL_USER_KEY, originalUser);
         editor.commit();
-        super.onPause();
     }
 
     @Override
     protected void onResume() {
+        addReceiverFilters();
         super.onResume();
+        Log.d(ACTIVITY_TAG, "On Pause");
 
         TextView conversationPartnerName = (TextView) findViewById(R.id.conversation_partner_name);
         ImageButton avatarImageButton = (ImageButton) findViewById(R.id.avatar_picture);
@@ -155,13 +175,8 @@ public class ConversationActivity extends Activity {
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        unregisterReceiver(receiver);
-        super.onDestroy();
-    }
-
     public void onProfileImageClick(View view) {
+        Log.d(ACTIVITY_TAG, "On Profile Image Click");
         // Gets the user's data
         ArrayList<String> userData = JsonMethods.getUserData(userName);
         String eMail = userData.get(1);
@@ -187,6 +202,7 @@ public class ConversationActivity extends Activity {
     }
 
     public void onSendMessageClick(View view) {
+        Log.d(ACTIVITY_TAG, "On Send Message Click");
         progress.setTitle("Loading");
         progress.setMessage("Sending message...");
         progress.show();
@@ -211,14 +227,17 @@ public class ConversationActivity extends Activity {
     private class ResponseReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.d(ACTIVITY_TAG, "On Receive");
             String intentAction = intent.getAction();
             if (intentAction != null) {
                 if (intent.getAction().equals(Constants.SEND_MESSAGE_RESP)) {
+                    Log.d(ACTIVITY_TAG, "SEND_MESSAGE_RESP");
                     progress.dismiss();
                     getConversationIntent.putExtra(Constants.USER_NAME_KEY, userName);
                     getConversationIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
                     startService(getConversationIntent);
-                } else {
+                } else if (intent.getAction().equals(Constants.GET_CONVERSATION_RESP)) {
+                    Log.d(ACTIVITY_TAG, "GET_CONVERSATION_RESP");
                     ListView messagesList = (ListView) findViewById(R.id.messages_list);
                     ArrayList<MessageRecord> messages = intent.getParcelableArrayListExtra(Constants.MESSAGES_KEY);
                     messagesList.setAdapter(new MessageItemAdapter(context, R.layout.message_list_item, messages));

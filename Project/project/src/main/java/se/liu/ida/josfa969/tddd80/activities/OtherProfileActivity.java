@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -29,6 +30,8 @@ import se.liu.ida.josfa969.tddd80.item_records.IdeaRecord;
 import se.liu.ida.josfa969.tddd80.list_adapters.IdeaItemAdapter;
 
 public class OtherProfileActivity extends Activity {
+    // A tag of this class used by Log
+    private final String ACTIVITY_TAG = "se.liu.ida.josfa969.tddd80.activities.OtherProfileActivity";
 
     // Initializes basic data variables
     private String userName = null;
@@ -49,6 +52,7 @@ public class OtherProfileActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(ACTIVITY_TAG, "On Create");
         // Requests to use a feature which displays a progress bar
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         super.onCreate(savedInstanceState);
@@ -57,14 +61,14 @@ public class OtherProfileActivity extends Activity {
         // Creates an intent used to get basic user data
         ideaDetailIntent = new Intent(this, IdeaDetailActivity.class);
 
-        // Add filters for the receiver
-        addReceiverFilters();
-
-        // Gets the other user's data
-        getOtherUserData(savedInstanceState);
+        if (savedInstanceState == null) {
+            getFragmentManager().beginTransaction().add(R.id.container, new OtherProfileFragment()).commit();
+        }
     }
 
+    // Adds filters to the receiver
     private void addReceiverFilters() {
+        Log.d(ACTIVITY_TAG, "Add Receiver Filters");
         // Filters for the receiver
         IntentFilter addFollowerFilter = new IntentFilter(Constants.ADD_FOLLOWER_RESP);
         IntentFilter removeFollowerFilter = new IntentFilter(Constants.REMOVE_FOLLOWER_RESP);
@@ -78,7 +82,8 @@ public class OtherProfileActivity extends Activity {
         registerReceiver(receiver, getIdeasFilter);
     }
 
-    private void getOtherUserData(Bundle savedInstanceState) {
+    private void getOtherUserData() {
+        Log.d(ACTIVITY_TAG, "Get Other User Data");
         // Gets all data sent by the intent starting this activity
         Intent initIntent = getIntent();
         userName = initIntent.getStringExtra(Constants.USER_NAME_KEY);
@@ -125,17 +130,24 @@ public class OtherProfileActivity extends Activity {
         if (originalUser == null) {
             originalUser = preferences.getString(Constants.ORIGINAL_USER_KEY, defaultOriginalUser);
         }
-
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction().add(R.id.container, new OtherProfileFragment()).commit();
+        // If no new user has logged in
+        if (originalUser.equals(preferences.getString(Constants.ORIGINAL_USER_KEY, defaultOriginalUser))) {
+            isFollowing = preferences.getBoolean(Constants.IS_FOLLOWING_KEY, false);
         }
     }
+
+
 
     @Override
     protected void onPause() {
         // Unregister the receiver
-        unregisterReceiver(receiver);
-
+        try {
+            unregisterReceiver(receiver);
+        } catch (IllegalArgumentException e) {
+            Log.e(ACTIVITY_TAG, "Receiver not registered", e);
+            e.printStackTrace();
+        }
+        Log.d(ACTIVITY_TAG, "On Destroy");
         super.onPause();
 
         // When leaving this activity and starting a
@@ -157,20 +169,23 @@ public class OtherProfileActivity extends Activity {
 
     @Override
     protected void onResume() {
+        addReceiverFilters();
         super.onResume();
+        Log.d(ACTIVITY_TAG, "On Resume");
 
-        // Gets updates isFollowing value
-        SharedPreferences preferences = this.getPreferences(Context.MODE_PRIVATE);
-        isFollowing = preferences.getBoolean(Constants.IS_FOLLOWING_KEY, false);
+        // Gets the other user's data
+        getOtherUserData();
 
         // Sets the follow/un-follow buttons' visibility depending on
         // if the current user is following the other user
         Button followButton = (Button) findViewById(R.id.follow_button);
         Button unFollowButton = (Button) findViewById(R.id.un_follow_button);
         if (isFollowing) {
+            Log.d(ACTIVITY_TAG, originalUser + " is following " + userName);
             followButton.setVisibility(View.GONE);
             unFollowButton.setVisibility(View.VISIBLE);
         } else {
+            Log.d(ACTIVITY_TAG, originalUser + " is not following " + userName);
             followButton.setVisibility(View.VISIBLE);
             unFollowButton.setVisibility(View.GONE);
         }
@@ -196,6 +211,7 @@ public class OtherProfileActivity extends Activity {
     }
 
     public void onMessageClick(View view) {
+        Log.d(ACTIVITY_TAG, "On Message Click");
         Intent conversationIntent = new Intent(this, ConversationActivity.class);
         conversationIntent.putExtra(Constants.USER_NAME_KEY, userName);
         conversationIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
@@ -204,6 +220,7 @@ public class OtherProfileActivity extends Activity {
     }
 
     public void onInformationClick(View view) {
+        Log.d(ACTIVITY_TAG, "On Information Click");
         Intent informationIntent = new Intent(this, InformationActivity.class);
         informationIntent.putExtra(Constants.USER_NAME_KEY, userName);
         informationIntent.putExtra(Constants.E_MAIL_KEY, eMail);
@@ -216,6 +233,7 @@ public class OtherProfileActivity extends Activity {
     }
 
     public void onFollowClick(View view) {
+        Log.d(ACTIVITY_TAG, "On Follow Click");
         // Gets widgets
         Button followButton = (Button) findViewById(R.id.follow_button);
         Button unFollowButton = (Button) findViewById(R.id.un_follow_button);
@@ -242,6 +260,7 @@ public class OtherProfileActivity extends Activity {
     }
 
     public void onUnFollowClick(View view) {
+        Log.d(ACTIVITY_TAG, "On Un-Follow Click");
         // Gets widgets
         Button followButton = (Button) findViewById(R.id.follow_button);
         Button unFollowButton = (Button) findViewById(R.id.un_follow_button);
@@ -268,10 +287,12 @@ public class OtherProfileActivity extends Activity {
     }
 
     private void addListOnClickListener() {
+        Log.d(ACTIVITY_TAG, "Add List On Click Listener");
         final ListView otherUserIdeasList = (ListView) findViewById(R.id.other_profile_recent_ideas);
         otherUserIdeasList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Log.d(ACTIVITY_TAG, "On List Item Click");
                 IdeaRecord ideaRecord = (IdeaRecord) otherUserIdeasList.getItemAtPosition(position);
                 if (ideaRecord != null) {
                     ideaDetailIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
@@ -292,9 +313,11 @@ public class OtherProfileActivity extends Activity {
     private class ResponseReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.d(ACTIVITY_TAG, "On Receive");
             String intentAction = intent.getAction();
             if (intentAction != null) {
                 if (intentAction.equals(Constants.GET_OTHER_USER_IDEAS_RESP)) {
+                    Log.d(ACTIVITY_TAG, "GET_OTHER_USER_IDEAS_RESP");
                     ListView recentIdeasList = (ListView) findViewById(R.id.other_profile_recent_ideas);
                     ArrayList<IdeaRecord> recentIdeas = intent.getParcelableArrayListExtra(Constants.IDEAS_KEY);
                     if (recentIdeas != null) {
@@ -304,6 +327,7 @@ public class OtherProfileActivity extends Activity {
                 } else {
                     // Creates a toast showing that you now follow the target user
                     String toastMsg = intent.getStringExtra(Constants.FOLLOW_TOAST_MSG_KEY);
+                    Log.d(ACTIVITY_TAG, toastMsg);
                     Toast.makeText(context, toastMsg, Toast.LENGTH_SHORT).show();
                 }
             }

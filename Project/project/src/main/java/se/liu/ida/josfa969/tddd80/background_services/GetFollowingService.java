@@ -27,7 +27,7 @@ public class GetFollowingService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         String userName = intent.getStringExtra(Constants.USER_NAME_KEY);
         ArrayList<UserRecord> following = JsonMethods.getFollowing(userName);
-        Log.i("GetFollowingService", "Fetched users: " + following);
+        Log.d("GetFollowingService", "Fetched users: " + following);
 
         Intent broadCastIntent = new Intent();
         broadCastIntent.setAction(Constants.GET_FOLLOWING_RESP);

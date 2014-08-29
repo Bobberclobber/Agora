@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,6 +24,9 @@ import se.liu.ida.josfa969.tddd80.fragments.RegisterFragment;
 import se.liu.ida.josfa969.tddd80.help_classes.Constants;
 
 public class RegisterActivity extends Activity {
+    // A tag of this class used by Log
+    private final String ACTIVITY_TAG = "se.liu.ida.josfa969.tddd80.activities.RegisterActivity";
+
     // Data entered by the user
     private String userName;
     private String eMail;
@@ -47,6 +51,7 @@ public class RegisterActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_fragment);
+        Log.d(ACTIVITY_TAG, "On Create");
 
         // Creates the progress dialog
         progress = new ProgressDialog(this);
@@ -60,28 +65,31 @@ public class RegisterActivity extends Activity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        // Adds filters for the receiver
-        IntentFilter registerUserFilter = new IntentFilter(Constants.REGISTER_USER_RESP);
-        registerUserFilter.addCategory(Intent.CATEGORY_DEFAULT);
-        receiver = new ResponseReceiver();
-        registerReceiver(receiver, registerUserFilter);
-    }
-
-    @Override
     protected void onPause() {
-        unregisterReceiver(receiver);
+        try {
+            unregisterReceiver(receiver);
+        } catch (IllegalArgumentException e) {
+            Log.e(ACTIVITY_TAG, "Receiver not registered", e);
+            e.printStackTrace();
+        }
+        Log.d(ACTIVITY_TAG, "On Pause");
         super.onPause();
     }
 
     @Override
     protected void onResume() {
+        // Adds filters for the receiver
+        IntentFilter registerUserFilter = new IntentFilter(Constants.REGISTER_USER_RESP);
+        registerUserFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        receiver = new ResponseReceiver();
+        registerReceiver(receiver, registerUserFilter);
         super.onResume();
+        Log.d(ACTIVITY_TAG, "On Resume");
         statusText = (TextView) findViewById(R.id.register_status_text);
     }
 
     public void onCompleteClick(View view) {
+        Log.d(ACTIVITY_TAG, "On Completer Click");
         // Get edit text views
         EditText userNameInput = (EditText) findViewById(R.id.user_name_input_field);
         EditText passwordInput = (EditText) findViewById(R.id.password_input_field);
@@ -99,10 +107,13 @@ public class RegisterActivity extends Activity {
         city = String.valueOf(cityInput.getText());
 
         if (fieldIsEmpty(userName, password, eMail, country, city)) {
+            Log.e(ACTIVITY_TAG, "Not all fields filled out");
             statusText.setText("You have to fill out all fields");
         } else if (userName.contains("@")) {
+            Log.e(ACTIVITY_TAG, "User name contains illegal character");
             statusText.setText("The user name may not contain '@'");
         } else if (!password.equals(confirm)) {
+            Log.e(ACTIVITY_TAG, "The passwords don't match");
             statusText.setText("The passwords don't match");
         } else {
             // Create and show the loading spinner
@@ -144,9 +155,11 @@ public class RegisterActivity extends Activity {
     private class ResponseReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.d(ACTIVITY_TAG, "On Receive");
             String response = intent.getStringExtra(Constants.RESPONSE_KEY);
             if (response != null) {
                 if (response.equals("Success")) {
+                    Log.d(ACTIVITY_TAG, "Success");
                     progress.dismiss();
                     // Create an intent to start the Profile Activity
                     completeIntent.putExtra(Constants.USER_NAME_KEY, userName);
@@ -158,6 +171,7 @@ public class RegisterActivity extends Activity {
                     completeIntent.putExtra(Constants.AVATAR_IMAGE_KEY, image);
                     startActivity(completeIntent);
                 } else {
+                    Log.d(ACTIVITY_TAG, response);
                     progress.dismiss();
                     statusText.setText(response);
                 }

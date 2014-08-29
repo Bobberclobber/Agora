@@ -25,7 +25,7 @@ public class SearchPeopleService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         String identifierString = intent.getStringExtra(Constants.IDENTIFIER_STRING_KEY);
         ArrayList<UserRecord> people = JsonMethods.searchPeople(identifierString);
-        Log.i("SearchPeopleService", "Found users: " + people);
+        Log.d("SearchPeopleService", "Found users: " + people);
 
         Intent broadCastIntent = new Intent();
         broadCastIntent.setAction(Constants.SEARCH_PEOPLE_RESP);

@@ -23,7 +23,7 @@ public class AddApprovingService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         String originalUser = intent.getStringExtra(Constants.ORIGINAL_USER_KEY);
         String ideaId = intent.getStringExtra(Constants.IDEA_ID_KEY);
-        Log.i("AddApprovingService", "User: " + originalUser + " is now approving idea id: " + ideaId);
+        Log.d("AddApprovingService", "User: " + originalUser + " is now approving idea id: " + ideaId);
         JsonMethods.addApproving(originalUser, ideaId);
 
         String toastMsg = "Now approving idea ID: " +ideaId;

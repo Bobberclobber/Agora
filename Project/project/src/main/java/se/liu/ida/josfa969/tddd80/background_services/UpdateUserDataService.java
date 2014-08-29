@@ -35,7 +35,7 @@ public class UpdateUserDataService extends IntentService {
 
         String result = JsonMethods.updateUserData(originalUserName, originalEMail, newUserName, newEMail, newPassword,
                                                    newCountry, newCity, newLocation, newImage);
-        Log.i("UpdateUserDataService", "Result: " + result);
+        Log.d("UpdateUserDataService", "Result: " + result);
 
         Intent broadCastIntent = new Intent();
         broadCastIntent.setAction(Constants.UPDATE_USER_DATA_RESP);

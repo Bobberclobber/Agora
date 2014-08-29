@@ -30,7 +30,7 @@ public class SearchIdeasService extends IntentService {
         String tagString = intent.getStringExtra(Constants.TAG_STRING_KEY);
         String originalUser = intent.getStringExtra(Constants.ORIGINAL_USER_KEY);
         ArrayList<IdeaRecord> ideas = JsonMethods.searchIdeas(tagString, originalUser);
-        Log.i("SearchIdeasService", "Found ideas: " + ideas);
+        Log.d("SearchIdeasService", "Found ideas: " + ideas);
 
         Intent broadCastIntent = new Intent();
         broadCastIntent.setAction(Constants.SEARCH_IDEAS_RESP);

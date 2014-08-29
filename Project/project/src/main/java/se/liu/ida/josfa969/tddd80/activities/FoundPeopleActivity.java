@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +28,10 @@ import se.liu.ida.josfa969.tddd80.item_records.UserRecord;
 import se.liu.ida.josfa969.tddd80.list_adapters.UserItemAdapter;
 
 public class FoundPeopleActivity extends Activity {
+    // A tag of this class used by Log
+    private final String ACTIVITY_TAG = "se.liu.ida.josfa969.tddd80.activities.FoundPeopleActivity";
+
+    // Basic data
     private String identifierString;
     private String originalUser;
 
@@ -46,6 +51,7 @@ public class FoundPeopleActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_found);
+        Log.d(ACTIVITY_TAG, "On Create");
 
         Intent initIntent = getIntent();
         identifierString = initIntent.getStringExtra(Constants.IDENTIFIER_STRING_KEY);
@@ -55,6 +61,18 @@ public class FoundPeopleActivity extends Activity {
         getUserDataIntent = new Intent(this, GetUserDataService.class);
         isFollowingIntent = new Intent(this, IsFollowingService.class);
 
+        // Creates the progress dialog
+        progress = new ProgressDialog(this);
+        progress.dismiss();
+
+        if (savedInstanceState == null) {
+            getFragmentManager().beginTransaction().add(R.id.container, new FoundPeopleFragment()).commit();
+        }
+    }
+
+    // Adds filters to the receiver
+    private void addReceiverFilters() {
+        Log.d(ACTIVITY_TAG, "Add Receiver Filters");
         // Filters for the receiver
         IntentFilter searchPeopleFilter = new IntentFilter(Constants.SEARCH_PEOPLE_RESP);
         IntentFilter getUserDataFilter = new IntentFilter(Constants.GET_USER_DATA_RESP);
@@ -66,18 +84,14 @@ public class FoundPeopleActivity extends Activity {
         registerReceiver(receiver, searchPeopleFilter);
         registerReceiver(receiver, getUserDataFilter);
         registerReceiver(receiver, isFollowingFilter);
-
-        // Creates the progress dialog
-        progress = new ProgressDialog(this);
-
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction().add(R.id.container, new FoundPeopleFragment()).commit();
-        }
     }
 
     @Override
     protected void onResume() {
+        addReceiverFilters();
         super.onResume();
+        Log.d(ACTIVITY_TAG, "On Resume");
+
         // Shows the progress dialog
         progress.setTitle("Loading");
         progress.setMessage("Searching for people...");
@@ -91,11 +105,19 @@ public class FoundPeopleActivity extends Activity {
 
     @Override
     protected void onPause() {
-        unregisterReceiver(receiver);
+        // Unregister the receiver
+        try {
+            unregisterReceiver(receiver);
+        } catch (IllegalArgumentException e) {
+            Log.e("FoundPeopleActivity", "Receiver not registered", e);
+            e.printStackTrace();
+        }
+        Log.d(ACTIVITY_TAG, "On Pause");
         super.onPause();
     }
 
     private void addListOnClickListener() {
+        Log.d(ACTIVITY_TAG, "Add On Click Listener");
         final ListView foundPeopleList = (ListView) findViewById(R.id.found_people_list);
         foundPeopleList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -113,6 +135,7 @@ public class FoundPeopleActivity extends Activity {
     }
 
     public void onListItemClick(ArrayList<String> userData, boolean isFollowing) {
+        Log.d(ACTIVITY_TAG, "On List Item Click");
         Intent otherProfileIntent = new Intent(this, OtherProfileActivity.class);
 
         // Gets basic data of the user whose idea
@@ -149,9 +172,11 @@ public class FoundPeopleActivity extends Activity {
 
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.d(ACTIVITY_TAG, "On Receive");
             String intentAction = intent.getAction();
             if (intentAction != null) {
                 if (intentAction.equals(Constants.SEARCH_PEOPLE_RESP)) {
+                    Log.d(ACTIVITY_TAG, "SEARCH_PEOPLE_RESP");
                     // Gets the array list of user records from the broadcast intent
                     ArrayList<UserRecord> people = intent.getParcelableArrayListExtra(Constants.PEOPLE_KEY);
                     // Gets status text view
@@ -164,11 +189,11 @@ public class FoundPeopleActivity extends Activity {
                         ListView foundPeopleList = (ListView) findViewById(R.id.found_people_list);
                         foundPeopleList.setAdapter(new UserItemAdapter(context, R.layout.user_list_item, people));
                     }
-
                     // Dismisses the progress dialog
                     progress.dismiss();
                     addListOnClickListener();
                 } else if (intentAction.equals(Constants.GET_USER_DATA_RESP)) {
+                    Log.d(ACTIVITY_TAG, "GET_USER_DATA_RESP");
                     userData = intent.getStringArrayListExtra(Constants.USER_DATA_KEY);
                     if (userData != null) {
                         String clickedUserName = userData.get(0);
@@ -179,6 +204,7 @@ public class FoundPeopleActivity extends Activity {
                         }
                     }
                 } else if (intentAction.equals(Constants.IS_FOLLOWING_RESP)) {
+                    Log.d(ACTIVITY_TAG, "IS_FOLLOWING_RESP");
                     onListItemClick(userData, intent.getBooleanExtra(Constants.IS_FOLLOWING_KEY, false));
                 }
             }

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -24,6 +25,10 @@ import se.liu.ida.josfa969.tddd80.list_adapters.IdeaItemAdapter;
 import se.liu.ida.josfa969.tddd80.item_records.IdeaRecord;
 
 public class FoundIdeasActivity extends Activity {
+    // A tag of this class used by Log
+    private final String ACTIVITY_TAG = "se.liu.ida.josfa969.tddd80.activities.FoundIdeasActivity";
+
+    // Basic data
     private String tagString;
     private String originalUser;
 
@@ -40,6 +45,7 @@ public class FoundIdeasActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_found_ideas);
+        Log.d(ACTIVITY_TAG, "On Create");
 
         Intent initIntent = getIntent();
         tagString = initIntent.getStringExtra(Constants.TAG_STRING_KEY);
@@ -48,31 +54,34 @@ public class FoundIdeasActivity extends Activity {
         // Creates an intent used to visit the detail view of an idea
         ideaDetailIntent = new Intent(this, IdeaDetailActivity.class);
 
-        // Filters for the receiver
-        IntentFilter searchIdeasFilter = new IntentFilter(Constants.SEARCH_IDEAS_RESP);
-        searchIdeasFilter.addCategory(Intent.CATEGORY_DEFAULT);
-        receiver = new ResponseReceiver();
-        registerReceiver(receiver, searchIdeasFilter);
-
+        // Creates the progress dialog
         progress = new ProgressDialog(this);
-        progress.setTitle("Loading");
-        progress.setMessage("Searching for ideas...");
 
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().add(R.id.container, new FoundIdeasFragment()).commit();
         }
     }
 
+    // Adds filters to the receiver
+    private void addReceiverFilters() {
+        Log.d(ACTIVITY_TAG, "Add Receiver Filters");
+        // Filters for the receiver
+        IntentFilter searchIdeasFilter = new IntentFilter(Constants.SEARCH_IDEAS_RESP);
+        searchIdeasFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        receiver = new ResponseReceiver();
+        registerReceiver(receiver, searchIdeasFilter);
+    }
+
     @Override
     protected void onResume() {
+        addReceiverFilters();
         super.onResume();
-
-        System.out.println("----------");
-        System.out.println("On Resume");
-        System.out.println("----------");
+        Log.d(ACTIVITY_TAG, "On Resume");
 
         // Shows the progress dialog
         progress.show();
+        progress.setTitle("Loading");
+        progress.setMessage("Searching for ideas...");
 
         // Starts the search ideas service
         Intent searchIdeasIntent = new Intent(this, SearchIdeasService.class);
@@ -83,11 +92,19 @@ public class FoundIdeasActivity extends Activity {
 
     @Override
     protected void onPause() {
-        unregisterReceiver(receiver);
+        // Unregister the receiver
+        try {
+            unregisterReceiver(receiver);
+        } catch (IllegalArgumentException e) {
+            Log.e(ACTIVITY_TAG, "Receiver not registered", e);
+            e.printStackTrace();
+        }
+        Log.d(ACTIVITY_TAG, "On Pause");
         super.onPause();
     }
 
     private void addListOnClickListener() {
+        Log.d(ACTIVITY_TAG, "Add On List Click Listener");
         final ListView foundIdeasList = (ListView) findViewById(R.id.found_ideas_list);
         foundIdeasList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -110,12 +127,15 @@ public class FoundIdeasActivity extends Activity {
     private class ResponseReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.d(ACTIVITY_TAG, "On Receive");
             // Gets the array list of idea records from the broadcast intent
             ArrayList<IdeaRecord> ideas = intent.getParcelableArrayListExtra(Constants.IDEAS_KEY);
             TextView statusText = (TextView) findViewById(R.id.found_ideas_status_text);
             if (ideas == null) {
+                Log.d(ACTIVITY_TAG, "No Ideas Found");
                 statusText.setText("No Ideas Found");
             } else if (ideas.isEmpty()) {
+                Log.d(ACTIVITY_TAG, "No Ideas Found");
                 statusText.setText("No Ideas Found");
             } else {
                 ListView foundIdeasList = (ListView) findViewById(R.id.found_ideas_list);

@@ -27,7 +27,7 @@ public class RemoveFollowerService extends IntentService {
 
         String originalUser = intent.getStringExtra(Constants.ORIGINAL_USER_KEY);
         String targetUser = intent.getStringExtra(Constants.TARGET_USER_KEY);
-        Log.i("AddFollowerService", "Adding " + originalUser + " as follower to " + targetUser);
+        Log.d("AddFollowerService", "Adding " + originalUser + " as follower to " + targetUser);
         JsonMethods.removeFollower(targetUser, originalUser);
 
         String toastMsg = "No longer following " + targetUser;

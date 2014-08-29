@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,6 +21,10 @@ import se.liu.ida.josfa969.tddd80.fragments.LoginFragment;
 import se.liu.ida.josfa969.tddd80.help_classes.Constants;
 
 public class LoginActivity extends Activity {
+    // A tag of this class used by Log
+    private final String ACTIVITY_TAG = "se.liu.ida.josfa969.tddd80.activities.LoginActivity";
+
+    // Basic data
     String identifier;
     String password;
 
@@ -45,15 +50,7 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        // Filters for the receiver
-        IntentFilter loginUserFilter = new IntentFilter(Constants.LOGIN_USER_RESP);
-        IntentFilter getUserDataFilter = new IntentFilter(Constants.GET_USER_DATA_RESP);
-        loginUserFilter.addCategory(Intent.CATEGORY_DEFAULT);
-        getUserDataFilter.addCategory(Intent.CATEGORY_DEFAULT);
-        receiver = new ResponseReceiver();
-        registerReceiver(receiver, loginUserFilter);
-        registerReceiver(receiver, getUserDataFilter);
+        Log.d(ACTIVITY_TAG, "On Create");
 
         // Creates the login intent
         loginIntent = new Intent(this, ProfileActivity.class);
@@ -72,13 +69,40 @@ public class LoginActivity extends Activity {
         }
     }
 
+    // Adds filters to the receiver
+    private void addReceiverFilters() {
+        Log.d(ACTIVITY_TAG, "Add Receiver Filters");
+        // Filters for the receiver
+        IntentFilter loginUserFilter = new IntentFilter(Constants.LOGIN_USER_RESP);
+        IntentFilter getUserDataFilter = new IntentFilter(Constants.GET_USER_DATA_RESP);
+        loginUserFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        getUserDataFilter.addCategory(Intent.CATEGORY_DEFAULT);
+        receiver = new ResponseReceiver();
+        registerReceiver(receiver, loginUserFilter);
+        registerReceiver(receiver, getUserDataFilter);
+    }
+
+    @Override
+    protected void onResume() {
+        addReceiverFilters();
+        super.onResume();
+        Log.d(ACTIVITY_TAG, "On Resume");
+    }
+
     @Override
     protected void onPause() {
-        unregisterReceiver(receiver);
+        try {
+            unregisterReceiver(receiver);
+        } catch (IllegalArgumentException e) {
+            Log.e(ACTIVITY_TAG, "Receiver not registered", e);
+            e.printStackTrace();
+        }
+        Log.d(ACTIVITY_TAG, "On Pause");
         super.onPause();
     }
 
     public void onLoginClick(View view) {
+        Log.d(ACTIVITY_TAG, "On Login Click");
         // Get edit text views
         EditText identifierInput = (EditText) findViewById(R.id.login_identifier_input);
         EditText passwordInput = (EditText) findViewById(R.id.login_password_input);
@@ -91,10 +115,13 @@ public class LoginActivity extends Activity {
         password = String.valueOf(passwordInput.getText());
 
         if (identifier.equals("") && password.equals("")) {
+            Log.e(ACTIVITY_TAG, "Inputs are empty");
             statusText.setText("Inputs are empty");
         } else if (identifier.equals("")) {
+            Log.e(ACTIVITY_TAG, "Identifier empty");
             statusText.setText("Enter username or e-mail");
         } else if (password.equals("")) {
+            Log.e(ACTIVITY_TAG, "Password empty");
             statusText.setText("Enter your password");
         } else {
             // Show the loading spinner
@@ -111,9 +138,11 @@ public class LoginActivity extends Activity {
     private class ResponseReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            Log.d(ACTIVITY_TAG, "On Receive");
             String intentAction = intent.getAction();
             if (intentAction != null) {
                 if (intentAction.equals(Constants.LOGIN_USER_RESP)) {
+                    Log.d(ACTIVITY_TAG, "LOGIN_USER_RESP");
                     String response = intent.getStringExtra(Constants.RESPONSE_KEY);
                     if (response != null) {
                         if (response.equals("Success")) {
@@ -121,11 +150,13 @@ public class LoginActivity extends Activity {
                             getUserDataIntent.putExtra(Constants.USER_NAME_KEY, userName);
                             startService(getUserDataIntent);
                         } else {
+                            Log.e(ACTIVITY_TAG, response);
                             progress.dismiss();
                             statusText.setText(response);
                         }
                     }
-                } else {
+                } else if (intentAction.equals(Constants.GET_USER_DATA_RESP)) {
+                    Log.d(ACTIVITY_TAG, "GET_USER_DATA_RESP");
                     // Dismisses the progress dialog
                     progress.dismiss();
                     // Gets the user's basic data
