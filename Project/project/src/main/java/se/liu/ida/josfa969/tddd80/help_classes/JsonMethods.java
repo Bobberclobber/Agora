@@ -42,9 +42,9 @@ import se.liu.ida.josfa969.tddd80.item_records.UserRecord;
  * A class containing methods used to get JSON-responses from URLs
  */
 public class JsonMethods {
-    private static String BASE_URL = "http://agoraserver-josfa969.rhcloud.com/";
+    // private static String BASE_URL = "http://agoraserver-josfa969.rhcloud.com/";
     // Base url for emulator
-    // private static String BASE_URL = "http://10.0.3.2:5000/";
+    private static String BASE_URL = "http://10.0.3.2:5000/";
     // Base url for real device
     // private static String BASE_URL = "http://localhost:5000/";
     private static final String SPACE = " ";
