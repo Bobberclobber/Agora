@@ -9,8 +9,7 @@ import android.view.ViewGroup;
 import se.liu.ida.josfa969.tddd80.R;
 
 /**
- * A simple {@link android.support.v4.app.Fragment} subclass.
- *
+ * A fragment to display the result from an idea search
  */
 public class FoundIdeasFragment extends Fragment {
 

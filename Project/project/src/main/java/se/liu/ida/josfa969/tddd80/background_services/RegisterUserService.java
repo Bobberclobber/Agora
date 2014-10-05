@@ -24,8 +24,7 @@ public class RegisterUserService extends IntentService {
         String eMail = intent.getStringExtra(Constants.E_MAIL_KEY);
         String country = intent.getStringExtra(Constants.COUNTRY_KEY);
         String city = intent.getStringExtra(Constants.CITY_KEY);
-        String avatarImg = intent.getStringExtra(Constants.AVATAR_IMAGE_KEY);
-        String response = JsonMethods.registerNewUser(userName, password, eMail, country, city, avatarImg);
+        String response = JsonMethods.registerNewUser(userName, password, eMail, country, city);
 
         Intent broadCastIntent = new Intent();
         broadCastIntent.setAction(Constants.REGISTER_USER_RESP);

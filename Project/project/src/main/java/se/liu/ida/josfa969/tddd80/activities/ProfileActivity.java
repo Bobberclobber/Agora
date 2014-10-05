@@ -11,16 +11,12 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -29,7 +25,6 @@ import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,9 +57,6 @@ public class ProfileActivity extends FragmentActivity implements
     // A tag of this class used by Log
     private final String ACTIVITY_TAG = "se.liu.ida.josfa969.tddd80.activities.ProfileActivity";
 
-    // Variables used for the photo capture feature
-    private static final int REQUEST_IMAGE_CAPTURE = 1;
-
     // Variables used for the set home location feature
     private static final int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
@@ -83,7 +75,6 @@ public class ProfileActivity extends FragmentActivity implements
     private String country = null;
     private String city = null;
     private String location = null;
-    private String image = null;
 
     // The user data from the updated user settings
     private String newUserName;
@@ -92,7 +83,6 @@ public class ProfileActivity extends FragmentActivity implements
     private String newCountry;
     private String newCity;
     private String newLocation;
-    private String newImage = "null";
 
     // A list of tab titles
     private String[] tabTitleList = {"Post", "Idea Feed", "Messages", "Find", "Settings"};
@@ -213,7 +203,6 @@ public class ProfileActivity extends FragmentActivity implements
                     EditText profileCountry = (EditText) findViewById(R.id.profile_country);
                     EditText profileCity = (EditText) findViewById(R.id.profile_city);
                     TextView profileLocation = (TextView) findViewById(R.id.profile_location);
-                    ImageButton profileImage = (ImageButton) findViewById(R.id.profile_image);
 
                     // Sets the content of the views
                     profileUserName.setText(userName);
@@ -222,7 +211,6 @@ public class ProfileActivity extends FragmentActivity implements
                     profileCountry.setText(country);
                     profileCity.setText(city);
                     profileLocation.setText(location);
-                    profileImage.setImageBitmap(Constants.stringToBitmap(image));
                 }
             }
         };
@@ -266,7 +254,6 @@ public class ProfileActivity extends FragmentActivity implements
         country = initIntent.getStringExtra(Constants.COUNTRY_KEY);
         city = initIntent.getStringExtra(Constants.CITY_KEY);
         location = initIntent.getStringExtra(Constants.LOCATION_KEY);
-        image = initIntent.getStringExtra(Constants.AVATAR_IMAGE_KEY);
 
         // Creates an intent used to view the detail view of an idea
         ideaDetailIntent = new Intent(this, IdeaDetailActivity.class);
@@ -284,7 +271,6 @@ public class ProfileActivity extends FragmentActivity implements
         String defaultCountry = "Country";
         String defaultCity = "City";
         String defaultLocation = "Not Set";
-        String defaultImage = "";
         if (userName == null) {
             userName = preferences.getString(Constants.USER_NAME_KEY, defaultUserName);
         }
@@ -303,9 +289,6 @@ public class ProfileActivity extends FragmentActivity implements
         if (location == null) {
             location = preferences.getString(Constants.LOCATION_KEY, defaultLocation);
         }
-        if (image == null) {
-            image = preferences.getString(Constants.AVATAR_IMAGE_KEY, defaultImage);
-        }
     }
 
     @Override
@@ -313,8 +296,7 @@ public class ProfileActivity extends FragmentActivity implements
         super.onStart();
         Log.d(ACTIVITY_TAG, "On Start");
         // Connect the client
-        // TODO: Re-enable this on real device
-        // locationClient.connect();
+        locationClient.connect();
     }
 
     @Override
@@ -325,13 +307,10 @@ public class ProfileActivity extends FragmentActivity implements
 
     @Override
     protected void onStop() {
-        // TODO: Re-enable this on real device
-        /*
         if (servicesConnected()) {
             // Disconnects the client
             locationClient.disconnect();
         }
-        */
         Log.d(ACTIVITY_TAG, "On Stop");
         super.onStop();
     }
@@ -359,7 +338,6 @@ public class ProfileActivity extends FragmentActivity implements
         editor.putString(Constants.COUNTRY_KEY, country);
         editor.putString(Constants.CITY_KEY, city);
         editor.putString(Constants.LOCATION_KEY, location);
-        editor.putString(Constants.AVATAR_IMAGE_KEY, image);
         editor.commit();
     }
 
@@ -392,7 +370,6 @@ public class ProfileActivity extends FragmentActivity implements
                     ideaDetailIntent.putExtra(Constants.TAG_STRING_KEY, ideaRecord.tags);
                     ideaDetailIntent.putExtra(Constants.APPROVAL_NUM_KEY, ideaRecord.approvalNum);
                     ideaDetailIntent.putExtra(Constants.IDEA_ID_KEY, ideaRecord.ideaId);
-                    ideaDetailIntent.putExtra(Constants.AVATAR_IMAGE_KEY, ideaRecord.image);
                     startActivity(ideaDetailIntent);
                 }
             }
@@ -410,7 +387,6 @@ public class ProfileActivity extends FragmentActivity implements
                 if (messageRecord != null) {
                     conversationIntent.putExtra(Constants.USER_NAME_KEY, messageRecord.sender);
                     conversationIntent.putExtra(Constants.ORIGINAL_USER_KEY, messageRecord.receiver);
-                    conversationIntent.putExtra(Constants.AVATAR_IMAGE_KEY, messageRecord.image);
                     startActivity(conversationIntent);
                 }
             }
@@ -484,7 +460,6 @@ public class ProfileActivity extends FragmentActivity implements
         updateUserDataIntent.putExtra(Constants.COUNTRY_KEY, newCountry);
         updateUserDataIntent.putExtra(Constants.CITY_KEY, newCity);
         updateUserDataIntent.putExtra(Constants.LOCATION_KEY, newLocation);
-        updateUserDataIntent.putExtra(Constants.AVATAR_IMAGE_KEY, newImage);
         startService(updateUserDataIntent);
     }
 
@@ -502,31 +477,10 @@ public class ProfileActivity extends FragmentActivity implements
         startActivity(searchIdeasIntent);
     }
 
-    public void onTakePictureButtonClick(View view) {
-        Log.d(ACTIVITY_TAG, "On Take Picture Button Click");
-        dispatchTakePictureIntent();
-    }
-
-    private void dispatchTakePictureIntent() {
-        Log.d(ACTIVITY_TAG, "Dispatch Take Picture Intent");
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        PackageManager pm = getPackageManager();
-        if (pm != null) {
-            if (takePictureIntent.resolveActivity(pm) != null) {
-                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-            }
-        }
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d(ACTIVITY_TAG, "On Activity Result");
         switch (requestCode) {
-            case REQUEST_IMAGE_CAPTURE:
-                Log.d(ACTIVITY_TAG, "REQUEST_IMAGE_CAPTURE");
-                // Temporarily sets the avatar image
-                setAvatarImage(resultCode, data);
-                break;
             case CONNECTION_FAILURE_RESOLUTION_REQUEST:
                 Log.d(ACTIVITY_TAG, "CONNECTION_FAILURE_RESOLUTION_REQUEST");
                 if (resultCode == RESULT_OK) {
@@ -538,35 +492,8 @@ public class ProfileActivity extends FragmentActivity implements
         }
     }
 
-    private void setAvatarImage(int resultCode, Intent data) {
-        Log.d(ACTIVITY_TAG, "Set Avatar Image");
-        if (resultCode == RESULT_OK) {
-            Log.d(ACTIVITY_TAG, "RESULT_OK");
-            Bundle extras = data.getExtras();
-            if (extras != null) {
-                Bitmap imageBitmap = (Bitmap) extras.get("data");
-                // Since the image is rotated 90 degrees when taken
-                // in portrait mode, rotate it so that portrait view
-                // is the standard layout to take the profile picture in
-                Matrix matrix = new Matrix();
-                matrix.postRotate(-90);
-                int imgWidth = imageBitmap.getWidth();
-                int imgHeight = imageBitmap.getHeight();
-                Bitmap rotatedImage = Bitmap.createBitmap(imageBitmap, 0, 0, imgWidth, imgHeight, matrix, true);
-
-                // Sets the image button's image to the one just taken
-                ImageButton avatarImageView = (ImageButton) findViewById(R.id.profile_image);
-                avatarImageView.setImageBitmap(rotatedImage);
-
-                newImage = Constants.bitmapToString(rotatedImage);
-            }
-        }
-    }
-
     public void onSetLocationClick(View view) {
         Log.d(ACTIVITY_TAG, "On Set Location Click");
-        // TODO: Re-enable this on real device
-        /*
         if (servicesConnected()) {
             // Ensure that a Geocoder services is available
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD && Geocoder.isPresent()) {
@@ -586,7 +513,6 @@ public class ProfileActivity extends FragmentActivity implements
                 (new GetAddressTask(this, locationTextView)).execute(mCurrentLocation);
             }
         }
-        */
     }
 
     /*
@@ -596,8 +522,6 @@ public class ProfileActivity extends FragmentActivity implements
      * Void - Indicates that progress units are not used
      *  String - An address passed to onPostExecute()
      */
-    // TODO: Re-enable this on real device
-    /*
     private class GetAddressTask extends AsyncTask<Location, Void, String> {
         Context mContext;
         TextView mTextView;
@@ -612,8 +536,6 @@ public class ProfileActivity extends FragmentActivity implements
          * Get a Geocoder instance, get the latitude and longitude,
          * look up the address, and return it.
          */
-    // TODO: Re-enable this on real device
-    /*
         @Override
         protected String doInBackground(Location... locations) {
             Log.d(ACTIVITY_TAG, "Do In Background");
@@ -648,8 +570,6 @@ public class ProfileActivity extends FragmentActivity implements
                  * Format the first line of address (if available), city, and country name.
                  */
                 // Return the text
-    // TODO: Re-enable this on real device
-    /*
                 return String.format(
                         "%s, %s, %s",
                         // If there's a street address, add it
@@ -669,8 +589,6 @@ public class ProfileActivity extends FragmentActivity implements
          * Dismiss the progress dialog and set the the location
          * variable and text view values to the acquired address.
          */
-    // TODO: Re-enable this on real device
-    /*
         @Override
         protected void onPostExecute(String address) {
             Log.d(ACTIVITY_TAG, "On Post Execute");
@@ -681,7 +599,6 @@ public class ProfileActivity extends FragmentActivity implements
             progress.dismiss();
         }
     }
-    */
 
     private boolean servicesConnected() {
         Log.d(ACTIVITY_TAG, "Services Connected");
@@ -878,11 +795,6 @@ public class ProfileActivity extends FragmentActivity implements
                 country = newCountry;
                 city = newCity;
                 location = newLocation;
-
-                // If the image contains a decipherable value
-                if (!newImage.equals("null")) {
-                    image = newImage;
-                }
             }
 
             // Dismiss the progress dialog

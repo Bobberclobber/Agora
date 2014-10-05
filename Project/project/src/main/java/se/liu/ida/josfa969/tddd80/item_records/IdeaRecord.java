@@ -21,16 +21,14 @@ public class IdeaRecord implements Parcelable {
     public String ideaText;
     public String poster;
     public String approvalNum;
-    public String image;
     public boolean isApproving;
     public ArrayList tags;
 
-    public IdeaRecord(String ideaId, String ideaText, String poster, String approvalNum, String image, boolean isApproving, ArrayList<String> tags) {
+    public IdeaRecord(String ideaId, String ideaText, String poster, String approvalNum, boolean isApproving, ArrayList<String> tags) {
         this.ideaId = ideaId;
         this.ideaText = ideaText;
         this.poster = poster;
         this.approvalNum = approvalNum;
-        this.image = image;
         this.isApproving = isApproving;
         this.tags = tags;
     }
@@ -41,7 +39,6 @@ public class IdeaRecord implements Parcelable {
         ideaText = in.readString();
         poster = in.readString();
         approvalNum = in.readString();
-        image = in.readString();
         isApproving = in.readByte() != 0; // isApproving = true if byte != 0
         tags = in.readArrayList(null);
     }
@@ -52,7 +49,6 @@ public class IdeaRecord implements Parcelable {
         out.writeString(ideaText);
         out.writeString(poster);
         out.writeString(approvalNum);
-        out.writeString(image);
         out.writeByte((byte) (isApproving ? 1 : 0)); // if isApproving == true, byte = 1
         out.writeList(tags);
     }

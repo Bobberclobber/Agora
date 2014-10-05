@@ -10,11 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -188,7 +185,6 @@ public class InformationActivity extends Activity {
             String ideaText = "";
             String tagString = "";
             String approvalNum = "";
-            String image = "";
 
             for (IdeaRecord record : approvingList) {
                 if (record.ideaId.equals(ideaId)) {
@@ -197,7 +193,6 @@ public class InformationActivity extends Activity {
                     for (Object tag : record.tags) {
                         tagString += "#" + tag + " ";
                     }
-                    image = record.image;
                 }
             }
 
@@ -207,7 +202,6 @@ public class InformationActivity extends Activity {
             ideaDetailIntent.putExtra(Constants.TAG_STRING_KEY, tagString);
             ideaDetailIntent.putExtra(Constants.APPROVAL_NUM_KEY, approvalNum);
             ideaDetailIntent.putExtra(Constants.IDEA_ID_KEY, ideaId);
-            ideaDetailIntent.putExtra(Constants.AVATAR_IMAGE_KEY, image);
             startActivity(ideaDetailIntent);
         }
     }
@@ -225,7 +219,6 @@ public class InformationActivity extends Activity {
         String clickedCity = userData.get(3);
         String clickedFollowers = userData.get(4);
         String clickedLocation = userData.get(5);
-        String clickedAvatarImage = userData.get(6);
 
         // Attaches the basic data to the intent
         otherProfileIntent.putExtra(Constants.USER_NAME_KEY, clickedUserName);
@@ -234,7 +227,6 @@ public class InformationActivity extends Activity {
         otherProfileIntent.putExtra(Constants.CITY_KEY, clickedCity);
         otherProfileIntent.putExtra(Constants.FOLLOWERS_KEY, clickedFollowers);
         otherProfileIntent.putExtra(Constants.LOCATION_KEY, clickedLocation);
-        otherProfileIntent.putExtra(Constants.AVATAR_IMAGE_KEY, clickedAvatarImage);
         otherProfileIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
 
         // Dismisses the progress dialog
@@ -293,7 +285,6 @@ public class InformationActivity extends Activity {
                 TextView tagsView = (TextView) temp.findViewById(R.id.tags);
                 TextView approvalNumView = (TextView) temp.findViewById(R.id.approval_num);
                 TextView ideaIdView = (TextView) temp.findViewById(R.id.idea_id);
-                ImageView ideaAvatarImage = (ImageView) temp.findViewById(R.id.idea_avatar_image);
 
                 // Sets texts
                 posterView.setText(ideaRecord.poster);
@@ -305,7 +296,6 @@ public class InformationActivity extends Activity {
                 tagsView.setText(tagString);
                 approvalNumView.setText(ideaRecord.approvalNum);
                 ideaIdView.setText(ideaRecord.ideaId);
-                ideaAvatarImage.setImageBitmap(Constants.stringToBitmap(ideaRecord.image));
 
                 // Adds the item to the list
                 approvingListView.addView(temp);
@@ -386,7 +376,6 @@ public class InformationActivity extends Activity {
                 TextView followerNumView = (TextView) temp.findViewById(R.id.user_list_follower_num);
                 TextView countryView = (TextView) temp.findViewById(R.id.user_list_country);
                 TextView cityView = (TextView) temp.findViewById(R.id.user_list_city);
-                ImageView avatarImageView = (ImageView) temp.findViewById(R.id.user_avatar_image);
 
                 // Sets texts
                 userNameView.setText(userRecord.userName);
@@ -394,7 +383,6 @@ public class InformationActivity extends Activity {
                 followerNumView.setText(userRecord.followers);
                 countryView.setText(userRecord.country);
                 cityView.setText(userRecord.city);
-                avatarImageView.setImageBitmap(Constants.stringToBitmap(userRecord.image));
 
                 // Adds the item to the list
                 followingListView.addView(temp);

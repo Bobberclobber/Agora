@@ -58,8 +58,8 @@ public class JsonMethods {
     // module which stores it in a sqlite3 database. A JSON
     // response is then received telling if the transaction
     // to the database succeeded or failed.
-    public static String registerNewUser(String userName, String password, String eMail, String country, String city, String defaultAvatarImg) {
-        String registerURL = BASE_URL + "_register_user_/" + userName + "/" + password + "/" + eMail + "/" + country + "/" + city + "/" + defaultAvatarImg;
+    public static String registerNewUser(String userName, String password, String eMail, String country, String city) {
+        String registerURL = BASE_URL + "_register_user_/" + userName + "/" + password + "/" + eMail + "/" + country + "/" + city;
         registerURL = registerURL.replace(SPACE, SPACE_REPLACE);
         registerURL = registerURL.replace(ENTER, ENTER_REPLACE);
         return getJsonResponse(registerURL);
@@ -99,14 +99,13 @@ public class JsonMethods {
                     poster = poster.replace(SPACE_REPLACE, SPACE);
                     poster = poster.replace(HASH_TAG_REPLACE, HASH_TAG);
                     String approvalNum = temp.getString(3);
-                    String image = getAvatarImage(poster);
                     boolean isApproving = userIsApproving(identifier, ideaId);
                     JSONArray tagJsonArray = temp.getJSONArray(4);
                     ArrayList<String> tags = new ArrayList<String>();
                     for (int n = 0; n < tagJsonArray.length(); n++) {
                         tags.add(tagJsonArray.getString(n));
                     }
-                    ideas.add(new IdeaRecord(ideaId, ideaText, poster, approvalNum, image, isApproving, tags));
+                    ideas.add(new IdeaRecord(ideaId, ideaText, poster, approvalNum, isApproving, tags));
                 }
             }
         } catch (JSONException e) {
@@ -135,14 +134,13 @@ public class JsonMethods {
                     ideaText = ideaText.replace(ENTER_REPLACE, ENTER);
                     String poster = temp.getString(2);
                     String approvalNum = temp.getString(3);
-                    String image = getAvatarImage(poster);
                     boolean isApproving = userIsApproving(originalUser, ideaId);
                     JSONArray tagJsonArray = temp.getJSONArray(4);
                     ArrayList<String> tags = new ArrayList<String>();
                     for (int n = 0; n < tagJsonArray.length(); n++) {
                         tags.add(tagJsonArray.getString(n));
                     }
-                    ideas.add(new IdeaRecord(ideaId, ideaText, poster, approvalNum, image, isApproving, tags));
+                    ideas.add(new IdeaRecord(ideaId, ideaText, poster, approvalNum, isApproving, tags));
                 }
             }
         } catch (JSONException e) {
@@ -174,8 +172,7 @@ public class JsonMethods {
                     messageText = messageText.replace(SPACE_REPLACE, SPACE);
                     messageText = messageText.replace(HASH_TAG_REPLACE, HASH_TAG);
                     messageText = messageText.replace(ENTER_REPLACE, ENTER);
-                    String image = getAvatarImage(sender);
-                    messages.add(new MessageRecord(sender, receiver, messageText, image));
+                    messages.add(new MessageRecord(sender, receiver, messageText));
                 }
             }
         } catch (JSONException e) {
@@ -207,8 +204,7 @@ public class JsonMethods {
                     messageText = messageText.replace(SPACE_REPLACE, SPACE);
                     messageText = messageText.replace(HASH_TAG_REPLACE, HASH_TAG);
                     messageText = messageText.replace(ENTER_REPLACE, ENTER);
-                    String image = getAvatarImage(sender);
-                    recentMessages.add(new MessageRecord(sender, receiver, messageText, image));
+                    recentMessages.add(new MessageRecord(sender, receiver, messageText));
                 }
             }
         } catch (JSONException e) {
@@ -246,7 +242,6 @@ public class JsonMethods {
                 JSONArray cityArray = jsonResponseObject.getJSONArray("city");
                 JSONArray followersArray = jsonResponseObject.getJSONArray("followers");
                 JSONArray locationArray = jsonResponseObject.getJSONArray("location");
-                JSONArray imageArray = jsonResponseObject.getJSONArray("avatar_image");
 
                 // Converts the JSON Arrays to strings
                 String userName = userNameArray.getString(0);
@@ -260,8 +255,6 @@ public class JsonMethods {
                 String followers = followersArray.getString(0);
                 String location = locationArray.getString(0);
                 location = location.replace(SPACE_REPLACE, SPACE);
-                String image = imageArray.getString(0);
-                image = image.replace(ENTER_REPLACE, ENTER);
 
                 // Adds the strings to the userData array list
                 userData.add(userName);
@@ -270,7 +263,6 @@ public class JsonMethods {
                 userData.add(city);
                 userData.add(followers);
                 userData.add(location);
-                userData.add(image);
             } catch (JSONException e) {
                 System.out.println("JSON Exception");
                 e.printStackTrace();
@@ -301,24 +293,6 @@ public class JsonMethods {
         } else {
             return "ERROR!!!";
         }
-    }
-
-    public static String getAvatarImage(String userName) {
-        String getAvatarImageURL = BASE_URL + "_get_avatar_image_/" + userName;
-        getAvatarImageURL = getAvatarImageURL.replace(SPACE, SPACE_REPLACE);
-        getAvatarImageURL = getAvatarImageURL.replace(HASH_TAG, HASH_TAG_REPLACE);
-        String avatarImage = "";
-
-        try {
-            JSONObject jsonResponseObject = new JSONObject(getUrlResponseString(getAvatarImageURL));
-            JSONArray avatarImageArray = jsonResponseObject.getJSONArray("avatar_image");
-            avatarImage = avatarImageArray.getString(0);
-            avatarImage = avatarImage.replace(ENTER_REPLACE, ENTER);
-        } catch (JSONException e) {
-            System.out.println("JSON Exception");
-            e.printStackTrace();
-        }
-        return avatarImage;
     }
 
     public static boolean userIsFollowing(String user, String otherUser) {
@@ -371,14 +345,13 @@ public class JsonMethods {
                     poster = poster.replace(SPACE_REPLACE, SPACE);
                     poster = poster.replace(HASH_TAG_REPLACE, HASH_TAG);
                     String approvalNum = tempArray.getString(3);
-                    String image = getAvatarImage(poster);
                     boolean isApproving = userIsApproving(originalUser, ideaId);
                     JSONArray tempTags = tempArray.getJSONArray(4);
                     ArrayList<String> tagList = new ArrayList<String>();
                     for (int n = 0; n < tempTags.length(); n++) {
                         tagList.add(tempTags.getString(n));
                     }
-                    ideas.add(new IdeaRecord(ideaId, ideaText, poster, approvalNum, image, isApproving, tagList));
+                    ideas.add(new IdeaRecord(ideaId, ideaText, poster, approvalNum, isApproving, tagList));
                 }
             }
         } catch (JSONException e) {
@@ -411,8 +384,7 @@ public class JsonMethods {
                     String city = tempArray.getString(3);
                     city = city.replace(SPACE_REPLACE, SPACE);
                     String followers = tempArray.getString(4);
-                    String image = getAvatarImage(userName);
-                    people.add(new UserRecord(userName, eMail, country, city, followers, image));
+                    people.add(new UserRecord(userName, eMail, country, city, followers));
                 }
             }
         } catch (JSONException e) {
@@ -424,11 +396,10 @@ public class JsonMethods {
 
     public static String updateUserData(String originalUserName, String originalEMail,
                                         String newUserName, String newEMail, String newPassword,
-                                        String newCountry, String newCity, String newLocation,
-                                        String newImage) {
+                                        String newCountry, String newCity, String newLocation) {
         String updateUserDataURL = BASE_URL + "_update_user_data_/" + originalUserName + "/" +
                 originalEMail + "/" + newUserName + "/" + newEMail + "/" + newPassword + "/"
-                + newCountry + "/" + newCity + "/" + newLocation + "/" + newImage;
+                + newCountry + "/" + newCity + "/" + newLocation;
         updateUserDataURL = updateUserDataURL.replace(SPACE, SPACE_REPLACE);
         updateUserDataURL = updateUserDataURL.replace(HASH_TAG, HASH_TAG_REPLACE);
         updateUserDataURL = updateUserDataURL.replace(ENTER, ENTER_REPLACE);
@@ -483,8 +454,7 @@ public class JsonMethods {
                 String fCity = temp.getString(3);
                 fCity = fCity.replace(SPACE_REPLACE, SPACE);
                 String fFollowers = temp.getString(4);
-                String fImage = getAvatarImage(fUserName);
-                following.add(new UserRecord(fUserName, fEMail, fCountry, fCity, fFollowers, fImage));
+                following.add(new UserRecord(fUserName, fEMail, fCountry, fCity, fFollowers));
             }
         } catch (JSONException e) {
             System.out.println("JSON Exception");
@@ -511,7 +481,6 @@ public class JsonMethods {
                 fPoster = fPoster.replace(SPACE_REPLACE, SPACE);
                 fPoster = fPoster.replace(HASH_TAG_REPLACE, HASH_TAG);
                 String fApprovalNum = temp.getString(3);
-                String fImage = getAvatarImage(fPoster);
                 boolean isApproving = userIsApproving(originalUserName, fIdeaId);
                 JSONArray tagsJsonArray = temp.getJSONArray(4);
                 ArrayList<String> fTags = new ArrayList<String>();
@@ -520,7 +489,7 @@ public class JsonMethods {
                     tempTag = tempTag.replace(HASH_TAG_REPLACE, HASH_TAG);
                     fTags.add(tempTag);
                 }
-                approving.add(new IdeaRecord(fIdeaId, fIdeaText, fPoster, fApprovalNum, fImage, isApproving, fTags));
+                approving.add(new IdeaRecord(fIdeaId, fIdeaText, fPoster, fApprovalNum, isApproving, fTags));
             }
         } catch (JSONException e) {
             System.out.println("JSON Exception");
@@ -554,8 +523,7 @@ public class JsonMethods {
                     commentText = commentText.replace(SPACE_REPLACE, SPACE);
                     commentText = commentText.replace(HASH_TAG_REPLACE, HASH_TAG);
                     commentText = commentText.replace(ENTER_REPLACE, ENTER);
-                    String image = getAvatarImage(user);
-                    comments.add(new CommentRecord(user, commentText, image));
+                    comments.add(new CommentRecord(user, commentText));
                 }
             }
         } catch (JSONException e) {

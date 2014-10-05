@@ -66,6 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_internal_margin"
             android:layout_toRightOf="@id/other_user_followers"
+            android:layout_toEndOf="@id/other_user_followers"
             android:layout_below="@id/other_user_city"
             android:textSize="@dimen/large_text_size" />
 
@@ -85,6 +86,7 @@
             android:layout_marginTop="@dimen/small_internal_margin"
             android:layout_below="@id/other_user_followers"
             android:layout_toRightOf="@id/other_user_home_location_text"
+            android:layout_toEndOf="@id/other_user_home_location_text"
             android:textSize="@dimen/large_text_size"/>
 
         <TextView
@@ -104,6 +106,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/large_internal_margin"
+            android:layout_marginStart="@dimen/large_internal_margin"
             android:layout_marginTop="@dimen/small_internal_margin"
             android:layout_below="@id/other_user_following_title" />
 
@@ -124,6 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/large_internal_margin"
+            android:layout_marginStart="@dimen/large_internal_margin"
             android:layout_marginTop="@dimen/small_internal_margin"
             android:layout_below="@id/other_user_approving_title" />
 

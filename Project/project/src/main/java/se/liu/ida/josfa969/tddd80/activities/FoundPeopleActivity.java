@@ -8,8 +8,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -23,7 +21,6 @@ import se.liu.ida.josfa969.tddd80.background_services.IsFollowingService;
 import se.liu.ida.josfa969.tddd80.background_services.SearchPeopleService;
 import se.liu.ida.josfa969.tddd80.fragments.FoundPeopleFragment;
 import se.liu.ida.josfa969.tddd80.help_classes.Constants;
-import se.liu.ida.josfa969.tddd80.help_classes.JsonMethods;
 import se.liu.ida.josfa969.tddd80.item_records.UserRecord;
 import se.liu.ida.josfa969.tddd80.list_adapters.UserItemAdapter;
 
@@ -147,7 +144,6 @@ public class FoundPeopleActivity extends Activity {
         String clickedCity = userData.get(3);
         String clickedFollowers = userData.get(4);
         String clickedLocation = userData.get(5);
-        String clickedAvatarImage = userData.get(6);
 
         // Attaches the basic data to the intent
         otherProfileIntent.putExtra(Constants.USER_NAME_KEY, clickedUserName);
@@ -158,7 +154,6 @@ public class FoundPeopleActivity extends Activity {
         otherProfileIntent.putExtra(Constants.LOCATION_KEY, clickedLocation);
         otherProfileIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
         otherProfileIntent.putExtra(Constants.IS_FOLLOWING_KEY, isFollowing);
-        otherProfileIntent.putExtra(Constants.AVATAR_IMAGE_KEY, clickedAvatarImage);
 
         // Dismisses the progress dialog
         progress.dismiss();

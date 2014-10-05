@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import se.liu.ida.josfa969.tddd80.R;
 
 /**
- * Created by Josef on 05/08/14.
+ * A fragment used to display information about a given user
  */
 public class InformationFragment extends Fragment {
 

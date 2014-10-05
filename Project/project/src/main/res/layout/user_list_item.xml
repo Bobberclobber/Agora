@@ -6,19 +6,10 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/small_padding">
 
-    <ImageView
-        android:id="@+id/user_avatar_image"
-        android:layout_width="@dimen/avatar_image_side"
-        android:layout_height="@dimen/avatar_image_side"
-        android:padding="@dimen/small_padding"
-        android:src="@drawable/q_mark"
-        android:contentDescription="@string/user_avatar_image_description"/>
-
     <TextView
         android:id="@+id/user_list_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/user_avatar_image"
         android:textSize="@dimen/large_text_size"
         android:textColor="@color/primary_color"/>
 
@@ -27,9 +18,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/large_internal_margin"
+        android:layout_marginStart="@dimen/large_internal_margin"
         android:layout_marginTop="@dimen/small_internal_margin"
-        android:layout_below="@id/user_list_user_name"
-        android:layout_toRightOf="@id/user_avatar_image"/>
+        android:layout_below="@id/user_list_user_name"/>
 
     <TextView
         android:id="@+id/user_list_follower_text"
@@ -38,8 +29,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_internal_margin"
         android:layout_marginLeft="@dimen/large_internal_margin"
-        android:layout_below="@id/user_list_e_mail"
-        android:layout_toRightOf="@id/user_avatar_image"/>
+        android:layout_marginStart="@dimen/large_internal_margin"
+        android:layout_below="@id/user_list_e_mail"/>
 
     <TextView
         android:id="@+id/user_list_follower_num"
@@ -47,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_internal_margin"
         android:layout_toRightOf="@id/user_list_follower_text"
+        android:layout_toEndOf="@id/user_list_follower_text"
         android:layout_below="@id/user_list_e_mail"/>
 
     <TextView
@@ -54,17 +46,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/large_internal_margin"
+        android:layout_marginStart="@dimen/large_internal_margin"
         android:layout_marginTop="@dimen/small_internal_margin"
-        android:layout_below="@id/user_list_follower_num"
-        android:layout_toRightOf="@id/user_avatar_image"/>
+        android:layout_below="@id/user_list_follower_num"/>
 
     <TextView
         android:id="@+id/user_list_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/large_internal_margin"
+        android:layout_marginStart="@dimen/large_internal_margin"
         android:layout_marginTop="@dimen/small_internal_margin"
         android:layout_below="@id/user_list_follower_num"
-        android:layout_toRightOf="@id/user_list_country"/>
+        android:layout_toRightOf="@id/user_list_country"
+        android:layout_toEndOf="@id/user_list_country"/>
 
 </RelativeLayout>

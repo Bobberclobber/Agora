@@ -20,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/large_internal_margin"
+        android:layout_marginStart="@dimen/large_internal_margin"
         android:layout_marginTop="@dimen/small_internal_margin"
         android:layout_below="@id/found_people_title"/>
 

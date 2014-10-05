@@ -22,7 +22,6 @@ import se.liu.ida.josfa969.tddd80.item_records.CommentRecord;
  */
 public class CommentItemAdapter extends ArrayAdapter<CommentRecord> {
     private ArrayList<CommentRecord> commentRecords;
-    private Context context;
 
     public CommentItemAdapter(Context context, int textViewSourceId, ArrayList<CommentRecord> commentRecords) {
         super(context, textViewSourceId, commentRecords);
@@ -41,16 +40,12 @@ public class CommentItemAdapter extends ArrayAdapter<CommentRecord> {
         if (commentRecord != null && v != null) {
             TextView user = (TextView) v.findViewById(R.id.comment_user_name);
             TextView commentText = (TextView) v.findViewById(R.id.comment_text);
-            ImageView avatarImage = (ImageView) v.findViewById(R.id.comment_avatar_image);
 
             if (user != null) {
                 user.setText(commentRecord.user);
             }
             if (commentText != null) {
                 commentText.setText(commentRecord.commentText);
-            }
-            if (avatarImage != null) {
-                avatarImage.setImageBitmap(Constants.stringToBitmap(commentRecord.image));
             }
         }
         return v;

@@ -15,6 +15,7 @@ import se.liu.ida.josfa969.tddd80.item_records.IdeaRecord;
  * A service called when fetching another user's ideas
  */
 public class GetOtherUserIdeasService extends IntentService {
+
     public GetOtherUserIdeasService() {
         super("GetOtherUserIdeasService");
     }

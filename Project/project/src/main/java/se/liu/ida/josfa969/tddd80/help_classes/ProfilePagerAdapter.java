@@ -17,7 +17,6 @@ import se.liu.ida.josfa969.tddd80.fragments.ProfileSettingsFragment;
  * on which screen is currently active in the ProfileActivity
  */
 public class ProfilePagerAdapter extends FragmentPagerAdapter {
-    private final int PAGE_COUNT = 5;
     private String[] nameList = {"Post", "Idea Feed", "Messages", "Find", "Settings"};
     private Fragment[] fragmentList = {new PostIdeaFragment(), new IdeaFeedFragment(), new MessagesFragment(), new FindFragment(), new ProfileSettingsFragment()};
 
@@ -32,7 +31,7 @@ public class ProfilePagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return PAGE_COUNT;
+        return fragmentList.length;
     }
 
     @Override

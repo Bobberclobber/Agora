@@ -5,20 +5,11 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/idea_avatar_image"
-        android:layout_width="@dimen/avatar_image_side"
-        android:layout_height="@dimen/avatar_image_side"
-        android:padding="@dimen/small_padding"
-        android:src="@drawable/q_mark"
-        android:contentDescription="@string/user_avatar_image_description" />
-
     <TextView
         android:id="@+id/poster"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/small_padding"
-        android:layout_toRightOf="@id/idea_avatar_image"
         android:textSize="@dimen/large_text_size"
         android:textColor="#0099CC"/>
 
@@ -27,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/large_internal_margin"
-        android:layout_toRightOf="@id/idea_avatar_image"
+        android:layout_marginStart="@dimen/large_internal_margin"
         android:layout_below="@id/poster"/>
 
     <TextView
@@ -37,7 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_internal_margin"
         android:padding="@dimen/small_padding"
-        android:layout_toRightOf="@id/idea_avatar_image"
         android:layout_below="@id/idea_text"
         android:textColor="@color/primary_color"/>
 
@@ -46,7 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/large_internal_margin"
-        android:layout_toRightOf="@id/idea_avatar_image"
+        android:layout_marginStart="@dimen/large_internal_margin"
         android:layout_below="@id/tags_text"/>
 
     <!-- Approval and Un-Approval buttons -->
@@ -56,7 +46,6 @@
         android:layout_width="@dimen/approval_button_side"
         android:layout_height="@dimen/approval_button_side"
         android:layout_below="@id/tags"
-        android:layout_toRightOf="@id/idea_avatar_image"
         android:focusable="false"
         android:textColor="@color/success_color"/>
 
@@ -66,7 +55,6 @@
         android:layout_width="@dimen/approval_button_side"
         android:layout_height="@dimen/approval_button_side"
         android:layout_below="@id/tags"
-        android:layout_toRightOf="@id/idea_avatar_image"
         android:focusable="false"
         android:textColor="@color/error_color"/>
 
@@ -74,8 +62,7 @@
         android:id="@+id/approval_button_replacement"
         android:layout_width="@dimen/approval_button_side"
         android:layout_height="@dimen/approval_button_side"
-        android:layout_below="@id/tags"
-        android:layout_toRightOf="@id/idea_avatar_image"/>
+        android:layout_below="@id/tags"/>
 
     <TextView
         android:id="@+id/approval_num_text"
@@ -83,8 +70,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/small_padding"
+        android:paddingRight="@dimen/small_padding"
         android:layout_marginTop="@dimen/small_internal_margin"
         android:layout_toRightOf="@id/approval_button_replacement"
+        android:layout_toEndOf="@id/approval_button_replacement"
         android:layout_below="@id/tags"/>
 
     <TextView
@@ -92,6 +81,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/approval_num_text"
+        android:layout_toEndOf="@id/approval_num_text"
         android:layout_marginTop="@dimen/small_internal_margin"
         android:layout_below="@id/tags"
         android:textColor="#0099CC"/>
@@ -103,7 +93,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_internal_margin"
         android:layout_marginLeft="@dimen/large_internal_margin"
+        android:layout_marginStart="@dimen/large_internal_margin"
         android:layout_toRightOf="@id/approval_num"
+        android:layout_toEndOf="@id/approval_num"
         android:layout_below="@id/tags"/>
 
     <TextView
@@ -112,6 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_internal_margin"
         android:layout_toRightOf="@id/idea_id_text"
+        android:layout_toEndOf="@id/idea_id_text"
         android:layout_below="@id/tags"
         android:textColor="#0099CC"/>
     

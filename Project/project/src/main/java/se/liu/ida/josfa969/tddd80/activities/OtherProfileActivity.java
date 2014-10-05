@@ -7,13 +7,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +38,6 @@ public class OtherProfileActivity extends Activity {
     private String city = null;
     private String followers = null;
     private String location = null;
-    private String avatarImage = "";
     private String originalUser = null;
     private boolean isFollowing = false;
 
@@ -92,7 +89,6 @@ public class OtherProfileActivity extends Activity {
         city = initIntent.getStringExtra(Constants.CITY_KEY);
         followers = initIntent.getStringExtra(Constants.FOLLOWERS_KEY);
         location = initIntent.getStringExtra(Constants.LOCATION_KEY);
-        avatarImage = initIntent.getStringExtra(Constants.AVATAR_IMAGE_KEY);
         originalUser = initIntent.getStringExtra(Constants.ORIGINAL_USER_KEY);
         isFollowing = initIntent.getBooleanExtra(Constants.IS_FOLLOWING_KEY, false);
 
@@ -103,7 +99,6 @@ public class OtherProfileActivity extends Activity {
         String defaultCity = "City";
         String defaultFollowers = "0";
         String defaultLocation = "Not Set";
-        String defaultAvatarImage = "";
         String defaultOriginalUser = "You";
 
         if (userName == null) {
@@ -123,9 +118,6 @@ public class OtherProfileActivity extends Activity {
         }
         if (location == null) {
             location = preferences.getString(Constants.LOCATION_KEY, defaultLocation);
-        }
-        if (avatarImage == null) {
-            avatarImage = preferences.getString(Constants.AVATAR_IMAGE_KEY, defaultAvatarImage);
         }
         if (originalUser == null) {
             originalUser = preferences.getString(Constants.ORIGINAL_USER_KEY, defaultOriginalUser);
@@ -161,7 +153,6 @@ public class OtherProfileActivity extends Activity {
         editor.putString(Constants.CITY_KEY, city);
         editor.putString(Constants.FOLLOWERS_KEY, followers);
         editor.putString(Constants.LOCATION_KEY, location);
-        editor.putString(Constants.AVATAR_IMAGE_KEY, avatarImage);
         editor.putString(Constants.ORIGINAL_USER_KEY, originalUser);
         editor.putBoolean(Constants.IS_FOLLOWING_KEY, isFollowing);
         editor.commit();
@@ -194,13 +185,11 @@ public class OtherProfileActivity extends Activity {
         TextView nameView = (TextView) findViewById(R.id.other_profile_name);
         TextView eMailView = (TextView) findViewById(R.id.other_profile_e_mail);
         TextView followersView = (TextView) findViewById(R.id.other_profile_follower_number);
-        ImageView avatarImageView = (ImageView) findViewById(R.id.other_profile_image);
 
         // Sets the text view's values
         nameView.setText(userName);
         eMailView.setText(eMail);
         followersView.setText(followers);
-        avatarImageView.setImageBitmap(Constants.stringToBitmap(avatarImage));
 
         // Displays a progress bar
         setProgressBarIndeterminateVisibility(true);
@@ -215,7 +204,6 @@ public class OtherProfileActivity extends Activity {
         Intent conversationIntent = new Intent(this, ConversationActivity.class);
         conversationIntent.putExtra(Constants.USER_NAME_KEY, userName);
         conversationIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
-        conversationIntent.putExtra(Constants.AVATAR_IMAGE_KEY, avatarImage);
         startActivity(conversationIntent);
     }
 
@@ -301,7 +289,6 @@ public class OtherProfileActivity extends Activity {
                     ideaDetailIntent.putExtra(Constants.TAG_STRING_KEY, ideaRecord.tags);
                     ideaDetailIntent.putExtra(Constants.APPROVAL_NUM_KEY, ideaRecord.approvalNum);
                     ideaDetailIntent.putExtra(Constants.IDEA_ID_KEY, ideaRecord.ideaId);
-                    ideaDetailIntent.putExtra(Constants.AVATAR_IMAGE_KEY, ideaRecord.image);
                     startActivity(ideaDetailIntent);
                 }
             }

@@ -39,7 +39,6 @@ public class Constants {
     public static final String POSTER_KEY = "se.liu.ida.josfa969.activities.POSTER";
     public static final String APPROVAL_NUM_KEY = "se.liu.ida.josfa969.activities.APPROVAL_NUM";
     public static final String USER_DATA_KEY = "se.liu.ida.josfa969.activities.USER_DATA";
-    public static final String AVATAR_IMAGE_KEY = "se.liu.ida.josfa969.activities.AVATAR_BITMAP";
     public static final String IS_APPROVING_KEY = "se.liu.ida.josfa969.activities.IS_APPROVING";
     public static final String IS_FOLLOWING_KEY = "se.liu.ida.josfa969.activities.IS_FOLLOWING";
     public static final String RESPONSE_KEY = "se.liu.ida.josfa969.activities.RESPONSE";
@@ -70,21 +69,4 @@ public class Constants {
     public static final String GET_OTHER_USER_IDEAS_RESP = "se.liu.ida.josfa969.background_services.action.GET_OTHER_USER_RECENT_IDEAS";
     public static final String LOGIN_USER_RESP = "se.liu.ida.josfa969.background_services.action.LOGIN_USER";
     public static final String REGISTER_USER_RESP = "se.liu.ida.josfa969.background_services.action.REGISTER_USER";
-
-    /*
-     * Methods used to turn bitmaps to data
-     * which can be stored in a database and back
-     */
-    public static String bitmapToString(Bitmap bitmap) {
-        // Turns the bitmap image to a string which can be passed with a URL
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-        byte[] bArray = bos.toByteArray();
-        return Base64.encodeToString(bArray, Base64.URL_SAFE);
-    }
-
-    public static Bitmap stringToBitmap(String string) {
-        byte[] bArray = Base64.decode(string, Base64.URL_SAFE);
-        return BitmapFactory.decodeByteArray(bArray, 0, bArray.length);
-    }
 }

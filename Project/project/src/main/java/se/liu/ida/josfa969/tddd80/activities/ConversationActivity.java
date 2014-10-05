@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +23,6 @@ import java.util.TimerTask;
 
 import se.liu.ida.josfa969.tddd80.R;
 import se.liu.ida.josfa969.tddd80.background_services.GetConversationService;
-import se.liu.ida.josfa969.tddd80.background_services.GetUserDataService;
 import se.liu.ida.josfa969.tddd80.background_services.IsFollowingService;
 import se.liu.ida.josfa969.tddd80.background_services.SendMessageService;
 import se.liu.ida.josfa969.tddd80.fragments.ConversationFragment;
@@ -32,21 +30,12 @@ import se.liu.ida.josfa969.tddd80.help_classes.Constants;
 import se.liu.ida.josfa969.tddd80.item_records.MessageRecord;
 import se.liu.ida.josfa969.tddd80.list_adapters.MessageItemAdapter;
 
-/**
- * An activity displaying a conversation between two users.
- * The following data should be attached
- * to the intent starting this activity:
- * <br/>
- * USER_NAME_KEY - The user name of the user not using the current instance of the application
- * ORIGINAL_USER_KEY - The user name of the user currently using the application
- */
 public class ConversationActivity extends Activity {
     // A tag of this class used by Log
     private final String ACTIVITY_TAG = "se.liu.ida.josfa969.tddd80.activities.ConversationActivity";
 
     // Initializes basic data variables
     private String userName = null;
-    private String avatarImage = "";
     private String originalUser = null;
 
     // Broadcast receiver
@@ -80,7 +69,6 @@ public class ConversationActivity extends Activity {
         // Gets all data sent by the intent starting this activity
         Intent initIntent = getIntent();
         userName = initIntent.getStringExtra(Constants.USER_NAME_KEY);
-        avatarImage = initIntent.getStringExtra(Constants.AVATAR_IMAGE_KEY);
         originalUser = initIntent.getStringExtra(Constants.ORIGINAL_USER_KEY);
 
         SharedPreferences preferences = this.getPreferences(Context.MODE_PRIVATE);
@@ -156,9 +144,7 @@ public class ConversationActivity extends Activity {
         Log.d(ACTIVITY_TAG, "On Pause");
 
         TextView conversationPartnerName = (TextView) findViewById(R.id.conversation_partner_name);
-        ImageButton avatarImageButton = (ImageButton) findViewById(R.id.avatar_picture);
         conversationPartnerName.setText(userName);
-        avatarImageButton.setImageBitmap(Constants.stringToBitmap(avatarImage));
 
         handler = new Handler();
         timer = new Timer();
@@ -188,17 +174,6 @@ public class ConversationActivity extends Activity {
                 }
             });
         }
-    }
-
-    public void onProfileImageClick(View view) {
-        Log.d(ACTIVITY_TAG, "On Profile Image Click");
-        progress.setTitle("Loading");
-        progress.setMessage("Fetching user data...");
-        progress.show();
-        Intent getUserDataService = new Intent(this, GetUserDataService.class);
-        getUserDataService.putExtra(Constants.USER_NAME_KEY, userName);
-        // Starts the service
-        startService(getUserDataService);
     }
 
     public void onSendMessageClick(View view) {
@@ -262,7 +237,6 @@ public class ConversationActivity extends Activity {
                     String city = userData.get(3);
                     String followers = userData.get(4);
                     String location = userData.get(5);
-                    String avatarImage = userData.get(6);
                     boolean isFollowing = intent.getBooleanExtra(Constants.IS_FOLLOWING_KEY, false);
 
                     // Adds data to the other user intent
@@ -272,7 +246,6 @@ public class ConversationActivity extends Activity {
                     otherUserIntent.putExtra(Constants.CITY_KEY, city);
                     otherUserIntent.putExtra(Constants.FOLLOWERS_KEY, followers);
                     otherUserIntent.putExtra(Constants.LOCATION_KEY, location);
-                    otherUserIntent.putExtra(Constants.AVATAR_IMAGE_KEY, avatarImage);
                     otherUserIntent.putExtra(Constants.ORIGINAL_USER_KEY, originalUser);
                     otherUserIntent.putExtra(Constants.IS_FOLLOWING_KEY, isFollowing);
 

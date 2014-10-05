@@ -19,10 +19,8 @@ import se.liu.ida.josfa969.tddd80.R;
 import se.liu.ida.josfa969.tddd80.background_services.SearchIdeasService;
 import se.liu.ida.josfa969.tddd80.fragments.FoundIdeasFragment;
 import se.liu.ida.josfa969.tddd80.help_classes.Constants;
-import se.liu.ida.josfa969.tddd80.help_classes.JsonMethods;
-import se.liu.ida.josfa969.tddd80.item_records.UserRecord;
-import se.liu.ida.josfa969.tddd80.list_adapters.IdeaItemAdapter;
 import se.liu.ida.josfa969.tddd80.item_records.IdeaRecord;
+import se.liu.ida.josfa969.tddd80.list_adapters.IdeaItemAdapter;
 
 public class FoundIdeasActivity extends Activity {
     // A tag of this class used by Log
@@ -117,7 +115,6 @@ public class FoundIdeasActivity extends Activity {
                     ideaDetailIntent.putExtra(Constants.TAG_STRING_KEY, ideaRecord.tags);
                     ideaDetailIntent.putExtra(Constants.APPROVAL_NUM_KEY, ideaRecord.approvalNum);
                     ideaDetailIntent.putExtra(Constants.IDEA_ID_KEY, ideaRecord.ideaId);
-                    ideaDetailIntent.putExtra(Constants.AVATAR_IMAGE_KEY, ideaRecord.image);
                     startActivity(ideaDetailIntent);
                 }
             }

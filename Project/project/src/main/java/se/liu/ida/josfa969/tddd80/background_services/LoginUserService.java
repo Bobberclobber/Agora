@@ -12,6 +12,7 @@ import se.liu.ida.josfa969.tddd80.help_classes.JsonMethods;
  * A service used to login a user
  */
 public class LoginUserService extends IntentService {
+
     public LoginUserService() {
         super("LoginUserService");
     }

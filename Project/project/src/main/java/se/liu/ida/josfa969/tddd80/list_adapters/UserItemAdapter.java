@@ -21,7 +21,6 @@ import se.liu.ida.josfa969.tddd80.item_records.UserRecord;
  */
 public class UserItemAdapter extends ArrayAdapter<UserRecord> {
     private ArrayList<UserRecord> userRecords;
-    private Context context;
 
     public  UserItemAdapter(Context context, int textViewSourceId, ArrayList<UserRecord> userRecords) {
         super(context, textViewSourceId, userRecords);
@@ -43,7 +42,6 @@ public class UserItemAdapter extends ArrayAdapter<UserRecord> {
             TextView country = (TextView) v.findViewById(R.id.user_list_country);
             TextView city = (TextView) v.findViewById(R.id.user_list_city);
             TextView followerNum = (TextView) v.findViewById(R.id.user_list_follower_num);
-            ImageView avatarImage = (ImageView) v.findViewById(R.id.user_avatar_image);
 
             if (userName != null) {
                 userName.setText(userRecord.userName);
@@ -59,9 +57,6 @@ public class UserItemAdapter extends ArrayAdapter<UserRecord> {
             }
             if (followerNum != null) {
                 followerNum.setText(userRecord.followers);
-            }
-            if (avatarImage != null) {
-                avatarImage.setImageBitmap(Constants.stringToBitmap(userRecord.image));
             }
         }
         return v;

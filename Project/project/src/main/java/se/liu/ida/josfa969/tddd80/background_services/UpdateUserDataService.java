@@ -31,10 +31,9 @@ public class UpdateUserDataService extends IntentService {
         String newCountry = intent.getStringExtra(Constants.COUNTRY_KEY);
         String newCity = intent.getStringExtra(Constants.CITY_KEY);
         String newLocation = intent.getStringExtra(Constants.LOCATION_KEY);
-        String newImage = intent.getStringExtra(Constants.AVATAR_IMAGE_KEY);
 
         String result = JsonMethods.updateUserData(originalUserName, originalEMail, newUserName, newEMail, newPassword,
-                                                   newCountry, newCity, newLocation, newImage);
+                                                   newCountry, newCity, newLocation);
         Log.d("UpdateUserDataService", "Result: " + result);
 
         Intent broadCastIntent = new Intent();

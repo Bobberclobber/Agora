@@ -21,7 +21,6 @@ import se.liu.ida.josfa969.tddd80.item_records.MessageRecord;
  */
 public class MessageItemAdapter extends ArrayAdapter<MessageRecord> {
     private ArrayList<MessageRecord> messageRecords;
-    private Context context;
 
     public MessageItemAdapter(Context context, int textViewSourceId, ArrayList<MessageRecord> messageRecords) {
         super(context, textViewSourceId, messageRecords);
@@ -41,7 +40,6 @@ public class MessageItemAdapter extends ArrayAdapter<MessageRecord> {
             TextView sender = (TextView) v.findViewById(R.id.sender);
             TextView receiver = (TextView) v.findViewById(R.id.receiver);
             TextView messageText = (TextView) v.findViewById(R.id.message_text);
-            ImageView avatarImage = (ImageView) v.findViewById(R.id.message_avatar_image);
 
             if (sender != null) {
                 sender.setText(messageRecord.sender);
@@ -51,9 +49,6 @@ public class MessageItemAdapter extends ArrayAdapter<MessageRecord> {
             }
             if (messageText != null) {
                 messageText.setText(messageRecord.messageText);
-            }
-            if (avatarImage != null) {
-                avatarImage.setImageBitmap(Constants.stringToBitmap(messageRecord.image));
             }
         }
         return v;

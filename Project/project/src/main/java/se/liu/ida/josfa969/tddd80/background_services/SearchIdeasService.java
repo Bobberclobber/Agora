@@ -23,10 +23,6 @@ public class SearchIdeasService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        System.out.println("----------");
-        System.out.println("On Handle Intent");
-        System.out.println("----------");
-
         String tagString = intent.getStringExtra(Constants.TAG_STRING_KEY);
         String originalUser = intent.getStringExtra(Constants.ORIGINAL_USER_KEY);
         ArrayList<IdeaRecord> ideas = JsonMethods.searchIdeas(tagString, originalUser);

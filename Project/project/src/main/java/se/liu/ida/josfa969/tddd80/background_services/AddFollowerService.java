@@ -21,10 +21,6 @@ public class AddFollowerService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        System.out.println("----------");
-        System.out.println("On Handle Intent");
-        System.out.println("----------");
-
         String originalUser = intent.getStringExtra(Constants.ORIGINAL_USER_KEY);
         String targetUser = intent.getStringExtra(Constants.TARGET_USER_KEY);
         Log.d("AddFollowerService", "Adding " + originalUser + " as follower to " + targetUser);

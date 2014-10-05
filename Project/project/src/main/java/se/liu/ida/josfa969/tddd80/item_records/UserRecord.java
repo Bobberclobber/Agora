@@ -19,15 +19,13 @@ public class UserRecord implements Parcelable {
     public String country;
     public String city;
     public String followers;
-    public String image;
 
-    public UserRecord(String userName, String eMail, String country, String city, String followers, String image) {
+    public UserRecord(String userName, String eMail, String country, String city, String followers) {
         this.userName = userName;
         this.eMail = eMail;
         this.country = country;
         this.city = city;
         this.followers = followers;
-        this.image = image;
     }
 
     private UserRecord(Parcel in) {
@@ -37,7 +35,6 @@ public class UserRecord implements Parcelable {
         country = in.readString();
         city = in.readString();
         followers = in.readString();
-        image = in.readString();
     }
 
     @Override
@@ -47,7 +44,6 @@ public class UserRecord implements Parcelable {
         out.writeString(country);
         out.writeString(city);
         out.writeString(followers);
-        out.writeString(image);
     }
 
     @Override

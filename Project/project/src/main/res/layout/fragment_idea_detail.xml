@@ -8,21 +8,11 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="se.liu.ida.josfa969.tddd80.fragments.IdeaDetailFragment">
 
-    <ImageButton
-        android:id="@+id/idea_detail_avatar_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/small_padding"
-        android:src="@drawable/q_mark"
-        android:contentDescription="@string/user_avatar_image_description"
-        android:onClick="onIdeaDetailAvatarClick"/>
-
     <TextView
         android:id="@+id/idea_detail_poster"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/small_padding"
-        android:layout_toRightOf="@id/idea_detail_avatar_image"
         android:textSize="@dimen/large_text_size"
         android:textColor="#0099CC"/>
 
@@ -31,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/large_internal_margin"
-        android:layout_toRightOf="@id/idea_detail_avatar_image"
+        android:layout_marginStart="@dimen/large_internal_margin"
         android:layout_below="@id/idea_detail_poster"/>
 
     <TextView
@@ -41,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_internal_margin"
         android:paddingLeft="@dimen/small_padding"
-        android:layout_toRightOf="@id/idea_detail_avatar_image"
+        android:paddingRight="@dimen/small_padding"
         android:layout_below="@id/idea_detail_idea_text"
         android:textColor="@color/primary_color"/>
 
@@ -50,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/large_internal_margin"
-        android:layout_toRightOf="@id/idea_detail_avatar_image"
+        android:layout_marginStart="@dimen/large_internal_margin"
         android:layout_below="@id/idea_detail_tags_text"/>
 
     <!-- Approval and Un-Approval buttons -->
@@ -60,7 +50,6 @@
         android:layout_width="@dimen/approval_button_side"
         android:layout_height="@dimen/approval_button_side"
         android:layout_below="@id/idea_detail_tags"
-        android:layout_toRightOf="@id/idea_detail_avatar_image"
         android:focusable="false"
         android:textColor="@color/success_color"
         android:onClick="onIdeaDetailApprovalClick"/>
@@ -71,7 +60,6 @@
         android:layout_width="@dimen/approval_button_side"
         android:layout_height="@dimen/approval_button_side"
         android:layout_below="@id/idea_detail_tags"
-        android:layout_toRightOf="@id/idea_detail_avatar_image"
         android:focusable="false"
         android:textColor="@color/error_color"
         android:onClick="onIdeaDetailUnApprovalClick"/>
@@ -80,8 +68,7 @@
         android:id="@+id/idea_detail_approval_button_replacement"
         android:layout_width="@dimen/approval_button_side"
         android:layout_height="@dimen/approval_button_side"
-        android:layout_below="@id/idea_detail_tags"
-        android:layout_toRightOf="@id/idea_detail_avatar_image"/>
+        android:layout_below="@id/idea_detail_tags"/>
 
     <TextView
         android:id="@+id/idea_detail_approval_num_text"
@@ -89,8 +76,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/small_padding"
+        android:paddingRight="@dimen/small_padding"
         android:layout_marginTop="@dimen/small_internal_margin"
         android:layout_toRightOf="@id/idea_detail_approval_button_replacement"
+        android:layout_toEndOf="@id/idea_detail_approval_button_replacement"
         android:layout_below="@id/idea_detail_tags"/>
 
     <TextView
@@ -98,6 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/idea_detail_approval_num_text"
+        android:layout_toEndOf="@id/idea_detail_approval_num_text"
         android:layout_marginTop="@dimen/small_internal_margin"
         android:layout_below="@id/idea_detail_tags"
         android:textColor="#0099CC"/>
@@ -109,7 +99,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_internal_margin"
         android:layout_marginLeft="@dimen/large_internal_margin"
+        android:layout_marginStart="@dimen/large_internal_margin"
         android:layout_toRightOf="@id/idea_detail_approval_num"
+        android:layout_toEndOf="@id/idea_detail_approval_num"
         android:layout_below="@id/idea_detail_tags"/>
 
     <TextView
@@ -118,6 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_internal_margin"
         android:layout_toRightOf="@id/idea_detail_id_text"
+        android:layout_toEndOf="@id/idea_detail_id_text"
         android:layout_below="@id/idea_detail_tags"
         android:textColor="#0099CC"/>
 
