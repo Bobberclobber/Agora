@@ -44,6 +44,6 @@ TODO:
 	> Add support for writing a title for the ideas posted.
 
 TODO (additional for v2.0):
-	> Remove the avatar image system (until a efficient way to upload the images to the database is found)
-	> Possibly remove the account system in favor for ease of access to post ideas
+	> Remove the obligatory account system. Likes shall be limited to 1 like/idea and phone.
+	> Create function which applies a unique ID to every phone 
 	> Improve design and color scheme

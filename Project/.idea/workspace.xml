@@ -42,69 +42,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: se.liu.ida.josfa969.tddd80" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2ed115b9-8fb5-4117-8f45-e88e1e04a5ef" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\.idea\libraries\appcompat_v7_19_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\.idea\libraries\play_services_5_0_89.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\.idea\libraries\support_v13_19_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\.idea\libraries\support_v4_19_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\src\main\java\se\liu\ida\josfa969\tddd80\fragments\TestFragment.java" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\src\main\res\drawable-hdpi\avatar_img.jpg" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\src\main\res\drawable-hdpi\q_mark.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\src\main\res\layout-sw700dp\fragment_conversation.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\src\main\res\layout-sw700dp\fragment_found_people.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\src\main\res\layout-sw700dp\fragment_idea_feed.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\src\main\res\layout-sw700dp\fragment_messages.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\src\main\res\layout-sw700dp\fragment_other_profile.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\src\main\res\layout-sw700dp\fragment_post_idea.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\src\main\res\layout-sw700dp\fragment_profile_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\src\main\res\layout-sw700dp\fragment_register.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\src\main\res\layout-sw700dp\fragment_search_ideas.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\src\main\res\layout\fragment_test.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/AddFollowerService.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/AddFollowerService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/CommentItemAdapter.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/CommentItemAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/item_records/CommentRecord.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/item_records/CommentRecord.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/Constants.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ConversationActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ConversationActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/FoundIdeasActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/FoundIdeasActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/fragments/FoundIdeasFragment.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/fragments/FoundIdeasFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/FoundPeopleActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/FoundPeopleActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetOtherUserIdeasService.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/GetOtherUserIdeasService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/IdeaDetailActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/IdeaDetailActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/fragments/IdeaDetailFragment.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/fragments/IdeaDetailFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/IdeaItemAdapter.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/IdeaItemAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/item_records/IdeaRecord.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/item_records/IdeaRecord.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/InformationActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/InformationActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/fragments/InformationFragment.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/fragments/InformationFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/JsonMethods.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/LoginActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/LoginActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/LoginUserService.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/LoginUserService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/MessageItemAdapter.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/MessageItemAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/item_records/MessageRecord.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/item_records/MessageRecord.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/OtherProfileActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ProfileActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/ProfileActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/ProfilePagerAdapter.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/help_classes/ProfilePagerAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/RegisterActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/RegisterActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/RegisterUserService.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/RegisterUserService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/RemoveFollowerService.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/RemoveFollowerService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/SearchIdeasActivity.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/activities/SearchIdeasActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/SearchIdeasService.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/SearchIdeasService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/UpdateUserDataService.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/background_services/UpdateUserDataService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/UserItemAdapter.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/list_adapters/UserItemAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/item_records/UserRecord.java" afterPath="$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/item_records/UserRecord.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/layout/comment_list_item.xml" afterPath="$PROJECT_DIR$/project/src/main/res/layout/comment_list_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/layout/fragment_conversation.xml" afterPath="$PROJECT_DIR$/project/src/main/res/layout/fragment_conversation.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/layout/fragment_found_ideas.xml" afterPath="$PROJECT_DIR$/project/src/main/res/layout/fragment_found_ideas.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/layout/fragment_found_people.xml" afterPath="$PROJECT_DIR$/project/src/main/res/layout/fragment_found_people.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/layout/fragment_idea_detail.xml" afterPath="$PROJECT_DIR$/project/src/main/res/layout/fragment_idea_detail.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/layout/fragment_information.xml" afterPath="$PROJECT_DIR$/project/src/main/res/layout/fragment_information.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/layout/fragment_other_profile.xml" afterPath="$PROJECT_DIR$/project/src/main/res/layout/fragment_other_profile.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/layout/fragment_profile_settings.xml" afterPath="$PROJECT_DIR$/project/src/main/res/layout/fragment_profile_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/layout/fragment_register.xml" afterPath="$PROJECT_DIR$/project/src/main/res/layout/fragment_register.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/layout/idea_list_item.xml" afterPath="$PROJECT_DIR$/project/src/main/res/layout/idea_list_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/layout/message_list_item.xml" afterPath="$PROJECT_DIR$/project/src/main/res/layout/message_list_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/src/main/res/layout/user_list_item.xml" afterPath="$PROJECT_DIR$/project/src/main/res/layout/user_list_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="2ed115b9-8fb5-4117-8f45-e88e1e04a5ef" name="Default" comment="" />
     <ignored path="Project.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -165,7 +103,21 @@
     <favorites_list name="Project" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="fragment_initial.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_initial.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -1625,7 +1577,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1637,14 +1589,14 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3737486" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22707888" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22707888" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32814237" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925472" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16240267" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3737486" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21108742" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21108742" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32814237" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1679,22 +1631,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/fragments/LoginFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/fragments/InitialFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/project/src/main/java/se/liu/ida/josfa969/tddd80/fragments/IdeaFeedFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
@@ -2100,6 +2036,28 @@
     <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/user_list_item.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.2085308" vertical-offset="176" max-vertical-offset="1173">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/activity_initial.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="844">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/src/main/res/layout/fragment_initial.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
