@@ -22,8 +22,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/large_internal_margin"
         android:layout_below="@id/conversation_title"
-        android:layout_toRightOf="@id/avatar_picture"
-        android:layout_toEndOf="@id/avatar_picture"
         android:textSize="@dimen/large_text_size"
         android:textColor="@color/primary_color"/>
 
@@ -51,6 +49,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_internal_margin"
         android:layout_above="@id/send_message_input"
-        android:layout_below="@id/avatar_picture"/>
+        android:layout_below="@id/conversation_title"/>
 
 </RelativeLayout>

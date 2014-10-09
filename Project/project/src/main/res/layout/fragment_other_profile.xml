@@ -14,8 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/small_internal_margin"
         android:layout_marginStart="@dimen/small_internal_margin"
-        android:layout_toRightOf="@id/other_profile_image"
-        android:layout_toEndOf="@id/other_profile_image"
         android:textSize="@dimen/large_text_size"
         android:textColor="@color/primary_color"/>
 
@@ -25,8 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/small_internal_margin"
         android:layout_marginStart="@dimen/small_internal_margin"
-        android:layout_toRightOf="@id/other_profile_image"
-        android:layout_toEndOf="@id/other_profile_image"
         android:layout_below="@id/other_profile_name"/>
 
     <TextView
@@ -36,8 +32,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/small_internal_margin"
         android:layout_marginStart="@dimen/small_internal_margin"
-        android:layout_toRightOf="@id/other_profile_image"
-        android:layout_toEndOf="@id/other_profile_image"
         android:layout_below="@id/other_profile_e_mail"/>
 
     <TextView
@@ -51,23 +45,15 @@
         android:layout_below="@id/other_profile_e_mail"/>
 
     <Space
-        android:id="@+id/other_profile_upper_margin"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/large_internal_margin"
-        android:layout_below="@id/other_profile_image"/>
-
-    <Space
         android:id="@+id/button_replacement"
         android:layout_width="@dimen/small_button_width"
-        android:layout_height="@dimen/small_button_height"
-        android:layout_below="@id/other_profile_upper_margin"/>
+        android:layout_height="@dimen/small_button_height"/>
 
     <Button
         android:id="@+id/follow_button"
         android:text="@string/follow_button_text"
         android:layout_width="@dimen/small_button_width"
         android:layout_height="@dimen/small_button_height"
-        android:layout_below="@id/other_profile_upper_margin"
         android:onClick="onFollowClick"/>
 
     <Button
@@ -75,7 +61,6 @@
         android:text="@string/un_follow_button_text"
         android:layout_width="@dimen/small_button_width"
         android:layout_height="@dimen/small_button_height"
-        android:layout_below="@id/other_profile_upper_margin"
         android:onClick="onUnFollowClick"/>
 
     <Button
@@ -85,7 +70,6 @@
         android:layout_height="@dimen/small_button_height"
         android:layout_toRightOf="@id/button_replacement"
         android:layout_toEndOf="@id/button_replacement"
-        android:layout_below="@id/other_profile_upper_margin"
         android:onClick="onMessageClick"/>
 
     <Button
@@ -95,7 +79,6 @@
         android:layout_height="@dimen/small_button_height"
         android:layout_toRightOf="@id/other_profile_send_message_button"
         android:layout_toEndOf="@id/other_profile_send_message_button"
-        android:layout_below="@id/other_profile_upper_margin"
         android:onClick="onInformationClick"/>
 
     <TextView
