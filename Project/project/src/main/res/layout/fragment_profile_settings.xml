@@ -65,7 +65,6 @@
                 android:layout_marginTop="@dimen/large_internal_margin"
                 android:layout_marginLeft="@dimen/large_internal_margin"
                 android:layout_marginStart="@dimen/large_internal_margin"
-                android:layout_below="@id/profile_image"
                 android:textSize="@dimen/large_text_size"
                 android:textColor="@color/primary_color"
                 android:inputType="text" />

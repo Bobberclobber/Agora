@@ -102,4 +102,18 @@
     <string name="sender_text">From:</string>
     <string name="receiver_text">To:</string>
 
+    <!-- ++++++++++++ -->
+    <!-- Strings for v2 -->
+    <!-- ++++++++++++ -->
+
+    <!-- Labels -->
+    <string name="daily_top_ideas_text">Today\'s Top Ideas</string>
+
+    <!-- Titles -->
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="fragment_home_title_text">AGORA</string>
+
+    <!-- Action Bar Strings -->
+    <string name="action_bar_search_text">Search</string>
+
 </resources>
