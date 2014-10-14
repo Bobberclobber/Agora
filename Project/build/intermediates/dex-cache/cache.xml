@@ -2,28 +2,28 @@
 <pre-dex-items>
 
     <item
-        dex="/home/josef/Desktop/Android Projects/Agora v2.0/Project/project/build/intermediates/pre-dexed/debug/classes-da0c2ce43449a750178395fe5ec486e8f0436581.jar"
-        jar="/home/josef/Desktop/Android Projects/Agora v2.0/Project/project/build/intermediates/exploded-aar/com.google.android.gms/play-services/5.0.89/classes.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="d71573c9c5ea98a8db47ad6ff993a63d492b3bfa"/>
-    <item
-        dex="/home/josef/Desktop/Android Projects/Agora v2.0/Project/project/build/intermediates/pre-dexed/debug/support-v13-19.1.0-e9b4e1a32a8c5d02bec64e009f298e732a920ad8.jar"
-        jar="/home/josef/Android Studio/android-studio/sdk/extras/android/m2repository/com/android/support/support-v13/19.1.0/support-v13-19.1.0.jar"
+        dex="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\pre-dexed\debug\support-v13-19.1.0-7389b9d1d6176f72603779ca3d090ac794ccb980.jar"
+        jar="C:\Users\Josef\AppData\Local\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-v13\19.1.0\support-v13-19.1.0.jar"
         jumboMode="false"
         revision="19.1.0"
         sha1="6b852a232f642c75a7fdfc7212b841b8c8f8959c"/>
     <item
-        dex="/home/josef/Desktop/Android Projects/Agora v2.0/Project/project/build/intermediates/pre-dexed/debug/classes-04bac597fb422ef56f5942624459c6a474e8a442.jar"
-        jar="/home/josef/Desktop/Android Projects/Agora v2.0/Project/project/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/classes.jar"
+        dex="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\pre-dexed\debug\classes-d4e885776865bda236ad1d5545146ae428ca851d.jar"
+        jar="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\exploded-aar\com.google.android.gms\play-services\5.0.89\classes.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28"/>
+        sha1="d71573c9c5ea98a8db47ad6ff993a63d492b3bfa"/>
     <item
-        dex="/home/josef/Desktop/Android Projects/Agora v2.0/Project/project/build/intermediates/pre-dexed/debug/support-v4-19.1.0-3225d2f44352401168900dd9ca622fcd5d2e85c7.jar"
-        jar="/home/josef/Android Studio/android-studio/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
+        dex="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\pre-dexed\debug\support-v4-19.1.0-51024da5132690ef185fbdd21e63be8bacc306fd.jar"
+        jar="C:\Users\Josef\AppData\Local\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
         jumboMode="false"
         revision="19.1.0"
         sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
+    <item
+        dex="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\pre-dexed\debug\classes-c527ae28bf4a3e05f1efbc178da8ff8c094dcda1.jar"
+        jar="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28"/>
 
 </pre-dex-items>

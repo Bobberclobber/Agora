@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="se.liu.ida.josfa969.tddd80.fragments_v2.SearchFragment">
+
+    <TextView
+        android:id="@+id/search_by_tag_label"
+        android:text="@string/search_for_tag_label_text"
+        android:textSize="@dimen/large_text_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_internal_margin"
+        android:layout_centerHorizontal="true"/>
+
+    <Spinner
+        android:id="@+id/tag_search_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/search_by_tag_label"/>
+
+    <TextView
+        android:id="@+id/search_by_content_label"
+        android:text="@string/search_for_content_label"
+        android:textSize="@dimen/large_text_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_internal_margin"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/tag_search_spinner"/>
+
+    <SearchView
+        android:id="@+id/content_search_input"
+        android:layout_width="@dimen/search_input_width"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/search_by_content_label"/>
+
+    <TextView
+        android:id="@+id/search_by_poster_label"
+        android:text="@string/search_for_poster_label"
+        android:textSize="@dimen/large_text_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_internal_margin"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/content_search_input"/>
+
+    <SearchView
+        android:id="@+id/poster_search_input"
+        android:layout_width="@dimen/search_input_width"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/search_by_poster_label"/>
+
+</RelativeLayout>

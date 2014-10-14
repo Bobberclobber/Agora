@@ -107,13 +107,27 @@
     <!-- ++++++++++++ -->
 
     <!-- Labels -->
-    <string name="daily_top_ideas_text">Today\'s Top Ideas</string>
+    <string name="daily_top_ideas_label_text">Today\'s Top Ideas</string>
+    <string name="search_for_tag_label_text">Search for tag:</string>
+    <string name="search_for_content_label">Search for content:</string>
+    <string name="search_for_poster_label">Search for poster:</string>
 
     <!-- Titles -->
     <string name="title_activity_home">HomeActivity</string>
     <string name="fragment_home_title_text">AGORA</string>
 
     <!-- Action Bar Strings -->
-    <string name="action_bar_search_text">Search</string>
+    <string name="action_bar_search_title">Search</string>
+    <string name="action_bar_settings_title">Settings</string>
+
+    <!-- Tag Search Spinner Options -->
+    <string-array name="tags_array">
+        <item>Programming</item>
+        <item>Computer Science</item>
+        <item>Chemistry</item>
+        <item>Physics</item>
+        <item>Cooking</item>
+        <item>Economics</item>
+    </string-array>
 
 </resources>

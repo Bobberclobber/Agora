@@ -21,6 +21,7 @@
     <!-- Input Field Dimensions -->
     <dimen name="input_field_width">200dp</dimen>
     <dimen name="input_field_height">35dp</dimen>
+    <dimen name="search_input_width">300dp</dimen>
 
     <!-- Margins -->
     <dimen name="input_field_margin">25dp</dimen>

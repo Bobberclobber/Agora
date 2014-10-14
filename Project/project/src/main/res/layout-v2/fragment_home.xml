@@ -6,19 +6,11 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/fragment_home_title"
-        android:text="@string/fragment_home_title_text"
+        android:id="@+id/daily_top_ideas_label"
+        android:text="@string/daily_top_ideas_label_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"/>
-
-    <TextView
-        android:id="@+id/daily_top_ideas_label"
-        android:text="@string/daily_top_ideas_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/fragment_home_title"/>
 
     <ListView
         android:layout_width="wrap_content"

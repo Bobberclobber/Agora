@@ -12,7 +12,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/agora_logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <meta-data
@@ -279,10 +279,25 @@
             android:name=".background_services.RegisterUserService"
             android:exported="false" />
 
+        <!-- ++++++++++ -->
+        <!-- Activities for v2 -->
+        <!-- ++++++++++ -->
+        <!-- Home Activity -->
         <activity
             android:name=".activities_v2.HomeActivity"
             android:label="@string/title_activity_home"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        </activity>
+
+        <!-- Search Activity -->
+        <activity
+            android:name=".activities_v2.SearchActivity"
+            android:label="@string/title_activity_search"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            android:parentActivityName=".activities_v2.HomeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="se.liu.ida.josfa969.tddd80.activities_v2.HomeActivity" />
         </activity>
     </application>
 
