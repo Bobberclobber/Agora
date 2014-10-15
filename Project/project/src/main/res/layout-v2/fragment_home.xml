@@ -8,6 +8,7 @@
     <TextView
         android:id="@+id/daily_top_ideas_label"
         android:text="@string/daily_top_ideas_label_text"
+        android:textSize="@dimen/small_title_text_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"/>
