@@ -293,8 +293,19 @@
         <activity
             android:name=".activities_v2.SearchActivity"
             android:label="@string/title_activity_search"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-            android:parentActivityName=".activities_v2.HomeActivity" >
+            android:parentActivityName=".activities_v2.HomeActivity"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="se.liu.ida.josfa969.tddd80.activities_v2.HomeActivity" />
+        </activity>
+
+        <!-- Settings Activity -->
+        <activity
+            android:name=".activities_v2.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".activities_v2.HomeActivity"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="se.liu.ida.josfa969.tddd80.activities_v2.HomeActivity" />

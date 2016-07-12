@@ -2,28 +2,46 @@
 <pre-dex-items>
 
     <item
-        dex="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\pre-dexed\debug\support-v13-19.1.0-7389b9d1d6176f72603779ca3d090ac794ccb980.jar"
-        jar="C:\Users\Josef\AppData\Local\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-v13\19.1.0\support-v13-19.1.0.jar"
+        dex="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\pre-dexed\debug\classes-f5bdfb72265642568c8b8a4c86c05575aaca24d6.jar"
+        jar="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\exploded-aar\com.google.android.gms\play-services\5.2.08\classes.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="6b852a232f642c75a7fdfc7212b841b8c8f8959c"/>
+        sha1="1ed7a7a05185651f9af41ad93711cb96b66f331c"/>
     <item
-        dex="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\pre-dexed\debug\classes-d4e885776865bda236ad1d5545146ae428ca851d.jar"
-        jar="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\exploded-aar\com.google.android.gms\play-services\5.0.89\classes.jar"
+        dex="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\pre-dexed\debug\classes-f70a1d9eff979c8abc727c688b594433c4e8b575.jar"
+        jar="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\classes.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="d71573c9c5ea98a8db47ad6ff993a63d492b3bfa"/>
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
     <item
-        dex="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\pre-dexed\debug\support-v4-19.1.0-51024da5132690ef185fbdd21e63be8bacc306fd.jar"
-        jar="C:\Users\Josef\AppData\Local\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-v4\19.1.0\support-v4-19.1.0.jar"
+        dex="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-f69dbddc05452ec3a508c0f1e5a5fc59a43097d4.jar"
+        jar="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\libs\internal_impl-20.0.0.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
     <item
-        dex="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\pre-dexed\debug\classes-c527ae28bf4a3e05f1efbc178da8ff8c094dcda1.jar"
-        jar="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\exploded-aar\com.android.support\appcompat-v7\19.1.0\classes.jar"
+        dex="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-24e5a96a95c155278b128345520350a21195f92e.jar"
+        jar="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\exploded-aar\com.android.support\support-v13\20.0.0\libs\internal_impl-20.0.0.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28"/>
+        sha1="27bbd3982cdfe4468a9bf99c8c773734a9049e33"/>
+    <item
+        dex="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\pre-dexed\debug\support-annotations-20.0.0-c9cf9508e4b4824a533cc270838f6c1db5a219af.jar"
+        jar="C:\Users\Josef\AppData\Local\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-annotations\20.0.0\support-annotations-20.0.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
+    <item
+        dex="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\pre-dexed\debug\classes-3ee268018bf834436eb8e300e52abf26699e8ad4.jar"
+        jar="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\exploded-aar\com.android.support\appcompat-v7\20.0.0\classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef"/>
+    <item
+        dex="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\pre-dexed\debug\classes-42c218e23f5052db14dea3f258419c8adcd08c3a.jar"
+        jar="C:\Users\Josef\Desktop\Android Projects\Agora v2.0\Project\project\build\intermediates\exploded-aar\com.android.support\support-v13\20.0.0\classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="e128103d5281ddd26195a7f980b36d0d005a4e56"/>
 
 </pre-dex-items>

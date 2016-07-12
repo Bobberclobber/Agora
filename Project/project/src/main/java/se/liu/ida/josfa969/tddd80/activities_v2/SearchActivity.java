@@ -1,6 +1,7 @@
 package se.liu.ida.josfa969.tddd80.activities_v2;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -19,12 +20,10 @@ public class SearchActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        // Adds the fragment to the screen
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction().add(R.id.container, new SearchFragment()).commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -59,6 +58,8 @@ public class SearchActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.menu_action_settings:
+                Intent settingsActivityIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsActivityIntent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -66,5 +67,6 @@ public class SearchActivity extends ActionBarActivity {
     }
 
     public void onSearchButtonClick(View view) {
+
     }
 }

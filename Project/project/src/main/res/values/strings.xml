@@ -102,6 +102,7 @@
     <string name="sender_text">From:</string>
     <string name="receiver_text">To:</string>
 
+
     <!-- ++++++++++++ -->
     <!-- Strings for v2 -->
     <!-- ++++++++++++ -->
@@ -111,14 +112,19 @@
     <string name="search_for_tag_label_text">Search for tag:</string>
     <string name="search_for_content_label">Search for content:</string>
     <string name="search_for_poster_label">Search for poster:</string>
+    <string name="username_association_label_text">Enter a username address to associate it with this device:</string>
 
     <!-- Titles -->
     <string name="title_activity_home">HomeActivity</string>
     <string name="fragment_home_title_text">AGORA</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 
     <!-- Action Bar Strings -->
     <string name="action_bar_search_title">Search</string>
     <string name="action_bar_settings_title">Settings</string>
+
+    <!-- Button Text Strings -->
+    <string name="username_association_button_text">Commit</string>
 
     <!-- Tag Search Spinner Options -->
     <string-array name="tags_array">

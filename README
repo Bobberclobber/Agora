@@ -47,3 +47,12 @@ TODO (additional for v2.0):
 	> Remove the obligatory account system. Likes shall be limited to 1 like/idea and phone.
 	> Create function which applies a unique ID to every phone 
 	> Improve design and color scheme
+
+	> Continue adding the options menu. Use the following URL's for information:
+		http://developer.android.com/guide/topics/ui/menus.html#options-menu
+		http://developer.android.com/guide/topics/ui/actionbar.html
+		http://developer.android.com/guide/topics/ui/controls/spinner.html
+	> Create a new database and setup a better server on own computer. Use the following URL's for information:
+		http://www.tutorialspoint.com/android/android_php_mysql.htm
+		http://httpd.apache.org/docs/2.2/platform/windows.html
+		http://www.instructables.com/id/Set-up-your-very-own-Web-server/?ALLSTEPS

@@ -8,17 +8,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import se.liu.ida.josfa969.tddd80.R;
-import se.liu.ida.josfa969.tddd80.fragments_v2.HomeFragment;
+import se.liu.ida.josfa969.tddd80.fragments_v2.SettingsFragment;
 
-public class HomeActivity extends ActionBarActivity {
+public class SettingsActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_settings);
 
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction().add(R.id.container, new HomeFragment()).commit();
+            getFragmentManager().beginTransaction().add(R.id.container, new SettingsFragment()).commit();
         }
     }
 
@@ -42,10 +42,6 @@ public class HomeActivity extends ActionBarActivity {
             case R.id.menu_action_search:
                 Intent searchActivityIntent = new Intent(this, SearchActivity.class);
                 startActivity(searchActivityIntent);
-                return true;
-            case R.id.menu_action_settings:
-                Intent settingsActivityIntent = new Intent(this, SettingsActivity.class);
-                startActivity(settingsActivityIntent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
