@@ -1,4 +1,4 @@
-My Android project for the course TDDD80 - Mobila och Sociala Applikationer (Mobile and Social Applications) the spring and 
+#My Android project for the course TDDD80 - Mobila och Sociala Applikationer (Mobile and Social Applications) the spring and 
 summer of 2014. 
 The application is built using the android OS in combination with a server built using python in combination
 with Flask and SQLite3. 
